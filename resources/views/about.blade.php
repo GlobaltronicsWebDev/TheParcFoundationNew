@@ -59,7 +59,7 @@
     </div>
   </section>
 
-  <!-- ── Vimeo Video ── -->
+  <!-- ── Video 1: Our Story ── -->
   <section class="about-video">
     <div class="container">
       <h2 class="about-section-heading text-center">Our <span>Story</span></h2>
@@ -70,10 +70,9 @@
       </div>
 
       <div class="about-video-wrapper">
-        <!-- Replace the Vimeo video ID below with your actual video ID -->
         <div class="vimeo-embed-container">
           <iframe
-            id="vimeo-player"
+            id="vimeo-player-1"
             src="https://player.vimeo.com/video/YOUR_VIMEO_ID?badge=0&autopause=0&player_id=0&app_id=58479"
             frameborder="0"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
@@ -82,13 +81,47 @@
           </iframe>
         </div>
 
-        <!-- Vimeo ID input for easy updating -->
         <div class="vimeo-id-form text-center mt-4">
-          <p class="vimeo-hint">Enter a Vimeo Video ID to update the player:</p>
+          <p class="vimeo-hint">Paste a Vimeo link to load the video:</p>
           <div class="vimeo-input-row">
-            <input type="text" id="vimeo-id-input" class="vimeo-input" placeholder="e.g. 123456789" />
-            <button class="vimeo-load-btn" id="vimeo-load-btn">Load Video</button>
+            <input type="text" id="vimeo-input-1" class="vimeo-input" placeholder="e.g. https://vimeo.com/123456789" />
+            <button class="vimeo-load-btn" data-player="vimeo-player-1" data-input="vimeo-input-1" data-error="vimeo-error-1">Load Video</button>
           </div>
+          <p class="vimeo-error" id="vimeo-error-1"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Video 2: Balik-JAM ── -->
+  <section class="about-video about-video-alt">
+    <div class="container">
+      <h2 class="about-section-heading text-center">Balik-JAM Sa <span>PARCaralan</span></h2>
+      <div class="row justify-content-center mb-4">
+        <div class="col-lg-9 text-center">
+          <p class="about-intro-text">Get ready for our first video vlog! Let's recall the stories and inspirations of music, the performing arts, and celebration of talents among our PARCaralan scholars.</p>
+        </div>
+      </div>
+
+      <div class="about-video-wrapper">
+        <div class="vimeo-embed-container">
+          <iframe
+            id="vimeo-player-2"
+            src="https://player.vimeo.com/video/YOUR_VIMEO_ID?badge=0&autopause=0&player_id=0&app_id=58479"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+            allowfullscreen
+            title="Balik-JAM Sa PARCaralan">
+          </iframe>
+        </div>
+
+        <div class="vimeo-id-form text-center mt-4">
+          <p class="vimeo-hint">Paste a Vimeo link to load the video:</p>
+          <div class="vimeo-input-row">
+            <input type="text" id="vimeo-input-2" class="vimeo-input" placeholder="e.g. https://vimeo.com/123456789" />
+            <button class="vimeo-load-btn" data-player="vimeo-player-2" data-input="vimeo-input-2" data-error="vimeo-error-2">Load Video</button>
+          </div>
+          <p class="vimeo-error" id="vimeo-error-2"></p>
         </div>
       </div>
     </div>
@@ -167,22 +200,49 @@
   <script src="https://player.vimeo.com/api/player.js"></script>
 
   <script>
+    /* ── Extract Vimeo ID from any Vimeo URL format ── */
+    function extractVimeoId(input) {
+      input = input.trim();
+      // Already a plain numeric ID
+      if (/^\d+$/.test(input)) return input;
+      // Matches: vimeo.com/123456789 or vimeo.com/video/123456789 or player.vimeo.com/video/123456789
+      var match = input.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+      return match ? match[1] : null;
+    }
+
+    /* ── Wire up each Load Video button ── */
+    document.querySelectorAll('.vimeo-load-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var inputEl  = document.getElementById(this.dataset.input);
+        var iframe   = document.getElementById(this.dataset.player);
+        var errorEl  = document.getElementById(this.dataset.error);
+        var id       = extractVimeoId(inputEl.value);
+
+        if (!id) {
+          errorEl.textContent = 'Invalid Vimeo link. Please paste a full URL like https://vimeo.com/123456789';
+          return;
+        }
+        errorEl.textContent = '';
+        iframe.src = 'https://player.vimeo.com/video/' + id + '?badge=0&autopause=0&player_id=0&app_id=58479';
+        inputEl.value = '';
+      });
+    });
+
     /* ── Count-up on scroll ── */
     function animateCount(el) {
-      const target = parseInt(el.getAttribute('data-target'), 10);
-      const duration = 1800;
-      const step = 16;
-      const increment = target / (duration / step);
-      let current = 0;
-      const timer = setInterval(function () {
+      var target = parseInt(el.getAttribute('data-target'), 10);
+      var duration = 1800, step = 16;
+      var increment = target / (duration / step);
+      var current = 0;
+      var timer = setInterval(function () {
         current += increment;
         if (current >= target) { current = target; clearInterval(timer); }
         el.textContent = Math.floor(current);
       }, step);
     }
 
-    const countEls = document.querySelectorAll('.count-up');
-    const countObserver = new IntersectionObserver(function (entries) {
+    var countEls = document.querySelectorAll('.count-up');
+    var countObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           animateCount(entry.target);
@@ -191,14 +251,6 @@
       });
     }, { threshold: 0.5 });
     countEls.forEach(function (el) { countObserver.observe(el); });
-
-    /* ── Vimeo ID loader ── */
-    document.getElementById('vimeo-load-btn').addEventListener('click', function () {
-      const id = document.getElementById('vimeo-id-input').value.trim();
-      if (!id) return;
-      const iframe = document.getElementById('vimeo-player');
-      iframe.src = 'https://player.vimeo.com/video/' + id + '?badge=0&autopause=0&player_id=0&app_id=58479';
-    });
   </script>
 
 </body>
