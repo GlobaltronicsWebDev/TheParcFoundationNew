@@ -17,7 +17,7 @@
   <!-- ── Hero Banner ── -->
   <section class="about-hero">
     <div class="about-hero-overlay">
-      <h1 class="about-hero-title">About <span>Us</span></h1>
+      <h1 class="about-hero-title fade-left">About <span>Us</span></h1>
     </div>
   </section>
 
@@ -26,7 +26,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-9 text-center">
-          <h2 class="about-section-heading">About <span>Us</span></h2>
+          <h2 class="about-section-heading fade-right">About <span>Us</span></h2>
           <p class="about-intro-text">
             The Performing Arts and Recreation Center (PARC) Foundation is a registered, non-stock,
             non-profit organization founded in December 2015 which is committed to harnessing the
@@ -72,7 +72,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-9 text-center">
-          <h2 class="about-section-heading">The PARC Foundation marks <span>Its 6th year celebration</span></h2>
+          <h2 class="about-section-heading fade-left">The PARC Foundation marks <span>Its 6th year celebration</span></h2>
           <p class="about-intro-text">
             The Performing Arts and Recreation Center (PARC) Foundation is a registered, non-stock,
             non-profit organization founded in December 2015 which is committed to harnessing the
@@ -97,6 +97,7 @@
           </div>
         </div>
       </div>
+      </div>
 
     </div>
   </section>
@@ -108,14 +109,14 @@
         <div class="col-md-5">
           <div class="mv-card">
             <div class="mv-icon"><i class="bi bi-bullseye"></i></div>
-            <h3>Our Mission</h3>
+            <h3 class="fade-right">Our Mission</h3>
             <p>To harness the power of performing arts in transforming the lives of underprivileged children and youth by providing them with world-class training, values formation, and pathways to a brighter future.</p>
           </div>
         </div>
         <div class="col-md-5">
           <div class="mv-card">
             <div class="mv-icon"><i class="bi bi-eye"></i></div>
-            <h3>Our Vision</h3>
+            <h3 class="fade-left">Our Vision</h3>
             <p>A society where every child, regardless of economic status, has access to the transformative power of the arts — enabling them to become confident, compassionate, and productive citizens.</p>
           </div>
         </div>
@@ -126,7 +127,7 @@
   <!-- ── Core Values ── -->
   <section class="about-values">
     <div class="container">
-      <h2 class="about-section-heading text-center">Our Core Values</h2>
+      <h2 class="about-section-heading text-center fade-right">Our Core Values</h2>
       <div class="row g-4 justify-content-center mt-2">
 
         <div class="col-md-6 col-lg-5">
@@ -219,6 +220,18 @@
       });
     }, { threshold: 0.5 });
     countEls.forEach(function (el) { countObserver.observe(el); });
+
+    /* ── Heading slide animations ── */
+    var slideEls = document.querySelectorAll('.fade-left, .fade-right');
+    var slideObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          slideObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    slideEls.forEach(function (el) { slideObserver.observe(el); });
   </script>
 
 </body>
