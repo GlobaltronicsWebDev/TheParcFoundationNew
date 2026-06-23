@@ -72,22 +72,12 @@
       <div class="about-video-wrapper">
         <div class="vimeo-embed-container">
           <iframe
-            id="vimeo-player-1"
-            src="https://player.vimeo.com/video/YOUR_VIMEO_ID?badge=0&autopause=0&player_id=0&app_id=58479"
+            src="https://player.vimeo.com/video/1072933496?badge=0&autopause=0&player_id=0&app_id=58479"
             frameborder="0"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
             allowfullscreen
             title="PARC Foundation — Our Story">
           </iframe>
-        </div>
-
-        <div class="vimeo-id-form text-center mt-4">
-          <p class="vimeo-hint">Paste a Vimeo link to load the video:</p>
-          <div class="vimeo-input-row">
-            <input type="text" id="vimeo-input-1" class="vimeo-input" placeholder="e.g. https://vimeo.com/123456789" />
-            <button class="vimeo-load-btn" data-player="vimeo-player-1" data-input="vimeo-input-1" data-error="vimeo-error-1">Load Video</button>
-          </div>
-          <p class="vimeo-error" id="vimeo-error-1"></p>
         </div>
       </div>
     </div>
@@ -106,22 +96,12 @@
       <div class="about-video-wrapper">
         <div class="vimeo-embed-container">
           <iframe
-            id="vimeo-player-2"
-            src="https://player.vimeo.com/video/YOUR_VIMEO_ID?badge=0&autopause=0&player_id=0&app_id=58479"
+            src="https://player.vimeo.com/video/1072933496?badge=0&autopause=0&player_id=0&app_id=58479"
             frameborder="0"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
             allowfullscreen
             title="Balik-JAM Sa PARCaralan">
           </iframe>
-        </div>
-
-        <div class="vimeo-id-form text-center mt-4">
-          <p class="vimeo-hint">Paste a Vimeo link to load the video:</p>
-          <div class="vimeo-input-row">
-            <input type="text" id="vimeo-input-2" class="vimeo-input" placeholder="e.g. https://vimeo.com/123456789" />
-            <button class="vimeo-load-btn" data-player="vimeo-player-2" data-input="vimeo-input-2" data-error="vimeo-error-2">Load Video</button>
-          </div>
-          <p class="vimeo-error" id="vimeo-error-2"></p>
         </div>
       </div>
     </div>
@@ -200,34 +180,6 @@
   <script src="https://player.vimeo.com/api/player.js"></script>
 
   <script>
-    /* ── Extract Vimeo ID from any Vimeo URL format ── */
-    function extractVimeoId(input) {
-      input = input.trim();
-      // Already a plain numeric ID
-      if (/^\d+$/.test(input)) return input;
-      // Matches: vimeo.com/123456789 or vimeo.com/video/123456789 or player.vimeo.com/video/123456789
-      var match = input.match(/vimeo\.com\/(?:video\/)?(\d+)/);
-      return match ? match[1] : null;
-    }
-
-    /* ── Wire up each Load Video button ── */
-    document.querySelectorAll('.vimeo-load-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var inputEl  = document.getElementById(this.dataset.input);
-        var iframe   = document.getElementById(this.dataset.player);
-        var errorEl  = document.getElementById(this.dataset.error);
-        var id       = extractVimeoId(inputEl.value);
-
-        if (!id) {
-          errorEl.textContent = 'Invalid Vimeo link. Please paste a full URL like https://vimeo.com/123456789';
-          return;
-        }
-        errorEl.textContent = '';
-        iframe.src = 'https://player.vimeo.com/video/' + id + '?badge=0&autopause=0&player_id=0&app_id=58479';
-        inputEl.value = '';
-      });
-    });
-
     /* ── Count-up on scroll ── */
     function animateCount(el) {
       var target = parseInt(el.getAttribute('data-target'), 10);
