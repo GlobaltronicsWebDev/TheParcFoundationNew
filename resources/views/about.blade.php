@@ -34,6 +34,37 @@
           </p>
         </div>
       </div>
+
+      <!-- ── 2 Videos side by side ── -->
+      <div class="row g-4 justify-content-center mt-4">
+        <div class="col-md-6">
+          <p class="about-video-label text-center">PARC AVP</p>
+          <div class="vimeo-embed-container">
+            <iframe
+              src="https://player.vimeo.com/video/1200286268?badge=0&autopause=0&player_id=0&app_id=58479"
+              frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              title="PARC_AVP">
+            </iframe>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p class="about-video-label text-center">PARC Foundation 10 Years Milestone</p>
+          <div class="vimeo-embed-container">
+            <iframe
+              src="https://player.vimeo.com/video/1200289526?badge=0&autopause=0&player_id=0&app_id=58479"
+              frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              title="PARC Foundation 10 years Milestone">
+            </iframe>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -54,56 +85,6 @@
             <h3>Our Vision</h3>
             <p>A society where every child, regardless of economic status, has access to the transformative power of the arts — enabling them to become confident, compassionate, and productive citizens.</p>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Video 1: Our Story ── -->
-  <section class="about-video">
-    <div class="container">
-      <h2 class="about-section-heading text-center">Our <span>Story</span></h2>
-      <div class="row justify-content-center mb-4">
-        <div class="col-lg-9 text-center">
-          <p class="about-intro-text">The Performing Arts and Recreation Center (PARC) Foundation is a registered, non-stock, non-profit organization founded in December 2015 which is committed to harnessing the power of performing arts to transform lives - especially the youth.</p>
-        </div>
-      </div>
-
-      <div class="about-video-wrapper">
-        <div class="vimeo-embed-container">
-          <iframe
-            src="https://player.vimeo.com/video/1200286268?badge=0&autopause=0&player_id=0&app_id=58479"
-            frameborder="0"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-            title="PARC_AVP">
-          </iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Video 2: Balik-JAM ── -->
-  <section class="about-video about-video-alt">
-    <div class="container">
-      <h2 class="about-section-heading text-center">Balik-JAM Sa <span>PARCaralan</span></h2>
-      <div class="row justify-content-center mb-4">
-        <div class="col-lg-9 text-center">
-          <p class="about-intro-text">Get ready for our first video vlog! Let's recall the stories and inspirations of music, the performing arts, and celebration of talents among our PARCaralan scholars.</p>
-        </div>
-      </div>
-
-      <div class="about-video-wrapper">
-        <div class="vimeo-embed-container">
-          <iframe
-            src="https://player.vimeo.com/video/1200289526?badge=0&autopause=0&player_id=0&app_id=58479"
-            frameborder="0"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-            title="PARC Foundation 10 years Milestone">
-          </iframe>
         </div>
       </div>
     </div>
