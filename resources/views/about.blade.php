@@ -102,6 +102,19 @@
     </div>
   </section>
 
+  <!-- ── Founder Quote ── -->
+  <section class="founder-quote">
+    <div class="founder-quote-overlay">
+      <div class="founder-content">
+        <img src="{{ asset('assets/image/wimer.webp') }}" alt="Wilmer Guido" class="founder-photo" />
+        <blockquote class="founder-text fade-left">
+          "Everytime we get to help someone,<br>it's the best feeling in the world."
+        </blockquote>
+        <p class="founder-name fade-right">Wilmer Guido (1992 – 2017), Founder</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ── Mission & Vision ── -->
   <section class="about-mv">
     <div class="container">
@@ -190,8 +203,7 @@
     </div>
   </section>
 
-  @include('layouts.contacts')
-  @include('layouts.footer')
+  
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://player.vimeo.com/api/player.js"></script>

@@ -282,6 +282,61 @@
   .about-intro, .about-mv, .about-video, .about-values { padding: 50px 16px; }
 }
 
+/* ── Founder Quote ── */
+.founder-quote {
+  position: relative;
+  background: url('../assets/image/helpinghand.webp') center center / cover no-repeat;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.founder-quote-overlay {
+  background: rgba(0, 0, 0, 0.55);
+  width: 100%;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.founder-content {
+  text-align: center;
+  max-width: 680px;
+}
+
+.founder-photo {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 3px solid #f78f1e;
+  margin-bottom: 24px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.founder-text {
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  font-style: italic;
+  color: #fff;
+  font-weight: 500;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  border: none;
+  padding: 0;
+}
+
+.founder-name {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+
 /* ── Heading slide-in animations ── */
 .fade-left,
 .fade-right {
