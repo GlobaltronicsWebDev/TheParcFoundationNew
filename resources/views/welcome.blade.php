@@ -114,13 +114,24 @@
     opacity: 1;
     transform: translateX(0);
   }
+
+  /* Fade-in from top animation */
+  .fade-in-top {
+    opacity: 0;
+    transform: translateY(-40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
 
     /* ── Fade-in from right ── */
-    const fadeEls = document.querySelectorAll('.fade-in-right');
+    const fadeEls = document.querySelectorAll('.fade-in-right, .fade-in-top');
     const fadeObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -181,8 +192,8 @@
 
 <!-- fifth section starts here -->
 <div class="container-fluid py-5 fifth-section text-center">
-  <h2 class="fw-bold mb-2 ft1">Get Involved</h2>
-  <p class="mb-5 ft2">Ways to support the PARC Foundation</p>
+  <h2 class="fw-bold mb-2 ft1 fade-in-top">Get Involved</h2>
+  <p class="mb-5 ft2 fade-in-top" style="animation-delay:0.2s;">Ways to support the PARC Foundation</p>
 
   <div class="container">
     <div class="row g-4 justify-content-center">
