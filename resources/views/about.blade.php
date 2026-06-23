@@ -102,37 +102,6 @@
     </div>
   </section>
 
-  <!-- ── Our Story ── -->
-  <section class="our-story">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-9 text-center">
-          <h2 class="about-section-heading fade-right">Our <span>Story</span></h2>
-          <p class="about-intro-text">
-            The PARC Foundation was established as a non-stock, non-profit organization in December 2015. It was founded
-            by Wilmer Guido, a passionate 23-year old whose dream was to put up a performing arts center to help people,
-            especially the underprivileged youth and struggling local artists, fulfill their passions as well.
-          </p>
-          <p class="about-intro-text">
-            Determined to achieve his dream, Wilmer formed his core team with like-minded friends Samsam Santiago and
-            Issay Nodalo. As a first move, they repurposed an old office building into a performing arts hub. On June 1, 2016,
-            they officially opened their doors to the public. Since then, The PARC Foundation has been a second home to
-            numerous performing artists and groups who enjoy our creative spaces at the friendliest rates.
-          </p>
-          <p class="about-intro-text">
-            In response to the stigma that the performing arts is only for well-off individuals, the foundation launched
-            PARCaralan in December 2017. The aim of the program is to bring free quality arts education to some of the
-            most talented and promising children from underserved communities near PARC.
-          </p>
-          <p class="about-intro-text">
-            Unfortunately, it was during the same month when PARC lost its founder due to a sudden illness. But with the
-            support of his family and the Guido Group of Companies, Wilmer's spirit lives on and his legacy continues
-            through The PARC Foundation and its mission to enable and support the Filipino performing arts community.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ── Mission & Vision ── -->
   <section class="about-mv">
@@ -231,6 +200,39 @@
           "Everytime we get to help someone,<br>it's the best feeling in the world."
         </blockquote>
         <p class="founder-name fade-right">Wilmer Guido (1992 – 2017), Founder</p>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- ── Our Story ── -->
+  <section class="our-story">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-9 text-center">
+          <h2 class="about-section-heading fade-right">Our <span>Story</span></h2>
+          <p class="about-intro-text">
+            The PARC Foundation was established as a non-stock, non-profit organization in December 2015. It was founded
+            by Wilmer Guido, a passionate 23-year old whose dream was to put up a performing arts center to help people,
+            especially the underprivileged youth and struggling local artists, fulfill their passions as well.
+          </p>
+          <p class="about-intro-text">
+            Determined to achieve his dream, Wilmer formed his core team with like-minded friends Samsam Santiago and
+            Issay Nodalo. As a first move, they repurposed an old office building into a performing arts hub. On June 1, 2016,
+            they officially opened their doors to the public. Since then, The PARC Foundation has been a second home to
+            numerous performing artists and groups who enjoy our creative spaces at the friendliest rates.
+          </p>
+          <p class="about-intro-text">
+            In response to the stigma that the performing arts is only for well-off individuals, the foundation launched
+            PARCaralan in December 2017. The aim of the program is to bring free quality arts education to some of the
+            most talented and promising children from underserved communities near PARC.
+          </p>
+          <p class="about-intro-text">
+            Unfortunately, it was during the same month when PARC lost its founder due to a sudden illness. But with the
+            support of his family and the Guido Group of Companies, Wilmer's spirit lives on and his legacy continues
+            through The PARC Foundation and its mission to enable and support the Filipino performing arts community.
+          </p>
+        </div>
       </div>
     </div>
   </section>
