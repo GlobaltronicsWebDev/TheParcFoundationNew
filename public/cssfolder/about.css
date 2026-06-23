@@ -282,6 +282,16 @@
   .about-intro, .about-mv, .about-video, .about-values { padding: 50px 16px; }
 }
 
+/* ── Our Story ── */
+.our-story {
+  padding: 70px 20px;
+  background: #fff;
+}
+
+.our-story .about-intro-text {
+  margin-bottom: 1.4rem;
+}
+
 /* ── Founder Quote ── */
 .founder-quote {
   position: relative;
@@ -313,7 +323,7 @@
   height: 180px;
   object-fit: cover;
   border-radius: 8px;
-  border: 3px solid #f78f1e;
+  /* border: 3px solid #f78f1e; */
   margin-bottom: 24px;
   display: block;
   margin-left: auto;
@@ -321,7 +331,7 @@
 }
 
 .founder-text {
-  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  font-size: clamp(1.5rem, 3vw, 1.7rem);
   font-style: italic;
   color: #fff;
   font-weight: 500;
