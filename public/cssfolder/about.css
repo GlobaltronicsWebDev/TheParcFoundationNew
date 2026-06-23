@@ -286,6 +286,7 @@
 .founder-quote {
   position: relative;
   background: url('../assets/image/helpinghand.webp') center center / cover no-repeat;
+  background-attachment: fixed;
   min-height: 380px;
   display: flex;
   align-items: center;
