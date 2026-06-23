@@ -81,7 +81,7 @@
 <!-- third section starts here -->
 <div class="container-fluid main-tsection">
   <div class="row third-section flex-column flex-md-row">
-    <div class="col-md-7 col1">
+    <div class="col-md-7 col1 fade-in-right">
       <h1>Beyond the Arts</h1>
       <p class="tpg">We empower underprivileged children and youth through<br>
       PARCaralan, our flagship program blending the performing arts<br> 
@@ -94,14 +94,76 @@
     </div>
 
     <div class="col-md-5 col2">
-      <p class="ttitle">80+</p>
+      <p class="ttitle"><span class="count-up" data-target="80">0</span>+</p>
       <p class="pbody">Scholars trained and supported</p><hr class="hrtitle">
-      <p class="ttitle">30+</p>
+      <p class="ttitle"><span class="count-up" data-target="30">0</span>+</p>
       <p class="pbody">Community outreach program<br> conducted</p>
     </div>
   </div>
 </div>
 <!-- third section ends here -->
+
+<style>
+  /* Fade-in from right animation */
+  .fade-in-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    /* ── Fade-in from right ── */
+    const fadeEls = document.querySelectorAll('.fade-in-right');
+    const fadeObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    fadeEls.forEach(function (el) { fadeObserver.observe(el); });
+
+    /* ── Count-up animation ── */
+    function animateCount(el) {
+      const target = parseInt(el.getAttribute('data-target'), 10);
+      const duration = 1800;
+      const step = 16;
+      const increment = target / (duration / step);
+      let current = 0;
+
+      const timer = setInterval(function () {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        el.textContent = Math.floor(current);
+      }, step);
+    }
+
+    const countEls = document.querySelectorAll('.count-up');
+    const countObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          countObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    countEls.forEach(function (el) { countObserver.observe(el); });
+
+  });
+</script>
 
 <!-- fourth section starts here -->
 <div class="frsection">
