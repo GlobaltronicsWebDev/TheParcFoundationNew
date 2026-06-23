@@ -133,7 +133,7 @@
       <h2 class="about-section-heading text-center">Our Core Values</h2>
       <div class="row g-4 justify-content-center mt-2">
 
-        <div class="col-6 col-md-3">
+        <div class="col-md-6 col-lg-5">
           <div class="value-card text-center">
             <div class="value-icon"><i class="bi bi-heart-fill"></i></div>
             <h5>Compassion</h5>
@@ -141,7 +141,7 @@
           </div>
         </div>
 
-        <div class="col-6 col-md-3">
+        <div class="col-md-6 col-lg-5">
           <div class="value-card text-center">
             <div class="value-icon"><i class="bi bi-stars"></i></div>
             <h5>Excellence</h5>
@@ -149,7 +149,7 @@
           </div>
         </div>
 
-        <div class="col-6 col-md-3">
+        <div class="col-md-6 col-lg-5">
           <div class="value-card text-center">
             <div class="value-icon"><i class="bi bi-people-fill"></i></div>
             <h5>Community</h5>
@@ -157,7 +157,7 @@
           </div>
         </div>
 
-        <div class="col-6 col-md-3">
+        <div class="col-md-6 col-lg-5">
           <div class="value-card text-center">
             <div class="value-icon"><i class="bi bi-lightbulb-fill"></i></div>
             <h5>Innovation</h5>
