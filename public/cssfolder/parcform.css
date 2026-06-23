@@ -1,0 +1,311 @@
+
+/* 🌟 BUTTON CONTAINERS */
+.center-btn {
+  align-items: center;
+  display: flex;
+  gap: 10px; /* Spacing between buttons */
+  margin-bottom: 20px;
+}
+.centerpay-btn {
+  align-items: center;
+  display: flex;
+  gap: 10px; /* Spacing between buttons */
+  margin-bottom: 20px;
+}
+
+.pay-btn {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 45px;
+  margin-bottom: 20px;
+}
+
+.bankcard {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.last {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 30px;
+  margin-left: 40px;
+  margin-bottom: 20px;
+}
+
+
+/* 🌟 NOTE BOXES */
+.note2 {
+  text-align: center;
+  margin: 10px 0 20px 0;
+  padding: 20px 20px 10px 20px;
+  background-color: rgb(233, 233, 233);
+}
+
+/* 🌟 NOTE TEXT */
+.p3 {
+  font-size: 15px;
+  color: rgb(0, 0, 0);
+}
+
+/* 🌟 MONTHLY BUTTONS */
+.btnm7, .btnm8, .btnm9 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+  background-color: white;
+  border: 2px solid rgb(255, 162, 0);
+  text-decoration: none;
+  transition: all 0.3s ease; /* Smooth hover */
+}
+
+.btnm7, .btnm8 {
+  width: 250px;
+  height: 60px;
+}
+
+.btnm9 {
+  max-width: 100%;
+  height: 60px;
+}
+
+/* Default colors */
+.btnm9 {
+  color: rgb(255, 162, 0);
+}
+
+.btnm7, .btnm8 {
+  color: rgb(0, 0, 0);
+}
+
+/* 🔥 Hover + Focus/Active for monthly buttons */
+.btnm7:hover, .btnm7:focus, .btnm7:active,
+.btnm8:hover, .btnm8:focus, .btnm8:active,
+.btnm9:hover, .btnm9:focus, .btnm9:active {
+  background-color: rgb(255, 162, 0);
+  color: white;
+  outline: none;
+}
+
+/* 🌟 EXPIRY + CVV INPUTS */
+#exp, #cvv {
+  width: 48%;
+}
+
+
+
+/* 🌟 FORM TITLE */
+.formtitle {
+  color: rgb(255, 162, 0);
+}
+
+/* 🌟 PERSONAL INFO FORM */
+.personalinfo {
+  max-width: 530px; /* Fixed width box */
+}
+
+/* Labels */
+.personalinfo label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+/* Inputs (text + email) */
+.personalinfo input[type="text"],
+.personalinfo input[type="email"] {
+  width: 100%; /* Full width */
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border 0.3s ease;
+}
+
+/* 🌟 ORANGE BORDER ON FOCUS */
+.personalinfo input[type="text"]:focus,
+.personalinfo input[type="email"]:focus {
+  border: 2px solid rgb(255, 162, 0); /* Orange border */
+  outline: none; /* Remove default blue outline */
+}
+
+/* Submit button */
+.personalinfo input[type="submit"] {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 20px;
+  width: 100%;
+  background: #ff9c00;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+/* 🔥 Submit hover + focus/active */
+.personalinfo input[type="submit"]:hover,
+.personalinfo input[type="submit"]:focus,
+.personalinfo input[type="submit"]:active {
+  background: #e68900;
+  outline: none;
+}
+
+/* Form subsection title */
+.p1form {
+  color: rgb(255, 162, 0);
+  margin-top: 15px;
+  font-weight: 800;
+}
+
+/* 🌟 RADIO BUTTON GROUP */
+.radio-group {
+  display: flex;
+  gap: 40px;
+  margin-top: 5px;
+}
+
+.radio-group label {
+  font-weight: 500;
+  margin-top: 0;
+  cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+  margin-right: 6px;
+  border: #565656 solid 1px;
+  margin-bottom: 20px;
+}
+
+/* 🌟 CUSTOM CHECKBOX */
+.last input[type="checkbox"] {
+  width: 35px;
+  height: 35px;
+  transform: scale(1.3);
+  accent-color: #565656;
+  cursor: pointer;
+}
+
+
+
+/* 📱 EXTRA SMALL DEVICES (≤425px) */
+@media (max-width: 425px), (max-height: 896px) {
+  body {
+    background-color: white !important;
+  }
+
+  /* Stack buttons vertically */
+  .center-btn {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  /* Mobile row fix */
+  .row.row-cols-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Side-by-side give once/give monthly */
+  .col2 .center-btn{
+    order: 4;
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .col2 .note {
+    order: 5;
+    font-size: 14px;
+    padding: 15px;
+  }
+
+  .col2 .btn-monthly {
+    order: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .col2 .btn-monthly a {
+    width: 100%;
+    max-width: 200px;
+    height: 50px;
+    font-size: 15px;
+  }
+
+/* ✅ Payment buttons full width stacked */
+.col2 .pay-btn {
+  display: flex;
+  flex-direction: column;   /* stack vertically */
+  align-items: center;      /* center horizontally */
+  gap: 15px;                /* space between Visa block & PayPal block */
+  width: 100%;
+}
+
+.col2 .pay-btn a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;             /* take full container width */
+  max-width: 380px;        /* keep a neat max width (optional) */
+  height: 63px;
+  border: 2px solid rgb(255, 162, 0); /* thin border like your example */
+  background: #fff;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+/* ✅ Logo images inside buttons */
+.col2 .pay-btn img {
+  max-height: 50px;   /* keep logos proportional */
+  width: auto;
+  object-fit: contain;
+}
+
+
+  /* Full-width buttons */
+  .btnm7, .btnm8, .btnm9 {
+    grid-column: span 2;
+    max-width: 800px;
+  }
+
+  .btnm8 {
+    margin-bottom: -5px;
+  }
+
+  .btnm9 {
+    max-width: 380px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  /* Personal info responsive */
+  .personalinfo {
+    text-align: left;
+    max-width: 100%;
+    padding: 15px;
+  }
+}

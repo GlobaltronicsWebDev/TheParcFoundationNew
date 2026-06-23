@@ -1,0 +1,120 @@
+/* ✅ Carousel Container */
+.carousel-container {
+  max-width: 100%;
+  margin: 150px 0 0 0;
+  background: white;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 612px;
+  object-fit: cover;
+}
+
+/* Remove default Bootstrap arrows */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  display: none !important;
+}
+
+/* Custom controls positioned middle left/right */
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: auto;
+  width: auto;
+  height: auto;
+  background: none;
+  border: none;
+  opacity: 1 !important;
+  z-index: 2000;
+}
+.custom-prev { left: 10px; }
+.custom-next { right: 10px; }
+
+/* Circle button */
+.circle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  color: #fff;
+  font-size: 22px;
+  transition: all 0.3s ease;
+}
+.circle-btn:hover {
+  background: #f89b1e;
+  color: #fff;
+}
+
+/* Wrapper */
+.carousel-wrapper { padding-bottom: 0; }
+
+/* Remove container padding */
+.container-fluid { padding-left: 0; padding-right: 0; }
+.carousel { margin: 0; padding: 0; }
+
+/* ✅ Default: hide indicators on desktop */
+.carousel-indicators {
+  display: none;
+}
+
+/* ================= MOBILE STYLES ================= */
+@media (max-width: 414px), (max-height: 896px) {
+  /* Responsive carousel height */
+  .carousel-item img {
+    height: 50vh;
+    max-height: 400px;
+    min-height: 220px;
+    object-fit: cover;
+  }
+
+  /* Hide arrows on mobile */
+  .custom-prev,
+  .custom-next {
+    display: none !important;
+  }
+
+  /* ✅ Mobile indicators visible */
+  .carousel-indicators {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    padding: 6px 12px;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px);
+    border-radius: 30px;
+    z-index: 2100;
+  }
+
+  /* Dots */
+  .carousel-indicators [data-bs-target] {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: none;
+    transition: all 0.3s ease;
+    opacity: 1;
+  }
+
+  /* Active dot */
+  .carousel-indicators .active {
+    background-color: #f89b1e;
+    transform: scale(1.2);
+  }
+}

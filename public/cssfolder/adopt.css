@@ -1,0 +1,568 @@
+/* =========================
+   🌟 GLOBAL STYLES
+   ========================= */
+
+/* Body background and base setup */
+body {
+  background-color: rgb(246, 150, 6); /* Orange background by default (desktop) */
+}
+
+/* =========================
+   🌟 TITLE STYLES
+   ========================= */
+
+/* Large white title text (desktop) */
+.title {
+  font-size: 50px;
+  color: rgb(255, 255, 255); /* White */
+}
+
+/* =========================
+   🌟 IMAGE STYLING
+   ========================= */
+
+/* Main image (visible on desktop) */
+.img1 {
+  margin-top: 8px;
+  width: 90%;
+}
+
+/* Alternate image (hidden on desktop, shown on mobile) */
+.img2 {
+  width: 100%;
+  max-width: 400px;
+  visibility: hidden; /* Hidden by default */
+}
+
+/* =========================
+   🌟 INTRO SECTION
+   ========================= */
+
+/* Empty placeholder for intro content */
+.intro {}
+
+/* =========================
+   🌟 DESCRIPTION TEXT
+   ========================= */
+
+/* Description 1 - positioned high for desktop */
+.desc1 {
+  font-size: 20px;
+  word-spacing: normal;
+  color: rgb(255, 255, 255); /* White text */
+  margin-top: -250px;
+  padding-bottom: 20px;
+}
+
+/* Description 2 - normal flow */
+.desc2 {
+  font-size: 20px;
+  word-spacing: normal;
+  color: rgb(255, 255, 255); /* White text */
+}
+
+/* =========================
+   🐾 ADOPT SECTION
+   ========================= */
+
+/* Section wrapper */
+.adoptsection {
+  margin-top: 150px; /* Adds space on desktop */
+}
+
+/* Adopt form container (white card) */
+.adoptform {
+  background-color: white;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 50px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* subtle shadow */
+}
+
+/* Section or form main title */
+.maintitle {
+  color: rgb(255, 162, 0); /* Orange */
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* =========================
+   🌟 BUTTON GROUPS
+   ========================= */
+
+/* Top row button container */
+.center-btn {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Lower row button container */
+.lowerbtn {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   🔘 PRIMARY BUTTON STYLES
+   ========================= */
+
+/* General button base style */
+.btn1, .btn2, .btnm1, .btnm2, .btnm3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+  background-color: white;
+  border: 2px solid rgb(255, 162, 0);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth hover/click animation */
+}
+
+/* Give Once button */
+.btn1 {
+  width: 173px;
+  height: 60px;
+  color: rgb(255, 162, 0);
+}
+
+/* Give Monthly button */
+.btn2 {
+  width: 355px;
+  height: 60px;
+  color: rgb(149, 149, 149);
+}
+
+/* Hover effect for all buttons */
+.btn1:hover, .btn2:hover,
+.btnm1:hover, .btnm2:hover, .btnm3:hover{
+  background-color: rgb(255, 162, 0); /* Orange background */
+  color: white;                       /* White text */
+}
+
+/* Active state or .active class */
+.btn1:active, .btn2:active,
+.btnm1:active, .btnm2:active, .btnm3:active
+.btn1.active, .btn2.active,
+.btnm1.active, .btnm2.active, .btnm3.active {
+  background-color: rgb(255, 162, 0);
+  color: white;
+  border-color: rgb(255, 162, 0);
+}
+
+/* =========================
+   📄 NOTES (Membership info)
+   ========================= */
+
+/* Note block base */
+.notepatron,
+.notesilver,
+.notegold,
+.noteplatinum {
+  text-align: left;
+  margin: 30px -50px;
+  padding: 20px 60px 10px 60px;
+  background-color: rgb(234, 232, 232);
+  display: none; /* hidden by default */
+}
+
+/* JS toggle visibility */
+.notepatron.show,
+.notesilver.show,
+.notegold.show,
+.noteplatinum.show {
+  display: block;
+}
+
+/* Header row inside notes (title + badge + price) */
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Note title text */
+.p1 {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Badge (duration/month) */
+.badge-duration {
+  background-color: #f78f1e;
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-left: 10px;
+}
+
+/* Price inside note */
+.price-tag {
+  color: #f78f1e;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.price-tag .small {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Paragraphs inside notes */
+.p1 {
+  text-align: left;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: rgb(0, 0, 0);
+}
+.p2, .p3, .p4, .p5 {
+  font-size: 15px;
+  color: rgb(0, 0, 0);
+}
+
+/* Highlights in notes */
+.privacy {
+  color: rgb(255, 162, 0);
+}
+
+/* =========================
+   🌟 MONTHLY BUTTONS
+   ========================= */
+
+/* Monthly buttons default style */
+.btnm1, .btnm2, .btnm3 {
+  width: 250px;
+  height: 60px;
+  color: rgb(255, 162, 0);
+}
+
+
+/* =========================
+   📖 DETAILS SECTION
+   ========================= */
+
+/* Container */
+.details {
+  background-color: white;
+  width: 90%;
+  text-align: center;
+  padding-top: 30px;
+  margin-top: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.pdt {
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* List container */
+.details-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px 50px 50px;
+  gap: 0;
+}
+
+/* Each detail row */
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 0;
+}
+
+/* Circle icons */
+.music-icon,
+.detail-icon {
+  width: 80px;
+  height: 80px;
+  background: #f89b1e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.music-icon img,
+.detail-icon img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* Text inside details */
+.detail-item p {
+  margin: 0;
+  text-align: left;
+  font-size: 1.1rem;
+}
+
+/* Divider line */
+.details-list hr {
+  border: none;
+  border-top: 2px solid #565656;
+  margin: 0 0 0 105px;
+}
+
+/* Section divider */
+.break {
+  border: none;
+  border-top: 2px solid #565656;
+  margin: 40px 0;
+}
+
+/* =========================
+   📱 MOBILE RESPONSIVE FIXES
+   ========================= */
+@media (max-width: 425px), (max-height: 896px) {
+  /* Mobile body background */
+  body {
+    background-color: white !important;
+  }
+
+  /* Adopt section adjustments */
+  .adoptsection {
+    margin-top: 233px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Smaller form box */
+  .adoptform {
+    margin: 0;
+    padding: 10px 0;
+    width: 100%;
+    max-width: 100%;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  /* Small buttons (Give Once/Give Monthly) */
+  .btn1 {
+    width: 0%;
+    max-width: 280px;
+    height: 45px;
+    font-size: 13px;
+  }
+  .btn2 {
+    width: 100%;
+    max-width: 280px;
+    height: 45px;
+    font-size: 13px;
+  }
+
+  /* Note blocks */
+
+  .notepatron {
+    text-align: center;
+    padding: 20px 20px 10px 20px;
+    margin: 30px -15px 0 -15px;
+  }
+  
+  .notesilver {
+    text-align: center;
+    padding: 20px 20px 10px 20px;
+    margin: 30px -15px 0 -15px;
+  }
+  
+  .notegold {
+    text-align: center;
+    padding: 20px 20px 10px 20px;
+    margin: 30px -15px 0 -15px;
+  }
+  
+  .noteplatinum {
+    text-align: center;
+    padding: 20px 20px 10px 20px;
+    margin: 30px -15px 0 -15px;
+  }
+
+  /* Header inside notes */
+  .note-header {
+    margin-bottom: 20px;
+  }
+
+  /* Title text smaller */
+  .p1 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  /* Badge smaller */
+  .badge-duration {
+    font-size: 8px;
+    padding: 4px 9px;
+    border-radius: 20px;
+    margin-left: 10px;
+  }
+
+  /* Price smaller */
+  .price-tag {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+    white-space: nowrap;
+  }
+  .price-tag .small {
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  /* Note paragraphs smaller */
+  .p2, .p3, .p4, .p5 {
+    font-size: 12px;
+  }
+  /* Left col adjustments */
+  .col1 {
+    order: 1;
+    width: 100%;
+    text-align: center;
+    margin-top: -95px;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* Right col adjustments */
+  .col2 {
+    order: 2;
+    width: 100%;
+    text-align: center;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* Stack elements inside col1 */
+  .col1 > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Hide main image */
+  .col1 .img1 {
+    order: 1;
+    width: 100%;
+    max-width: 400px;
+    display: none;
+  }
+
+  /* Show alternate image */
+  .col1 .img2 {
+    order: 1;
+    width: 100%;
+    max-width: none;
+    margin: -101px 0 0 0;
+    visibility: visible;
+  }
+
+  /* Description below image */
+  .col1 .desc1 {
+    order: 2;
+    text-align: center;
+    font-size: 14px;
+    padding: 0 15px;
+    color: black;
+    margin-top: 10px;
+  }
+
+  /* Hide titles */
+  .col1 .title {
+    display: none;
+  }
+
+  /* Hide line breaks */
+  br {
+    display: none;
+  }
+
+  /* Keep button rows flexible */
+  .col2 .center-btn {
+    order: 4;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+  }
+  .col2 .lowerbtn {
+    order: 6;
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  /* Smaller buttons in col2 */
+  .col2 .btn1 {
+    width: 80px;
+    min-width: 90px;
+    height: 50px;
+    font-size: 14px;
+  }
+  .col2 .btn2 {
+    width: 80px;
+    min-width: 189px;
+    height: 50px;
+    font-size: 14px;
+  }
+
+  /* Hide details section */
+  .details {
+    display: none !important;
+  }
+
+  /* Monthly buttons smaller */
+  .btnm1, .btnm2, .btnm3 {
+    width: 100%;
+    max-width: 200px;
+    height: 50px;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  /* Divider alignment fix */
+  .details-list hr {
+    border: none;
+    border-top: 2px solid #565656;
+    margin: 0;
+  }
+.center-btn {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
+.center-btn > * {
+  flex: 1;
+}
+
+
+
+
+}

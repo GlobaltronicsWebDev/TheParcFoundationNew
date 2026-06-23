@@ -1,0 +1,199 @@
+/* 🌟 GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 🌟 BODY STYLING */
+
+/* 🌟 FOOTER CONTAINER */
+.footercon {
+  background-color: #232323; /* Same as body */
+  padding: 40px;
+  font-family: Arial, sans-serif;
+  color: #fff;            /* White text */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;        /* Allow stacking on small screens */
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* 🌟 FOOTER LINKS (LEFT SIDE) */
+.footer-links {
+  display: flex;
+  gap: 60px;              /* Space between columns (desktop) */
+  padding-top: 20px;
+}
+
+/* Each column inside footer */
+.footer-column {
+  width: 150px;           /* Fixed width on desktop */
+}
+
+/* Column Titles */
+.footer-column h4 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+/* Column List */
+.footer-column ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+/* Column Links */
+.footer-column ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  display: block;         /* Ensures vertical alignment */
+}
+
+.footer-column ul li a:hover {
+  text-decoration: underline;
+}
+
+/* 🌟 SIGN-UP FORM (RIGHT SIDE) */
+.footer-form {
+  max-width: 400px;
+}
+
+/* Section Titles */
+.footer-form h4 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Highlighted Orange Titles */
+.footer-form .highlight {
+  color: #f7941d; /* Orange highlight */
+  text-transform: uppercase;
+}
+
+/* 🌟 Required Field Label Text */
+.required {
+  color: #f7941d; /* Match the orange color */
+  font-style: italic; 
+}
+
+/* Form Labels */
+.footer-form label {
+  display: block;
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+/* Input Fields */
+.footer-form input[type="text"],
+.footer-form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 3px;
+}
+
+/* 🌟 RADIO BUTTONS (YES / NO SIDE BY SIDE) */
+.radio-group {
+  display: flex;          
+  gap: 20px;              
+  margin-top: 8px;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+  margin-right: 5px; 
+}
+
+/* Paragraph inside form */
+.footer-form p {
+  font-size: 13px;
+  margin: 15px 0 10px 0;
+  line-height: 1.5;
+}
+
+/* 🌟 BUTTON */
+.btncontact {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  background-color: #f7941d;
+  color: white;
+  border: none;
+  margin-top: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #d67915;
+}
+
+/* 🌟 SMALL TEXT (POLICIES) */
+.small-text {
+  font-size: 11px;
+  color: #ccc;
+  margin-top: 10px;
+}
+
+/* 🌟 RESPONSIVE DESIGN (MOBILE) */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column; /* Stack left and right sections */
+  }
+
+  .footer-links {
+    flex-direction: column; /* Reset stacking behavior */
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  /* ✅ Custom mobile grid for SUPPORT, CONNECT, DISCOVER */
+  .footer-links {
+    display: grid;                  /* Use grid instead of flex */
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    grid-template-areas:
+      "support connect"
+      "discover discover";          /* Discover takes full row */
+    gap: 20px;
+  }
+
+  /* Assign each footer column to a grid area */
+  .footer-column.support { grid-area: support; }
+  .footer-column.connect { grid-area: connect; }
+  .footer-column.discover { grid-area: discover; }
+
+  .footer-column {
+    width: 100%; /* Allow full stretch inside grid cells */
+  }
+
+  .footer-form {
+    width: 100%; /* Full width form below */
+  }
+
+  .radio-group {
+    gap: 15px; /* Smaller spacing on mobile */
+  }
+}
