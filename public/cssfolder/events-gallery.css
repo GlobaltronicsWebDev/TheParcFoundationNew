@@ -1,0 +1,277 @@
+/* ===========================
+   Events Video Gallery Page
+   =========================== */
+
+.gallery-section {
+  background-color: #fff;
+  padding: 60px 0 80px;
+  min-height: 100vh;
+}
+
+/* ---------- Page Title ---------- */
+.gallery-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2b2b2b;
+  margin-top: 120px;
+  margin-bottom: 40px;
+}
+
+/* ---------- Layout ---------- */
+.gallery-layout {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* ---------- Sidebar ---------- */
+.gallery-sidebar {
+  width: 190px;
+  flex-shrink: 0;
+}
+
+.playlist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.playlist-item {
+  padding: 14px 16px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #555;
+  cursor: pointer;
+  border-bottom: 1px solid #e0e0e0;
+  line-height: 1.4;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.playlist-item:last-child {
+  border-bottom: none;
+}
+
+.playlist-item:hover {
+  background-color: #fff4e0;
+  color: #f6a506;
+}
+
+.playlist-item.active {
+  background-color: #f6a506;
+  color: #fff;
+}
+
+/* ---------- Player ---------- */
+.gallery-player {
+  flex: 1;
+  min-width: 0;
+}
+
+.player-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 24px;
+}
+
+.player-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2b2b2b;
+  margin-bottom: 20px;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #000;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 767px) {
+  .gallery-layout {
+    flex-direction: column;
+  }
+
+  .gallery-sidebar {
+    width: 100%;
+  }
+
+  .playlist {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .playlist-item {
+    flex: 1 1 45%;
+    border-right: 1px solid #e0e0e0;
+  }
+
+  .gallery-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* ===========================
+   Events List Section
+   =========================== */
+
+.events-list-section {
+  background-color: #fff;
+  padding: 60px 0 80px;
+  border-top: 1px solid #eee;
+}
+
+.events-list-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2b2b2b;
+  margin-bottom: 24px;
+}
+
+/* Year filter tabs */
+.events-list-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 36px;
+}
+
+.elf-option {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #888;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s;
+}
+
+.elf-option.active { color: #2b2b2b; }
+
+.elf-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: inline-block;
+  flex-shrink: 0;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.elf-option.active .elf-dot {
+  border-color: #f6a506;
+  background-color: #f6a506;
+}
+
+/* Grid */
+.events-list-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.el-card {
+  overflow: hidden;
+  border-radius: 6px;
+  aspect-ratio: 4 / 3;
+  background: #eee;
+}
+
+.el-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.el-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .events-list-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 767px) {
+  .events-list-grid { grid-template-columns: repeat(2, 1fr); }
+  .events-list-title { font-size: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .events-list-grid { grid-template-columns: 1fr; }
+}
+
+/* Arrow toggle for older years */
+.elf-more-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.elf-arrow-btn {
+  background: none;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #888;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, border-color 0.2s, color 0.2s;
+  padding: 0;
+}
+
+.elf-arrow-btn:hover {
+  border-color: #f6a506;
+  color: #f6a506;
+}
+
+.elf-older {
+  display: none;
+  align-items: center;
+  gap: 20px;
+}
+
+.elf-older.open {
+  display: flex;
+}
+
+/* Disabled year tabs (no events yet) */
+.elf-option.elf-disabled {
+  color: #ccc;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.elf-option.elf-disabled .elf-dot {
+  border-color: #ddd;
+  background-color: transparent;
+}

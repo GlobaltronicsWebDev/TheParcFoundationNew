@@ -24,9 +24,8 @@
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item active"><a href="{{ url('/welcome') }}" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="{{ url('/home') }}" class="nav-link">About</a></li>
-          <li class="nav-item"><a href="{{ url('/parcform') }}" class="nav-link">Causes</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Pages</a></li> 
+          <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="{{ url('/events') }}" class="nav-link">Events</a></li> 
           <li class="nav-item"><a href="{{ url('/news') }}" class="nav-link">News</a></li>
           <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
         </ul>
