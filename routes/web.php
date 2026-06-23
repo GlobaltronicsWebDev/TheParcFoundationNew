@@ -41,6 +41,11 @@ Route::get('/events-gallery', function () {
     return view('events-gallery');
 })->name('events.gallery');
 
+// About Us page
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
 // Simple route returning a view
 Route::get('/donateform', function () {
     return view('donateform'); // make sure donateform.blade.php exists in resources/views
