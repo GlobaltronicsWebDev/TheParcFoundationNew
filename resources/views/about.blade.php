@@ -62,8 +62,12 @@
   <!-- ── Vimeo Video ── -->
   <section class="about-video">
     <div class="container">
-      <h2 class="about-section-heading text-center">Our Story</h2>
-      <p class="about-video-sub text-center">Watch how PARC Foundation is changing lives through the arts.</p>
+      <h2 class="about-section-heading text-center">Our <span>Story</span></h2>
+      <div class="row justify-content-center mb-4">
+        <div class="col-lg-9 text-center">
+          <p class="about-intro-text">The Performing Arts and Recreation Center (PARC) Foundation is a registered, non-stock, non-profit organization founded in December 2015 which is committed to harnessing the power of performing arts to transform lives - especially the youth.</p>
+        </div>
+      </div>
 
       <div class="about-video-wrapper">
         <!-- Replace the Vimeo video ID below with your actual video ID -->
