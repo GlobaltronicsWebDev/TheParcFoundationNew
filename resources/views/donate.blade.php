@@ -11,6 +11,7 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css') }}" />
+  <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
   <link rel="stylesheet" href="{{ asset('cssfolder/donate.css') }}" />
   <link rel="stylesheet" href="{{ asset('cssfolder/parcform.css') }}">
 
