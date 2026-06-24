@@ -284,6 +284,12 @@
   .about-intro, .about-mv, .about-video, .about-values { padding: 50px 16px; }
 }
 
+/* ── Advisors ── */
+.about-advisors {
+  padding: 70px 20px;
+  background: #fff;
+}
+
 /* ── Board of Trustees ── */
 .about-bot {
   padding: 70px 20px;

@@ -305,6 +305,38 @@
     </div>
   </section>
 
+  <!-- ── Advisors ── -->
+  <section class="about-advisors">
+    <div class="container">
+      <h2 class="about-section-heading text-center fade-right">ADV<span>ISORS</span></h2>
+
+      <div class="row justify-content-center g-4 mt-3">
+
+        <div class="col-6 col-md-3 text-center">
+          <div class="bot-member">
+            <img src="{{ asset('assets/image/bot/CG.png') }}" alt="Colin Goh" class="bot-photo">
+            <p class="bot-name">Colin Goh</p>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3 text-center">
+          <div class="bot-member">
+            <img src="{{ asset('assets/image/bot/ATL.png') }}" alt="Antonio (Tony) Lopez" class="bot-photo">
+            <p class="bot-name">Antonio (Tony) Lopez</p>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3 text-center">
+          <div class="bot-member">
+            <img src="{{ asset('assets/image/bot/JG.png') }}" alt="John Gan" class="bot-photo">
+            <p class="bot-name">John Gan</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   @include('layouts.contacts')
   @include('layouts.footer')
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
