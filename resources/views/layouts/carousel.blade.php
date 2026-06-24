@@ -7,13 +7,13 @@
           <!-- Slides -->
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="./assets/slider/Property 1=1.png" class="d-block w-100" alt="Mountain">
+              <img src="./assets/slider/Property 2=1.png.png" class="d-block w-100" alt="Slide 1">
             </div>
             <div class="carousel-item">
-              <img src="./assets/slider/Property 1=2.png" class="d-block w-100" alt="Ocean">
+              <img src="./assets/slider/Property 2=2.png.png" class="d-block w-100" alt="Slide 2">
             </div>
             <div class="carousel-item">
-              <img src="./assets/slider/Property 1=3.png" class="d-block w-100" alt="Forest">
+              <img src="./assets/slider/Property2=3.png.png" class="d-block w-100" alt="Slide 3">
             </div>
           </div>
 
