@@ -15,13 +15,6 @@
 
   @include('layouts.navbar')
 
-  <!-- ── Hero Banner ── -->
-  <section class="about-hero">
-    <div class="about-hero-overlay">
-      <h1 class="about-hero-title fade-left">About <span>Us</span></h1>
-    </div>
-  </section>
-
   <!-- ── About Intro ── -->
   <section class="about-intro">
     <div class="container">
