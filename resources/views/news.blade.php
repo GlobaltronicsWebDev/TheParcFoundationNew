@@ -319,6 +319,14 @@
       this.textContent = 'MORE';
     }
   });
+
+  /* ── Make every news card click open PARC Facebook in a new tab ── */
+  document.querySelectorAll('.card').forEach(function (card) {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', function () {
+      window.open('https://www.facebook.com/parcph', '_blank', 'noopener,noreferrer');
+    });
+  });
 </script>
 
   @include('layouts.contacts')
