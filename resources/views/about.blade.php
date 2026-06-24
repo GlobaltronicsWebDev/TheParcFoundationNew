@@ -238,6 +238,75 @@
     </div>
   </section>
 
+  <!-- ── Board of Trustees ── -->
+  <section class="about-bot">
+    <div class="container">
+      <h2 class="about-section-heading text-center fade-left">2021 BOARD <span>OF TRUSTEES</span></h2>
+
+      <div class="row justify-content-center g-4 mt-3">
+
+        <div class="col-6 col-md-3 text-center">
+          <div class="bot-member">
+            <img src="{{ asset('assets/image/bot/William T. Guido.png') }}" alt="William T. Guido" class="bot-photo">
+            <p class="bot-name">William T. Guido</p>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3 text-center">
+          <div class="bot-member">
+            <img src="{{ asset('assets/image/bot/Raul M. Sunico.png') }}" alt="Dr. Raul M. Sunico" class="bot-photo">
+            <p class="bot-name">Dr. Raul M. Sunico</p>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3 text-center">
+          <div class="bot-member">
+            <img src="{{ asset('assets/image/bot/Macy G Lee.png') }}" alt="Macy G. Lee" class="bot-photo">
+            <p class="bot-name">Macy G. Lee</p>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3 text-center">
+          <div class="bot-member">
+            <img src="{{ asset('assets/image/bot/Rodel Colmenar.png') }}" alt="Maestro Rodel Colmenar" class="bot-photo">
+            <p class="bot-name">Maestro Rodel Colmenar</p>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3 text-center">
+          <div class="bot-member">
+            <img src="{{ asset('assets/image/bot/IOG.png') }}" alt="Imelda O. Guido" class="bot-photo">
+            <p class="bot-name">Imelda O. Guido</p>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3 text-center">
+          <div class="bot-member">
+            <img src="{{ asset('assets/image/bot/AKT.png') }}" alt="Alvin Kingson Tan" class="bot-photo">
+            <p class="bot-name">Alvin Kingson Tan</p>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3 text-center">
+          <div class="bot-member">
+            <img src="{{ asset('assets/image/bot/JG.png') }}" alt="William TI, Jr" class="bot-photo">
+            <p class="bot-name">William TI, Jr</p>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3 text-center">
+          <div class="bot-member">
+            <img src="{{ asset('assets/image/bot/LG.png') }}" alt="Luzviminda Gatmaitan" class="bot-photo">
+            <p class="bot-name">Luzviminda Gatmaitan</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  @include('layouts.contacts')
+  @include('layouts.footer')
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://player.vimeo.com/api/player.js"></script>
 
