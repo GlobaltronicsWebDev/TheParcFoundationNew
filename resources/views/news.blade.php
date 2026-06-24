@@ -68,7 +68,7 @@
 
     <!-- Visible cards (always shown — keep 9 max) -->
     <div class="section-container" id="visible-cards">
-         <div class="card">
+         <div class="card" data-link="https://www.facebook.com/parcph">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/dartchamps.jpg') }}">
             </div>
@@ -78,7 +78,7 @@
                 <span class="event-date">June 10, 2026</span>
             </div>
         </div>
-        <div class="card">
+        <div class="card" data-link="https://www.facebook.com/parcph">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/NEWS/CALLING.webp') }}">
             </div>
@@ -88,7 +88,7 @@
                 <span class="event-date">June 10, 2026</span>
             </div>
         </div>
-        <div class="card">
+        <div class="card" data-link="https://www.facebook.com/parcph">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/NEWS/HIYAS.png') }}">
             </div>
@@ -98,7 +98,7 @@
                 <span class="event-date">April 30, 2026</span>
             </div>
         </div>
-        <div class="card">
+        <div class="card" data-link="https://www.facebook.com/parcph">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/NEWS/KRYSTEL GO.png') }}">
             </div>
@@ -108,7 +108,7 @@
                 <span class="event-date">December 29, 2025</span>
             </div>
         </div>
-        <div class="card">
+        <div class="card" data-link="https://www.facebook.com/parcph">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/card1.webp') }}">
             </div>
@@ -118,7 +118,7 @@
                 <span class="event-date">February 15, 2025</span>
             </div>
         </div>
-        <div class="card">
+        <div class="card" data-link="https://www.facebook.com/parcph">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/card2.webp') }}">
             </div>
@@ -128,7 +128,7 @@
                 <span class="release-date">January 30, 2025</span>
             </div>
         </div>
-        <div class="card">
+        <div class="card" data-link="https://www.facebook.com/parcph">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/WTG2.webp') }}">
             </div>
@@ -138,7 +138,7 @@
                 <span class="event-date">January 14, 2024</span>
             </div>
         </div>
-        <div class="card">
+        <div class="card" data-link="https://www.facebook.com/parcph">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/spiritgiving.webp') }}">
             </div>
@@ -148,7 +148,7 @@
                 <span class="event-date">December 15, 2022</span>
             </div>
         </div>
-        <div class="card">
+        <div class="card" data-link="https://www.facebook.com/parcph">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/SOGPOSTER2022.webp') }}">
             </div>
@@ -158,7 +158,7 @@
                 <span class="event-date">December 8, 2022</span>
             </div>
         </div>
-        <div class="card">
+        <div class="card" data-link="https://www.facebook.com/parcph">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/card3.webp') }}">
             </div>
@@ -321,11 +321,12 @@
     }
   });
 
-  /* ── Make every news card click open PARC Facebook in a new tab ── */
+  /* ── Make every news card click open its custom link in a new tab ── */
   document.querySelectorAll('.card').forEach(function (card) {
     card.style.cursor = 'pointer';
     card.addEventListener('click', function () {
-      window.open('https://www.facebook.com/parcph', '_blank', 'noopener,noreferrer');
+      var link = this.getAttribute('data-link') || 'https://www.facebook.com/parcph';
+      window.open(link, '_blank', 'noopener,noreferrer');
     });
   });
 </script>
