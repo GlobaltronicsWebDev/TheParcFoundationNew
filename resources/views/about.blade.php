@@ -337,6 +337,40 @@
     </div>
   </section>
 
+  <!-- ── Executive Management Team ── -->
+  <section class="about-emt">
+    <div class="container">
+      <h2 class="emt-heading fade-left">EXECUTIVE <span>MANAGEMENT TEAM</span></h2>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <ul class="emt-list">
+            <li>
+              <span class="emt-role">Chairman</span>
+              <span class="emt-name">William T. Guido</span>
+            </li>
+            <li>
+              <span class="emt-role">Vice Chairman</span>
+              <span class="emt-name">Dr. Raul M. Sunico</span>
+            </li>
+            <li>
+              <span class="emt-role">Corporate Sec</span>
+              <span class="emt-name">Luzviminda Gatmaitan</span>
+            </li>
+            <li>
+              <span class="emt-role">Treasurer</span>
+              <span class="emt-name">Nekka Verches</span>
+            </li>
+            <li>
+              <span class="emt-role">Auditor</span>
+              <span class="emt-name">Virginia Besa (CPA)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   @include('layouts.contacts')
   @include('layouts.footer')
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
