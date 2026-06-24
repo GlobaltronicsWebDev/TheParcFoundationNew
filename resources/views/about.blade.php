@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us — PARC Foundation</title>
-  <link rel="icon" type="image/png" href="{{ asset('assets/logo/logo2.png') }}">
+  <link rel="icon" type="image/png" href="{{ asset('assets/logo/parclogosquare.png') }}">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
