@@ -66,6 +66,16 @@
 
     <!-- Visible cards (always shown — keep 9 max) -->
     <div class="section-container" id="visible-cards">
+         <div class="card">
+            <div class="card-image">
+                <img src="{{ asset('./assets/image/dartchamps.jpg') }}">
+            </div>
+            <div class="card-content">
+                <h3>Calling All Aspiring Musicians</h3>
+                <p>The PARC Foundation is now welcoming aspiring scholars for Violin, Cello, and Contrabass classes.</p>
+                <span class="event-date">June 10, 2026</span>
+            </div>
+        </div>
         <div class="card">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/NEWS/CALLING.webp') }}">
@@ -309,6 +319,8 @@
     }
   });
 </script>
+
+  @include('layouts.contacts')
 
   <!-- Include Footer -->
   @include('layouts.footer')

@@ -199,6 +199,7 @@
     </div>
   </section>
 
+  @include('layouts.contacts')
   @include('layouts.footer')
 
   <script src="{{ asset('jsfolder/packages.js') }}"></script>

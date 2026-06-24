@@ -221,6 +221,8 @@
     </div>
   </div>
 
+  @include('layouts.contacts')
+
   <!-- Include Footer -->
   @include('layouts.footer')
 

@@ -321,6 +321,7 @@
   </section>
   <!-- ===================== End Events List ===================== -->
 
+  @include('layouts.contacts')
   @include('layouts.footer')
 
   <script src="{{ asset('jsfolder/packages.js') }}"></script>
