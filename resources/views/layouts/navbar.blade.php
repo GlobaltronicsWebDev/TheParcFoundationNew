@@ -8,12 +8,12 @@
 
   <!-- Logo  -->
    <a href="{{ url('/welcome') }}">
-            <img class="logo" src="./assets/logo/logo2.png" alt="" />
+            <img class="logo" src="{{ asset('assets/logo/logo2.png') }}" alt="" />
    </a>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg shadow-sm">
     <div class="container-fluid">
-    <img class="logo1" src="./assets/logo/logo2.png" alt="Logo">
+    <img class="logo1" src="{{ asset('assets/logo/logo2.png') }}" alt="Logo">
 
       <!-- Toggler -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

@@ -37,7 +37,7 @@
 
 <div class="main-flex">
   <div class="image-container">
-    <img src="assets\image\groupphoto.png" alt="Orchestra" class="main-image">
+    <img src="{{ asset('assets/image/groupphoto.png') }}" alt="Orchestra" class="main-image">
   </div>
   <div class="info-section">
     <h2>Who we serve?</h2>
@@ -52,7 +52,7 @@
 <div class="second-section">
 <div class="row justify-content-center">
   <div class="col-auto">
-    <img src="assets/image/PARC SOG Event-6879 1.png" alt="img1" class="img1">
+    <img src="{{ asset('assets/image/PARC SOG Event-6879 1.png') }}" alt="img1" class="img1">
     <div class="sectitle">
     <p class="p1">STORY</p>
     <p class="p2">Changing the Tune of Tomorrow</p><hr class="divider1">
@@ -60,7 +60,7 @@
     </div>
   </div>
   <div class="col-auto">
-    <img src="assets/image/PARC SOG Event-6879 2.png" alt="img2" class="img2">
+    <img src="{{ asset('assets/image/PARC SOG Event-6879 2.png') }}" alt="img2" class="img2">
     <div class="sectitle">
     <p class="p1">FEATURE</p>
     <p class="p2">Where Impact comes to Life</p><hr class="divider1">
@@ -68,7 +68,7 @@
     </div>
   </div>
   <div class="col-auto">
-    <img src="assets/image/PARC SOG Event-6879 3.png" alt="img3" class="img3">
+    <img src="{{ asset('assets/image/PARC SOG Event-6879 3.png') }}" alt="img3" class="img3">
     <div class="sectitle">
     <p class="p1">EXPLORE</p>
     <p class="p2">Changing Lives, One Note at a Time</p><hr class="divider1">
@@ -180,8 +180,8 @@
 
 <!-- fourth section starts here -->
 <div class="frsection">
-  <img src="assets/image/1 (1) 2.png" alt="img4" class="img4">
-  <img src="assets/image/1 (1) 4.png" alt="img5" class="img5">
+  <img src="{{ asset('assets/image/1 (1) 2.png') }}" alt="img4" class="img4">
+  <img src="{{ asset('assets/image/1 (1) 4.png') }}" alt="img5" class="img5">
 
   <!-- Orange Text Box -->
   <div class="text-overlay">
@@ -204,7 +204,7 @@
         <div class="card shadow-sm h-100 border-0">
           <div class="card-body">
             <div class="icon-circle mb-3 mx-auto">
-              <img src="assets/icons/Heart.png" alt="Adopt a Scholar" class="icon-img">
+              <img src="{{ asset('assets/icons/Heart.png') }}" alt="Adopt a Scholar" class="icon-img">
             </div>
             <h5 class="fw-bold text-orange">Adopt a Scholar</h5>
             <hr class="divider2">
@@ -218,7 +218,7 @@
         <div class="card shadow-sm h-100 border-0">
           <div class="card-body">
             <div class="icon-circle mb-3 mx-auto">
-              <img src="assets/icons/Care.png" alt="Volunteer" class="icon-img">
+              <img src="{{ asset('assets/icons/Care.png') }}" alt="Volunteer" class="icon-img">
             </div>
             <h5 class="fw-bold text-orange">Volunteer</h5>
             <hr class="divider2">
@@ -232,7 +232,7 @@
         <div class="card shadow-sm h-100 border-0">
           <div class="card-body">
             <div class="icon-circle mb-3 mx-auto">
-              <img src="assets/icons/Social.png" alt="Be a PARCner" class="icon-img">
+              <img src="{{ asset('assets/icons/Social.png') }}" alt="Be a PARCner" class="icon-img">
             </div>
             <h5 class="fw-bold text-orange">Be a PARCner</h5>
             <hr class="divider2">
