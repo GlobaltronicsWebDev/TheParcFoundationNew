@@ -117,10 +117,23 @@
   </nav>
 
   
-      <div class="d-none d-md-flex mainbuttons">
+      <div id="nav-buttons" style="position:absolute;top:0;right:0;display:flex;width:400px;z-index:2000;">
         <a href="{{ url('/donate') }}" class="btn btn-donate px-3" target="_blank" rel="noopener noreferrer">DONATE</a>
         <a href="{{ url('/adopt') }}" class="btn btn-adopt px-3" target="_blank" rel="noopener noreferrer">ADOPT A SCHOLAR</a>
       </div>
+
+      <script>
+        /* Hide buttons on mobile — runs before any CSS */
+        (function(){
+          var el = document.getElementById('nav-buttons');
+          if(window.innerWidth < 992){
+            el.style.display = 'none';
+          }
+          window.addEventListener('resize', function(){
+            el.style.display = window.innerWidth < 992 ? 'none' : 'flex';
+          });
+        })();
+      </script>
 
 </div>
 
