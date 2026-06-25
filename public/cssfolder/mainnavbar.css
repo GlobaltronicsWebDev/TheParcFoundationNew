@@ -151,21 +151,29 @@
 
 
 /* Responsive 400x608 */
-@media (max-width: 414px), (max-height: 896px) {
+@media (max-width: 991px) {
   .logo { display: none !important; }
   .logo1 {
-    height: 90px;
+    height: 60px;
     margin-left: 0 !important;
     padding-left: 0 !important;
     display: block;
   }
   .navbar,
   .container-fluid {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
   }
-  .top-bar { display:none; }
+  .top-bar { display: none; }
 
+  /* Toggler — keep it right-aligned but not cut off */
+  .navbar-toggler {
+    margin-right: 8px;
+    margin-left: auto;
+    order: 2;
+  }
+
+  /* Buttons row below navbar */
   .mainbuttons {
     position: static;
     display: flex !important;
@@ -177,8 +185,12 @@
     flex: 1;
     margin: 0;
     border-radius: 0;
+    font-size: 0.85rem;
+    padding: 12px 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  .navbar-toggler { margin-right: 64px; }
 
   .navbar-collapse {
     position: relative;
@@ -220,10 +232,5 @@
     transform: translateX(-50%) !important;
     text-align: center;
     width: auto;
-  }
-
-  /* Hide carousel if nav expanded */
-  .navbar-collapse.show ~ .carousel-container {
-    display: none !important;
   }
 }
