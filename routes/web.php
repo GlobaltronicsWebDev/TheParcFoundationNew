@@ -65,3 +65,7 @@ use App\Http\Controllers\AdoptionController;
 
 Route::get('/adoptions', [AdoptionController::class, 'create'])->name('adoptions.create');
 Route::post('/adoptions', [AdoptionController::class, 'store'])->name('adoptions.store');
+
+use App\Http\Controllers\NewsletterController;
+
+Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
