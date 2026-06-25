@@ -83,7 +83,7 @@
     <img class="logo1" src="{{ asset('assets/logo/logo2.png') }}" alt="Logo">
 
       <!-- Toggler -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="margin-right:64px;margin-left:auto;">
         <span class="navbar-toggler-icon"></span>
       </button>
 

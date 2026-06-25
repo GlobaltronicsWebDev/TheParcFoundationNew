@@ -175,6 +175,10 @@
     z-index: 10;
   }
 
+  .wholenavbar .navbar .container-fluid .navbar-toggler {
+    margin-right: 64px !important;
+  }
+
   /* Prevent page overflow */
   .wholenavbar {
     overflow-x: hidden;
