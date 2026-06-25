@@ -12,8 +12,15 @@
             <div class="carousel-item">
               <img src="{{ asset('assets/slider/slider2.png') }}" class="d-block w-100" alt="Slide 2">
             </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/slider/slider3.png') }}" class="d-block w-100" alt="Slide 3">
+            <div class="carousel-item carousel-item-video">
+              <video
+                id="carousel-video"
+                class="d-block w-100"
+                muted
+                playsinline
+                preload="metadata">
+                <source src="{{ asset('assets/slider/videoslider1main.mp4') }}" type="video/mp4">
+              </video>
             </div>
           </div>
 
@@ -23,7 +30,6 @@
   <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
   <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
 </div>
-
 
           <!-- Custom Controls -->
           <button class="carousel-control custom-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
@@ -39,4 +45,30 @@
       </div>
     </div>
   </div>
+
+  <script>
+    (function () {
+      var carouselEl = document.getElementById('imageCarousel');
+      var video      = document.getElementById('carousel-video');
+      var bsCarousel = bootstrap.Carousel.getOrCreateInstance(carouselEl);
+
+      /* When a slide finishes transitioning in, check if it's the video slide */
+      carouselEl.addEventListener('slid.bs.carousel', function (e) {
+        if (e.relatedTarget.classList.contains('carousel-item-video')) {
+          bsCarousel.pause();          /* stop auto-advance */
+          video.currentTime = 0;
+          video.play();
+        } else {
+          video.pause();
+          video.currentTime = 0;
+        }
+      });
+
+      /* When the video ends, move to the next slide and resume cycling */
+      video.addEventListener('ended', function () {
+        bsCarousel.next();
+        bsCarousel.cycle();
+      });
+    })();
+  </script>
   <!-- carousel ends here -->
