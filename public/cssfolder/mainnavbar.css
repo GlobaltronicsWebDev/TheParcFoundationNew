@@ -151,42 +151,23 @@
 
 
 /* Responsive 400x608 */
-@media (max-width: 991px) {
+@media (max-width: 414px), (max-height: 896px) {
   .logo { display: none !important; }
   .logo1 {
-    height: 60px;
+    height: 90px;
     margin-left: 0 !important;
     padding-left: 0 !important;
     display: block;
   }
   .navbar,
   .container-fluid {
-    padding-left: 8px !important;
-    padding-right: 8px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
-  .top-bar { display: none; }
+  .top-bar { display:none; }
 
-  /* Toggler — keep it right-aligned but not cut off */
-  .navbar-toggler {
-    margin-right: 64px !important;
-    margin-left: auto;
-    order: 2;
-    position: relative;
-    z-index: 10;
-  }
-
-  .wholenavbar .navbar .container-fluid .navbar-toggler {
-    margin-right: 64px !important;
-  }
-
-  /* Prevent page overflow */
-  .wholenavbar {
-    overflow-x: hidden;
-  }
-
-  /* Buttons row below navbar */
   .mainbuttons {
-    position: static !important;
+    position: static;
     display: flex !important;
     flex-direction: row;
     width: 100%;
@@ -196,13 +177,8 @@
     flex: 1;
     margin: 0;
     border-radius: 0;
-    font-size: 0.75rem;
-    padding: 12px 4px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
   }
+  .navbar-toggler { margin-right: 10px; }
 
   .navbar-collapse {
     position: relative;
@@ -244,5 +220,10 @@
     transform: translateX(-50%) !important;
     text-align: center;
     width: auto;
+  }
+
+  /* Hide carousel if nav expanded */
+  .navbar-collapse.show ~ .carousel-container {
+    display: none !important;
   }
 }

@@ -63,27 +63,25 @@
     setTimeout(function () { loader.style.display = 'none'; }, 500);
   });
 </script>
-
 <div class="wholenavbar">
 <!-- Top Bar -->
   <div class="top-bar">
     <div class="w-100 d-flex align-items-center justify-content-center" id="topbar">
       <div class="contactlink">(02) 8350 6350  |  program.director@foundation.com.ph</div>
-      <div class="topbar-datetime" id="topbar-datetime"></div>
     </div>
   </div>
 
   <!-- Logo  -->
    <a href="{{ url('/welcome') }}">
-            <img class="logo" src="{{ asset('assets/logo/logo2.png') }}" alt="" />
+            <img class="logo" src="./assets/logo/logo2.png" alt="" />
    </a>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg shadow-sm">
     <div class="container-fluid">
-    <img class="logo1" src="{{ asset('assets/logo/logo2.png') }}" alt="Logo">
+    <img class="logo1" src="./assets/logo/logo2.png" alt="Logo">
 
       <!-- Toggler -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="margin-right:60px;margin-left:auto;">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -91,8 +89,9 @@
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item active"><a href="{{ url('/welcome') }}" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
-          <li class="nav-item"><a href="{{ url('/events') }}" class="nav-link">Events</a></li> 
+          <li class="nav-item"><a href="{{ url('/home') }}" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="{{ url('/parcform') }}" class="nav-link">Causes</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Pages</a></li> 
           <li class="nav-item"><a href="{{ url('/news') }}" class="nav-link">News</a></li>
           <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
         </ul>
@@ -117,24 +116,39 @@
   </nav>
 
   
-      <div id="nav-buttons" style="position:absolute;top:0;right:0;display:flex;width:400px;z-index:2000;">
-        <a href="{{ url('/donate') }}" class="btn btn-donate px-3" target="_blank" rel="noopener noreferrer">DONATE</a>
-        <a href="{{ url('/adopt') }}" class="btn btn-adopt px-3" target="_blank" rel="noopener noreferrer">ADOPT A SCHOLAR</a>
+      <div class="d-none d-md-flex mainbuttons">
+        <a href="{{ url('/donate') }}" class="btn btn-donate px-3">DONATE</a>
+        <a href="{{ url('/adopt') }}" class="btn btn-adopt px-3">ADOPT A SCHOLAR</a>
       </div>
 
+</div>
+
       <script>
-        /* Hide buttons on mobile — runs before any CSS */
         (function(){
           var el = document.getElementById('nav-buttons');
-          if(window.innerWidth < 992){
-            el.style.display = 'none';
+          function adjustButtons(){
+            if(window.innerWidth < 992){
+              /* Mobile: static bar below navbar, fixed 48px height */
+              el.style.position = 'static';
+              el.style.width = '100%';
+              el.style.height = '48px';
+              el.style.display = 'flex';
+              el.style.top = 'auto';
+              el.style.right = 'auto';
+            } else {
+              /* Desktop: absolute top-right bar */
+              el.style.position = 'absolute';
+              el.style.width = '400px';
+              el.style.height = 'auto';
+              el.style.top = '0';
+              el.style.right = '0';
+              el.style.display = 'flex';
+            }
           }
-          window.addEventListener('resize', function(){
-            el.style.display = window.innerWidth < 992 ? 'none' : 'flex';
-          });
+          adjustButtons();
+          window.addEventListener('resize', adjustButtons);
         })();
       </script>
-
 </div>
 
 <style>
