@@ -14,13 +14,118 @@
   <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
   <link rel="stylesheet" href="{{ asset('cssfolder/carousel.css') }}" />
 
+  <style>
+    /* ── Preloader ── */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #preloader.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+    #preloader img {
+      width: 110px;
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+    #preloader .loading-bar-wrap {
+      width: 180px;
+      height: 4px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      margin-top: 22px;
+      overflow: hidden;
+    }
+    #preloader .loading-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #f7581e, #f7af1e);
+      border-radius: 4px;
+      animation: loadbar 5s linear forwards;
+    }
+    #preloader p {
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: #aaa;
+      letter-spacing: 1px;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50%       { transform: scale(1.08); opacity: 0.85; }
+    }
+    @keyframes loadbar {
+      from { width: 0%; }
+      to   { width: 100%; }
+    }
+
+    /* ── Date & Time Widget ── */
+    #datetime-widget {
+      position: fixed;
+      bottom: 80px;
+      left: 18px;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      border-radius: 12px;
+      padding: 10px 16px;
+      z-index: 9000;
+      text-align: center;
+      min-width: 130px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+      line-height: 1.3;
+    }
+    #datetime-widget .dt-time {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #f7af1e;
+      letter-spacing: 1px;
+    }
+    #datetime-widget .dt-date {
+      font-size: 0.7rem;
+      color: #ddd;
+      margin-top: 2px;
+    }
+
+    @media (max-width: 576px) {
+      #datetime-widget {
+        bottom: 70px;
+        left: 12px;
+        padding: 8px 12px;
+        min-width: 110px;
+      }
+      #datetime-widget .dt-time { font-size: 1.1rem; }
+      #datetime-widget .dt-date { font-size: 0.65rem; }
+    }
+  </style>
 
 </head>
 <body>
 
+  <!-- ── Preloader ── -->
+  <div id="preloader">
+    <img src="{{ asset('assets/logo/logo2.png') }}" alt="PARC Foundation">
+    <div class="loading-bar-wrap">
+      <div class="loading-bar"></div>
+    </div>
+    <p>Loading...</p>
+  </div>
+
+  <!-- ── Date & Time Widget ── -->
+  <div id="datetime-widget">
+    <div class="dt-time" id="dt-time">--:--:--</div>
+    <div class="dt-date" id="dt-date">--- --, ----</div>
+  </div>
+
   <!-- Include Navbar -->
   @include('layouts.navbar')
-  
+
   <!-- Include Carousel -->
   @include('layouts.carousel')
 
@@ -252,5 +357,34 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    /* ── Preloader: hide after 5 seconds ── */
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        var preloader = document.getElementById('preloader');
+        preloader.classList.add('hide');
+        preloader.addEventListener('transitionend', function () {
+          preloader.remove();
+        });
+      }, 5000);
+    });
+
+    /* ── Live Date & Time Widget ── */
+    function updateClock() {
+      var now  = new Date();
+      var h    = String(now.getHours()).padStart(2, '0');
+      var m    = String(now.getMinutes()).padStart(2, '0');
+      var s    = String(now.getSeconds()).padStart(2, '0');
+      var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var dateStr = days[now.getDay()] + ', ' + months[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear();
+      document.getElementById('dt-time').textContent = h + ':' + m + ':' + s;
+      document.getElementById('dt-date').textContent = dateStr;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+
 </body>
 </html>
