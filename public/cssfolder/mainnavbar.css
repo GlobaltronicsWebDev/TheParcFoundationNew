@@ -185,11 +185,12 @@
     flex: 1;
     margin: 0;
     border-radius: 0;
-    font-size: 0.85rem;
-    padding: 12px 8px;
+    font-size: 0.75rem;
+    padding: 12px 4px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: center;
   }
 
   .navbar-collapse {

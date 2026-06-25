@@ -46,6 +46,16 @@
     background: #e07a0a;
     transform: translateY(-3px);
   }
+
+  @media (max-width: 991px) {
+    #scroll-to-top {
+      width: 36px;
+      height: 36px;
+      font-size: 0.95rem;
+      bottom: 16px;
+      right: 16px;
+    }
+  }
 </style>
 
 <script>
