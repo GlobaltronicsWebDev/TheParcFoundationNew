@@ -7,13 +7,13 @@
           <!-- Slides -->
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="{{ asset('assets/slider/slider1.png') }}" class="d-block w-100" alt="Slide 1">
+              <img src="{{ asset('assets/slider/Property 2=1.png.png') }}" class="d-block w-100" alt="Slide 1">
             </div>
             <div class="carousel-item">
-              <img src="{{ asset('assets/slider/slider2.png') }}" class="d-block w-100" alt="Slide 2">
+              <img src="{{ asset('assets/slider/Property 2=2.png.png') }}" class="d-block w-100" alt="Slide 2">
             </div>
             <div class="carousel-item">
-              <img src="{{ asset('assets/slider/slider3.png') }}" class="d-block w-100" alt="Slide 3">
+              <img src="{{ asset('assets/slider/Property2=3.png.png') }}" class="d-block w-100" alt="Slide 3">
             </div>
           </div>
 
