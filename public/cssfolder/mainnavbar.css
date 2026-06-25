@@ -28,7 +28,18 @@
   white-space: nowrap;
 }
 .btn-donate { background-color: #f7581e; }
-.btn-adopt { background-color: #f78f1e; }
+.btn-adopt  { background-color: #f78f1e; }
+
+.btn-donate:hover,
+.btn-donate:focus {
+  background-color: #d44415;
+  color: #fff;
+}
+.btn-adopt:hover,
+.btn-adopt:focus {
+  background-color: #d97a10;
+  color: #fff;
+}
 
 /* Buttons container */
 .mainbuttons {
