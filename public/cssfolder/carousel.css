@@ -8,6 +8,13 @@
   overflow: hidden;
 }
 
+/* Mobile: navbar is shorter (no topbar), adjust offset */
+@media (max-width: 991px) {
+  .carousel-container {
+    margin-top: 140px; /* navbar (~90px) + donate buttons bar (~50px) */
+  }
+}
+
 .carousel-item img {
   width: 100%;
   height: 612px;

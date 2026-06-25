@@ -35,6 +35,13 @@
   gap: 0;
 }
 
+/* Hide buttons on mobile — shown via static block inside media query */
+@media (max-width: 991px) {
+  .mainbuttons {
+    display: none;
+  }
+}
+
 /* Social icons */
 .social-icons i {
   font-size: 25px;
@@ -133,7 +140,7 @@
 }
 
 
-/* Responsive 400x608 */
+/* Responsive mobile */
 @media (max-width: 414px), (max-height: 896px) {
   .logo { display: none !important; }
   .logo1 {
@@ -149,9 +156,10 @@
   }
   .top-bar { display:none; }
 
+  /* Show the donate/adopt buttons as a full-width bar below navbar */
   .mainbuttons {
-    position: static;
     display: flex !important;
+    position: static;
     flex-direction: row;
     width: 100%;
     text-align: center;
@@ -160,8 +168,10 @@
     flex: 1;
     margin: 0;
     border-radius: 0;
+    padding: 14px;
+    font-size: 14px;
   }
-  .navbar-toggler { margin-right: 10px; }
+  .navbar-toggler { margin-right: 60px; }
 
   .navbar-collapse {
     position: relative;
@@ -203,10 +213,5 @@
     transform: translateX(-50%) !important;
     text-align: center;
     width: auto;
-  }
-
-  /* Hide carousel if nav expanded */
-  .navbar-collapse.show ~ .carousel-container {
-    display: none !important;
   }
 }
