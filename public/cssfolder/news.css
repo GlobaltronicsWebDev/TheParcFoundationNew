@@ -235,19 +235,28 @@
     max-width: 95%;
   }
 
-  /* 2 columns on large mobile */
+  /* Single column on mobile */
   .card {
-    width: calc(50% - 10px);
+    width: 100%;
   }
 
   .card-content h3 {
-    font-size: 1rem;
+    font-size: 1.1rem;
     word-break: normal;
     overflow-wrap: break-word;
   }
 
+  .card-content p {
+    font-size: 0.95rem;
+  }
+
   .latest-news-section {
     padding: 20px 0 40px;
+  }
+
+  .section-container {
+    gap: 16px;
+    padding: 0 16px;
   }
 }
 
@@ -257,9 +266,20 @@
     font-size: 1.6rem;
   }
 
-  /* 1 column on small mobile */
   .card {
     width: 100%;
+  }
+
+  .card-content {
+    padding: 16px;
+  }
+
+  .card-content h3 {
+    font-size: 1rem;
+  }
+
+  .card-content p {
+    font-size: 0.9rem;
   }
 
   .section-container {
