@@ -49,11 +49,11 @@
 
   @media (max-width: 991px) {
     #scroll-to-top {
-      width: 36px;
-      height: 36px;
+      width: 44px;
+      height: 44px;
       font-size: 0.95rem;
       bottom: 16px;
-      right: 16px;
+      right: 54px;
     }
   }
 </style>
