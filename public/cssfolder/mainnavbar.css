@@ -168,7 +168,7 @@
 
   /* Toggler — keep it right-aligned but not cut off */
   .navbar-toggler {
-    margin-right: 8px !important;
+    margin-right: 64px !important;
     margin-left: auto;
     order: 2;
     position: relative;
