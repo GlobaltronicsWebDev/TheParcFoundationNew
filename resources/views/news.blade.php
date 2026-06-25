@@ -68,7 +68,7 @@
 
     <!-- Visible cards (always shown — keep 9 max) -->
     <div class="section-container" id="visible-cards">
-         <div class="card" data-link="https://www.facebook.com/parcph">
+         <div class="card" data-link="https://www.facebook.com/reel/1371132058230225">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/dartchamps.jpg') }}">
             </div>
@@ -78,7 +78,7 @@
                 <span class="event-date">June 10, 2026</span>
             </div>
         </div>
-        <div class="card" data-link="https://www.facebook.com/parcph">
+        <div class="card" data-link="https://www.facebook.com/photo/?fbid=1414804034010364&set=a.549799583844151">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/NEWS/CALLING.webp') }}">
             </div>
@@ -88,7 +88,7 @@
                 <span class="event-date">June 10, 2026</span>
             </div>
         </div>
-        <div class="card" data-link="https://www.facebook.com/parcph">
+        <div class="card" data-link="https://www.facebook.com/photo/?fbid=122123669025211806&set=pcb.122123669247211806">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/NEWS/HIYAS.png') }}">
             </div>
@@ -98,7 +98,7 @@
                 <span class="event-date">April 30, 2026</span>
             </div>
         </div>
-        <div class="card" data-link="https://www.facebook.com/parcph">
+        <div class="card" data-link="https://www.facebook.com/photo/?fbid=1309606077863665&set=a.566548612169419">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/NEWS/KRYSTEL GO.png') }}">
             </div>
