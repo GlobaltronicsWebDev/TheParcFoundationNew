@@ -171,7 +171,7 @@
     padding: 14px;
     font-size: 14px;
   }
-  .navbar-toggler { margin-right: 60px; }
+  .navbar-toggler { margin-right: 60px !important; }
 
   .navbar-collapse {
     position: relative;
