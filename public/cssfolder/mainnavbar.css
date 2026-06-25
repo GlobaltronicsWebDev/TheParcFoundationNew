@@ -168,14 +168,21 @@
 
   /* Toggler — keep it right-aligned but not cut off */
   .navbar-toggler {
-    margin-right: 65px !important;
+    margin-right: 8px !important;
     margin-left: auto;
     order: 2;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Prevent page overflow */
+  .wholenavbar {
+    overflow-x: hidden;
   }
 
   /* Buttons row below navbar */
   .mainbuttons {
-    position: static;
+    position: static !important;
     display: flex !important;
     flex-direction: row;
     width: 100%;
@@ -185,11 +192,12 @@
     flex: 1;
     margin: 0;
     border-radius: 0;
-    font-size: 0.85rem;
-    padding: 12px 8px;
+    font-size: 0.75rem;
+    padding: 12px 4px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: center;
   }
 
   .navbar-collapse {
