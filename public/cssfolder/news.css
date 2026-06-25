@@ -227,13 +227,16 @@
 
 /* Mobile: Single column for better readability */
 @media (max-width: 576px) {
-  .card {
-    width: 100% !important;
-  }
-
   .section-container {
+    flex-direction: column;
     gap: 16px;
     padding: 0 12px;
+  }
+
+  .card {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
   }
 
   .card-content {
