@@ -69,6 +69,7 @@
   <div class="top-bar">
     <div class="w-100 d-flex align-items-center justify-content-center" id="topbar">
       <div class="contactlink">(02) 8350 6350  |  program.director@foundation.com.ph</div>
+      <div class="topbar-datetime" id="topbar-datetime"></div>
     </div>
   </div>
 
@@ -122,3 +123,38 @@
       </div>
 
 </div>
+
+<style>
+  .topbar-datetime {
+    font-size: 0.78rem;
+    color: #fff;
+    margin-left: 24px;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    opacity: 0.9;
+  }
+</style>
+
+<script>
+  (function () {
+    function updateClock() {
+      var el = document.getElementById('topbar-datetime');
+      if (!el) return;
+      var now = new Date();
+      var days   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var day    = days[now.getDay()];
+      var date   = now.getDate();
+      var month  = months[now.getMonth()];
+      var year   = now.getFullYear();
+      var h      = now.getHours();
+      var m      = String(now.getMinutes()).padStart(2, '0');
+      var s      = String(now.getSeconds()).padStart(2, '0');
+      var ampm   = h >= 12 ? 'PM' : 'AM';
+      h = h % 12 || 12;
+      el.textContent = day + ', ' + month + ' ' + date + ', ' + year + '  |  ' + h + ':' + m + ':' + s + ' ' + ampm;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+  })();
+</script>
