@@ -1,3 +1,69 @@
+<!-- ── Page Loader ── -->
+<div id="page-loader">
+  <div class="loader-inner">
+    <img src="{{ asset('assets/logo/parclogosquare.png') }}" alt="PARC Foundation" class="loader-logo">
+    <div class="loader-spinner"></div>
+  </div>
+</div>
+
+<style>
+  #page-loader {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+
+  #page-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .loader-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .loader-logo {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    animation: loader-pulse 1.2s ease-in-out infinite;
+  }
+
+  @keyframes loader-pulse {
+    0%, 100% { transform: scale(1);   opacity: 1; }
+    50%       { transform: scale(0.9); opacity: 0.7; }
+  }
+
+  .loader-spinner {
+    width: 36px;
+    height: 36px;
+    border: 4px solid #f0e0d0;
+    border-top-color: #f78f1e;
+    border-radius: 50%;
+    animation: loader-spin 0.75s linear infinite;
+  }
+
+  @keyframes loader-spin {
+    to { transform: rotate(360deg); }
+  }
+</style>
+
+<script>
+  window.addEventListener('load', function () {
+    var loader = document.getElementById('page-loader');
+    loader.classList.add('hidden');
+    setTimeout(function () { loader.style.display = 'none'; }, 500);
+  });
+</script>
+
 <div class="wholenavbar">
 <!-- Top Bar -->
   <div class="top-bar">
