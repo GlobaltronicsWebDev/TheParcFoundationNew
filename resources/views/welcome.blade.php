@@ -108,7 +108,7 @@
 <body>
 
   <audio id="bgMusic" loop>
-    <source src="{{ asset('assets/audio/violin-background.mp3') }}" type="audio/mpeg">
+    <source src="{{ asset('assets/audio/violinbg.mp3') }}" type="audio/mpeg">
   </audio>
 
   <div id="preloader">
