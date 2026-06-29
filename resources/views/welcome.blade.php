@@ -107,7 +107,9 @@
 
 </head>
 <body>
-
+<audio id="bgMusic" loop>
+  <source src="{{ asset('assets/audio/violinbg.mp3') }}" type="audio/mpeg">
+</audio>
   <!-- ── Preloader ── -->
   <div id="preloader">
     <img src="{{ asset('assets/logo/logo2.png') }}" alt="PARC Foundation">
@@ -386,5 +388,35 @@
     setInterval(updateClock, 1000);
   </script>
 
+
+
+<!-- 
+background music -->
+    <script>
+const music = document.getElementById('bgMusic');
+
+// Function to try and play the music
+function tryToPlay() {
+  music.play().then(() => {
+    // If successful, save state
+    localStorage.setItem('musicPlaying', 'true');
+  }).catch(() => {
+    // Browser blocked it, wait for user to click anywhere
+    document.addEventListener('click', forcePlay, { once: true });
+  });
+}
+
+function forcePlay() {
+  music.play();
+  localStorage.setItem('musicPlaying', 'true');
+}
+
+// On page load, check if it was already playing on the last page
+window.addEventListener('load', () => {
+  if (localStorage.getItem('musicPlaying') === 'true' || !localStorage.getItem('musicPlaying')) {
+    tryToPlay();
+  }
+});
+</script>
 </body>
 </html>
