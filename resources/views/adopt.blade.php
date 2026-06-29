@@ -213,7 +213,7 @@
               <hr>
               <p class="p5">Opportunity to meet with the adopted school at events or through virtual platforms.</p>
               <hr>
-              <p class="p6">Opportunity to meet with the adopted school at events or through virtual platforms.</p>
+              <p class="p6">Special feature in The PARC Foundation's annual report highlighting sponsorship impact.</p>
             
             </div> 
 
