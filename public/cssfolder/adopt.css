@@ -227,7 +227,7 @@ body {
   margin-bottom: 10px;
   color: rgb(0, 0, 0);
 }
-.p2, .p3, .p4, .p5 {
+.p2, .p3, .p4, .p5 .p6 {
   font-size: 15px;
   color: rgb(0, 0, 0);
 }
@@ -431,7 +431,7 @@ body {
   }
 
   /* Note paragraphs smaller */
-  .p2, .p3, .p4, .p5 {
+  .p2, .p3, .p4, .p5 .p6 {
     font-size: 12px;
   }
   /* Left col adjustments */

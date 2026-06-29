@@ -203,13 +203,16 @@
                 </p>
               </div>
 
-              <p class="p3">Training expenses for intermediate skill development workshops, Mentor’s fee, collaterals, and etc.</p>
+              <p class="p3">Full one-year training coverage, including travel for competitions and events.</p>
               <hr>
-              <p class="p3">Recognition on the PARC Foundation website.</p>
+              <p class="p3">Highest level recognition on The PARC Foundation's website, social media, and events</p>
               <hr>
-              <p class="p4">Quarterly progress update.</p>
+              <p class="p4">Monthly personalized progress updates from the scholar.</p>
               <hr>
-              <p class="p5">Invitation to the annual scholar showcase event.</p>
+              <p class="p5">Opportunity to meet with the adopted school at events or through virtual platforms.</p>
+              <hr>
+              <p class="p6">Opportunity to meet with the adopted school at events or through virtual platforms.</p>
+            
             </div> 
 
             
