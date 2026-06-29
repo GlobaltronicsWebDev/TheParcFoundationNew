@@ -15,7 +15,9 @@
 <body>
 
   @include('layouts.navbar')
-
+    <audio id="bgMusic" loop>
+    <source src="{{ asset('assets/audio/violinbg.mp3') }}" type="audio/mpeg">
+  </audio>
   <!-- ── About Intro ── -->
   <section class="about-intro">
     <div class="container">
@@ -406,6 +408,31 @@
       });
     }, { threshold: 0.2 });
     slideEls.forEach(function (el) { slideObserver.observe(el); });
+
+        /* ── 🎻 Intelligent Multi-page Background Music Logic ── */
+    const music = document.getElementById('bgMusic');
+
+    function tryToPlay() {
+      music.play().then(() => {
+        // Safe play achieved, lock it into memory
+        localStorage.setItem('parcMusicPlaying', 'true');
+      }).catch(() => {
+        // Autoplay blocked by browser. Hook into the first click anywhere on the site
+        document.addEventListener('click', forcePlay, { once: true });
+      });
+    }
+
+    function forcePlay() {
+      music.play();
+      localStorage.setItem('parcMusicPlaying', 'true');
+    }
+
+    // Attempt audio stream initialization as soon as window loads
+    window.addEventListener('load', () => {
+      if (localStorage.getItem('parcMusicPlaying') === 'true' || !localStorage.getItem('parcMusicPlaying')) {
+        tryToPlay();
+      }
+    });
   </script>
 
 </body>
