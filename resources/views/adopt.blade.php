@@ -135,7 +135,8 @@
             <div class="notepatron">
               <div class="note-header">
                 <p class="p1">
-                  <!-- PATRON <span class="badge-duration">3-MONTHS DURATION</span> -->
+                  PATRON 
+                  <!-- <span class="badge-duration">3-MONTHS DURATION</span> -->
                 </p>
                 <p class="price-tag">
                   ₱15,000 <span class="small">/ Scholar</span>
