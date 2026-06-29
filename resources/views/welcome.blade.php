@@ -273,7 +273,7 @@
 </script>
 
 <div class="frsection">
-  <img src="{{ asset('assets/image/1 (1) 2.png') }}" alt="img4" class="img4">
+  <img src="{{ asset('assets/image/photobottom_1.png') }}" alt="img4" class="img4">
  <img src="{{ asset('assets/image/1 (1) 2.png') }}" alt="img4" class="img4">
 
   <div class="text-overlay">
