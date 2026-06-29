@@ -146,7 +146,7 @@
               <hr>
               <p class="p3">Recognition on the PARC Foundation website.</p>
               <hr>
-              <p class="p3">Share what you can, Your contribution, big or small, makes a difference.</p>
+              <p class="p5">Share what you can, Your contribution, big or small, makes a difference.</p>
             </div> 
 
             <!-- Silver Note -->

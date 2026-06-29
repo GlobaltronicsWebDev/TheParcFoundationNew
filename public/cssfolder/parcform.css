@@ -52,6 +52,10 @@
   font-size: 15px;
   color: rgb(0, 0, 0);
 }
+.p5{
+  color: #e68900;
+  font-style: italic;
+}
 
 /* 🌟 MONTHLY BUTTONS */
 .btnm7, .btnm8, .btnm9 {
