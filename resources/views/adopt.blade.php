@@ -179,7 +179,7 @@
                   GOLD <span class="badge-duration">3-MONTHS DURATION</span>
                 </p>
                 <p class="price-tag">
-                  ₱15,000 <span class="small">/ Scholar</span>
+                  ₱25,000 <span class="small">/ Scholar</span>
                 </p>
               </div>
 
@@ -199,7 +199,7 @@
                   PLATINUM <span class="badge-duration">3-MONTHS DURATION</span>
                 </p>
                 <p class="price-tag">
-                  ₱15,000 <span class="small">/ Scholar</span>
+                  ₱50,000 <span class="small">/ Scholar</span>
                 </p>
               </div>
 
