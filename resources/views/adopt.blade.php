@@ -147,7 +147,7 @@
               <p class="p3">Recognition on the PARC Foundation website.</p>
               <hr>
               <hr>
-              <p <style"color="orange;"> class="p5">Invitation to the annual scholar showcase event.</p>
+              <p class="p5">Share what you can, Your contribution, big or small, makes a difference.</p>
             </div> 
 
             <!-- Silver Note -->
