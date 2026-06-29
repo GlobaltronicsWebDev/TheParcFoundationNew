@@ -176,27 +176,29 @@
             <div class="notegold">
               <div class="note-header">
                 <p class="p1">
-                  GOLD <span class="badge-duration">3-MONTHS DURATION</span>
+                  GOLD <span class="badge-duration">6-MONTHS DURATION</span>
                 </p>
                 <p class="price-tag">
                   ₱25,000 <span class="small">/ Scholar</span>
                 </p>
               </div>
 
-              <p class="p3">Training expenses for intermediate skill development workshops, Mentor’s fee, collaterals, and etc.</p>
+              <p class="p3">Comprehensive training expenses covering workshops, material, and tuition for advanced courses.</p>
               <hr>
-              <p class="p3">Recognition on the PARC Foundation website.</p>
+              <p class="p3">Premium recognition on The PARC Foundation's website, social media, and events.</p>
               <hr>
               <p class="p4">Quarterly progress update.</p>
               <hr>
-              <p class="p5">Invitation to the annual scholar showcase event.</p>
+              <p class="p5">Dedicated thank-you letter from the adopted scholar.</p>
+              <hr>
+               <p class="p6">invitation to exclusive donor appreciation events.</p>
             </div>
 
             <!-- Platinum Note -->
             <div class="noteplatinum">
               <div class="note-header">
                 <p class="p1">
-                  PLATINUM <span class="badge-duration">3-MONTHS DURATION</span>
+                  PLATINUM <span class="badge-duration">12-MONTHS DURATION</span>
                 </p>
                 <p class="price-tag">
                   ₱50,000 <span class="small">/ Scholar</span>
