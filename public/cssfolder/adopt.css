@@ -232,6 +232,11 @@ body {
   color: rgb(0, 0, 0);
 }
 
+.p5{
+  color: #f78f1e;
+  font-style: italic;
+}
+
 /* Highlights in notes */
 .privacy {
   color: rgb(255, 162, 0);
