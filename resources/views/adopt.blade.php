@@ -146,9 +146,8 @@
               <hr>
               <p class="p3">Recognition on the PARC Foundation website.</p>
               <hr>
-              <p class="p4">Quarterly progress update.</p>
               <hr>
-              <p class="p5">Invitation to the annual scholar showcase event.</p>
+              <p <style"color="orange;"> class="p5">Invitation to the annual scholar showcase event.</p>
             </div> 
 
             <!-- Silver Note -->
