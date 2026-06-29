@@ -6,10 +6,9 @@
   <title>PARC Foundation</title>
   <link rel="icon" type="image/png" href="{{ asset('assets/logo/parclogosquare.png') }}">
 
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('cssfolder/main.css') }}">
+  <link rel="stylesheet" href="{{ asset('cssfolder/main.css') }}">
   <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css?vr=2') }}">
   <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
   <link rel="stylesheet" href="{{ asset('cssfolder/carousel.css') }}" />
@@ -107,10 +106,11 @@
 
 </head>
 <body>
-<audio id="bgMusic" loop>
-  <source src="{{ asset('assets/audio/violinbg.mp3') }}" type="audio/mpeg">
-</audio>
-  <!-- ── Preloader ── -->
+
+  <audio id="bgMusic" loop>
+    <source src="{{ asset('assets/audio/violin-background.mp3') }}" type="audio/mpeg">
+  </audio>
+
   <div id="preloader">
     <img src="{{ asset('assets/logo/logo2.png') }}" alt="PARC Foundation">
     <div class="loading-bar-wrap">
@@ -119,20 +119,16 @@
     <p>Loading...</p>
   </div>
 
-  <!-- ── Date & Time Widget ── -->
   <div id="datetime-widget">
     <div class="dt-time" id="dt-time">--:--:--</div>
     <div class="dt-date" id="dt-date">--- --, ----</div>
   </div>
 
-  <!-- Include Navbar -->
   @include('layouts.navbar')
 
-  <!-- Include Carousel -->
   @include('layouts.carousel')
 
-  <!-- PARCaralan starts here -->
-    <div class="container parcaralan">
+  <div class="container parcaralan">
         <h1 class="title partitle">PARCaralan</h1>
         <p class="paragraph parcdetails">
             We harness the power of performing arts to transform the lives of
@@ -140,9 +136,7 @@
         </p>
         <button class="cta-button">Learn More</button>
     </div>
-  <!-- PARCaralan ends here -->
-
-<div class="main-flex">
+  <div class="main-flex">
   <div class="image-container">
     <img src="{{ asset('assets/image/groupphoto.png') }}" alt="Orchestra" class="main-image">
   </div>
@@ -155,7 +149,6 @@
   </div>
 </div>
 
-<!-- second section starts here -->
 <div class="second-section">
 <div class="row justify-content-center">
   <div class="col-auto">
@@ -184,10 +177,6 @@
   </div>
 </div>
 </div>
-
-<!-- second section ends here -->
-
-<!-- third section starts here -->
 <div class="container-fluid main-tsection">
   <div class="row third-section flex-column flex-md-row">
     <div class="col-md-7 col1 fade-in-right">
@@ -210,8 +199,6 @@
     </div>
   </div>
 </div>
-<!-- third section ends here -->
-
 <style>
   /* Fade-in from right animation */
   .fade-in-right {
@@ -285,28 +272,22 @@
   });
 </script>
 
-<!-- fourth section starts here -->
 <div class="frsection">
   <img src="{{ asset('assets/image/1 (1) 2.png') }}" alt="img4" class="img4">
   <img src="{{ asset('assets/image/1 (1) 4.png') }}" alt="img5" class="img5">
 
-  <!-- Orange Text Box -->
   <div class="text-overlay">
     <h2>What you need to know about<br> our scholars  ›</h2>
     <p>A flagship scholarship program offering free training<br>
        in music, dance, and theater.</p>
   </div>
 </div>
-<!-- fourth section ends here -->
-
-<!-- fifth section starts here -->
 <div class="container-fluid py-5 fifth-section text-center">
   <h2 class="fw-bold mb-2 ft1 fade-in-top">Get Involved</h2>
   <p class="mb-5 ft2 fade-in-top" style="animation-delay:0.2s;">Ways to support the PARC Foundation</p>
 
   <div class="container">
     <div class="row g-4 justify-content-center">
-      <!-- Card 1 -->
       <div class="col-md-3 d-flex">
         <div class="card shadow-sm h-100 border-0">
           <div class="card-body">
@@ -320,7 +301,6 @@
         </div>
       </div>
 
-      <!-- Card 2 -->
       <div class="col-md-3 d-flex">
         <div class="card shadow-sm h-100 border-0">
           <div class="card-body">
@@ -334,7 +314,6 @@
         </div>
       </div>
 
-      <!-- Card 3 -->
       <div class="col-md-3 d-flex">
         <div class="card shadow-sm h-100 border-0">
           <div class="card-body">
@@ -351,13 +330,10 @@
   </div>
 </div>
 
-  <!-- Include Navbar -->
   @include('layouts.contacts')
 
-    <!-- Include Footer -->
   @include('layouts.footer')
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
@@ -386,37 +362,32 @@
     }
     updateClock();
     setInterval(updateClock, 1000);
+
+    /* ── 🎻 Intelligent Multi-page Background Music Logic ── */
+    const music = document.getElementById('bgMusic');
+
+    function tryToPlay() {
+      music.play().then(() => {
+        // Safe play achieved, lock it into memory
+        localStorage.setItem('parcMusicPlaying', 'true');
+      }).catch(() => {
+        // Autoplay blocked by browser. Hook into the first click anywhere on the site
+        document.addEventListener('click', forcePlay, { once: true });
+      });
+    }
+
+    function forcePlay() {
+      music.play();
+      localStorage.setItem('parcMusicPlaying', 'true');
+    }
+
+    // Attempt audio stream initialization as soon as window loads
+    window.addEventListener('load', () => {
+      if (localStorage.getItem('parcMusicPlaying') === 'true' || !localStorage.getItem('parcMusicPlaying')) {
+        tryToPlay();
+      }
+    });
   </script>
 
-
-
-<!-- 
-background music -->
-    <script>
-const music = document.getElementById('bgMusic');
-
-// Function to try and play the music
-function tryToPlay() {
-  music.play().then(() => {
-    // If successful, save state
-    localStorage.setItem('musicPlaying', 'true');
-  }).catch(() => {
-    // Browser blocked it, wait for user to click anywhere
-    document.addEventListener('click', forcePlay, { once: true });
-  });
-}
-
-function forcePlay() {
-  music.play();
-  localStorage.setItem('musicPlaying', 'true');
-}
-
-// On page load, check if it was already playing on the last page
-window.addEventListener('load', () => {
-  if (localStorage.getItem('musicPlaying') === 'true' || !localStorage.getItem('musicPlaying')) {
-    tryToPlay();
-  }
-});
-</script>
 </body>
 </html>
