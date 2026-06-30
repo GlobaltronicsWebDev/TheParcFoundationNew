@@ -73,8 +73,9 @@
                 <img src="{{ asset('./assets/image/dartchamps.jpg') }}">
             </div>
             <div class="card-content">
-                <h3>Calling All Aspiring Musicians</h3>
-                <p>The PARC Foundation is now welcoming aspiring scholars for Violin, Cello, and Contrabass classes.</p>
+                <h3>Exciting & Competitive
+                Ready, Aim, Win! </h3>
+                <p>Another successful Soft Tip Dart Tournament has come to an end, creating new champions and unforgettable memories. But beyond the trophies and victories, the greatest achievement is seeing the dart community come together as one family. Every player, supporter, and organizer played a part in making this event meaningful. Congratulations to all participants, and see you at the Battle of the Champions! </p>
                 <span class="event-date">June 10, 2026</span>
             </div>
         </div>
