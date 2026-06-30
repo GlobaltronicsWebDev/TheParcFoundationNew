@@ -67,7 +67,7 @@
     -->
 
     <!-- Visible cards (always shown — keep 9 max) -->
-    <!-- <div class="section-container" id="visible-cards">
+    <div class="section-container" id="visible-cards">
          <div class="card" data-link="https://www.facebook.com/reel/1371132058230225">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/dartchamps.jpg') }}">
@@ -77,7 +77,7 @@
                 <p>The PARC Foundation is now welcoming aspiring scholars for Violin, Cello, and Contrabass classes.</p>
                 <span class="event-date">June 10, 2026</span>
             </div>
-        </div> -->
+        </div>
         <div class="card" data-link="https://www.facebook.com/photo/?fbid=1414804034010364&set=a.549799583844151">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/NEWS/CALLING.webp') }}">
