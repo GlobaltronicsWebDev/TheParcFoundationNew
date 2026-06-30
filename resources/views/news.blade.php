@@ -75,10 +75,11 @@
             <div class="card-content">
                 <h3>Exciting & Competitive
                 Ready, Aim, Win! </h3>
-                <p>Another successful Soft Tip Dart Tournament has come to an end, creating new champions and unforgettable memories. But beyond the trophies and victories, the greatest achievement is seeing the dart community come together as one family. Every player, supporter, and organizer played a part in making this event meaningful. Congratulations to all participants, and see you at the Battle of the Champions! </p>
+                <p>Another successful Soft Tip Dart Tournament has come to an end, creating new champions and unforgettable memories. Congratulations to all participants, and see you at the Battle of the Champions! </p>
                 <span class="event-date">June 10, 2026</span>
             </div>
         </div>
+
         <div class="card" data-link="https://www.facebook.com/photo/?fbid=1414804034010364&set=a.549799583844151">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/NEWS/CALLING.webp') }}">
