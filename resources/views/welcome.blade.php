@@ -273,7 +273,7 @@
 </script>
 
 <div class="frsection">
-  <img src="{{ asset('assets/image/photobottom_1.png') }}" alt="img4" class="img4">
+  <img src="{{ asset('assets/image/photobottom_3.png') }}" alt="img4" class="img4">
   <div class="text-overlay">
     <h2>What you need to know about<br> our scholars  ›</h2>
     <p>A flagship scholarship program offering free training<br>
