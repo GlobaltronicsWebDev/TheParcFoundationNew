@@ -76,7 +76,7 @@
                 <h3>Exciting & Competitive
                 Ready, Aim, Win! </h3>
                 <p>Another successful Soft Tip Dart Tournament has come to an end, creating new champions and unforgettable memories. Congratulations to all participants, and see you at the Battle of the Champions! </p>
-                <span class="event-date">June 10, 2026</span>
+                <span class="event-date">June 22, 2026</span>
             </div>
         </div>
 
