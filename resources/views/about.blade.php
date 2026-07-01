@@ -32,7 +32,7 @@
           </p>
         </div>
       </div>
-      <br><br>
+      <br>
       <!-- ── 2 Videos side by side ── -->
       <div class="row g-4 justify-content-center mt-4">
         <div class="col-md-6">
@@ -48,9 +48,7 @@
             </iframe>
           </div>
         </div>
-   
       </div>
-
     </div>
   </section>
 
@@ -87,11 +85,10 @@
         </div>
       </div>
       </div>
-
     </div>
   </section>
 
-
+<br><br><br>
   <!-- ── Mission & Vision ── -->
   <section class="about-mv">
     <div class="container">
