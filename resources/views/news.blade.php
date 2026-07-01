@@ -170,12 +170,7 @@
                 <span class="event-date">December 20, 2024</span>
             </div>
         </div>
-    </div>
-
-    <!-- Extra cards — hidden by default, revealed by More button -->
-    <!-- When adding new cards above, move the last visible card to the TOP of this section -->
-    <div class="section-container" id="extra-cards" style="display: none;">
-        <div class="card">
+         <div class="card">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/sog2021part1.webp') }}">
             </div>
@@ -185,7 +180,7 @@
                 <span class="event-date">December 3, 2021</span>
             </div>
         </div>
-        <div class="card">
+          <div class="card">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/sog2021_DRMS.webp') }}">
             </div>
@@ -195,6 +190,12 @@
                 <span class="event-date">November 26, 2021</span>
             </div>
         </div>
+    </div>
+
+    <!-- Extra cards — hidden by default, revealed by More button -->
+    <!-- When adding new cards above, move the last visible card to the TOP of this section -->
+    <div class="section-container" id="extra-cards" style="display: none;">
+      
         <div class="card">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/Slider_MG.webp') }}">
