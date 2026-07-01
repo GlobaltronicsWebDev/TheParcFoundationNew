@@ -15,10 +15,11 @@
 <body>
 
   @include('layouts.navbar')
-    <audio id="bgMusic" loop>
+    <!-- <audio id="bgMusic" loop>
     <source src="{{ asset('assets/audio/violinbg.mp3') }}" type="audio/mpeg">
-  </audio>
+   </audio> -->
   <!-- ── About Intro ── -->
+   <br><br>
   <section class="about-intro">
     <div class="container">
       <div class="row justify-content-center">
