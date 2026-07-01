@@ -159,7 +159,8 @@
     <div class="sectitle">
     <p class="p1">STORY</p>
     <p class="p2">Changing the Tune of Tomorrow</p><hr class="divider1">
-    <p>We partner with communities to<br> uplift lives and build brighter futures<br> through music and education.</p>
+    <p>We are enablers.<br> We provide both the opportunity and resources for our scholars to reach beyond the limits of their current station. 
+</p>
     </div>
   </div>
   <div class="col-auto">
@@ -167,15 +168,17 @@
     <div class="sectitle">
     <p class="p1">FEATURE</p>
     <p class="p2">Where Impact comes to Life</p><hr class="divider1">
-    <p>We partner with communities to<br> uplift lives and build brighter futures<br> through music and education.</p>
+    <p>We partner with communities and<br>  organizations to uplift lives and pave the<br> aths toward brighter futures.
+</p>
     </div>
   </div>
   <div class="col-auto">
     <img src="{{ asset('assets/image/PARC SOG Event-6879 3.png') }}" alt="img3" class="img3">
     <div class="sectitle">
     <p class="p1">EXPLORE</p>
-    <p class="p2">Changing Lives, One Note at a Time</p><hr class="divider1">
-    <p>We partner with communities to<br> uplift lives and build brighter futures<br> through music and education.</p>
+    <p class="p2">Changing Lives, One Performance at a Time</p><hr class="divider1">
+    <p>We teach our scholars that <br> every performance is a celebration of life<br> We seek to build self-esteem and strengthen confidence in one’s ability. 
+</p>
     </div>
   </div>
 </div>
