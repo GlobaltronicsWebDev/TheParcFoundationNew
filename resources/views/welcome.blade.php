@@ -142,7 +142,8 @@
   </div>
   <div class="info-section">
     <h2>Who we serve?</h2>
-    <p class="info-title"><b class="emoji">🧑‍🎤Who We Support:</b> The PARCaralan scholarship program supports the development and <br> underserved communities, accepted as scholars.</p>
+    <p class="info-title"><b class="emoji">🧑‍🎤Who We Support:</b> The PARCaralan scholarship program supports the development and <br> ugrowth of artistically gifted yet financially challenged youth from underserved communities.
+</p>
     <p class="info-title"><b class="emoji">📚What Our Scholars Receive:</b> Sponsored training by industry professionals, conducive <br> learning environment, educational supplies, instruments, transportation, and meal provisions.
 </p>
     <p class="info-title"><b class="emoji">🌱Beyond the Arts:</b> Values formation, character-building, and cultural immersions to <br> nurture ambition and appreciation for the arts.
@@ -282,8 +283,7 @@
   <img src="{{ asset('assets/image/photobottom_3.png') }}" alt="img4" class="img4">
   <div class="text-overlay">
     <h2>What you need to know about<br> our scholars  ›</h2>
-    <p>PARCaralan is our flagship scholarship program that offers sponsored and <br>
-       custom tailored training in the Performing Arts.
+    <p>PARCaralan is our flagship scholarship program that offers sponsored and custom tailored <br> training in the Performing Arts.
 </p>
   </div>
 </div>
