@@ -10,16 +10,16 @@
               <img src="{{ asset('assets/image/sliders/slider 1.png') }}" class="d-block w-100" alt="Slide 1">
             </div>
             <div class="carousel-item">
-              <img src="{{ asset('assets/image/sliders/slider 3.png') }}" class="d-block w-100" alt="Slide 2">
+              <img src="{{ asset('assets/image/sliders/slider 2.png') }}" class="d-block w-100" alt="Slide 2">
             </div>
             <div class="carousel-item">
-              <img src="{{asset('assets/image/sliders/slider 4.png') }}" class="d-block w-100" alt="Slide 3">
+              <img src="{{asset('assets/image/sliders/slider 3.png') }}" class="d-block w-100" alt="Slide 3">
             </div>
             <div class="carousel-item">
-              <img src="{{ asset('assets/image/sliders/slider 5.png') }}" class="d-block w-100" alt="Slide 4">
+              <img src="{{ asset('assets/image/sliders/slider 4.png') }}" class="d-block w-100" alt="Slide 4">
             </div>
             <div class="carousel-item">
-              <img src="{{ asset('assets/image/sliders/slider 6.png') }}" class="d-block w-100" alt="Slide 5">
+              <img src="{{ asset('assets/image/sliders/slider 5.png') }}" class="d-block w-100" alt="Slide 5">
             </div>
            
           </div>
