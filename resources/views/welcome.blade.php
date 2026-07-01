@@ -168,7 +168,7 @@
     <div class="sectitle">
     <p class="p1">FEATURE</p>
     <p class="p2">Where Impact comes to Life</p><hr class="divider1">
-    <p>We partner with communities and<br>  organizations to uplift lives and pave the<br> aths toward brighter futures.
+    <p>We partner with communities and <br>  organizations to uplift lives and pave the<br> aths toward brighter futures.
 </p>
     </div>
   </div>
@@ -177,7 +177,7 @@
     <div class="sectitle">
     <p class="p1">EXPLORE</p>
     <p class="p2">Changing Lives, One Performance at a Time</p><hr class="divider1">
-    <p>We teach our scholars that <br> every performance is a celebration of life<br> We seek to build self-esteem and strengthen confidence in one’s ability. 
+    <p>We teach our scholars that every performance  <br>  is a celebration of life. We seek to build <br> self-esteem and strengthen confidence <br> in one’s ability. 
 </p>
     </div>
   </div>
