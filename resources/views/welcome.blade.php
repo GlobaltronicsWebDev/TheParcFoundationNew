@@ -159,7 +159,7 @@
     <div class="sectitle">
     <p class="p1">STORY</p>
     <p class="p2">Changing the Tune of Tomorrow</p><hr class="divider1">
-    <p>We are enablers.<br> We provide both the opportunity and resources for our scholars to reach beyond the limits of their current station. 
+    <p>We are enablers. We provide both the <br> opportunity and  resources for our scholars <br> to reach beyond the limits of <br> their current station. 
 </p>
     </div>
   </div>
