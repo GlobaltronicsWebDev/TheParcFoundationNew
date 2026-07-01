@@ -142,7 +142,7 @@
   </div>
   <div class="info-section">
     <h2>Who we serve?</h2>
-    <p class="info-title"><b class="emoji">🧑‍🎤Who We Support:</b> The PARCaralan scholarship program supports the development and <br> ugrowth of artistically gifted yet financially challenged youth from underserved communities.
+    <p class="info-title"><b class="emoji">🧑‍🎤Who We Support:</b> The PARCaralan scholarship program supports the development and <br> growth of artistically gifted yet financially challenged youth from underserved communities.
 </p>
     <p class="info-title"><b class="emoji">📚What Our Scholars Receive:</b> Sponsored training by industry professionals, conducive <br> learning environment, educational supplies, instruments, transportation, and meal provisions.
 </p>
