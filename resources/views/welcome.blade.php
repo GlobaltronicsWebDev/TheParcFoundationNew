@@ -169,7 +169,7 @@
     <div class="sectitle">
     <p class="p1">FEATURE</p>
     <p class="p2">Where Impact comes to Life</p><hr class="divider1">
-    <p>We partner with communities and <br>  organizations to uplift lives and pave the<br> aths toward brighter futures.
+    <p>We partner with communities and <br> organizations to uplift lives and pave the <br> paths toward brighter futures.
 </p>
     </div>
   </div>
