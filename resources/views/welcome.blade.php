@@ -142,10 +142,13 @@
   </div>
   <div class="info-section">
     <h2>Who we serve?</h2>
-    <p class="info-title"><b class="emoji">🧑‍🎤Who We Help:</b> Artistically gifted children (ages 7-12) from<br> underserved communities, accepted as scholars.</p>
-    <p class="info-title"><b class="emoji">📚What They Receive:</b> Free training in music, dance, and theater, plus<br> school supplies, transportation, and meal allowances.</p>
-    <p class="info-title"><b class="emoji">🌱Beyond the Arts:</b> Values formation, character-building, and cultural<br> immersions to nurture ambition and appreciation for the arts.</p>
-    <p class="info-title"><b class="emoji">🚀Future-Ready:</b> By age 17, we connect them with top art schools,<br> mentors, and career opportunities—on stage, behind the scenes, or in<br> other fields where they can apply their skills.</p>
+    <p class="info-title"><b class="emoji">🧑‍🎤Who We Support:</b> The PARCaralan scholarship program supports the development and <br> underserved communities, accepted as scholars.</p>
+    <p class="info-title"><b class="emoji">📚What Our Scholars Receive:</b> Sponsored training by industry professionals, conducive <br> learning environment, educational supplies, instruments, transportation, and meal provisions.
+</p>
+    <p class="info-title"><b class="emoji">🌱Beyond the Arts:</b> Values formation, character-building, and cultural immersions to <br> nurture ambition and appreciation for the arts.
+</p>
+    <p class="info-title"><b class="emoji">🚀Future-Ready:</b>  By age 17, we connect our scholars with top art schools, mentors, and <br> career opportunities—on stage, behind the scenes, or in other fields where they can apply their skills.
+</p>
   </div>
 </div>
 
