@@ -20,6 +20,7 @@
           <div class="carousel-item">
             <img src="{{ asset('assets/image/sliders/slider 5.png') }}" class="d-block w-100" alt="Slide 5">
           </div>
+           
         </div>
 
         <div class="carousel-indicators">
