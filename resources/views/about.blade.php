@@ -178,11 +178,11 @@
           <p class="stat-label">Community Outreach Programs</p>
         </div>
         <div class="col-6 col-md-3 stat-item">
-          <span class="stat-number count-up" data-target="9">0</span><span class="stat-plus">+</span>
+          <span class="stat-number count-up" data-target="10">0</span><span class="stat-plus">+</span>
           <p class="stat-label">Years of Impact</p>
         </div>
         <div class="col-6 col-md-3 stat-item">
-          <span class="stat-number count-up" data-target="100">0</span><span class="stat-plus">+</span>
+          <span class="stat-number count-up" data-target="10">0</span><span class="stat-plus">+</span>
           <p class="stat-label">Partner Organizations</p>
         </div>
       </div>
