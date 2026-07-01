@@ -70,29 +70,32 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-9 text-center">
-          <h2 class="about-section-heading fade-left">The PARC Foundation marks <span>Its 6th year celebration</span></h2>
+          <h2 class="about-section-heading fade-left">The PARC Foundation marks <span>Its 10th year celebration</span></h2>
           <p class="about-intro-text">
-            The Performing Arts and Recreation Center (PARC) Foundation is a registered, non-stock,
-            non-profit organization founded in December 2015 which is committed to harnessing the
-            power of performing arts to transform lives - especially the youth.
+            The PARC Foundation marks Its 10th year celebration. 
+            The Performing Arts and Recreation Center (PARC) Foundation is a registered, 
+            non-stock, non-profit organization founded in 
+            December 2015 which is committed to harnessing the power of p
+            erforming arts to transform lives - especially the youth.
           </p>
         </div>
       </div>
 
      <!-- 3rd video -->
       <div class="row g-4 justify-content-center mt-4">
-        <div class="col-md-6">
+         <div class="col-md-6">
           <p class="about-video-label text-center"></p>
           <div class="vimeo-embed-container">
             <iframe
-              src="https://www.youtube.com/embed/jwmp2JNwb6A"
+              src="https://player.vimeo.com/video/1200289526?badge=0&autopause=0&player_id=0&app_id=58479"
               frameborder="0"
               allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
               referrerpolicy="strict-origin-when-cross-origin"
               allowfullscreen
-              title="PARC 6th Year Celebration">
+              title="PARC Foundation 10 years Milestone">
             </iframe>
           </div>
+        </div>
         </div>
       </div>
       </div>
