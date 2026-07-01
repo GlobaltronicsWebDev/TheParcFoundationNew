@@ -15,7 +15,7 @@
             <img src="{{asset('assets/image/sliders/slider 3.png') }}" class="d-block w-100" alt="Slide 3">
           </div>
           <div class="carousel-item">
-            <img src="{{ asset('assets/image/sliders/slider 4.png') }}" class="d-block w-100" alt="Slide 4">
+            <img src="{{ asset('assets/image/sliders/sliders4.png') }}" class="d-block w-100" alt="Slide 4">
           </div>
           <div class="carousel-item">
             <img src="{{ asset('assets/image/sliders/slider6.png') }}" class="d-block w-100" alt="Slide 5">
