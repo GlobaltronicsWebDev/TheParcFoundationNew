@@ -35,13 +35,13 @@
     <!-- Featured News Card -->
     <div class="news-card shadow-sm">
       <div class="row align-items-center g-0">
-        <!-- Image -->
+
         <div class="col-md-5 news-image">
           <img src="{{ asset('./assets/image/WTG2.webp') }}"
                alt="Globaltronics Award"
                class="img-fluid rounded-start">
         </div>
-        <!-- Content -->
+
         <div class="col-md-7 p-4 text-start">
           <h4 class="fw-bold text-highlight mb-3">
             Chairman and CEO of Globaltronics was awarded the KDR Icon of Music and
