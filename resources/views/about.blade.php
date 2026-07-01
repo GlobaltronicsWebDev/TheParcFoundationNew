@@ -48,19 +48,7 @@
             </iframe>
           </div>
         </div>
-        <div class="col-md-6">
-          <p class="about-video-label text-center"></p>
-          <div class="vimeo-embed-container">
-            <iframe
-              src="https://player.vimeo.com/video/1200289526?badge=0&autopause=0&player_id=0&app_id=58479"
-              frameborder="0"
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-              title="PARC Foundation 10 years Milestone">
-            </iframe>
-          </div>
-        </div>
+   
       </div>
 
     </div>
