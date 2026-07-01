@@ -282,8 +282,9 @@
   <img src="{{ asset('assets/image/photobottom_3.png') }}" alt="img4" class="img4">
   <div class="text-overlay">
     <h2>What you need to know about<br> our scholars  ›</h2>
-    <p>A flagship scholarship program offering free training<br>
-       in music, dance, and theater.</p>
+    <p>PARCaralan is our flagship scholarship program that offers sponsored and <br>
+       custom tailored training in the Performing Arts.
+</p>
   </div>
 </div>
 <div class="container-fluid py-5 fifth-section text-center">
