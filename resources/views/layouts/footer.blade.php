@@ -4,9 +4,9 @@
     <p class="lowertext d-block">
      DSWD-SB-RL-2025-000171 
      <br><br>
-     This certificate is valid for three (3) years covering the period 11/6/2025 to 11/6/2028, unless suspended or
+     Valid for three (3) years covering the period 11/6/2025 to 11/6/2028, unless suspended or
      revoked before its expiration. <br><br>
-     Issued this 6th day of November 2025 in Quezon City, Philippines.
+     Issued on the 6th day of November 2025 in Quezon City, Philippines.
     </p>
   </div>
 </footer>
