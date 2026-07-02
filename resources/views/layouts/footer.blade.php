@@ -1,8 +1,12 @@
 <footer class="mainfooter mt-auto py-5 bg-light">
   <div class="container text-center">
-    <p class="uppertext d-block">© Copyright 2025 The PARC Foundation, Inc</p>
+    <p class="uppertext d-block">© Copyright 2026 The PARC Foundation, Inc</p>
     <p class="lowertext d-block">
-      DSWD-SB-SP-00006-2025 valid from February 24, 2025 to February 23, 2026; Nationwide
+     DSWD-SB-RL-2025-000171 
+     <br><br>
+     This certificate is valid for three (3) years covering the period 11/6/2025 to 11/6/2028, unless suspended or
+     revoked before its expiration. <br><br>
+     Issued this 6th day of November 2025 in Quezon City, Philippines.
     </p>
   </div>
 </footer>
