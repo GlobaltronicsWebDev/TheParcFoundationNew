@@ -60,6 +60,52 @@
       right: 54px;
     }
   }
+  /* Main Footer Container */
+.mainfooter {
+  background-color: #f8f9fa; /* Soft light gray matching 'bg-light' */
+  border-top: 1px solid #e9ecef; /* Subtle top border for definition */
+  font-family: 'Helvetica Neue', Arial, sans-serif; /* Clean sans-serif font */
+}
+
+/* Container spacing adjustment */
+.mainfooter .container {
+  max-width: 800px; /* Restricts width so text reads easily center-aligned */
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Copyright Text (Upper) */
+.mainfooter .uppertext {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2b2b2b; /* Deep charcoal for main text */
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem; /* Generous gap between copyright and license */
+}
+
+/* DSWD License Certificate Text (Lower) */
+.mainfooter .lowertext {
+  font-size: 0.8rem; /* Scaled down for legal/fine print look */
+  line-height: 1.6;
+  color: #6c757d; /* Muted gray for secondary legal text */
+  font-weight: 400;
+  max-width: 600px; /* keeps the paragraphs from getting too wide on desktop */
+  margin: 0 auto;
+}
+
+/* Make it responsive for mobile viewports */
+@media (max-width: 576px) {
+  .mainfooter {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  .mainfooter .uppertext {
+    font-size: 0.9rem;
+  }
+  .mainfooter .lowertext {
+    font-size: 0.75rem;
+  }
+}
 </style>
 
 <script>
