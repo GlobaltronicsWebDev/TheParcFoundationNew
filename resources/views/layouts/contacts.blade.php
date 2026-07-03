@@ -5,8 +5,8 @@
         <div class="footer-column">
           <h4>SUPPORT</h4>
           <ul>
-            <li><a href="{{ url('/donate') }}">Donate now</a></li>
-            <li><a href="{{ url('/adopt') }}">Adopt a Scholar</a></li>
+            <li><a href="{{ url('/donate') }}" target="_blank">Donate now</a></li>
+            <li><a href="{{ url('/adopt') }}" target="_blank">Adopt a Scholar</a></li>
             <li><a href="#">Volunteer</a></li>
             <li><a href="#">Be a PARCner</a></li>
           </ul>
@@ -17,7 +17,7 @@
             <li><a href="#">Take action</a></li>
             <li><a href="#get-involved">Get involved</a></li>
             <li><a href="#">Careers</a></li>
-            <li><a href="{{ url('/contacts') }}">Contact</a></li>
+            <li><a href="{{ url('/contacts') }}" target="_blank">Contact</a></li>
           </ul>
         </div>
         <div class="footer-column">
@@ -26,7 +26,7 @@
             <li><a href="#">Who we are</a></li>
             <li><a href="#">Latest stories</a></li>
             <li><a href="#">Our work</a></li>
-            <li><a href="#">Newsroom</a></li>
+            <li><a href="news">Newsroom</a></li>
           </ul>
         </div>
       </div>
