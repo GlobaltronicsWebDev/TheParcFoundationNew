@@ -134,7 +134,7 @@
             We harness the power of performing arts to transform the lives of
             underprivileged children & youth through our flagship program.
         </p>
-        <a href="{{ url('/about') }}" class="cta-button">Learn More</a>
+        <a href="{{ url('/about') }}" class="cta-button" target="_blank">Learn More</a>
     </div>
   <div class="main-flex">
   <div class="image-container">
