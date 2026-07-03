@@ -15,9 +15,9 @@
           <h4>CONNECT</h4>
           <ul>
             <li><a href="#">Take action</a></li>
-            <li><a href="#">Get involved</a></li>
+            <li><a href="#get-involved">Get involved</a></li>
             <li><a href="#">Careers</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="{{ url('/contacts') }}">Contact</a></li>
           </ul>
         </div>
         <div class="footer-column">
