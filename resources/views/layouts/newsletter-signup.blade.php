@@ -19,7 +19,7 @@
         </div>
         @endif
 
-        <form action="{{ route('newsletter.subscribe') }}" method="POST">
+        <form id="newsletterForm" action="{{ route('newsletter.subscribe') }}" method="POST">
           @csrf
 
           <div class="mb-3">
@@ -140,3 +140,14 @@
     border-color: #f7af1e;
   }
 </style>
+
+@if(session('newsletter_success'))
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      const form = document.getElementById('newsletterForm');
+      if (form) {
+          form.reset(); 
+      }
+  });
+</script>
+@endif
