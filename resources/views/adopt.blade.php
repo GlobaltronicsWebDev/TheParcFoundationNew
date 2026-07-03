@@ -138,9 +138,7 @@
                   PATRON 
                   <!-- <span class="badge-duration">3-MONTHS DURATION</span> -->
                 </p>
-                <p class="price-tag">
-                  ₱15,000 <span class="small">/ Scholar</span>
-                </p>
+               
               </div>
 
               <p class="p3">Training expenses for intermediate skill development workshops, Mentor’s fee, collaterals, and etc.</p>
