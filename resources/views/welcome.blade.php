@@ -194,7 +194,7 @@
 
       <div class="center-btn">
         <a href="{{ url('/donate') }}" class="btn1">Donate now&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<p class="arrow">›</p></a>
-        <a href="#" class="btn2">More ways you can help</a>
+        <a href="#get-involved" class="btn2">More ways you can help</a>
       </div>
     </div>
 
@@ -207,6 +207,9 @@
   </div>
 </div>
 <style>
+  html {
+    scroll-behavior: smooth;
+  }
   /* Fade-in from right animation */
   .fade-in-right {
     opacity: 0;
@@ -287,7 +290,7 @@
 </p>
   </div>
 </div>
-<div class="container-fluid py-5 fifth-section text-center">
+<div id="get-involved" class="container-fluid py-5 fifth-section text-center">
   <h2 class="fw-bold mb-2 ft1 fade-in-top">Get Involved</h2>
   <p class="mb-5 ft2 fade-in-top" style="animation-delay:0.2s;">Ways to support the PARC Foundation</p>
 
