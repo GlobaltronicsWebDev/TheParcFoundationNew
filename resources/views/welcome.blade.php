@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>PARC Foundation</title>
   <link rel="icon" type="image/png" href="{{ asset('assets/logo/parclogosquare.png') }}">
 
@@ -112,7 +112,7 @@
   </audio> -->
 
   <div id="preloader">
-    <img src="{{ asset('assets/logo/logo2.png') }}" alt="PARC Foundation">
+    <img src="{{ asset('assets/logo/parclogosquare.png') }}" alt="PARC Foundation">
     <div class="loading-bar-wrap">
       <div class="loading-bar"></div>
     </div>
