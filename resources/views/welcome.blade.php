@@ -8,7 +8,7 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{ asset('cssfolder/main.css') }}">
+  <link rel="stylesheet" href="{{ asset('cssfolder/main.css?v=1.1') }}">
   <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css?vr=2') }}">
   <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
   <link rel="stylesheet" href="{{ asset('cssfolder/carousel.css') }}" />
@@ -296,7 +296,7 @@
 
   <div class="container">
     <div class="row g-4 justify-content-center">
-      <div class="col-md-3 d-flex">
+      <div class="col-md-4 d-flex">
         <div class="card shadow-sm h-100 border-0">
           <div class="card-body">
             <div class="icon-circle mb-3 mx-auto">
@@ -309,7 +309,7 @@
         </div>
       </div>
 
-      <div class="col-md-3 d-flex">
+      <div class="col-md-4 d-flex">
         <div class="card shadow-sm h-100 border-0">
           <div class="card-body">
             <div class="icon-circle mb-3 mx-auto">
@@ -322,7 +322,7 @@
         </div>
       </div>
 
-      <div class="col-md-3 d-flex">
+      <div class="col-md-4 d-flex">
         <div class="card shadow-sm h-100 border-0">
           <div class="card-body">
             <div class="icon-circle mb-3 mx-auto">

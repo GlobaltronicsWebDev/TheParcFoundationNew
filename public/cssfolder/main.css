@@ -360,12 +360,15 @@
 
 .fifth-section .row {
   justify-content: center; /* centers all cards */
-  gap: 40px; /* gap between cards */
 }
 
 .card {
   padding: 50px 40px 10px 40px;
   background-color: #fff; /* card bg white */
+}
+
+.fifth-section .card {
+  padding: 50px 20px 10px 20px;
 }
 
 /* ✅ Mobile View (425px and below) */
