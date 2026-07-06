@@ -13,7 +13,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css') }}">
   <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
-  <link rel="stylesheet" href="{{ asset('cssfolder/adopt.css') }}" />
+  <link rel="stylesheet" href="{{ asset('cssfolder/adopt.css?v=1.1') }}" />
   <link rel="stylesheet" href="{{ asset('cssfolder/parcform.css') }}" />
 
   
@@ -252,7 +252,8 @@
   @include('layouts.footer')
 
   <!-- JS -->
-  <script src="{{ asset('jsfolder/packages.js') }}"></script>
+  <script src="{{ asset('jsfolder/packages.js?v=1.1') }}"></script>
+  <script src="{{ asset('jsfolder/donate.js?v=1.1') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

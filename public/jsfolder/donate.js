@@ -13,11 +13,15 @@ document.addEventListener("DOMContentLoaded", function () {
       btn.addEventListener("click", function (e) {
         e.preventDefault();
 
+        const isActive = this.classList.contains(activeClass);
+
         // Remove active class from all in the same group
         buttons.forEach(b => b.classList.remove(activeClass));
 
-        // Add to clicked one
-        this.classList.add(activeClass);
+        // Add to clicked one only if it wasn't already active
+        if (!isActive) {
+          this.classList.add(activeClass);
+        }
       });
     });
   }
