@@ -62,7 +62,45 @@
             <a href="#" class="btnm8"><img src="{{ asset('assets/icons/paypal.png') }}" alt="paypal" class="paypalicon" /></a>
           </div> -->
 
-          <a href="#" class="btnm9">Bank Account</a>
+          <a href="#" class="btnm9" id="btn-bank">Bank Account</a>
+          
+          <div class="notebank" id="notebank" style="display: none; background-color: #eae8e8; padding: 20px; margin-top: 15px; border-radius: 8px; text-align: center;">
+            <p style="font-weight: bold; color: #f78f1e; margin-bottom: 15px;">Scan to Donate via GCash or PNB</p>
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px;">
+              <div>
+                <p style="font-weight: bold; margin-bottom: 5px;">GCash</p>
+                <!-- Replace src with actual GCash QR code when available -->
+                <div style="width: 150px; height: 150px; background-color: #fff; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                  <span style="color: #999; font-size: 12px;">GCash QR Code</span>
+                </div>
+              </div>
+              <div>
+                <p style="font-weight: bold; margin-bottom: 5px;">Philippine National Bank</p>
+                <!-- Replace src with actual PNB Image when available -->
+                <div style="width: 150px; height: 150px; background-color: #fff; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                  <span style="color: #999; font-size: 12px;">PNB QR Code</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const btnBank = document.getElementById("btn-bank");
+              const noteBank = document.getElementById("notebank");
+
+              if(btnBank && noteBank) {
+                btnBank.addEventListener("click", function (e) {
+                  e.preventDefault();
+                  if (noteBank.style.display === "none") {
+                    noteBank.style.display = "block";
+                  } else {
+                    noteBank.style.display = "none";
+                  }
+                });
+              }
+            });
+          </script>
 
               <!-- <label for="card_number">Card Number</label>
               <input type="text" id="card_number" name="card_number" /> -->
