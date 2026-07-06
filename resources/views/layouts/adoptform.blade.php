@@ -57,15 +57,15 @@
           <!--Payment Method-->
           <h3 class="formtitle">Payment Method</h3>
 
-          <div class="centerpay-btn pay-btn">
+          <!-- <div class="centerpay-btn pay-btn">
             <a href="#" class="btnm7"><img src="{{ asset('assets/icons/visa.png') }}" alt="Visa" class="visaicon" /></a>
             <a href="#" class="btnm8"><img src="{{ asset('assets/icons/paypal.png') }}" alt="paypal" class="paypalicon" /></a>
-          </div>
+          </div> -->
 
           <a href="#" class="btnm9">Bank Account</a>
 
-              <label for="card_number">Card Number</label>
-              <input type="text" id="card_number" name="card_number" />
+              <!-- <label for="card_number">Card Number</label>
+              <input type="text" id="card_number" name="card_number" /> -->
 <!-- 
               <div class="bankcard">
                 <label for="exp_month">Expiration Date</label>
