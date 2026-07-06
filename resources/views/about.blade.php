@@ -274,7 +274,7 @@
 
         <div class="col-6 col-md-3 text-center">
           <div class="bot-member">
-            <img src="{{ asset('assets/image/bot/JG.png') }}" alt="William TI, Jr" class="bot-photo">
+            <img src="{{ asset('assets/image/bot/William TI.png') }}" alt="William TI, Jr" class="bot-photo">
             <p class="bot-name">William TI, Jr</p>
           </div>
         </div>
