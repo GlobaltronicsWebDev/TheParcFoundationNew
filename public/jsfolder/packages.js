@@ -12,7 +12,7 @@
       { btn: ".btnm2", note: ".notesilver" },
       { btn: ".btnm3", note: ".notegold" },
       { btn: ".btn1", note: ".noteplatinum" },
-      { btn: ".btn2", note: ".notepatron" },
+      { btn: ".btn2", note: ".noteshare" },
     ];
 
     // Collect all notes

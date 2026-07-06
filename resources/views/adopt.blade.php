@@ -131,6 +131,24 @@
               <a href="#" class="btn2">Share what you can</a>
             </div>
 
+                 <div class="noteshare">
+              <div class="note-header">
+                <p class="p1">
+                  Share what you can
+                  <!-- <span class="badge-duration">3-MONTHS DURATION</span> -->
+                </p>
+               
+              </div>
+
+              <p class="p3">Training expenses for intermediate skill development workshops, Mentor’s fee, collaterals, and etc.</p>
+              <hr>
+              <p class="p3">Recognition on the PARC Foundation website.</p>
+              <hr>
+              <p class="p4">Quarterly progress update.</p>
+              <hr>
+              <p class="p5">Invitation to the annual scholar showcase event.</p>
+            </div> 
+
             <!-- Patron Note -->
             <div class="notepatron">
               <div class="note-header">
