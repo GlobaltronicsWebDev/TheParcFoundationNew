@@ -164,7 +164,8 @@ body {
 .notepatron,
 .notesilver,
 .notegold,
-.noteplatinum {
+.noteplatinum,
+.noteshare {
   text-align: left;
   margin: 30px -50px;
   padding: 20px 60px 10px 60px;
@@ -176,7 +177,8 @@ body {
 .notepatron.show,
 .notesilver.show,
 .notegold.show,
-.noteplatinum.show {
+.noteplatinum.show,
+.noteshare.show {
   display: block;
 }
 
@@ -393,6 +395,12 @@ body {
   }
   
   .noteplatinum {
+    text-align: center;
+    padding: 20px 20px 10px 20px;
+    margin: 30px -15px 0 -15px;
+  }
+  
+  .noteshare {
     text-align: center;
     padding: 20px 20px 10px 20px;
     margin: 30px -15px 0 -15px;

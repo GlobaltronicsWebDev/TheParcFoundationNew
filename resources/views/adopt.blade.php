@@ -130,8 +130,9 @@
               <a href="#" class="btn1">Platinum</a>
               <a href="#" class="btn2">Share what you can</a>
             </div>
+            
 
-                 <div class="noteshare">
+            <div class="noteshare">
               <div class="note-header">
                 <p class="p1">
                   Share what you can
