@@ -2,7 +2,7 @@
 <!-- Top Bar -->
   <div class="top-bar">
     <div class="w-100 d-flex align-items-center justify-content-center" id="topbar">
-      <div class="contactlink">(02) 8350 6350  |  program.director@foundation.com.ph</div>
+      <div class="contactlink"> +639 17623 2840 |  program.director@foundation.com.ph</div>
     </div>
   </div>
 
