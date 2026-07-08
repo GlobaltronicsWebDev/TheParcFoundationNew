@@ -16,6 +16,11 @@
   <i class="bi bi-arrow-up"></i>
 </button>
 
+<!-- ── Floating Messenger Button ── -->
+<a href="https://m.me/parcph" target="_blank" id="messenger-widget" title="Chat with us on Messenger" aria-label="Chat with us on Messenger">
+  <i class="bi bi-messenger"></i>
+</a>
+
 <style>
   #scroll-to-top {
     position: fixed;
@@ -57,6 +62,42 @@
       height: 44px;
       font-size: 0.95rem;
       bottom: 16px;
+      right: 54px;
+    }
+  }
+
+  #messenger-widget {
+    position: fixed;
+    bottom: 96px;
+    right: 32px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #006aff 0%, #00b2fe 100%);
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, background 0.3s ease;
+    z-index: 9999;
+    text-decoration: none;
+  }
+
+  #messenger-widget:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: linear-gradient(135deg, #0056d6 0%, #009ad9 100%);
+    color: #fff;
+  }
+
+  @media (max-width: 991px) {
+    #messenger-widget {
+      width: 44px;
+      height: 44px;
+      font-size: 1.3rem;
+      bottom: 76px;
       right: 54px;
     }
   }
