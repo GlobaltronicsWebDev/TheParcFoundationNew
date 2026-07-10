@@ -65,22 +65,9 @@
           <a href="#" class="btnm9" id="btn-bank">Bank Account</a>
           
           <div class="notebank" id="notebank" style="display: none; background-color: #eae8e8; padding: 20px; margin-top: 15px; border-radius: 8px; text-align: center;">
-            <p style="font-weight: bold; color: #f78f1e; margin-bottom: 15px;">Scan to Donate via GCash or PNB</p>
-            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px;">
-              <div>
-                <p style="font-weight: bold; margin-bottom: 5px;">GCash</p>
-                <!-- Replace src with actual GCash QR code when available -->
-                <div style="width: 150px; height: 150px; background-color: #fff; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
-                  <span style="color: #999; font-size: 12px;">GCash QR Code</span>
-                </div>
-              </div>
-              <div>
-                <p style="font-weight: bold; margin-bottom: 5px;">Philippine National Bank</p>
-                <!-- Replace src with actual PNB Image when available -->
-                <div style="width: 150px; height: 150px; background-color: #fff; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
-                  <span style="color: #999; font-size: 12px;">PNB QR Code</span>
-                </div>
-              </div>
+            <p style="font-weight: bold; color: #f78f1e; margin-bottom: 15px;">Scan to Donate</p>
+            <div style="display: flex; justify-content: center; align-items: center;">
+              <img src="{{ asset('assets/image/qr_code.png') }}" alt="PARC Foundation QR Code" style="width: 260px; height: auto; border: 1px solid #ccc; border-radius: 8px; background: #fff; padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
             </div>
           </div>
 
