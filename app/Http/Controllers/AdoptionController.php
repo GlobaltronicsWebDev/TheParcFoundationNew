@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Adoption;
+use Illuminate\Support\Facades\Storage;
 
 class AdoptionController extends Controller
 {
@@ -17,21 +18,28 @@ class AdoptionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'fname' => 'required|string|max:255',
-            'lname' => 'required|string|max:255',
-            'email' => 'required|email|unique:adoptions,email',
-            'country' => 'nullable|string|max:255',
-            'street' => 'nullable|string|max:255',
-            'city' => 'nullable|string|max:255',
-            'postal' => 'nullable|string|max:255',
-            'emailUpdates' => 'in:yes,no',
-            'textUpdates' => 'in:yes,no',
-            'card_number' => 'nullable|string|max:255',
-            'expiration_month' => 'nullable|string|max:2',
-            'expiration_year' => 'nullable|string|max:4',
-            'cvv' => 'nullable|string|max:4',
-            'cover_processing_fee' => 'boolean',
+            'fname'               => 'required|string|max:255',
+            'lname'               => 'required|string|max:255',
+            'email'               => 'required|email|unique:adoptions,email',
+            'country'             => 'nullable|string|max:255',
+            'street'              => 'nullable|string|max:255',
+            'city'                => 'nullable|string|max:255',
+            'postal'              => 'nullable|string|max:255',
+            'emailUpdates'        => 'in:yes,no',
+            'textUpdates'         => 'in:yes,no',
+            'card_number'         => 'nullable|string|max:255',
+            'expiration_month'    => 'nullable|string|max:2',
+            'expiration_year'     => 'nullable|string|max:4',
+            'cvv'                 => 'nullable|string|max:4',
+            'cover_processing_fee'=> 'boolean',
+            'receipt'             => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5120',
         ]);
+
+        // Handle receipt file upload
+        if ($request->hasFile('receipt')) {
+            $path = $request->file('receipt')->store('receipts', 'public');
+            $validated['receipt_path'] = $path;
+        }
 
         Adoption::create($validated);
 

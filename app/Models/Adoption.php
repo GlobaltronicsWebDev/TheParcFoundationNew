@@ -24,5 +24,6 @@ class Adoption extends Model
         'expiration_year',
         'cvv',
         'cover_processing_fee',
+        'receipt_path',
     ];
 }

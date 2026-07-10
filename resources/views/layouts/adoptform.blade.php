@@ -1,7 +1,7 @@
 <!-- Personal Info Form -->
           <div>
             <h3 class="formtitle">Your Information</h3>
-            <form action="{{ route('adoptions.store') }}" method="POST" class="personalinfo">
+            <form action="{{ route('adoptions.store') }}" method="POST" class="personalinfo" enctype="multipart/form-data">
                @csrf
             <label for="fname">First name</label>
               <input type="text" id="fname" name="fname" />
@@ -69,7 +69,68 @@
             <div style="display: flex; justify-content: center; align-items: center;">
               <img src="{{ asset('assets/image/qr_code.png') }}" alt="PARC Foundation QR Code" style="width: 260px; height: auto; border: 1px solid #ccc; border-radius: 8px; background: #fff; padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
             </div>
-            <p style="margin-top: 15px; font-size: 14px; color: #555;">After scanning please screenshot your reciept and attachment it on form </p>
+            <p style="margin-top: 15px; font-size: 14px; color: #555;">After scanning please screenshot your receipt and attach it on form </p>
+
+            <!-- Receipt Upload -->
+            <div style="margin-top: 15px; text-align: left;">
+              <label for="receipt" style="display: block; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 8px;">
+                📎 Attach Receipt Screenshot
+              </label>
+              <input
+                type="file"
+                id="receipt"
+                name="receipt"
+                accept="image/*,.pdf"
+                style="display: none;"
+                onchange="handleReceiptChange(this)"
+              />
+              <label for="receipt" id="receipt-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer; background: #fff; border: 2px dashed #f78f1e; border-radius: 8px; padding: 14px 18px; font-size: 13px; color: #888; transition: border-color 0.2s;">
+                <span style="font-size: 22px;">🖼️</span>
+                <span id="receipt-label-text">Click to upload (JPG, PNG, PDF — max 5MB)</span>
+              </label>
+              <div id="receipt-preview" style="display: none; margin-top: 10px; text-align: center;">
+                <img id="receipt-img-preview" src="" alt="Receipt Preview" style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 1px solid #ccc; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" />
+                <p id="receipt-file-name" style="font-size: 12px; color: #666; margin-top: 6px;"></p>
+                <button type="button" onclick="clearReceipt()" style="margin-top: 4px; background: none; border: none; color: #e74c3c; font-size: 12px; cursor: pointer;">✕ Remove</button>
+              </div>
+            </div>
+
+            <script>
+              function handleReceiptChange(input) {
+                const preview = document.getElementById('receipt-preview');
+                const imgPreview = document.getElementById('receipt-img-preview');
+                const fileName = document.getElementById('receipt-file-name');
+                const labelText = document.getElementById('receipt-label-text');
+
+                if (input.files && input.files[0]) {
+                  const file = input.files[0];
+                  labelText.textContent = file.name;
+                  fileName.textContent = file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
+
+                  if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                      imgPreview.src = e.target.result;
+                      imgPreview.style.display = 'block';
+                      preview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                  } else {
+                    imgPreview.style.display = 'none';
+                    preview.style.display = 'block';
+                  }
+                }
+              }
+
+              function clearReceipt() {
+                const input = document.getElementById('receipt');
+                const preview = document.getElementById('receipt-preview');
+                const labelText = document.getElementById('receipt-label-text');
+                input.value = '';
+                preview.style.display = 'none';
+                labelText.textContent = 'Click to upload (JPG, PNG, PDF — max 5MB)';
+              }
+            </script>
           </div>
 
           <script>
