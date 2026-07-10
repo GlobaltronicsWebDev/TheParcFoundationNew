@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Adoption;
-use Illuminate\Support\Facades\Storage;
 
 class AdoptionController extends Controller
 {
@@ -35,10 +34,12 @@ class AdoptionController extends Controller
             'receipt'             => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5120',
         ]);
 
-        // Handle receipt file upload
+        // Handle receipt file upload — stored directly in public/receipts/
         if ($request->hasFile('receipt')) {
-            $path = $request->file('receipt')->store('receipts', 'public');
-            $validated['receipt_path'] = $path;
+            $file = $request->file('receipt');
+            $filename = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+            $file->move(public_path('receipts'), $filename);
+            $validated['receipt_path'] = 'receipts/' . $filename;
         }
 
         Adoption::create($validated);
