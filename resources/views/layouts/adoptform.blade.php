@@ -182,9 +182,9 @@
               </label>
             </div>
 
-            <!-- Premium Donate Submit Button -->
-            <button type="submit" class="btn-donate-submit" id="adoptSubmitBtn">
-              <span class="btn-text">SUBMIT APPLICATION</span>
+            <!-- Donate Now Button -->
+            <button type="submit" class="adopt-donate-btn" id="adoptSubmitBtn">
+              <span class="btn-text">DONATE NOW</span>
               <span class="btn-spinner" id="adoptBtnSpinner" style="display:none;">
                 <svg class="spin-svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.3)" stroke-width="3"/>

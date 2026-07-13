@@ -776,6 +776,51 @@ body {
 }
 
 /* ================================================================
+   ADOPT PAGE — DONATE NOW BUTTON
+   Flat, wide orange button matching the reference design
+   ================================================================ */
+.adopt-donate-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 17px 24px;
+  margin-top: 22px;
+  background: #f78f1e;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 2px 8px rgba(247, 143, 30, 0.35);
+}
+
+.adopt-donate-btn:hover:not(:disabled) {
+  background: #e07c08;
+  box-shadow: 0 4px 16px rgba(247, 143, 30, 0.5);
+  transform: translateY(-1px);
+}
+
+.adopt-donate-btn:active:not(:disabled) {
+  background: #cc7107;
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(247, 143, 30, 0.3);
+}
+
+.adopt-donate-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+
+
+/* ================================================================
    SUCCESS MODAL
    ================================================================ */
 .modal-overlay {
