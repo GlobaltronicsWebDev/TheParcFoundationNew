@@ -10,7 +10,7 @@ class AdoptionController extends Controller
     // Show the adoption form
     public function create()
     {
-        return view('adoptions.create'); // We'll create this view next
+        return view('adopt');
     }
 
     // Handle form submission
@@ -19,31 +19,36 @@ class AdoptionController extends Controller
         $validated = $request->validate([
             'fname'               => 'required|string|max:255',
             'lname'               => 'required|string|max:255',
-            'email'               => 'required|email|unique:adoptions,email',
+            'email'               => 'required|email|max:255',
             'country'             => 'nullable|string|max:255',
             'street'              => 'nullable|string|max:255',
             'city'                => 'nullable|string|max:255',
             'postal'              => 'nullable|string|max:255',
-            'emailUpdates'        => 'in:yes,no',
-            'textUpdates'         => 'in:yes,no',
-            'card_number'         => 'nullable|string|max:255',
-            'expiration_month'    => 'nullable|string|max:2',
-            'expiration_year'     => 'nullable|string|max:4',
-            'cvv'                 => 'nullable|string|max:4',
-            'cover_processing_fee'=> 'boolean',
+            'package'             => 'nullable|string|max:255',
+            'amount'              => 'nullable|string|max:255',
+            'emailUpdates'        => 'nullable|in:yes,no',
+            'textUpdates'         => 'nullable|in:yes,no',
+            'cover_processing_fee'=> 'nullable|boolean',
             'receipt'             => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5120',
         ]);
 
-        // Handle receipt file upload — stored directly in public/receipts/
+        // Handle receipt file upload — stored in public/receipts/
         if ($request->hasFile('receipt')) {
-            $file = $request->file('receipt');
+            $file     = $request->file('receipt');
             $filename = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
             $file->move(public_path('receipts'), $filename);
             $validated['receipt_path'] = 'receipts/' . $filename;
         }
 
+        // Default boolean
+        $validated['cover_processing_fee'] = $request->boolean('cover_processing_fee');
+
+        // Default radio values if not provided
+        $validated['emailUpdates'] = $request->input('emailUpdates', 'no');
+        $validated['textUpdates']  = $request->input('textUpdates', 'no');
+
         Adoption::create($validated);
 
-        return redirect()->back()->with('success', 'Adoption form submitted successfully!');
+        return redirect()->back()->with('success', 'Thank you! Your adoption form has been submitted successfully. We will be in touch soon.');
     }
 }
