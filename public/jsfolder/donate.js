@@ -206,18 +206,18 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ================================================================
    * 4. PAYMENT METHOD TABS
    * ================================================================ */
-  const payTabs         = document.querySelectorAll(".pay-tab");
-  const payPanels       = document.querySelectorAll(".pay-panel");
+  const payTabs            = document.querySelectorAll(".pmt-tab");
+  const payPanels          = document.querySelectorAll(".pmt-panel");
   const paymentMethodInput = document.getElementById("paymentMethod");
-  const receiptReminder = document.getElementById("receiptReminder");
+  const receiptReminder    = document.getElementById("receiptReminder");
 
   function activateTab(method) {
     payTabs.forEach(t => {
       const active = t.dataset.method === method;
-      t.classList.toggle("active", active);
+      t.classList.toggle("pmt-tab--active", active);
       t.setAttribute("aria-selected", active ? "true" : "false");
     });
-    payPanels.forEach(p => p.classList.toggle("hidden", p.id !== "panel-" + method));
+    payPanels.forEach(p => p.classList.toggle("pmt-panel--hidden", p.id !== "panel-" + method));
     if (paymentMethodInput) paymentMethodInput.value = method;
   }
 

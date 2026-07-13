@@ -203,56 +203,82 @@ body {
 /* ================================================================
    PAYMENT METHOD TABS
    ================================================================ */
-.payment-method-tabs {
+.pmt-tabs {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+  width: 100%;
 }
 
-.pay-tab {
-  display: flex;
+.pmt-tab {
+  flex: 1;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  border: 2px solid #d1d5db;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1.5px solid #d1d5db;
   border-radius: 10px;
   background: white;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  color: #555;
-  transition: all 0.22s ease;
+  color: #4b5563;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: 'Inter', sans-serif;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.pay-tab:hover {
+.pmt-tab:hover {
   border-color: #f89b1e;
   color: #f89b1e;
+  background: #fafafa;
 }
 
-.pay-tab.active {
+.pmt-tab--active {
   border-color: #f89b1e;
   background: #fff8ed;
-  color: #e67e00;
-  box-shadow: 0 0 0 3px rgba(248, 155, 30, 0.15);
+  color: #d97706;
+  box-shadow: 0 0 0 3px rgba(248, 155, 30, 0.15), 0 2px 4px rgba(248, 155, 30, 0.05);
 }
 
-.pay-tab-icon {
-  height: 26px;
-  width: auto;
-  object-fit: contain;
+.pmt-tab--active:hover {
+  background: #fff8ed;
+}
+
+.pmt-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.pmt-tab:hover .pmt-icon {
+  transform: translateY(-1px);
 }
 
 /* ================================================================
    PAYMENT PANELS
    ================================================================ */
-.pay-panel {
-  transition: opacity 0.3s ease;
+.pmt-panel {
+  display: block;
+  animation: pmtFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.pay-panel.hidden {
-  display: none;
+.pmt-panel--hidden {
+  display: none !important;
+}
+
+@keyframes pmtFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ---- Card input with icon ---- */
@@ -867,13 +893,13 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .payment-method-tabs {
+  .pmt-tabs {
     gap: 8px;
   }
 
-  .pay-tab {
-    padding: 8px 12px;
-    font-size: 0.82rem;
+  .pmt-tab {
+    padding: 10px 12px;
+    font-size: 0.85rem;
   }
 
   .bankcard {
