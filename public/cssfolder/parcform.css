@@ -916,3 +916,128 @@ body {
     font-size: 1.3rem;
   }
 }
+
+/* ================================================================
+   STRIPE CARD ELEMENT
+   ================================================================ */
+
+/* Container that Stripe mounts its iframe into */
+.stripe-card-element-container {
+  padding: 13px 14px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  background: #fafafa;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  min-height: 46px;
+}
+
+/* Focus ring – Stripe fires a .StripeElement--focus class internally,
+   but we also handle focus via JS-triggered class */
+.stripe-card-element-container:focus-within,
+.stripe-card-element-container.StripeElement--focus {
+  border-color: #f89b1e;
+  box-shadow: 0 0 0 3px rgba(248, 155, 30, 0.18);
+  background: #fff;
+}
+
+/* Invalid state */
+.stripe-card-element-container.StripeElement--invalid {
+  border-color: #e63946;
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+}
+
+/* Stripe inline error message */
+.stripe-error-msg {
+  display: none;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: #e63946;
+  font-weight: 500;
+}
+
+/* ================================================================
+   ACCEPTED CARDS ROW
+   ================================================================ */
+.accepted-cards {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.accepted-label {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.card-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+}
+
+.visa-badge {
+  background: #1a1f71;
+  color: white;
+}
+
+.mc-badge {
+  background: #eb001b;
+  color: white;
+  background: linear-gradient(90deg, #eb001b 50%, #f79e1b 50%);
+}
+
+.amex-badge {
+  background: #007bc1;
+  color: white;
+}
+
+.secure-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  color: #22c55e;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+/* ================================================================
+   STRIPE KEY NOT CONFIGURED WARNING
+   ================================================================ */
+.stripe-key-warning {
+  padding: 12px 16px;
+  background: #fef3c7;
+  border: 1.5px solid #fbbf24;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  color: #92400e;
+  line-height: 1.5;
+}
+
+.stripe-key-warning code {
+  background: rgba(0,0,0,0.07);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+/* ================================================================
+   GLOBAL ERROR BOX (submit-level errors)
+   ================================================================ */
+.global-error-box {
+  display: none;
+  background: #fee2e2;
+  border: 1.5px solid #fca5a5;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  color: #991b1b;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+

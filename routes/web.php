@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StripeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -69,3 +70,10 @@ Route::post('/adoptions', [AdoptionController::class, 'store'])->name('adoptions
 use App\Http\Controllers\NewsletterController;
 
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+
+// ── Stripe ──────────────────────────────────────────────────────────────────
+// Create a PaymentIntent (called by Stripe.js on the frontend)
+Route::post('/stripe/create-intent', [StripeController::class, 'createIntent'])->name('stripe.createIntent');
+
+// Stripe webhook – receives events from Stripe servers (CSRF excluded in bootstrap/app.php)
+Route::post('/stripe/webhook', [StripeController::class, 'webhook'])->name('stripe.webhook');

@@ -28,6 +28,8 @@ class Donation extends Model
         'cvv',
         'paypal_email',
         'cover_processing_fee',
+        'stripe_payment_intent_id',
+        'stripe_status',
     ];
 }
 

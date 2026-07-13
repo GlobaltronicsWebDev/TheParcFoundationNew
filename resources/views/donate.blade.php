@@ -7,6 +7,11 @@
   <meta name="description" content="Support PARC Foundation scholars by donating today. Your contribution funds music, dance, and theater training for artistically gifted youth." />
   <link rel="icon" type="image/png" href="{{ asset('assets/logo/parclogosquare.png') }}">
 
+  <!-- CSRF token for AJAX requests -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <!-- Stripe publishable key (safe to expose) -->
+  <meta name="stripe-key" content="{{ config('services.stripe.key') }}">
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
@@ -160,7 +165,8 @@
   <!-- Include Footer -->
   @include('layouts.footer')
   
-  <!-- JS -->
+  <!-- JS (Stripe must load before donate.js) -->
+  <script src="https://js.stripe.com/v3/"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{{ asset('jsfolder/donate.js') }}"></script>
 </body>

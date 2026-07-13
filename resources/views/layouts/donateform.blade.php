@@ -12,6 +12,10 @@
     <input type="hidden" id="giveType" name="give_type" value="once" />
     {{-- Hidden: stores payment method --}}
     <input type="hidden" id="paymentMethod" name="payment_method" value="" />
+    {{-- Hidden: Stripe PaymentIntent ID (filled by JS after successful charge) --}}
+    <input type="hidden" id="stripeIntentId" name="stripe_payment_intent_id" value="" />
+    {{-- Hidden: Stripe payment status --}}
+    <input type="hidden" id="stripeStatus" name="stripe_status" value="pending" />
 
     <div class="form-row">
       <div class="form-group">
@@ -104,31 +108,30 @@
       </button>
     </div>
 
-    {{-- ===== CARD PANEL ===== --}}
+    {{-- ===== CARD PANEL (Stripe Elements) ===== --}}
     <div class="pay-panel" id="panel-visa">
+
+      {{-- Stripe Card Element replaces custom card inputs --}}
+      {{-- Stripe.js mounts here: PCI-compliant, no raw card data touches our server --}}
       <div class="form-group full-width">
-        <label for="card_number">Card Number <span class="req">*</span></label>
-        <div class="card-input-wrap">
-          <input type="text" id="card_number" name="card_number" maxlength="19" placeholder="0000 0000 0000 0000" autocomplete="cc-number" />
-          <span class="card-icon" id="cardTypeIcon">💳</span>
-        </div>
-        <span class="field-error" id="err-card_number"></span>
+        <label>Card Details <span class="req">*</span></label>
+        <div id="stripe-card-element" class="stripe-card-element-container"></div>
+        <div id="stripe-card-errors" class="stripe-error-msg" role="alert"></div>
       </div>
 
-      <div class="bankcard">
-        <div class="form-group">
-          <label for="expiration_month">Expiry Month</label>
-          <input type="text" id="expiration_month" name="expiration_month" placeholder="MM" maxlength="2" />
-        </div>
-        <span class="slash-sep">/</span>
-        <div class="form-group">
-          <label for="expiration_year">Expiry Year</label>
-          <input type="text" id="expiration_year" name="expiration_year" placeholder="YY" maxlength="2" />
-        </div>
-        <div class="form-group">
-          <label for="cvv">CVV</label>
-          <input type="text" id="cvv" name="cvv" placeholder="•••" maxlength="4" />
-        </div>
+      {{-- Accepted cards info --}}
+      <div class="accepted-cards">
+        <span class="accepted-label">Accepted:</span>
+        <span class="card-badge visa-badge">VISA</span>
+        <span class="card-badge mc-badge">Mastercard</span>
+        <span class="card-badge amex-badge">Amex</span>
+        <svg class="stripe-badge-svg" viewBox="0 0 60 25" fill="none" xmlns="http://www.w3.org/2000/svg" height="16">
+          <text x="0" y="18" font-size="14" font-family="Arial" fill="#635bff" font-weight="bold">stripe</text>
+        </svg>
+        <span class="secure-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V6l-8-4z" fill="#22c55e"/></svg>
+          Secured by Stripe
+        </span>
       </div>
     </div>
 
