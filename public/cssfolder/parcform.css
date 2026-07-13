@@ -270,6 +270,7 @@ body {
   display: none !important;
 }
 
+/* ---- QR panel fade in ---- */
 @keyframes pmtFadeIn {
   from {
     opacity: 0;
@@ -281,7 +282,68 @@ body {
   }
 }
 
-/* ---- Card input with icon ---- */
+/* ================================================================
+   BANK / GCASH TOGGLE BUTTON
+   ================================================================ */
+.pmt-bank-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 20px;
+  background: white;
+  border: 1.5px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #4b5563;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.2px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  margin-bottom: 4px;
+  position: relative;
+}
+
+.pmt-bank-btn .pmt-bank-chevron {
+  width: 18px;
+  height: 18px;
+  margin-left: auto;
+  flex-shrink: 0;
+  color: #9ca3af;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s;
+}
+
+.pmt-bank-btn:hover {
+  border-color: #f89b1e;
+  color: #d97706;
+  background: #fffbf2;
+  box-shadow: 0 4px 12px rgba(248, 155, 30, 0.15);
+}
+
+.pmt-bank-btn:hover .pmt-bank-chevron {
+  color: #f89b1e;
+}
+
+.pmt-bank-btn:focus-visible {
+  outline: 3px solid rgba(248, 155, 30, 0.45);
+  outline-offset: 2px;
+}
+
+.pmt-bank-btn--active {
+  border-color: #f89b1e;
+  background: linear-gradient(135deg, #fff8ed 0%, #fffbf4 100%);
+  color: #d97706;
+  box-shadow: 0 0 0 3px rgba(248, 155, 30, 0.18), 0 4px 12px rgba(248, 155, 30, 0.12);
+}
+
+.pmt-bank-btn--active .pmt-bank-chevron {
+  transform: rotate(180deg);
+  color: #f89b1e;
+}
+
+
 .card-input-wrap {
   position: relative;
 }
