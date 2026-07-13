@@ -1,12 +1,14 @@
 /* 🌟 BODY STYLING */
 body {
-  background-color: blanchedalmond; /* Light beige background */
+  background-color: blanchedalmond;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 /* 🌟 MAIN TITLE */
 .title {
-  font-size: 50px; /* Large headline */
-  color: rgb(255, 162, 0); /* Orange */
+  font-size: 50px;
+  color: rgb(255, 162, 0);
+  font-weight: 800;
 }
 
 /* 🌟 MAIN IMAGE */
@@ -94,15 +96,26 @@ body {
 }
 
 
-/* 🌟 GIVE MONTHLY SECTION */
+/* 🌟 GIVE MONTHLY / AMOUNT SECTION */
 .btn-monthly {
   margin: 0;
 }
 
-/* Monthly button grid */
+/* Amount button grid */
+.amount-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  max-width: 100%;
+  margin: 0;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+/* Monthly button grid (legacy) */
 .btn-monthly .center-btn {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 per row */
+  grid-template-columns: repeat(3, 1fr);
   gap: 15px;
   max-width: 600px;
   margin: 0 auto;
@@ -233,6 +246,62 @@ body {
   border: none;
   border-top: 2px solid #565656;
   margin: 40px 0;
+}
+
+/* 🌟 CUSTOM AMOUNT INPUT WRAP */
+.custom-amount-wrap {
+  margin-top: 14px;
+  animation: fadeSlideIn 0.25s ease;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.custom-amount-wrap label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.custom-amount-wrap input[type="number"] {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #f89b1e;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: #fffbf2;
+  box-sizing: border-box;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  transition: box-shadow 0.2s;
+}
+
+.custom-amount-wrap input[type="number"]:focus {
+  box-shadow: 0 0 0 3px rgba(248, 155, 30, 0.2);
+}
+
+/* Remove number input arrows */
+.custom-amount-wrap input[type="number"]::-webkit-outer-spin-button,
+.custom-amount-wrap input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.custom-amount-wrap input[type="number"] { -moz-appearance: textfield; }
+
+/* 🌟 AMOUNT BUTTON ACTIVE STATE */
+.amount-btn.active {
+  background-color: rgb(255, 162, 0) !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(248, 155, 30, 0.4);
+  transform: translateY(-1px);
+}
+
+.amount-btn {
+  transition: all 0.22s ease !important;
 }
 
 

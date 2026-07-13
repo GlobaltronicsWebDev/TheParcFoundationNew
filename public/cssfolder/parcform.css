@@ -1,15 +1,853 @@
+/* ================================================================
+   parcform.css – Premium Donation Form Styles
+   Senior Developer Implementation
+   ================================================================ */
 
-/* 🌟 BUTTON CONTAINERS */
-.center-btn {
-  align-items: center;
+/* ---- Font base ---- */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ================================================================
+   FORM WRAPPER
+   ================================================================ */
+.donate-form-wrapper {
+  width: 100%;
+  max-width: 560px;
+}
+
+/* ================================================================
+   FORM TITLE
+   ================================================================ */
+.formtitle {
+  color: rgb(255, 162, 0);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 28px 0 16px;
   display: flex;
-  gap: 10px; /* Spacing between buttons */
+  align-items: center;
+  gap: 8px;
+}
+
+.formtitle::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 20px;
+  background: rgb(255, 162, 0);
+  border-radius: 2px;
+}
+
+/* ================================================================
+   PERSONAL INFO FORM
+   ================================================================ */
+.personalinfo {
+  width: 100%;
+  max-width: 560px;
+}
+
+/* ---- Form rows ---- */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 14px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+/* ---- Labels ---- */
+.personalinfo label,
+.form-group > label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #444;
+  display: block;
+}
+
+.req {
+  color: #e63946;
+  margin-left: 2px;
+}
+
+/* ---- Inputs ---- */
+.personalinfo input[type="text"],
+.personalinfo input[type="email"],
+.personalinfo input[type="number"] {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: #fafafa;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  box-sizing: border-box;
+  color: #111;
+}
+
+.personalinfo input[type="text"]:hover,
+.personalinfo input[type="email"]:hover,
+.personalinfo input[type="number"]:hover {
+  border-color: #f89b1e;
+  background: #fff;
+}
+
+.personalinfo input[type="text"]:focus,
+.personalinfo input[type="email"]:focus,
+.personalinfo input[type="number"]:focus {
+  border-color: #f89b1e;
+  box-shadow: 0 0 0 3px rgba(248, 155, 30, 0.18);
+  outline: none;
+  background: #fff;
+}
+
+/* ---- Field errors ---- */
+.field-error {
+  font-size: 0.78rem;
+  color: #e63946;
+  display: none;
+  margin-top: 2px;
+}
+
+/* ================================================================
+   COMMUNITY SECTION
+   ================================================================ */
+.community-section {
+  background: #fffbf2;
+  border: 1px solid #ffe4a6;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin: 18px 0;
+}
+
+.p1form {
+  color: rgb(255, 162, 0);
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.p2form {
+  font-size: 0.82rem;
+  color: #666;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.radio-block {
+  margin-bottom: 10px;
+}
+
+.radio-block b p {
+  font-size: 0.88rem;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.radio-group {
+  display: flex;
+  gap: 24px;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: #333;
+}
+
+.radio-label input[type="radio"] {
+  width: 17px;
+  height: 17px;
+  accent-color: #f89b1e;
+  cursor: pointer;
+}
+
+/* ================================================================
+   NOTE / PRIVACY BOX
+   ================================================================ */
+.note2 {
+  background: #f3f4f6;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 14px 0;
+}
+
+.p3 {
+  font-size: 0.8rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.privacy {
+  color: rgb(255, 162, 0);
+  cursor: pointer;
+}
+
+/* ================================================================
+   PAYMENT METHOD TABS
+   ================================================================ */
+.payment-method-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.pay-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+  transition: all 0.22s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.pay-tab:hover {
+  border-color: #f89b1e;
+  color: #f89b1e;
+}
+
+.pay-tab.active {
+  border-color: #f89b1e;
+  background: #fff8ed;
+  color: #e67e00;
+  box-shadow: 0 0 0 3px rgba(248, 155, 30, 0.15);
+}
+
+.pay-tab-icon {
+  height: 26px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ================================================================
+   PAYMENT PANELS
+   ================================================================ */
+.pay-panel {
+  transition: opacity 0.3s ease;
+}
+
+.pay-panel.hidden {
+  display: none;
+}
+
+/* ---- Card input with icon ---- */
+.card-input-wrap {
+  position: relative;
+}
+
+.card-input-wrap input {
+  padding-right: 48px !important;
+}
+
+.card-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  pointer-events: none;
+}
+
+/* ---- Expiry + CVV row ---- */
+.bankcard {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin: 8px 0 14px;
+}
+
+.bankcard .form-group {
+  flex: 1;
+  min-width: 70px;
+  margin-bottom: 0;
+}
+
+.slash-sep {
+  font-size: 1.3rem;
+  color: #aaa;
+  padding-bottom: 8px;
+}
+
+/* ================================================================
+   PAYPAL PANEL
+   ================================================================ */
+.paypal-info-box {
+  background: #f0f7ff;
+  border: 1.5px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.paypal-logo {
+  height: 40px;
+  margin-bottom: 12px;
+}
+
+.paypal-info-box p {
+  font-size: 0.88rem;
+  color: #555;
+  margin-bottom: 14px;
+}
+
+.paypal-email-field {
+  text-align: left;
+}
+
+/* ================================================================
+   BANK TRANSFER PANEL
+   ================================================================ */
+.bank-info-box {
+  background: #fffbf2;
+  border: 1.5px solid #ffd97d;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.bank-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #b45309;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #ffd97d;
+  padding-bottom: 12px;
+}
+
+/* ---- Bank details grid ---- */
+.bank-details-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   margin-bottom: 20px;
 }
+
+.bank-detail-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #fce7c0;
+}
+
+.bank-label {
+  font-size: 0.82rem;
+  color: #888;
+  font-weight: 500;
+  min-width: 130px;
+}
+
+.bank-value {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #222;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---- Copy button ---- */
+.copy-wrap {
+  position: relative;
+}
+
+.copy-btn {
+  background: #fff8ed;
+  border: 1.5px solid #f89b1e;
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: #f89b1e;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.copy-btn:hover {
+  background: #f89b1e;
+  color: white;
+}
+
+.copy-toast {
+  position: absolute;
+  right: 0;
+  top: -32px;
+  background: #222;
+  color: white;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+.copy-toast.visible {
+  opacity: 1;
+}
+
+/* ---- QR Section ---- */
+.qr-section {
+  text-align: center;
+  margin: 16px 0;
+}
+
+.qr-label {
+  font-size: 0.82rem;
+  color: #888;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.qr-placeholder {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: white;
+  border: 2px solid #fce7c0;
+  border-radius: 12px;
+}
+
+.qr-sub {
+  font-size: 0.78rem;
+  color: #aaa;
+  margin: 0;
+}
+
+/* ---- Receipt reminder ---- */
+.receipt-reminder {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: linear-gradient(135deg, #fff7e6 0%, #fff3cd 100%);
+  border: 2px solid #f89b1e;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin: 16px 0;
+  transition: box-shadow 0.4s, transform 0.4s;
+}
+
+.receipt-reminder.pulse-highlight {
+  box-shadow: 0 0 0 5px rgba(248, 155, 30, 0.35), 0 8px 24px rgba(248, 155, 30, 0.2);
+  transform: scale(1.015);
+}
+
+.reminder-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.reminder-text strong {
+  font-size: 0.95rem;
+  color: #b45309;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.reminder-text p {
+  font-size: 0.85rem;
+  color: #92400e;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ================================================================
+   RECEIPT UPLOAD
+   ================================================================ */
+.upload-area {
+  border: 2px dashed #d1d5db;
+  border-radius: 10px;
+  min-height: 100px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-area:hover,
+.upload-area.drag-over {
+  border-color: #f89b1e;
+  background: #fffbf2;
+}
+
+.upload-input {
+  display: none;
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 22px;
+  text-align: center;
+  color: #888;
+  font-size: 0.87rem;
+}
+
+.upload-placeholder span {
+  font-weight: 600;
+  color: #f89b1e;
+}
+
+.upload-placeholder small {
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+.upload-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.upload-preview img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #fce7c0;
+}
+
+#previewName {
+  font-size: 0.85rem;
+  color: #333;
+  flex: 1;
+  word-break: break-all;
+}
+
+.remove-upload {
+  background: #fee2e2;
+  border: none;
+  color: #e63946;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.remove-upload:hover {
+  background: #fca5a5;
+}
+
+/* ================================================================
+   SELECTED AMOUNT DISPLAY
+   ================================================================ */
+.selected-amount-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, #fff8ed, #fffbf2);
+  border: 1.5px solid #f89b1e;
+  border-radius: 10px;
+  padding: 12px 18px;
+  margin: 16px 0;
+}
+
+.amount-label {
+  font-size: 0.88rem;
+  color: #888;
+  font-weight: 500;
+}
+
+.amount-value {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #e67e00;
+}
+
+/* ================================================================
+   COVER FEE CHECKBOX
+   ================================================================ */
+.last {
+  margin: 16px 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.87rem;
+  color: #444;
+  cursor: pointer;
+  line-height: 1.4;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1.5px solid #e5e7eb;
+  background: #fafafa;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.checkbox-label:hover {
+  border-color: #f89b1e;
+  background: #fffbf2;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #f89b1e;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* ================================================================
+   DONATE SUBMIT BUTTON
+   ================================================================ */
+.btn-donate-submit {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #f89b1e 0%, #e67e00 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(248, 155, 30, 0.4);
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-donate-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ffae38 0%, #f89b1e 100%);
+  box-shadow: 0 6px 20px rgba(248, 155, 30, 0.55);
+  transform: translateY(-1px);
+}
+
+.btn-donate-submit:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(248, 155, 30, 0.3);
+}
+
+.btn-donate-submit:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.btn-spinner {
+  display: none;
+  align-items: center;
+}
+
+.spin-svg {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ================================================================
+   SUCCESS MODAL
+   ================================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  padding: 20px;
+  animation: fadeInOverlay 0.3s ease;
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 36px;
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: slideUpModal 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes slideUpModal {
+  from { opacity: 0; transform: translateY(40px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ---- Confetti ---- */
+.modal-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -12px;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+  0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(350px) rotate(720deg); opacity: 0; }
+}
+
+/* ---- Modal content ---- */
+.modal-icon-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.modal-icon.success-icon {
+  animation: bounceIn 0.5s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes bounceIn {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}
+
+.modal-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.modal-subtitle {
+  font-size: 0.92rem;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.modal-receipt-reminder {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: linear-gradient(135deg, #fff7e6 0%, #fff3cd 100%);
+  border: 1.5px solid #f89b1e;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 16px 0;
+  text-align: left;
+}
+
+.reminder-emoji {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.modal-receipt-reminder strong {
+  font-size: 0.9rem;
+  color: #b45309;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.modal-receipt-reminder p {
+  font-size: 0.82rem;
+  color: #92400e;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.modal-amount-summary {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+  color: #166534;
+}
+
+.modal-amount-summary strong {
+  color: #15803d;
+}
+
+.modal-close-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #f89b1e 0%, #e67e00 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 14px rgba(248, 155, 30, 0.35);
+}
+
+.modal-close-btn:hover {
+  background: linear-gradient(135deg, #ffae38 0%, #f89b1e 100%);
+  box-shadow: 0 6px 18px rgba(248, 155, 30, 0.5);
+  transform: translateY(-1px);
+}
+
+/* ================================================================
+   BUTTON CONTAINERS (overrides for parcform)
+   ================================================================ */
 .centerpay-btn {
   align-items: center;
   display: flex;
-  gap: 10px; /* Spacing between buttons */
+  gap: 10px;
   margin-bottom: 20px;
 }
 
@@ -21,292 +859,60 @@
   margin-bottom: 20px;
 }
 
-.bankcard {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+/* ================================================================
+   RESPONSIVE – MOBILE
+   ================================================================ */
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-method-tabs {
+    gap: 8px;
+  }
+
+  .pay-tab {
+    padding: 8px 12px;
+    font-size: 0.82rem;
+  }
+
+  .bankcard {
+    gap: 8px;
+  }
+
+  .bank-detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
 }
 
-.last {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  gap: 30px;
-  margin-left: 40px;
-  margin-bottom: 20px;
-}
-
-
-/* 🌟 NOTE BOXES */
-.note2 {
-  text-align: center;
-  margin: 10px 0 20px 0;
-  padding: 20px 20px 10px 20px;
-  background-color: rgb(233, 233, 233);
-}
-
-/* 🌟 NOTE TEXT */
-.p3 {
-  font-size: 15px;
-  color: rgb(0, 0, 0);
-}
-
-
-/* 🌟 MONTHLY BUTTONS */
-.btnm7, .btnm8, .btnm9 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 18px;
-  background-color: white;
-  border: 2px solid rgb(255, 162, 0);
-  text-decoration: none;
-  transition: all 0.3s ease; /* Smooth hover */
-}
-
-.btnm7, .btnm8 {
-  width: 250px;
-  height: 60px;
-}
-
-.btnm9 {
-  max-width: 100%;
-  height: 60px;
-}
-
-/* Default colors */
-.btnm9 {
-  color: rgb(255, 162, 0);
-}
-
-.btnm7, .btnm8 {
-  color: rgb(0, 0, 0);
-}
-
-/* 🔥 Hover + Focus/Active for monthly buttons */
-.btnm7:hover, .btnm7:focus, .btnm7:active,
-.btnm8:hover, .btnm8:focus, .btnm8:active,
-.btnm9:hover, .btnm9:focus, .btnm9:active {
-  background-color: rgb(255, 162, 0);
-  color: white;
-  outline: none;
-}
-
-/* 🌟 EXPIRY + CVV INPUTS */
-#exp, #cvv {
-  width: 48%;
-}
-
-
-
-/* 🌟 FORM TITLE */
-.formtitle {
-  color: rgb(255, 162, 0);
-}
-
-/* 🌟 PERSONAL INFO FORM */
-.personalinfo {
-  max-width: 530px; /* Fixed width box */
-}
-
-/* Labels */
-.personalinfo label {
-  display: block;
-  margin-top: 12px;
-  font-weight: 600;
-}
-
-/* Inputs (text + email) */
-.personalinfo input[type="text"],
-.personalinfo input[type="email"] {
-  width: 100%; /* Full width */
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-sizing: border-box;
-  transition: border 0.3s ease;
-}
-
-/* 🌟 ORANGE BORDER ON FOCUS */
-.personalinfo input[type="text"]:focus,
-.personalinfo input[type="email"]:focus {
-  border: 2px solid rgb(255, 162, 0); /* Orange border */
-  outline: none; /* Remove default blue outline */
-}
-
-/* Submit button */
-.personalinfo input[type="submit"] {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  padding: 20px;
-  width: 100%;
-  background: #ff9c00;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-
-/* 🔥 Submit hover + focus/active */
-.personalinfo input[type="submit"]:hover,
-.personalinfo input[type="submit"]:focus,
-.personalinfo input[type="submit"]:active {
-  background: #e68900;
-  outline: none;
-}
-
-/* Form subsection title */
-.p1form {
-  color: rgb(255, 162, 0);
-  margin-top: 15px;
-  font-weight: 800;
-}
-
-/* 🌟 RADIO BUTTON GROUP */
-.radio-group {
-  display: flex;
-  gap: 40px;
-  margin-top: 5px;
-}
-
-.radio-group label {
-  font-weight: 500;
-  margin-top: 0;
-  cursor: pointer;
-}
-
-.radio-group input[type="radio"] {
-  margin-right: 6px;
-  border: #565656 solid 1px;
-  margin-bottom: 20px;
-}
-
-/* 🌟 CUSTOM CHECKBOX */
-.last input[type="checkbox"] {
-  width: 35px;
-  height: 35px;
-  transform: scale(1.3);
-  accent-color: #565656;
-  cursor: pointer;
-}
-
-
-
-/* 📱 EXTRA SMALL DEVICES (≤425px) */
 @media (max-width: 425px), (max-height: 896px) {
   body {
     background-color: white !important;
   }
 
-  /* Stack buttons vertically */
-  .center-btn {
-    flex-direction: column;
-    gap: 0;
-    width: 100%;
-    margin-bottom: 16px;
-  }
-
-  /* Mobile row fix */
   .row.row-cols-2 {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* Side-by-side give once/give monthly */
-  .col2 .center-btn{
-    order: 4;
-    flex-direction: row;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .col2 .note {
-    order: 5;
-    font-size: 14px;
-    padding: 15px;
-  }
-
-  .col2 .btn-monthly {
-    order: 6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .col2 .btn-monthly a {
-    width: 100%;
-    max-width: 200px;
-    height: 50px;
-    font-size: 15px;
-  }
-
-/* ✅ Payment buttons full width stacked */
-.col2 .pay-btn {
-  display: flex;
-  flex-direction: column;   /* stack vertically */
-  align-items: center;      /* center horizontally */
-  gap: 15px;                /* space between Visa block & PayPal block */
-  width: 100%;
-}
-
-.col2 .pay-btn a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;             /* take full container width */
-  max-width: 380px;        /* keep a neat max width (optional) */
-  height: 63px;
-  border: 2px solid rgb(255, 162, 0); /* thin border like your example */
-  background: #fff;
-  box-sizing: border-box;
-  padding: 10px;
-}
-
-/* ✅ Logo images inside buttons */
-.col2 .pay-btn img {
-  max-height: 50px;   /* keep logos proportional */
-  width: auto;
-  object-fit: contain;
-}
-
-
-  /* Full-width buttons */
-  .btnm7, .btnm8, .btnm9 {
-    grid-column: span 2;
-    max-width: 800px;
-  }
-
-  .btnm8 {
-    margin-bottom: -5px;
-  }
-
-  .btnm9 {
-    max-width: 380px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-  }
-
-  /* Personal info responsive */
   .personalinfo {
     text-align: left;
     max-width: 100%;
-    padding: 15px;
+    padding: 0 4px;
+  }
+
+  .btn-donate-submit {
+    font-size: 0.95rem;
+  }
+
+  .modal-card {
+    padding: 28px 20px;
+  }
+
+  .modal-title {
+    font-size: 1.3rem;
   }
 }
