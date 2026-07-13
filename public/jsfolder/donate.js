@@ -204,36 +204,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   /* ================================================================
-   * 4. PAYMENT METHOD TABS
+   * 4. PAYMENT METHOD CONFIG
    * ================================================================ */
-  const payTabs            = document.querySelectorAll(".pmt-tab");
-  const payPanels          = document.querySelectorAll(".pmt-panel");
-  const paymentMethodInput = document.getElementById("paymentMethod");
-  const receiptReminder    = document.getElementById("receiptReminder");
-
-  function activateTab(method) {
-    payTabs.forEach(t => {
-      const active = t.dataset.method === method;
-      t.classList.toggle("pmt-tab--active", active);
-      t.setAttribute("aria-selected", active ? "true" : "false");
-    });
-    payPanels.forEach(p => p.classList.toggle("pmt-panel--hidden", p.id !== "panel-" + method));
-    if (paymentMethodInput) paymentMethodInput.value = method;
-  }
-
-  payTabs.forEach(tab => {
-    tab.addEventListener("click", function () {
-      activateTab(this.dataset.method);
-      if (this.dataset.method === "bank" && receiptReminder) {
-        setTimeout(() => {
-          receiptReminder.classList.add("pulse-highlight");
-          setTimeout(() => receiptReminder.classList.remove("pulse-highlight"), 2000);
-        }, 300);
-      }
-    });
-  });
-
-  activateTab("bank");
+  if (paymentMethodInput) paymentMethodInput.value = "bank";
 
   /* ================================================================
    * 5. COPY ACCOUNT NUMBER
@@ -262,60 +235,6 @@ document.addEventListener("DOMContentLoaded", function () {
     copyToast.classList.add("visible");
     setTimeout(() => copyToast.classList.remove("visible"), 2000);
   }
-
-  /* ================================================================
-   * 6. RECEIPT FILE UPLOAD (DRAG & DROP)
-   * ================================================================ */
-  const uploadArea        = document.getElementById("uploadArea");
-  const receiptUpload     = document.getElementById("receipt_upload");
-  const uploadPlaceholder = document.getElementById("uploadPlaceholder");
-  const uploadPreview     = document.getElementById("uploadPreview");
-  const previewImg        = document.getElementById("previewImg");
-  const previewName       = document.getElementById("previewName");
-  const removeUpload      = document.getElementById("removeUpload");
-
-  function handleFile(file) {
-    if (!file) return;
-    if (file.size > 5 * 1024 * 1024) {
-      showFieldError("err-receipt", "File too large (max 5MB).");
-      return;
-    }
-    clearFieldError("err-receipt");
-    previewName.textContent = file.name;
-    if (file.type.startsWith("image/")) {
-      const reader = new FileReader();
-      reader.onload = e => { previewImg.src = e.target.result; previewImg.style.display = "block"; };
-      reader.readAsDataURL(file);
-    } else {
-      previewImg.style.display = "none";
-    }
-    uploadPlaceholder.style.display = "none";
-    uploadPreview.style.display = "flex";
-  }
-
-  uploadArea?.addEventListener("click", e => { if (!e.target.closest(".remove-upload")) receiptUpload?.click(); });
-  receiptUpload?.addEventListener("change", function () { handleFile(this.files[0]); });
-  uploadArea?.addEventListener("dragover",  e => { e.preventDefault(); uploadArea.classList.add("drag-over"); });
-  uploadArea?.addEventListener("dragleave", ()  => uploadArea.classList.remove("drag-over"));
-  uploadArea?.addEventListener("drop", e => {
-    e.preventDefault();
-    uploadArea.classList.remove("drag-over");
-    const file = e.dataTransfer.files[0];
-    if (file) {
-      const dt = new DataTransfer();
-      dt.items.add(file);
-      receiptUpload.files = dt.files;
-      handleFile(file);
-    }
-  });
-  removeUpload?.addEventListener("click", e => {
-    e.stopPropagation();
-    receiptUpload.value = "";
-    previewImg.src = "";
-    previewName.textContent = "";
-    uploadPlaceholder.style.display = "flex";
-    uploadPreview.style.display = "none";
-  });
 
   /* ================================================================
    * 7. CLIENT-SIDE VALIDATION
@@ -357,7 +276,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (method === "bank") {
-      if (!receiptUpload?.files[0]) {
+      const receiptInput = document.getElementById("receipt");
+      if (!receiptInput || !receiptInput.files[0]) {
         showFieldError("err-receipt", "Please attach your receipt screenshot."); valid = false;
       }
     }
@@ -550,7 +470,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (selectedAmountDisplay) selectedAmountDisplay.style.display = "none";
     if (selectedAmountInput) selectedAmountInput.value = "";
     currentRawAmount = 0;
-    activateTab("visa");
+    const notebank = document.getElementById("notebank");
+    if (notebank) notebank.style.display = "none";
     // Clear Stripe card element
     cardElement?.clear();
   }

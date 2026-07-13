@@ -3,7 +3,7 @@
 
   {{-- Section: Your Information --}}
   <h3 class="formtitle">Your Information</h3>
-  <form id="donationForm" action="{{ route('donations.store') }}" method="POST" class="personalinfo" novalidate>
+  <form id="donationForm" action="{{ route('donations.store') }}" method="POST" class="personalinfo" enctype="multipart/form-data" novalidate>
     @csrf
 
     <input type="hidden" id="selectedAmount"  name="amount"                    value="" />
@@ -82,117 +82,98 @@
     {{-- ===== PAYMENT METHOD ===== --}}
     <h3 class="formtitle">Payment Method</h3>
 
-    {{-- Payment method tab buttons --}}
-    <div class="pmt-tabs" role="tablist">
-      <button type="button" class="pmt-tab pmt-tab--active" id="tab-bank" data-method="bank" style="width: 100%;" role="tab" aria-selected="true">
-        <svg class="pmt-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 10L12 4l9 6v1H3v-1z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-          <rect x="5"  y="11" width="2" height="6" rx="0.5" fill="currentColor"/>
-          <rect x="11" y="11" width="2" height="6" rx="0.5" fill="currentColor"/>
-          <rect x="17" y="11" width="2" height="6" rx="0.5" fill="currentColor"/>
-          <rect x="3"  y="18" width="18" height="2" rx="0.5" fill="currentColor"/>
-        </svg>
-        <span>Bank Account (BDO / GCash)</span>
-      </button>
+    <a href="#" class="btnm9" id="btn-bank">Bank Account</a>
+
+    <div class="notebank" id="notebank" style="display: none; background-color: #eae8e8; padding: 20px; margin-top: 15px; border-radius: 8px; text-align: center;">
+      <p style="font-weight: bold; color: #f78f1e; margin-bottom: 15px;">Scan to Donate</p>
+      <div style="display: flex; justify-content: center; align-items: center;">
+        <img src="{{ asset('assets/image/qr_code.png') }}" alt="PARC Foundation QR Code" style="width: 260px; height: auto; border: 1px solid #ccc; border-radius: 8px; background: #fff; padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+      </div>
+      <p style="margin-top: 15px; font-size: 14px; color: #555;">After scanning please screenshot your receipt and attach it on form </p>
+
+      <!-- Receipt Upload -->
+      <div style="margin-top: 15px; text-align: left;">
+        <label for="receipt" style="display: block; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 8px;">
+          📎 Attach Receipt Screenshot <span class="req">*</span>
+        </label>
+        <input
+          type="file"
+          id="receipt"
+          name="receipt"
+          accept="image/*,.pdf"
+          style="display: none;"
+          onchange="handleReceiptChange(this)"
+        />
+        <label for="receipt" id="receipt-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer; background: #fff; border: 2px dashed #f78f1e; border-radius: 8px; padding: 14px 18px; font-size: 13px; color: #888; transition: border-color 0.2s;">
+          <span style="font-size: 22px;">🖼️</span>
+          <span id="receipt-label-text">Click to upload (JPG, PNG, PDF — max 5MB)</span>
+        </label>
+        <div id="receipt-preview" style="display: none; margin-top: 10px; text-align: center;">
+          <img id="receipt-img-preview" src="" alt="Receipt Preview" style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 1px solid #ccc; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" />
+          <p id="receipt-file-name" style="font-size: 12px; color: #666; margin-top: 6px;"></p>
+          <button type="button" onclick="clearReceipt()" style="margin-top: 4px; background: none; border: none; color: #e74c3c; font-size: 12px; cursor: pointer;">✕ Remove</button>
+        </div>
+      </div>
+      <span class="field-error" id="err-receipt"></span>
+
+      <script>
+        function handleReceiptChange(input) {
+          const preview = document.getElementById('receipt-preview');
+          const imgPreview = document.getElementById('receipt-img-preview');
+          const fileName = document.getElementById('receipt-file-name');
+          const labelText = document.getElementById('receipt-label-text');
+          const errEl = document.getElementById('err-receipt');
+
+          if (errEl) errEl.style.display = 'none';
+
+          if (input.files && input.files[0]) {
+            const file = input.files[0];
+            labelText.textContent = file.name;
+            fileName.textContent = file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
+
+            if (file.type.startsWith('image/')) {
+              const reader = new FileReader();
+              reader.onload = function(e) {
+                imgPreview.src = e.target.result;
+                imgPreview.style.display = 'block';
+                preview.style.display = 'block';
+              };
+              reader.readAsDataURL(file);
+            } else {
+              imgPreview.style.display = 'none';
+              preview.style.display = 'block';
+            }
+          }
+        }
+
+        function clearReceipt() {
+          const input = document.getElementById('receipt');
+          const preview = document.getElementById('receipt-preview');
+          const labelText = document.getElementById('receipt-label-text');
+          input.value = '';
+          preview.style.display = 'none';
+          labelText.textContent = 'Click to upload (JPG, PNG, PDF — max 5MB)';
+        }
+      </script>
     </div>
 
-    {{-- ===== BANK TRANSFER PANEL ===== --}}
-    <div class="pmt-panel" id="panel-bank">
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const btnBank = document.getElementById("btn-bank");
+        const noteBank = document.getElementById("notebank");
 
-      <div class="bank-info-box">
-        <div class="bank-header">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 10L12 4l9 6v1H3v-1z" stroke="#f89b1e" stroke-width="1.8" stroke-linejoin="round"/><rect x="5" y="11" width="2" height="6" fill="#f89b1e"/><rect x="11" y="11" width="2" height="6" fill="#f89b1e"/><rect x="17" y="11" width="2" height="6" fill="#f89b1e"/><rect x="3" y="18" width="18" height="2" fill="#f89b1e"/></svg>
-          <span>Bank Transfer Details</span>
-        </div>
-
-        <div class="bank-details-grid">
-          <div class="bank-detail-row">
-            <span class="bank-label">Bank Name</span>
-            <span class="bank-value">BDO Unibank</span>
-          </div>
-          <div class="bank-detail-row">
-            <span class="bank-label">Account Name</span>
-            <span class="bank-value">PARC Foundation Inc.</span>
-          </div>
-          <div class="bank-detail-row">
-            <span class="bank-label">Account No.</span>
-            <span class="bank-value">
-              <span id="bankAccNum">0042-1234-5678</span>
-              <span class="copy-wrap">
-                <button type="button" class="copy-btn" id="copyAccBtn" title="Copy account number">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" stroke="currentColor" stroke-width="2"/></svg>
-                </button>
-                <span class="copy-toast" id="copyToast">Copied!</span>
-              </span>
-            </span>
-          </div>
-          <div class="bank-detail-row">
-            <span class="bank-label">Branch</span>
-            <span class="bank-value">Cavite Main Branch</span>
-          </div>
-        </div>
-
-        {{-- QR Section --}}
-        <div class="qr-section">
-          <p class="qr-label">Scan to Pay via GCash / Maya</p>
-          <div class="qr-placeholder">
-            <svg width="110" height="110" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="120" height="120" fill="white"/>
-              <rect x="10" y="10" width="40" height="40" rx="3" fill="#222"/>
-              <rect x="15" y="15" width="30" height="30" rx="2" fill="white"/>
-              <rect x="20" y="20" width="20" height="20" rx="1" fill="#222"/>
-              <rect x="70" y="10" width="40" height="40" rx="3" fill="#222"/>
-              <rect x="75" y="15" width="30" height="30" rx="2" fill="white"/>
-              <rect x="80" y="20" width="20" height="20" rx="1" fill="#222"/>
-              <rect x="10" y="70" width="40" height="40" rx="3" fill="#222"/>
-              <rect x="15" y="75" width="30" height="30" rx="2" fill="white"/>
-              <rect x="20" y="80" width="20" height="20" rx="1" fill="#222"/>
-              <rect x="55" y="55" width="10" height="10" fill="#222"/>
-              <rect x="70" y="55" width="10" height="10" fill="#222"/>
-              <rect x="85" y="55" width="10" height="10" fill="#222"/>
-              <rect x="100" y="55" width="10" height="10" fill="#222"/>
-              <rect x="70" y="70" width="10" height="10" fill="#222"/>
-              <rect x="85" y="85" width="10" height="10" fill="#222"/>
-              <rect x="100" y="70" width="10" height="10" fill="#222"/>
-              <rect x="55" y="70" width="10" height="10" fill="#222"/>
-              <rect x="55" y="85" width="10" height="10" fill="#222"/>
-              <rect x="100" y="100" width="10" height="10" fill="#222"/>
-              <rect x="70" y="100" width="10" height="10" fill="#222"/>
-            </svg>
-            <p class="qr-sub">PARC Foundation GCash QR</p>
-          </div>
-        </div>
-
-        {{-- Receipt Reminder --}}
-        <div class="receipt-reminder" id="receiptReminder">
-          <span class="reminder-icon">📸</span>
-          <div class="reminder-text">
-            <strong>Important Reminder</strong>
-            <p>Kindly screenshot your receipt and attach it for reference after completing the bank transfer.</p>
-          </div>
-        </div>
-
-        {{-- Receipt Upload --}}
-        <div class="form-group" style="margin-top:16px;">
-          <label for="receipt_upload">Attach Receipt Screenshot <span class="req">*</span></label>
-          <div class="upload-area" id="uploadArea">
-            <input type="file" id="receipt_upload" name="receipt_upload" accept="image/*,.pdf" class="upload-input" />
-            <div class="upload-placeholder" id="uploadPlaceholder">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 16V8m0 0l-3 3m3-3l3 3" stroke="#f89b1e" stroke-width="2" stroke-linecap="round"/><path d="M3 17v2a2 2 0 002 2h14a2 2 0 002-2v-2" stroke="#f89b1e" stroke-width="2"/></svg>
-              <span>Click to upload or drag &amp; drop</span>
-              <small>JPG, PNG, PDF (max 5MB)</small>
-            </div>
-            <div class="upload-preview" id="uploadPreview" style="display:none;">
-              <img id="previewImg" src="" alt="Receipt Preview" style="display:none;" />
-              <span id="previewName"></span>
-              <button type="button" class="remove-upload" id="removeUpload">✕</button>
-            </div>
-          </div>
-          <span class="field-error" id="err-receipt"></span>
-        </div>
-
-      </div>{{-- /.bank-info-box --}}
-    </div>{{-- /#panel-bank --}}
+        if(btnBank && noteBank) {
+          btnBank.addEventListener("click", function (e) {
+            e.preventDefault();
+            if (noteBank.style.display === "none") {
+              noteBank.style.display = "block";
+            } else {
+              noteBank.style.display = "none";
+            }
+          });
+        }
+      });
+    </script>
 
     {{-- Selected Amount Display --}}
     <div class="selected-amount-display" id="selectedAmountDisplay" style="display:none;">
@@ -202,14 +183,12 @@
 
     {{-- Cover processing fee --}}
     <div class="last">
-      <label class="checkbox-label" for="checkparc">
-        <input type="checkbox" id="checkparc" name="cover_processing_fee" value="1">
-        I want PARC to receive 100% of my donation (cover processing fees)
-      </label>
+      <input type="checkbox" id="checkparc" name="checkparc" value="1">
+      <label for="checkparc">I want PARC to receive 100% of my donation. I'll cover processing fees ($0.30).</label>
     </div>
 
     {{-- DONATE BUTTON --}}
-    <button type="submit" class="btn-donate-submit" id="donateSubmitBtn">
+    <button type="submit" class="btn-donate-submit" id="donateSubmitBtn" style="border:none;">
       <span class="btn-text">DONATE NOW</span>
       <span class="btn-spinner" id="btnSpinner" style="display:none;">
         <svg class="spin-svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -241,7 +220,7 @@
       <span class="reminder-emoji">📸</span>
       <div>
         <strong>Don't forget!</strong>
-        <p>Kindly screenshot your receipt and attach it for their reference.</p>
+        <p>Kindly screenshot your receipt and attach it for reference.</p>
       </div>
     </div>
 
