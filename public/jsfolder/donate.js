@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  activateTab("visa");
+  activateTab("bank");
 
   /* ================================================================
    * 5. COPY ACCOUNT NUMBER

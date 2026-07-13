@@ -8,7 +8,7 @@
 
     <input type="hidden" id="selectedAmount"  name="amount"                    value="" />
     <input type="hidden" id="giveType"         name="give_type"                 value="once" />
-    <input type="hidden" id="paymentMethod"    name="payment_method"            value="visa" />
+    <input type="hidden" id="paymentMethod"    name="payment_method"            value="bank" />
     <input type="hidden" id="stripeIntentId"   name="stripe_payment_intent_id"  value="" />
     <input type="hidden" id="stripeStatus"     name="stripe_status"             value="pending" />
 
@@ -84,24 +84,7 @@
 
     {{-- Payment method tab buttons --}}
     <div class="pmt-tabs" role="tablist">
-
-      <button type="button" class="pmt-tab pmt-tab--active" id="tab-visa" data-method="visa" role="tab" aria-selected="true">
-        <svg class="pmt-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/>
-          <path d="M2 10h20" stroke="currentColor" stroke-width="1.8"/>
-          <rect x="5" y="13" width="4" height="2" rx="0.5" fill="currentColor"/>
-        </svg>
-        <span>Card</span>
-      </button>
-
-      <button type="button" class="pmt-tab" id="tab-paypal" data-method="paypal" role="tab" aria-selected="false">
-        <svg class="pmt-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M7 22l1-6H5l3-13h7c3 0 5 2 4 5-1 2-3 3-6 3H11l-1 4h3l-1 3H7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-        </svg>
-        <span>PayPal</span>
-      </button>
-
-      <button type="button" class="pmt-tab" id="tab-bank" data-method="bank" role="tab" aria-selected="false">
+      <button type="button" class="pmt-tab pmt-tab--active" id="tab-bank" data-method="bank" style="width: 100%;" role="tab" aria-selected="true">
         <svg class="pmt-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M3 10L12 4l9 6v1H3v-1z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
           <rect x="5"  y="11" width="2" height="6" rx="0.5" fill="currentColor"/>
@@ -109,46 +92,12 @@
           <rect x="17" y="11" width="2" height="6" rx="0.5" fill="currentColor"/>
           <rect x="3"  y="18" width="18" height="2" rx="0.5" fill="currentColor"/>
         </svg>
-        <span>Bank Transfer</span>
+        <span>Bank Account (BDO / GCash)</span>
       </button>
-
-    </div>
-
-    {{-- ===== CARD PANEL ===== --}}
-    <div class="pmt-panel" id="panel-visa">
-      <div class="form-group">
-        <label>Card Details <span class="req">*</span></label>
-        <div id="stripe-card-element" class="stripe-card-element-container"></div>
-        <div id="stripe-card-errors" class="stripe-error-msg" role="alert"></div>
-      </div>
-      <div class="accepted-cards">
-        <span class="accepted-label">Accepted:</span>
-        <span class="card-badge visa-badge">VISA</span>
-        <span class="card-badge mc-badge">MC</span>
-        <span class="card-badge amex-badge">Amex</span>
-        <span class="secure-badge">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V6l-8-4z" fill="#22c55e"/></svg>
-          Secured by Stripe
-        </span>
-      </div>
-    </div>
-
-    {{-- ===== PAYPAL PANEL ===== --}}
-    <div class="pmt-panel pmt-panel--hidden" id="panel-paypal">
-      <div class="paypal-info-box">
-        <div class="paypal-info-icon">
-          <svg viewBox="0 0 24 24" fill="none" width="32" height="32"><path d="M7 22l1-6H5l3-13h7c3 0 5 2 4 5-1 2-3 3-6 3H11l-1 4h3l-1 3H7z" stroke="#003087" stroke-width="1.8" stroke-linejoin="round"/></svg>
-        </div>
-        <p>Complete your donation securely through PayPal.</p>
-        <div class="form-group" style="text-align:left;">
-          <label for="paypal_email">Your PayPal Email</label>
-          <input type="email" id="paypal_email" name="paypal_email" placeholder="your@paypal.com" />
-        </div>
-      </div>
     </div>
 
     {{-- ===== BANK TRANSFER PANEL ===== --}}
-    <div class="pmt-panel pmt-panel--hidden" id="panel-bank">
+    <div class="pmt-panel" id="panel-bank">
 
       <div class="bank-info-box">
         <div class="bank-header">
