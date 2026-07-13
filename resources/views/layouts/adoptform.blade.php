@@ -1,7 +1,7 @@
 <!-- Personal Info Form -->
           <div>
             <h3 class="formtitle">Your Information</h3>
-            <form action="{{ route('adoptions.store') }}" method="POST" class="personalinfo" enctype="multipart/form-data">
+            <form action="{{ route('adoptions.store') }}" method="POST" class="personalinfo" id="adoptionForm" enctype="multipart/form-data">
                @csrf
             <label for="fname">First name</label>
               <input type="text" id="fname" name="fname" />
@@ -138,14 +138,26 @@
               const btnBank = document.getElementById("btn-bank");
               const noteBank = document.getElementById("notebank");
 
-              if(btnBank && noteBank) {
-                btnBank.addEventListener("click", function (e) {
-                  e.preventDefault();
-                  if (noteBank.style.display === "none") {
-                    noteBank.style.display = "block";
-                  } else {
-                    noteBank.style.display = "none";
-                  }
+              if (btnBank && noteBank) {
+                btnBank.addEventListener("click", function () {
+                  const isOpen = noteBank.style.display !== "none";
+                  noteBank.style.display = isOpen ? "none" : "block";
+                  btnBank.setAttribute("aria-expanded", String(!isOpen));
+                  btnBank.classList.toggle("pmt-bank-btn--active", !isOpen);
+                });
+              }
+
+              // Spinner on submit
+              const adoptForm = document.querySelector("#adoptionForm");
+              const submitBtn = document.getElementById("adoptSubmitBtn");
+              const spinner  = document.getElementById("adoptBtnSpinner");
+              const btnText  = submitBtn ? submitBtn.querySelector(".btn-text") : null;
+
+              if (adoptForm && submitBtn) {
+                adoptForm.addEventListener("submit", function () {
+                  submitBtn.disabled = true;
+                  if (spinner)  spinner.style.display  = "inline-flex";
+                  if (btnText)  btnText.textContent    = "Submitting…";
                 });
               }
             });
@@ -164,10 +176,22 @@
               </div> -->
 
             <div class="last">
-              <input type="checkbox" id="checkparc" name="checkparc" value="">
-              <label for="checkparc">I want PARC to receive 100% of my donation. I'll cover processing fees ($0.30).</label><br>
+              <label class="checkbox-label">
+                <input type="checkbox" id="checkparc" name="checkparc" value="">
+                I want PARC to receive 100% of my donation. I'll cover processing fees ($0.30).
+              </label>
             </div>
-              <input type="submit" value="DONATE" />
+
+            <!-- Premium Donate Submit Button -->
+            <button type="submit" class="btn-donate-submit" id="adoptSubmitBtn">
+              <span class="btn-text">SUBMIT APPLICATION</span>
+              <span class="btn-spinner" id="adoptBtnSpinner" style="display:none;">
+                <svg class="spin-svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.3)" stroke-width="3"/>
+                  <path d="M12 2a10 10 0 0110 10" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </button>
 
               
             </form>

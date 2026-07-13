@@ -1102,3 +1102,39 @@ body {
   outline: none;
 }
 
+/* ================================================================
+   FORM SUBMIT BUTTON STYLES
+   ================================================================ */
+.personalinfo input[type="submit"] {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #f89b1e 0%, #e67e00 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(248, 155, 30, 0.4);
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+}
+
+.personalinfo input[type="submit"]:hover {
+  background: linear-gradient(135deg, #ffae38 0%, #f89b1e 100%);
+  box-shadow: 0 6px 20px rgba(248, 155, 30, 0.55);
+  transform: translateY(-1px);
+}
+
+.personalinfo input[type="submit"]:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(248, 155, 30, 0.3);
+}
+

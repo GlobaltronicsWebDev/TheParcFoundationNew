@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css') }}">
   <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
   <link rel="stylesheet" href="{{ asset('cssfolder/adopt.css?v=1.1') }}" />
-  <link rel="stylesheet" href="{{ asset('cssfolder/parcform.css') }}" />
+  <link rel="stylesheet" href="{{ asset('cssfolder/parcform.css?v=1.5') }}" />
 
   
 </head>

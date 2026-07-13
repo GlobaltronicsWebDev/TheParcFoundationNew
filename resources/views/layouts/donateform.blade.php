@@ -82,7 +82,17 @@
     {{-- ===== PAYMENT METHOD ===== --}}
     <h3 class="formtitle">Payment Method</h3>
 
-    <a href="#" class="btnm9" id="btn-bank">Bank Account</a>
+    <!-- Bank Account Toggle Button -->
+    <button type="button" class="pmt-bank-btn" id="btn-bank" aria-expanded="false">
+      <svg class="pmt-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="14" rx="2"/>
+        <path d="M3 10h18M7 15h2M11 15h4"/>
+      </svg>
+      Bank / GCash Transfer
+      <svg class="pmt-bank-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    </button>
 
     <div class="notebank" id="notebank" style="display: none; background-color: #eae8e8; padding: 20px; margin-top: 15px; border-radius: 8px; text-align: center;">
       <p style="font-weight: bold; color: #f78f1e; margin-bottom: 15px;">Scan to Donate</p>
@@ -162,14 +172,12 @@
         const btnBank = document.getElementById("btn-bank");
         const noteBank = document.getElementById("notebank");
 
-        if(btnBank && noteBank) {
-          btnBank.addEventListener("click", function (e) {
-            e.preventDefault();
-            if (noteBank.style.display === "none") {
-              noteBank.style.display = "block";
-            } else {
-              noteBank.style.display = "none";
-            }
+        if (btnBank && noteBank) {
+          btnBank.addEventListener("click", function () {
+            const isOpen = noteBank.style.display !== "none";
+            noteBank.style.display = isOpen ? "none" : "block";
+            btnBank.setAttribute("aria-expanded", String(!isOpen));
+            btnBank.classList.toggle("pmt-bank-btn--active", !isOpen);
           });
         }
       });
