@@ -37,25 +37,26 @@
       <div class="row align-items-center g-0">
 
         <div class="col-md-5 news-image">
-          <img src="{{ asset('./assets/image/WTG2.webp') }}"
-               alt="Globaltronics Award"
+          <img src="{{ asset('./assets/image/news/PARC_MAYONAISE.png') }}"
+               alt="PARC MAYONAISE"
                class="img-fluid rounded-start">
         </div>
 
         <div class="col-md-7 p-4 text-start">
           <h4 class="fw-bold text-highlight mb-3">
-            Chairman and CEO of Globaltronics was awarded the KDR Icon of Music and
-            Philanthropy during the 9th WISH Music Awards.
+           The vision of Wilmer Ong Guido, founder of PARC Foundation, lives on by giving young artists the 
+            opportunity to discover their talents and pursue their dreams through music.
           </h4>
-          <p class="date mb-2">January 14, 2024</p>
+          <p class="date mb-2">JULY 14, 2026</p>
           <p class="text-dark mb-2">
-            Mr. William Guido, the Chairman and CEO of Globaltronics, was awarded the
-            KDR Icon of Music and Philanthropy during the 9th WISH Music Awards.
+          PARC Foundation proudly introduces PARC'D—a collaboration connecting PARC Kids with some of
+          the most respected names in OPM.
           </p>
           <p class="text-dark mb-4">
-            The 9th Wish Music Awards happened on January 14, 2024 at the Araneta Coliseum.
+           Our first collaboration features the iconic OPM band Mayonnaise, 
+           with more inspiring music icons joining soon to mentor and encourage the next generation of performers.
           </p>
-          <a href="#" class="btn btn-learn">LEARN MORE</a>
+          <a href="https://www.facebook.com/reel/1002511812567161" class="btn btn-learn">LEARN MORE</a>
         </div>
       </div>
     </div>
