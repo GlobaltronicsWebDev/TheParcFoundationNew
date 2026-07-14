@@ -27,7 +27,12 @@
           <ul class="playlist" id="playlist">
 
             <li class="playlist-item active"
-                data-video="https://www.youtube.com/watch?v=Hge6Hx049Co&t=1s"
+                data-video="{{ asset("assets/video/PARC'D.mp4") }}"
+                data-title="PARC'D">
+              PARC'D
+            </li>
+            <li class="playlist-item"
+                data-video="https://www.youtube-nocookie.com/embed/Hge6Hx049Co"
                 data-title="PARC Wilmer Ong Guido Hall Inauguration 2019">
               PARC WILMER ONG GUIDO HALL INAUGURATION 2019
             </li>
@@ -68,16 +73,24 @@
         <!-- Main Video Player -->
         <div class="gallery-player">
           <div class="player-card">
-            <h2 class="player-title" id="player-title">PARC Wilmer Ong Guido Hall Inauguration 2019</h2>
+            <h2 class="player-title" id="player-title">PARC'D</h2>
             <div class="video-wrapper">
               <iframe
-                id="main-video"
-                src="https://www.youtube-nocookie.com/embed/Hge6Hx049Co"
+                id="main-video-iframe"
+                src=""
                 title="PARC Event Video"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
+                allowfullscreen
+                style="display: none;">
               </iframe>
+              <video
+                id="main-video-player"
+                controls
+                style="display: block;">
+                <source src="{{ asset("assets/video/PARC'D.mp4") }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
         </div>
@@ -331,7 +344,8 @@
 
   <script>
     const items = document.querySelectorAll('.playlist-item');
-    const mainVideo = document.getElementById('main-video');
+    const mainVideoIframe = document.getElementById('main-video-iframe');
+    const mainVideoPlayer = document.getElementById('main-video-player');
     const playerTitle = document.getElementById('player-title');
 
     items.forEach(item => {
@@ -339,11 +353,37 @@
         items.forEach(i => i.classList.remove('active'));
         this.classList.add('active');
 
-        // swap src — append autoplay=1 so video starts on click
-        mainVideo.src = this.dataset.video + '?autoplay=1&rel=0';
-
-        // use the clean data-title attribute
+        const videoUrl = this.dataset.video;
         playerTitle.textContent = this.dataset.title;
+
+        const isLocalVideo = videoUrl.endsWith('.mp4') || videoUrl.includes('/assets/video/');
+
+        if (isLocalVideo) {
+          // Hide iframe and reset src to stop it
+          mainVideoIframe.style.display = 'none';
+          mainVideoIframe.src = '';
+
+          // Show video player and play the local file
+          mainVideoPlayer.style.display = 'block';
+          mainVideoPlayer.src = videoUrl;
+          mainVideoPlayer.play().catch(error => {
+            console.log("Autoplay was prevented, waiting for user interaction:", error);
+          });
+        } else {
+          // Hide video player and pause/clear it
+          mainVideoPlayer.style.display = 'none';
+          mainVideoPlayer.pause();
+          mainVideoPlayer.src = '';
+
+          // Show iframe and load YouTube embed
+          mainVideoIframe.style.display = 'block';
+          let embedUrl = videoUrl;
+          if (embedUrl.includes('youtube.com/watch?v=')) {
+            const videoId = embedUrl.split('v=')[1].split('&')[0];
+            embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}`;
+          }
+          mainVideoIframe.src = embedUrl + (embedUrl.includes('?') ? '&' : '?') + 'autoplay=1&rel=0';
+        }
       });
     });
     // Events List year filter
