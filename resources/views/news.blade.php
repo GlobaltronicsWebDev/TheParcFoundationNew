@@ -44,7 +44,7 @@
 
         <div class="col-md-7 p-4 text-start">
           <h4 class="fw-bold text-highlight mb-3">
-           PARC Foundation is turning a dream into a lasting legacy. 
+           PARC Foundation is turning a dream into a lasting legacy.
           </h4>
           <p class="date mb-2">JULY 14, 2026</p>
           <p class="text-dark mb-2">
