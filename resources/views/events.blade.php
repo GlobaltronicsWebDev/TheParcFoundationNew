@@ -46,6 +46,15 @@
       <!-- Events Grid -->
       <div class="events-grid" id="events-grid">
 
+        <!-- Card: PARC'D -->
+        <div class="ev-card" data-category="upcoming">
+          <img src="{{ asset('./assets/image/NEWS/PARC_MAYONAISE.png') }}" alt="PARC'D with Mayonnaise">
+          <div class="ev-overlay">
+            <h4>PARC'D</h4>
+            <p>Collaboration with Mayonnaise</p>
+          </div>
+        </div>
+
         <!-- Card: Spirit of Giving 2022 -->
         <div class="ev-card" data-category="previous">
           <img src="{{ asset('./assets/image/SOGPOSTER2022.webp') }}" alt="Spirit of Giving 2022">
