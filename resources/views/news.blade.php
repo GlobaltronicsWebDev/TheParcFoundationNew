@@ -48,7 +48,7 @@
           </h4>
           <p class="date mb-2">JULY 14, 2026</p>
           <p class="text-dark mb-2">
-          PARC Foundation proudly introduces PARC'D—a collaboration connecting PARC Kids with some of
+          PARC Foundation proudly introduces PARC'D, a collaboration connecting PARC Kids with some of
           the most respected names in OPM.
           </p>
           <p class="text-dark mb-4">
