@@ -56,7 +56,7 @@
            Our first collaboration features the iconic OPM band Mayonnaise, 
            with more inspiring music icons joining soon to mentor and encourage the next generation of performers.
           </p>
-          <a href="https://www.facebook.com/reel/1002511812567161" class="btn btn-learn">LEARN MORE</a>
+          <a href="https://www.facebook.com/reel/1002511812567161" class="btn btn-learn" target="_blank">LEARN MORE</a>
         </div>
       </div>
     </div>
