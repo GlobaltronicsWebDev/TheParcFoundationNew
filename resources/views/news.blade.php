@@ -44,8 +44,7 @@
 
         <div class="col-md-7 p-4 text-start">
           <h4 class="fw-bold text-highlight mb-3">
-           The vision of Wilmer Ong Guido, founder of PARC Foundation, lives on by giving young artists the 
-            opportunity to discover their talents and pursue their dreams through music.
+           PARC Foundation is turning a dream into a lasting legacy. 
           </h4>
           <p class="date mb-2">JULY 14, 2026</p>
           <p class="text-dark mb-2">
