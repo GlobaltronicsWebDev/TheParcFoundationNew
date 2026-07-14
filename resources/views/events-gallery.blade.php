@@ -132,6 +132,11 @@
       <!-- Events Image Grid -->
       <div class="events-list-grid" id="events-list-grid">
 
+        <!-- 2026 -->
+        <div class="el-card" data-year="2026">
+          <img src="{{ asset('./assets/image/NEWS/PARC_MAYONAISE.png') }}" alt="PARC'D with Mayonnaise">
+        </div>
+
         <!-- 2022 -->
         <div class="el-card" data-year="2022">
           <img src="{{ asset('./assets/image/SOGPOSTER2022.webp') }}" alt="Spirit of Giving 2022">
