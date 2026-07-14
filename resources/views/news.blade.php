@@ -37,7 +37,7 @@
       <div class="row align-items-center g-0">
 
         <div class="col-md-5 news-image">
-          <img src="{{ asset('./assets/image/news/PARC_MAYONAISE.png') }}"
+          <img src="{{ asset('./assets/image/NEWS/PARC_MAYONAISE.png') }}"
                alt="PARC MAYONAISE"
                class="img-fluid rounded-start">
         </div>
