@@ -67,6 +67,20 @@
     -->
 
     <!-- Visible cards (always shown — keep 9 max) -->
+         <div class="section-container" id="visible-cards">
+         <div class="card" data-link="https://www.facebook.com/reel/1002511812567161">
+            <div class="card-image">
+                   <img src="{{ asset('./assets/image/NEWS/PARC_MAYONAISE.png') }}"
+               alt="PARC MAYONAISE"
+               class="img-fluid rounded-start">
+            </div>
+            <div class="card-content">
+                <h3>PARC Foundation is turning a dream into a lasting legacy.</h3>
+                <p> PARC Foundation proudly introduces PARC'D, a collaboration connecting PARC Kids with some of
+          the most respected names in OPM.</p>
+                <span class="event-date">June 14, 2026</span>
+            </div>
+        </div>
     <div class="section-container" id="visible-cards">
          <div class="card" data-link="https://www.facebook.com/reel/1371132058230225">
             <div class="card-image">
