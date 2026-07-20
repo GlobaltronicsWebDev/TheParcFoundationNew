@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\GoogleSheetsExporter;
 use App\Models\Donation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class DonationController extends Controller
 {
@@ -16,11 +18,12 @@ class DonationController extends Controller
     }
 
     /**
-     * Store a confirmed donation in the database.
+     * Store a confirmed donation in the database and push a row to Google Sheets.
      *
-     * This is called after Stripe successfully processes the card payment.
-     * The stripe_payment_intent_id is passed from the frontend after
-     * stripe.confirmCardPayment() resolves with a 'succeeded' status.
+     * For Stripe card payments (AJAX/JSON), we still return JSON because
+     * the frontend handles the Stripe flow asynchronously.
+     * For bank-transfer submissions (regular form POST), we save to DB,
+     * append to Google Sheets, then redirect with a success message.
      */
     public function store(Request $request)
     {
@@ -39,9 +42,18 @@ class DonationController extends Controller
             'payment_method'           => 'nullable|string|max:20',
             'paypal_email'             => 'nullable|email|max:100',
             'cover_processing_fee'     => 'nullable|boolean',
+            'receipt'                  => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5120',
             'stripe_payment_intent_id' => 'nullable|string|max:255',
             'stripe_status'            => 'nullable|string|max:20',
         ]);
+
+        // Handle receipt file upload — stored in public/receipts/
+        if ($request->hasFile('receipt')) {
+            $file     = $request->file('receipt');
+            $filename = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+            $file->move(public_path('receipts'), $filename);
+            $validated['receipt_path'] = 'receipts/' . $filename;
+        }
 
         // Defaults
         $validated['emailUpdates']         = $request->input('emailUpdates', 'no');
@@ -49,11 +61,54 @@ class DonationController extends Controller
         $validated['cover_processing_fee'] = $request->has('cover_processing_fee');
         $validated['stripe_status']        = $request->input('stripe_status', 'pending');
 
-        // For card payments: we never store raw card data — Stripe handles that.
-        // card_number, expiration_month, expiration_year, cvv are not stored.
-
+        // ── Save to database ───────────────────────────────────────────────
         $donation = Donation::create($validated);
 
+        // ── Append to Google Sheets (non-blocking: errors are logged, not thrown) ──
+        try {
+            $headers = [
+                'Donation ID', 'First Name', 'Last Name', 'Email',
+                'Country', 'City', 'Street', 'Postal Code',
+                'Amount', 'Give Type', 'Payment Method',
+                'Email Updates', 'Text Updates', 'Cover Processing Fee',
+                'Receipt', 'Date Submitted',
+            ];
+
+            $row = [
+                $donation->id,
+                $donation->fname,
+                $donation->lname,
+                $donation->email,
+                $donation->country         ?? '',
+                $donation->city            ?? '',
+                $donation->street          ?? '',
+                $donation->postal          ?? '',
+                $donation->amount          ?? '',
+                $donation->give_type       ?? '',
+                $donation->payment_method  ?? 'bank',
+                $donation->emailUpdates    ?? 'no',
+                $donation->textUpdates     ?? 'no',
+                $donation->cover_processing_fee ? 'Yes' : 'No',
+                $donation->receipt_path ? asset($donation->receipt_path) : 'No Receipt',
+                $donation->created_at->format('Y-m-d H:i:s'),
+            ];
+
+            GoogleSheetsExporter::append(
+                spreadsheetId: env('GOOGLE_SHEET_DONATIONS_ID'),
+                tab:           env('GOOGLE_SHEET_DONATIONS_TAB', 'Donations'),
+                headers:       $headers,
+                row:           $row
+            );
+        } catch (\Throwable $e) {
+            // Log the error but do NOT fail the user's submission —
+            // data is already safely saved in the database.
+            Log::error('Google Sheets (Donations) append failed: ' . $e->getMessage(), [
+                'donation_id' => $donation->id,
+                'trace'       => $e->getTraceAsString(),
+            ]);
+        }
+
+        // ── JSON (Stripe AJAX) path ────────────────────────────────────────
         if ($request->expectsJson()) {
             return response()->json([
                 'success'     => true,
@@ -62,6 +117,7 @@ class DonationController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', '✅ Thank you for your donation!');
+        // ── Regular form POST (Bank Transfer) ─────────────────────────────
+        return redirect()->back()->with('success', '✅ Thank you for your donation! Your information has been recorded.');
     }
 }
