@@ -448,9 +448,12 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ================================================================
    * 14. SUCCESS MODAL
    * ================================================================ */
-  const successModal    = document.getElementById("successModal");
-  const modalCloseBtn   = document.getElementById("modalCloseBtn");
-  const confettiContainer = document.getElementById("confettiContainer");
+  const successModal       = document.getElementById("successModal");
+  const modalCloseBtn      = document.getElementById("modalCloseBtn");
+  const confettiContainer  = document.getElementById("confettiContainer");
+  const autoCloseCountdown = document.getElementById("autoCloseCountdown");
+  let autoCloseTimer       = null;
+  let countdownInterval    = null;
 
   function showSuccessModal() {
     if (!successModal) return;
@@ -458,9 +461,39 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.overflow = "hidden";
     launchConfetti();
     modalCloseBtn?.focus();
+
+    // Start 3-second countdown
+    let secondsLeft = 3;
+    if (autoCloseCountdown) autoCloseCountdown.textContent = secondsLeft;
+
+    if (countdownInterval) clearInterval(countdownInterval);
+    countdownInterval = setInterval(() => {
+      secondsLeft--;
+      if (secondsLeft >= 0 && autoCloseCountdown) {
+        autoCloseCountdown.textContent = secondsLeft;
+      }
+      if (secondsLeft <= 0) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+      }
+    }, 1000);
+
+    // Automatically close modal after 3 seconds (3000 ms)
+    if (autoCloseTimer) clearTimeout(autoCloseTimer);
+    autoCloseTimer = setTimeout(() => {
+      hideSuccessModal();
+    }, 3000);
   }
 
   function hideSuccessModal() {
+    if (autoCloseTimer) {
+      clearTimeout(autoCloseTimer);
+      autoCloseTimer = null;
+    }
+    if (countdownInterval) {
+      clearInterval(countdownInterval);
+      countdownInterval = null;
+    }
     if (!successModal) return;
     successModal.style.display = "none";
     document.body.style.overflow = "";

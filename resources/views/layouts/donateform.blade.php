@@ -228,6 +228,10 @@
       <p>Your donation of <strong id="modalAmountVal">—</strong> has been recorded.</p>
     </div>
 
+    <div class="modal-autoclose-note" id="modalAutoCloseNote" style="font-size: 0.85rem; color: #6b7280; margin: 12px 0 16px;">
+      This window will automatically close in <span id="autoCloseCountdown" style="font-weight: 700; color: #f89b1e;">3</span> seconds...
+    </div>
+
     <button type="button" class="modal-close-btn" id="modalCloseBtn">Close &amp; Continue</button>
   </div>
 </div>
