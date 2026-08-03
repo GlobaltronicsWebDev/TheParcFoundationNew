@@ -52,7 +52,7 @@
       <input type="text" id="postal" name="postal" placeholder="e.g. 1000" />
     </div>
 
-    {{-- Community opt-in --}}
+    <!-- {{-- Community opt-in --}}
     <div class="community-section">
       <p class="p1form">BE PART OF OUR COMMUNITY</p>
       <p class="p2form">Stay updated on how you can help empower youth through music. You can unsubscribe at any time.</p>
@@ -72,7 +72,7 @@
           <label class="radio-label"><input type="radio" name="textUpdates" id="textNo"  value="no" checked /> No</label>
         </fieldset>
       </div>
-    </div>
+    </div> -->
 
     {{-- Privacy note --}}
     <div class="note2">
