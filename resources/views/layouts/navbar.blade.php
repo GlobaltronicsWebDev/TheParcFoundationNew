@@ -51,8 +51,8 @@
 
   
       <div class="mainbuttons">
-        <a href="{{ url('/donate') }}" class="btn btn-donate px-3">DONATE</a>
-        <a href="{{ url('/adopt') }}" class="btn btn-adopt px-3">ADOPT A SCHOLAR</a>
+        <a href="{{ url('/donate') }}" class="btn btn-donate px-3" target="_blank">DONATE</a>
+        <a href="{{ url('/adopt') }}" class="btn btn-adopt px-3" target="_blank">ADOPT A SCHOLAR</a>
       </div>
 
 </div>
