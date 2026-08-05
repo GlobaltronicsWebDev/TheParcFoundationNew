@@ -17,7 +17,7 @@
             <li><a href="#">Take action</a></li>
             <li><a href="#get-involved">Get involved</a></li>
             <li><a href="#">Careers</a></li>
-            <li><a href="{{ url('/contacts') }}" target="_blank">Contact</a></li>
+            <li><a href="{{ url('/contacts') }}">Contact</a></li>
           </ul>
         </div>
         <div class="footer-column">

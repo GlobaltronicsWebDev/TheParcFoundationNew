@@ -71,9 +71,18 @@ use App\Http\Controllers\NewsletterController;
 
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 
+use App\Http\Controllers\ContactController;
+
+Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
+Route::get('/contact', function () {
+    return redirect()->route('contacts');
+});
+Route::post('/contacts/send', [ContactController::class, 'send'])->name('contacts.send');
+
 // ── Stripe ──────────────────────────────────────────────────────────────────
 // Create a PaymentIntent (called by Stripe.js on the frontend)
 Route::post('/stripe/create-intent', [StripeController::class, 'createIntent'])->name('stripe.createIntent');
 
 // Stripe webhook – receives events from Stripe servers (CSRF excluded in bootstrap/app.php)
 Route::post('/stripe/webhook', [StripeController::class, 'webhook'])->name('stripe.webhook');
+
