@@ -31,61 +31,57 @@
         </div>
       </div>
 
-      <!-- Right Sign-up Form -->
+      <!-- Right Contact Form -->
       <div class="footer-form">
-        <h4 class="highlight">GET THE LATEST UPDATES</h4>
+        <h4 class="highlight">CONTACT US</h4>
 
-        @if(session('newsletter_success'))
+        @if(session('contact_success'))
         <div style="background:#2e7d32;color:#fff;padding:10px 14px;border-radius:6px;margin-bottom:12px;font-size:0.9rem;">
-          {{ session('newsletter_success') }}
+          {{ session('contact_success') }}
         </div>
         @endif
 
-        @if(session('newsletter_error'))
+        @if(session('contact_error'))
         <div style="background:#c62828;color:#fff;padding:10px 14px;border-radius:6px;margin-bottom:12px;font-size:0.9rem;">
-          {{ session('newsletter_error') }}
+          {{ session('contact_error') }}
         </div>
         @endif
 
-        <form action="{{ route('newsletter.subscribe') }}" method="POST">
+        <form action="{{ route('contacts.send') }}" method="POST">
           @csrf
           <label>First Name <span class="required">*required</span></label>
-          <input type="text" name="first_name" value="{{ old('first_name') }}" required>
+          <input type="text" name="first_name" value="{{ old('first_name') }}" required placeholder="First Name">
           @error('first_name')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
 
           <label>Last Name <span class="required">*required</span></label>
-          <input type="text" name="last_name" value="{{ old('last_name') }}" required>
+          <input type="text" name="last_name" value="{{ old('last_name') }}" required placeholder="Last Name">
           @error('last_name')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
 
           <label>Email Address <span class="required">*required</span></label>
-          <input type="email" name="email" value="{{ old('email') }}" required>
+          <input type="email" name="email" value="{{ old('email') }}" required placeholder="Email Address">
           @error('email')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
 
-          <h4 class="highlight">BE A PART OF OUR COMMUNITY</h4>
-          <p>
-            Stay updated on how you can help empower youth through music. From inspiring stories to events and ways to give - we'll keep you in the loop. You can unsubscribe at any time.
-          </p>
+          <label>Subject / Inquiry Type <span class="required">*required</span></label>
+          <select name="subject" required style="color:#000;background:#fff;width:100%;padding:10px;margin-top:5px;border:none;border-radius:3px;">
+            <option value="" disabled selected>Select an inquiry type</option>
+            <option value="General Inquiry" {{ old('subject') == 'General Inquiry' ? 'selected' : '' }}>General Inquiry</option>
+            <option value="Volunteer Opportunities" {{ old('subject') == 'Volunteer Opportunities' ? 'selected' : '' }}>Volunteer Opportunities</option>
+            <option value="Partnerships & PARCners" {{ old('subject') == 'Partnerships & PARCners' ? 'selected' : '' }}>Partnerships & PARCners</option>
+            <option value="Adopt-a-Scholar Inquiry" {{ old('subject') == 'Adopt-a-Scholar Inquiry' ? 'selected' : '' }}>Adopt-a-Scholar Inquiry</option>
+            <option value="Donation Question" {{ old('subject') == 'Donation Question' ? 'selected' : '' }}>Donation Question</option>
+            <option value="Other" {{ old('subject') == 'Other' ? 'selected' : '' }}>Other</option>
+          </select>
+          @error('subject')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
 
-          <p>I would like to get email updates:</p>
-          <div class="radio-group">
-            <label><input type="radio" name="email_updates" value="yes" checked> Yes</label>
-            <label><input type="radio" name="email_updates" value="no"> No</label>
-          </div>
-
-          <p>I would like to get PARC text messages:</p>
-          <div class="radio-group">
-            <label><input type="radio" name="text_updates" value="yes"> Yes</label>
-            <label><input type="radio" name="text_updates" value="no" checked> No</label>
-          </div>
+          <label>Your Message <span class="required">*required</span></label>
+          <textarea name="message" rows="4" required placeholder="Write your message here..."></textarea>
+          @error('message')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
 
           <p class="small-text">
             We will keep your information safe and secure. Please see our Privacy Policy for details of how we use your information.
           </p>
-          <p class="small-text">
-            This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
-          </p>
 
-          <button type="submit" class="btncontact">Sign Up</button>
+          <button type="submit" class="btncontact">Send Message</button>
         </form>
       </div>
     </div>
