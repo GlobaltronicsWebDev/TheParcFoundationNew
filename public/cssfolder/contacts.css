@@ -71,9 +71,10 @@
   text-decoration: underline;
 }
 
-/* 🌟 SIGN-UP FORM (RIGHT SIDE) */
+/* 🌟 SIGN-UP / CONTACT FORM (RIGHT SIDE) */
 .footer-form {
   max-width: 400px;
+  width: 100%;
 }
 
 /* Section Titles */
@@ -87,14 +88,12 @@
 /* Highlighted Orange Titles */
 .footer-form .highlight {
   color: #f7941d;
-  /* Orange highlight */
   text-transform: uppercase;
 }
 
 /* 🌟 Required Field Label Text */
 .required {
   color: #f7941d;
-  /* Match the orange color */
   font-style: italic;
 }
 
@@ -103,16 +102,45 @@
   display: block;
   font-size: 13px;
   margin-top: 12px;
+  color: #ffffff;
 }
 
-/* Input Fields */
+/* Input Fields, Selects, and Textarea */
 .footer-form input[type="text"],
-.footer-form input[type="email"] {
-  width: 100%;
-  padding: 10px;
+.footer-form input[type="email"],
+.footer-form input[type="tel"],
+.footer-form select,
+.footer-form textarea {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 10px 12px;
   margin-top: 5px;
-  border: none;
-  border-radius: 3px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #222222;
+  font-family: inherit;
+  font-size: 13px;
+  display: block;
+}
+
+.footer-form select {
+  cursor: pointer;
+}
+
+.footer-form textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.4;
+}
+
+.footer-form input:focus,
+.footer-form select:focus,
+.footer-form textarea:focus {
+  outline: none;
+  border-color: #f7941d;
+  box-shadow: 0 0 0 3px rgba(247, 148, 29, 0.3);
 }
 
 /* 🌟 RADIO BUTTONS (YES / NO SIDE BY SIDE) */

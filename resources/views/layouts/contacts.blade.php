@@ -49,20 +49,20 @@
 
         <form action="{{ route('contacts.send') }}" method="POST">
           @csrf
-          <label>First Name <span class="required">*required</span></label>
-          <input type="text" name="first_name" value="{{ old('first_name') }}" required placeholder="First Name">
+          <label for="footer_first_name">First Name <span class="required">*required</span></label>
+          <input type="text" id="footer_first_name" name="first_name" value="{{ old('first_name') }}" required placeholder="First Name">
           @error('first_name')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
 
-          <label>Last Name <span class="required">*required</span></label>
-          <input type="text" name="last_name" value="{{ old('last_name') }}" required placeholder="Last Name">
+          <label for="footer_last_name">Last Name <span class="required">*required</span></label>
+          <input type="text" id="footer_last_name" name="last_name" value="{{ old('last_name') }}" required placeholder="Last Name">
           @error('last_name')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
 
-          <label>Email Address <span class="required">*required</span></label>
-          <input type="email" name="email" value="{{ old('email') }}" required placeholder="Email Address">
+          <label for="footer_email">Email Address <span class="required">*required</span></label>
+          <input type="email" id="footer_email" name="email" value="{{ old('email') }}" required placeholder="Email Address">
           @error('email')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
 
-          <label>Subject / Inquiry Type <span class="required">*required</span></label>
-          <select name="subject" required style="color:#000;background:#fff;width:100%;padding:10px;margin-top:5px;border:none;border-radius:3px;">
+          <label for="footer_subject">Subject / Inquiry Type <span class="required">*required</span></label>
+          <select id="footer_subject" name="subject" required>
             <option value="" disabled selected>Select an inquiry type</option>
             <option value="General Inquiry" {{ old('subject') == 'General Inquiry' ? 'selected' : '' }}>General Inquiry</option>
             <option value="Volunteer Opportunities" {{ old('subject') == 'Volunteer Opportunities' ? 'selected' : '' }}>Volunteer Opportunities</option>
@@ -73,8 +73,8 @@
           </select>
           @error('subject')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
 
-          <label>Your Message <span class="required">*required</span></label>
-          <textarea name="message" rows="4" required placeholder="Write your message here..."></textarea>
+          <label for="footer_message">Your Message <span class="required">*required</span></label>
+          <textarea id="footer_message" name="message" rows="4" required placeholder="Write your message here...">{{ old('message') }}</textarea>
           @error('message')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
 
           <p class="small-text">
