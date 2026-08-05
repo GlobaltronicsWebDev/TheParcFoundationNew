@@ -168,7 +168,7 @@
                 @error('message')<div class="text-danger small mt-1">{{ $message }}</div>@enderror
               </div>
 
-              <div class="contact-form-group">
+              <!-- <div class="contact-form-group">
                 <label>I would like to receive email updates from PARC Foundation:</label>
                 <div class="contact-radio-group">
                   <label class="contact-radio-label">
@@ -190,7 +190,7 @@
                     <input type="radio" name="text_updates" value="no" checked> No
                   </label>
                 </div>
-              </div>
+              </div> -->
 
               <button type="submit" class="btn-send-message mt-3">
                 <i class="bi bi-send-fill me-2"></i> Send Message
