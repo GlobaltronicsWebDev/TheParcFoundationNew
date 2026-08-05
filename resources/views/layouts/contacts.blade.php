@@ -50,19 +50,19 @@
         <form action="{{ route('contacts.send') }}" method="POST">
           @csrf
           <label for="footer_first_name">First Name <span class="required">*required</span></label>
-          <input type="text" id="footer_first_name" name="first_name" value="{{ old('first_name') }}" required placeholder="First Name">
+          <input type="text" id="footer_first_name" name="first_name" value="{{ old('first_name') }}" required placeholder="First Name" style="width:100% !important;max-width:100% !important;display:block !important;padding:10px 12px !important;margin-top:5px !important;border:1px solid #ccc !important;border-radius:4px !important;background-color:#ffffff !important;color:#222222 !important;font-size:13px !important;box-sizing:border-box !important;">
           @error('first_name')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
 
           <label for="footer_last_name">Last Name <span class="required">*required</span></label>
-          <input type="text" id="footer_last_name" name="last_name" value="{{ old('last_name') }}" required placeholder="Last Name">
+          <input type="text" id="footer_last_name" name="last_name" value="{{ old('last_name') }}" required placeholder="Last Name" style="width:100% !important;max-width:100% !important;display:block !important;padding:10px 12px !important;margin-top:5px !important;border:1px solid #ccc !important;border-radius:4px !important;background-color:#ffffff !important;color:#222222 !important;font-size:13px !important;box-sizing:border-box !important;">
           @error('last_name')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
 
           <label for="footer_email">Email Address <span class="required">*required</span></label>
-          <input type="email" id="footer_email" name="email" value="{{ old('email') }}" required placeholder="Email Address">
+          <input type="email" id="footer_email" name="email" value="{{ old('email') }}" required placeholder="Email Address" style="width:100% !important;max-width:100% !important;display:block !important;padding:10px 12px !important;margin-top:5px !important;border:1px solid #ccc !important;border-radius:4px !important;background-color:#ffffff !important;color:#222222 !important;font-size:13px !important;box-sizing:border-box !important;">
           @error('email')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
 
           <label for="footer_subject">Subject / Inquiry Type <span class="required">*required</span></label>
-          <select id="footer_subject" name="subject" required>
+          <select id="footer_subject" name="subject" required style="width:100% !important;max-width:100% !important;display:block !important;padding:10px 12px !important;margin-top:5px !important;border:1px solid #ccc !important;border-radius:4px !important;background-color:#ffffff !important;color:#222222 !important;font-size:13px !important;box-sizing:border-box !important;cursor:pointer !important;">
             <option value="" disabled selected>Select an inquiry type</option>
             <option value="General Inquiry" {{ old('subject') == 'General Inquiry' ? 'selected' : '' }}>General Inquiry</option>
             <option value="Volunteer Opportunities" {{ old('subject') == 'Volunteer Opportunities' ? 'selected' : '' }}>Volunteer Opportunities</option>
@@ -74,7 +74,7 @@
           @error('subject')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
 
           <label for="footer_message">Your Message <span class="required">*required</span></label>
-          <textarea id="footer_message" name="message" rows="4" required placeholder="Write your message here...">{{ old('message') }}</textarea>
+          <textarea id="footer_message" name="message" rows="4" required placeholder="Write your message here..." style="width:100% !important;max-width:100% !important;display:block !important;padding:10px 12px !important;margin-top:5px !important;border:1px solid #ccc !important;border-radius:4px !important;background-color:#ffffff !important;color:#222222 !important;font-size:13px !important;min-height:110px !important;box-sizing:border-box !important;resize:vertical !important;">{{ old('message') }}</textarea>
           @error('message')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
 
           <p class="small-text">

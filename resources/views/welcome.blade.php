@@ -10,7 +10,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('cssfolder/main.css?v=1.1') }}">
   <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css?vr=2') }}">
-  <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
+  <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css?v=2') }}" />
   <link rel="stylesheet" href="{{ asset('cssfolder/carousel.css') }}" />
 
   <style>

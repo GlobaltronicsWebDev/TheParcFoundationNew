@@ -12,7 +12,7 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css') }}">
-  <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
+  <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css?v=2') }}" />
   <link rel="stylesheet" href="{{ asset('cssfolder/contactspage.css') }}" />
 </head>
 <body>
