@@ -67,45 +67,43 @@
 </div>
 
 <script>
-  (function () {
-    var preloader = document.getElementById('parc-music-preloader');
-    var progressBar = document.getElementById('preloaderProgressBar');
-    var statusText = document.getElementById('preloaderStatusText');
+ (function () {
+  var preloader = document.getElementById('parc-music-preloader');
+  var progressBar = document.getElementById('preloaderProgressBar');
+  var statusText = document.getElementById('preloaderStatusText');
 
-    if (!preloader) return;
+  if (!preloader) return;
 
-    var progress = 0;
-    var progressInterval = setInterval(function () {
-      if (progress < 85) {
-        progress += Math.floor(Math.random() * 15) + 5;
-        if (progress > 85) progress = 85;
-        if (progressBar) progressBar.style.width = progress + '%';
-      }
-    }, 150);
+  var TOTAL_DURATION = 5000; // 5 seconds in milliseconds
+  var UPDATE_INTERVAL = 50;  // Update every 50ms for smooth animation
+  var startTime = Date.now();
 
-    function hidePreloader() {
+  var progressInterval = setInterval(function () {
+    var elapsedTime = Date.now() - startTime;
+    var progress = Math.min((elapsedTime / TOTAL_DURATION) * 100, 100);
+
+    if (progressBar) {
+      progressBar.style.width = progress.toFixed(1) + '%';
+    }
+
+    if (elapsedTime >= TOTAL_DURATION) {
       clearInterval(progressInterval);
-      if (progressBar) progressBar.style.width = '100%';
-      if (statusText) statusText.textContent = 'Welcome!';
+      hidePreloader();
+    }
+  }, UPDATE_INTERVAL);
 
+  function hidePreloader() {
+    if (progressBar) progressBar.style.width = '100%';
+    if (statusText) statusText.textContent = 'Welcome!';
+
+    setTimeout(function () {
+      preloader.classList.add('hide-preloader');
       setTimeout(function () {
-        preloader.classList.add('hide-preloader');
-        setTimeout(function () {
-          if (preloader.parentNode) {
-            preloader.parentNode.removeChild(preloader);
-          }
-        }, 700);
-      }, 300);
-    }
-
-    if (document.readyState === 'complete') {
-      setTimeout(hidePreloader, 600);
-    } else {
-      window.addEventListener('load', function () {
-        setTimeout(hidePreloader, 600);
-      });
-      // Safety fallback after 4s
-      setTimeout(hidePreloader, 4000);
-    }
-  })();
+        if (preloader.parentNode) {
+          preloader.parentNode.removeChild(preloader);
+        }
+      }, 700);
+    }, 300);
+  }
+})();
 </script>
