@@ -19,6 +19,7 @@
 <body>
   <!-- Include Navbar -->
   @include('layouts.navbar')
+    @include('layouts.preloader')
 
 <!-- Latest News Section -->
 <section class="latest-news-section">

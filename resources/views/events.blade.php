@@ -17,6 +17,7 @@
 </head>
 <body>
   @include('layouts.navbar')
+    @include('layouts.preloader')
 
   <section class="events-section">
     <div class="container">
