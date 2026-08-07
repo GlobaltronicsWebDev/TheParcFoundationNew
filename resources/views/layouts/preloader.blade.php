@@ -74,7 +74,7 @@
 
   if (!preloader) return;
 
-  var TOTAL_DURATION = 5000; // 5 seconds in milliseconds
+  var TOTAL_DURATION = 7000; // 7 seconds in milliseconds
   var UPDATE_INTERVAL = 50;  // Update every 50ms for smooth animation
   var startTime = Date.now();
 
