@@ -99,7 +99,7 @@
     </div>
 
     {{-- ── COMMUNITY OPT-IN ── --}}
-    <div class="community-section">
+    <!-- <div class="community-section">
       <p class="p1form">BE PART OF OUR COMMUNITY</p>
       <p class="p2form">Stay updated on how you can help empower youth through music. You can unsubscribe at any time.</p>
 
@@ -115,9 +115,9 @@
                    {{ old('emailUpdates', 'no') === 'no' ? 'checked' : '' }} /> No
           </label>
         </fieldset>
-      </div>
+      </div> -->
 
-      <div class="radio-block">
+      <!-- <div class="radio-block">
         <b><p>I would like to get PARC text messages:</p></b>
         <fieldset class="radio-group">
           <label class="radio-label">
@@ -130,7 +130,7 @@
           </label>
         </fieldset>
       </div>
-    </div>
+    </div> -->
 
     {{-- ── PRIVACY NOTE ── --}}
     <div class="note2">
@@ -175,13 +175,13 @@
     </div>
 
     {{-- ── COVER FEE ── --}}
-    <div class="last">
+    <!-- <div class="last">
       <label class="checkbox-label">
         <input type="checkbox" id="checkparc" name="cover_processing_fee" value="1"
                {{ old('cover_processing_fee') ? 'checked' : '' }}>
         I want PARC to receive 100% of my donation. I'll cover processing fees ($0.30).
       </label>
-    </div>
+    </div> -->
 
     {{-- ── DONATE NOW BUTTON ── --}}
     <button type="submit" class="adopt-donate-btn" id="adoptSubmitBtn">
