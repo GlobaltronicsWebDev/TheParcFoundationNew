@@ -14,55 +14,7 @@
   <link rel="stylesheet" href="{{ asset('cssfolder/carousel.css') }}" />
 
   <style>
-    /* ── Preloader ── */
-    #preloader {
-      position: fixed;
-      inset: 0;
-      background: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 99999;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
-    }
-    #preloader.hide {
-      opacity: 0;
-      visibility: hidden;
-    }
-    #preloader img {
-      width: 110px;
-      animation: pulse 1.2s ease-in-out infinite;
-    }
-    #preloader .loading-bar-wrap {
-      width: 180px;
-      height: 4px;
-      background: #e0e0e0;
-      border-radius: 4px;
-      margin-top: 22px;
-      overflow: hidden;
-    }
-    #preloader .loading-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #f7581e, #f7af1e);
-      border-radius: 4px;
-      animation: loadbar 5s linear forwards;
-    }
-    #preloader p {
-      margin-top: 14px;
-      font-size: 0.85rem;
-      color: #aaa;
-      letter-spacing: 1px;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50%       { transform: scale(1.08); opacity: 0.85; }
-    }
-    @keyframes loadbar {
-      from { width: 0%; }
-      to   { width: 100%; }
-    }
+
 
     /* ── Date & Time Widget ── */
     #datetime-widget {
@@ -111,13 +63,7 @@
     <source src="{{ asset('assets/audio/violinbg.mp3') }}" type="audio/mpeg">
   </audio> -->
 
-  <div id="preloader">
-    <img src="{{ asset('assets/logo/parclogosquare.png') }}" alt="PARC Foundation">
-    <div class="loading-bar-wrap">
-      <div class="loading-bar"></div>
-    </div>
-    <p>Loading...</p>
-  </div>
+  @include('layouts.preloader')
 
   <div id="datetime-widget">
     <div class="dt-time" id="dt-time">--:--:--</div>
@@ -345,16 +291,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    /* ── Preloader: hide after 5 seconds ── */
-    window.addEventListener('load', function () {
-      setTimeout(function () {
-        var preloader = document.getElementById('preloader');
-        preloader.classList.add('hide');
-        preloader.addEventListener('transitionend', function () {
-          preloader.remove();
-        });
-      }, 5000);
-    });
+
 
     /* ── Live Date & Time Widget ── */
     function updateClock() {

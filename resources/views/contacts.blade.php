@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="{{ asset('cssfolder/contactspage.css') }}" />
 </head>
 <body>
+  @include('layouts.preloader')
+
 
   <!-- Navbar -->
   @include('layouts.navbar')

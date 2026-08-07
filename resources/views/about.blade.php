@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="{{ asset('cssfolder/about.css') }}" />
 </head>
 <body>
+  @include('layouts.preloader')
+
 
   @include('layouts.navbar')
     <!-- <audio id="bgMusic" loop>

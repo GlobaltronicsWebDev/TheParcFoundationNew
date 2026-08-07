@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="{{ asset('cssfolder/parcform.css') }}">
 </head>
 <body>
+  @include('layouts.preloader')
+
   <!-- Include Navbar -->
   @include('layouts.navbar')
 
