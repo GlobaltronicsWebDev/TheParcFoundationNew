@@ -181,15 +181,10 @@
       <span class="amount-value" id="amountDisplayValue">—</span>
     </div>
 
-    {{-- Cover processing fee --}}
-    <div class="last">
-      <input type="checkbox" id="checkparc" name="checkparc" value="1">
-      <label for="checkparc">I want PARC to receive 100% of my donation. I'll cover processing fees ($0.30).</label>
-    </div>
 
     {{-- DONATE BUTTON --}}
     <button type="submit" class="btn-donate-submit" id="donateSubmitBtn" style="border:none;">
-      <span class="btn-text">DONATE NOW</span>
+      <span class="btn-text">DONATE</span>
       <span class="btn-spinner" id="btnSpinner" style="display:none;">
         <svg class="spin-svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
           <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.3)" stroke-width="3"/>
