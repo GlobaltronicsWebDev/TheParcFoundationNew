@@ -115,17 +115,34 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
+  function updateStep1ButtonState() {
+    const btn = document.getElementById("btnToStep2");
+    if (!btn) return;
+
+    const hasType = !!giveTypeInput?.value;
+    const hasAmount = !!selectedAmountInput?.value && Number(selectedAmountInput.value) > 0;
+
+    if (hasType && hasAmount) {
+      btn.disabled = false;
+      btn.style.background = "#f89b1e";
+      btn.style.color = "#ffffff";
+      btn.style.cursor = "pointer";
+      btn.style.opacity = "1";
+    } else {
+      btn.disabled = true;
+      btn.style.background = "#d1d5db";
+      btn.style.color = "#777777";
+      btn.style.cursor = "not-allowed";
+      btn.style.opacity = "0.7";
+    }
+  }
+
   function setGiveType(type) {
     if (!type) {
       if (giveTypeInput) giveTypeInput.value = "";
       giveOnceBtn?.classList.remove("active");
       giveMonthlyBtn?.classList.remove("active");
-      if (btnToStep2) {
-        btnToStep2.disabled = true;
-        btnToStep2.style.background = "#d1d5db";
-        btnToStep2.style.color = "#777777";
-        btnToStep2.style.cursor = "not-allowed";
-      }
+      updateStep1ButtonState();
       return;
     }
 
@@ -144,17 +161,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    if (btnToStep2) {
-      btnToStep2.disabled = false;
-      btnToStep2.style.background = "#f89b1e";
-      btnToStep2.style.color = "#ffffff";
-      btnToStep2.style.cursor = "pointer";
-    }
+    updateStep1ButtonState();
   }
 
   giveOnceBtn?.addEventListener("click",    e => { e.preventDefault(); setGiveType("once"); });
   giveMonthlyBtn?.addEventListener("click", e => { e.preventDefault(); setGiveType("monthly"); });
-  setGiveType(null);
+  setGiveType("once");
 
   /* ================================================================
    * 3. AMOUNT SELECTION
@@ -179,6 +191,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (amountDisplayValue)    amountDisplayValue.textContent = displayText;
     if (selectedAmountDisplay) selectedAmountDisplay.style.display = "flex";
     if (modalAmountVal)        modalAmountVal.textContent = displayText;
+
+    updateStep1ButtonState();
   }
 
   amountBtns.forEach(btn => {
@@ -208,6 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (selectedAmountDisplay) selectedAmountDisplay.style.display = "none";
         selectedAmountInput.value = "";
         currentRawAmount = 0;
+        updateStep1ButtonState();
       }
     });
   });
@@ -222,6 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
       currentRawAmount = 0;
       setSelectedAmount("Custom Amount", "");
     }
+    updateStep1ButtonState();
   });
 
   /* ================================================================
