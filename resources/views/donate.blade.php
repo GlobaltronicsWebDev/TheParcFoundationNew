@@ -22,8 +22,8 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css') }}" />
   <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
-  <link rel="stylesheet" href="{{ asset('cssfolder/donate.css') }}" />
-  <link rel="stylesheet" href="{{ asset('cssfolder/parcform.css') }}">
+  <link rel="stylesheet" href="{{ asset('cssfolder/donate.css') }}?v={{ time() }}" />
+  <link rel="stylesheet" href="{{ asset('cssfolder/parcform.css') }}?v={{ time() }}">
 </head>
 <body>
   @include('layouts.preloader')
@@ -134,6 +134,6 @@
   <!-- JS (Stripe must load before donate.js) -->
   <script src="https://js.stripe.com/v3/"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="{{ asset('jsfolder/donate.js') }}"></script>
+  <script src="{{ asset('jsfolder/donate.js') }}?v={{ time() }}"></script>
 </body>
 </html>
