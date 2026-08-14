@@ -94,15 +94,25 @@ document.addEventListener("DOMContentLoaded", function () {
   initStripe();
 
   /* ================================================================
-   * 2. GIVE ONCE / GIVE MONTHLY TOGGLE
+   * 2. ELEMENT REFS & INITIAL STATE
    * ================================================================ */
-  const giveOnceBtn    = document.getElementById("giveOnceBtn");
-  const giveMonthlyBtn = document.getElementById("giveMonthlyBtn");
-  const giveTypeInput  = document.getElementById("giveType");
-  const noteTitle      = document.getElementById("noteTitle");
-  const noteSubtitle   = document.getElementById("noteSubtitle");
-  const amountBtns     = document.querySelectorAll(".amount-btn");
-  const btnToStep2     = document.getElementById("btnToStep2");
+  const giveOnceBtn           = document.getElementById("giveOnceBtn");
+  const giveMonthlyBtn        = document.getElementById("giveMonthlyBtn");
+  const giveTypeInput         = document.getElementById("giveType");
+  const noteTitle             = document.getElementById("noteTitle");
+  const noteSubtitle          = document.getElementById("noteSubtitle");
+  const amountBtns            = document.querySelectorAll(".amount-btn");
+  const btnToStep2            = document.getElementById("btnToStep2");
+  const selectedAmountInput   = document.getElementById("selectedAmount");
+  const selectedAmountDisplay = document.getElementById("selectedAmountDisplay");
+  const amountDisplayValue    = document.getElementById("amountDisplayValue");
+  const customAmountWrap      = document.getElementById("customAmountWrap");
+  const customAmountInput     = document.getElementById("customAmountInput");
+  const modalAmountVal        = document.getElementById("modalAmountVal");
+  const paymentMethodInput    = document.getElementById("paymentMethod");
+
+  /** Numeric raw value for Stripe (no currency symbol) */
+  let currentRawAmount = 0;
 
   const giveTexts = {
     once: {
@@ -114,6 +124,10 @@ document.addEventListener("DOMContentLoaded", function () {
       subtitle: "Monthly giving is a simple, impactful way to support PARCaralan Scholars"
     }
   };
+
+  function formatPeso(num) {
+    return "₱" + Number(num).toLocaleString("en-PH");
+  }
 
   function updateStep1ButtonState() {
     const btn = document.getElementById("btnToStep2");
@@ -144,6 +158,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  function setSelectedAmount(displayText, rawValue) {
+    if (selectedAmountInput) selectedAmountInput.value = rawValue;
+    currentRawAmount = Number(rawValue) || 0;
+    if (amountDisplayValue)    amountDisplayValue.textContent = displayText;
+    if (selectedAmountDisplay) selectedAmountDisplay.style.display = "flex";
+    if (modalAmountVal)        modalAmountVal.textContent = displayText;
+
+    updateStep1ButtonState();
+  }
+
   function setGiveType(type) {
     if (!type) {
       if (giveTypeInput) giveTypeInput.value = "";
@@ -153,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    giveTypeInput.value = type;
+    if (giveTypeInput) giveTypeInput.value = type;
     giveOnceBtn?.classList.toggle("active", type === "once");
     giveMonthlyBtn?.classList.toggle("active", type === "monthly");
     if (noteTitle)    noteTitle.textContent    = giveTexts[type].title;
@@ -190,32 +214,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* ================================================================
-   * 3. AMOUNT SELECTION
+   * 3. AMOUNT SELECTION LISTENERS
    * ================================================================ */
-  const selectedAmountInput   = document.getElementById("selectedAmount");
-  const selectedAmountDisplay = document.getElementById("selectedAmountDisplay");
-  const amountDisplayValue    = document.getElementById("amountDisplayValue");
-  const customAmountWrap      = document.getElementById("customAmountWrap");
-  const customAmountInput     = document.getElementById("customAmountInput");
-  const modalAmountVal        = document.getElementById("modalAmountVal");
-
-  /** Numeric raw value for Stripe (no currency symbol) */
-  let currentRawAmount = 0;
-
-  function formatPeso(num) {
-    return "₱" + Number(num).toLocaleString("en-PH");
-  }
-
-  function setSelectedAmount(displayText, rawValue) {
-    selectedAmountInput.value = rawValue;
-    currentRawAmount = Number(rawValue) || 0;
-    if (amountDisplayValue)    amountDisplayValue.textContent = displayText;
-    if (selectedAmountDisplay) selectedAmountDisplay.style.display = "flex";
-    if (modalAmountVal)        modalAmountVal.textContent = displayText;
-
-    updateStep1ButtonState();
-  }
-
   amountBtns.forEach(btn => {
     btn.addEventListener("click", function (e) {
       e.preventDefault();
@@ -227,21 +227,21 @@ document.addEventListener("DOMContentLoaded", function () {
         const amount = this.dataset.amount;
 
         if (amount === "other") {
-          customAmountWrap.style.display = "block";
+          if (customAmountWrap) customAmountWrap.style.display = "block";
           customAmountInput?.focus();
           currentRawAmount = 0;
           setSelectedAmount("Custom Amount", "");
         } else {
-          customAmountWrap.style.display = "none";
-          const label = giveTypeInput.value === "monthly"
+          if (customAmountWrap) customAmountWrap.style.display = "none";
+          const label = (giveTypeInput?.value === "monthly")
             ? this.getAttribute("data-monthly")
             : this.getAttribute("data-once");
           setSelectedAmount(label, amount);
         }
       } else {
-        customAmountWrap.style.display = "none";
+        if (customAmountWrap) customAmountWrap.style.display = "none";
         if (selectedAmountDisplay) selectedAmountDisplay.style.display = "none";
-        selectedAmountInput.value = "";
+        if (selectedAmountInput) selectedAmountInput.value = "";
         currentRawAmount = 0;
         updateStep1ButtonState();
       }
@@ -251,13 +251,15 @@ document.addEventListener("DOMContentLoaded", function () {
   customAmountInput?.addEventListener("input", function () {
     const val = this.value.trim();
     if (val && Number(val) > 0) {
-      const isMonthly = giveTypeInput.value === "monthly";
+      const isMonthly = giveTypeInput?.value === "monthly";
       const label = formatPeso(val) + (isMonthly ? "/mo" : "");
       setSelectedAmount(label, val);
     } else {
       currentRawAmount = 0;
       setSelectedAmount("Custom Amount", "");
     }
+    updateStep1ButtonState();
+  });
     updateStep1ButtonState();
   });
 
