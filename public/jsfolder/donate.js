@@ -594,36 +594,25 @@ document.addEventListener("DOMContentLoaded", function () {
    * 16. STEPPER & WIZARD NAVIGATION LOGIC
    * ================================================================ */
   let currentStep = 1;
-  const totalSteps = 4;
-
-  const stepNodes = [
-    document.getElementById("stepNode1"),
-    document.getElementById("stepNode2"),
-    document.getElementById("stepNode3"),
-    document.getElementById("stepNode4")
-  ];
-
-  const stepPanels = [
-    document.getElementById("stepPanel1"),
-    document.getElementById("stepPanel2"),
-    document.getElementById("stepPanel3"),
-    document.getElementById("stepPanel4")
-  ];
-
-  const stepperTrackFill = document.getElementById("stepperTrackFill");
-  const paymentMethodInput = document.getElementById("paymentMethod");
 
   function updateStepperUI(targetStep) {
     currentStep = targetStep;
 
-    // Update track line fill width: Step 1 = 0%, Step 2 = 33.33%, Step 3 = 66.66%, Step 4 = 100%
+    const trackFill = document.getElementById("stepperTrackFill");
+    const totalSteps = 4;
     const percentage = ((targetStep - 1) / (totalSteps - 1)) * 100;
-    if (stepperTrackFill) {
-      stepperTrackFill.style.width = percentage + "%";
+    if (trackFill) {
+      trackFill.style.width = percentage + "%";
     }
 
-    // Update step nodes
-    stepNodes.forEach((node, index) => {
+    const nodes = [
+      document.getElementById("stepNode1"),
+      document.getElementById("stepNode2"),
+      document.getElementById("stepNode3"),
+      document.getElementById("stepNode4")
+    ];
+
+    nodes.forEach((node, index) => {
       if (!node) return;
       const stepNum = index + 1;
       const circle = document.getElementById("stepCircle" + stepNum);
@@ -674,38 +663,47 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Update step panels visibility
-    stepPanels.forEach((panel, index) => {
+    const panels = [
+      document.getElementById("stepPanel1"),
+      document.getElementById("stepPanel2"),
+      document.getElementById("stepPanel3"),
+      document.getElementById("stepPanel4")
+    ];
+
+    panels.forEach((panel, index) => {
       if (!panel) return;
       const stepNum = index + 1;
       if (stepNum === targetStep) {
         panel.classList.add("active");
-        panel.style.display = "block";
+        panel.style.setProperty("display", "block", "important");
       } else {
         panel.classList.remove("active");
-        panel.style.display = "none";
+        panel.style.setProperty("display", "none", "important");
       }
     });
 
-    // If entering Step 4, populate summary
     if (targetStep === 4) {
       populateConfirmSummary();
     }
 
-    // Scroll smoothly to top of donate form
     document.querySelector(".donateform")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
   function validateStep(stepNum) {
     clearAllErrors();
 
+    const giveTypeEl = document.getElementById("giveType");
+    const amountEl   = document.getElementById("selectedAmount");
+
     if (stepNum === 1) {
-      if (!giveTypeInput?.value) {
+      const typeVal   = giveTypeEl?.value;
+      const amountVal = amountEl?.value;
+
+      if (!typeVal) {
         alert("Please select a donation frequency ('Give Once' or 'Give Monthly') to proceed.");
         return false;
       }
-      const selectedVal = selectedAmountInput?.value;
-      if (!selectedVal || Number(selectedVal) <= 0) {
+      if (!amountVal || Number(amountVal) <= 0) {
         alert("Please select or enter a donation amount to proceed.");
         return false;
       }
@@ -749,24 +747,53 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Node clicks
-  stepNodes.forEach((node, idx) => {
-    node?.addEventListener("click", () => {
-      const targetStep = idx + 1;
-      if (targetStep <= currentStep) {
-        updateStepperUI(targetStep);
+  [1, 2, 3, 4].forEach(stepNum => {
+    document.getElementById("stepNode" + stepNum)?.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (stepNum <= currentStep) {
+        updateStepperUI(stepNum);
       } else {
-        goToStep(targetStep);
+        goToStep(stepNum);
       }
     });
   });
 
   // Action buttons
-  document.getElementById("btnToStep2")?.addEventListener("click", () => goToStep(2));
-  document.getElementById("btnBackToStep1")?.addEventListener("click", () => goToStep(1));
-  document.getElementById("btnToStep3")?.addEventListener("click", () => goToStep(3));
-  document.getElementById("btnBackToStep2")?.addEventListener("click", () => goToStep(2));
-  document.getElementById("btnToStep4")?.addEventListener("click", () => goToStep(4));
-  document.getElementById("btnBackToStep3")?.addEventListener("click", () => goToStep(3));
+  document.getElementById("btnToStep2")?.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    goToStep(2);
+  });
+
+  document.getElementById("btnBackToStep1")?.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    goToStep(1);
+  });
+
+  document.getElementById("btnToStep3")?.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    goToStep(3);
+  });
+
+  document.getElementById("btnBackToStep2")?.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    goToStep(2);
+  });
+
+  document.getElementById("btnToStep4")?.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    goToStep(4);
+  });
+
+  document.getElementById("btnBackToStep3")?.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    goToStep(3);
+  });
 
   function populateConfirmSummary() {
     const amountVal = amountDisplayValue?.textContent || formatPeso(currentRawAmount || selectedAmountInput?.value || 0);
