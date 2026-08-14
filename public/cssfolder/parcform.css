@@ -1245,6 +1245,25 @@ body {
   box-shadow: 0 2px 8px rgba(248, 155, 30, 0.3);
 }
 
+select.form-select-custom {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #1f2937;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: auto;
+}
+
+select.form-select-custom:focus {
+  border-color: #ffa200;
+  box-shadow: 0 0 0 3px rgba(255, 162, 0, 0.15);
+}
+
 /* ================================================================
    4-STEP PROGRESS STEPPER HEADER
    Reference design matching Cyan/Blue active step with PARC (P) icon
