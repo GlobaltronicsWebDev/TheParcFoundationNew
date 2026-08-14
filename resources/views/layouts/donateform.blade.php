@@ -119,7 +119,7 @@
       </div>
 
       <div class="step-actions" style="margin-top: 24px;">
-        <button type="button" class="btn-step-next" id="btnToStep2" disabled style="width: 100%; padding: 16px; background: #d1d5db; color: #777777; border: none; border-radius: 8px; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; cursor: not-allowed; transition: all 0.25s ease;">
+        <button type="button" class="btn-step-next" id="btnToStep2" onclick="goToStep(2)" disabled style="width: 100%; padding: 16px; background: #d1d5db; color: #777777; border: none; border-radius: 8px; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; cursor: not-allowed; transition: all 0.25s ease;">
           Donate Now
         </button>
       </div>
@@ -175,8 +175,8 @@
       </div>
 
       <div class="step-actions" style="display: flex; gap: 12px; margin-top: 24px;">
-        <button type="button" class="btn-step-back" id="btnBackToStep1" style="padding: 14px 20px; background: #f3f4f6; color: #4b5563; border: 1.5px solid #d1d5db; border-radius: 8px; font-weight: 600; cursor: pointer;">← Back</button>
-        <button type="button" class="btn-step-next" id="btnToStep3" style="flex: 1; padding: 14px 20px; background: #f89b1e; color: #ffffff; border: none; border-radius: 8px; font-weight: 800; font-size: 1rem; text-transform: uppercase; cursor: pointer;">
+        <button type="button" class="btn-step-back" id="btnBackToStep1" onclick="goToStep(1)" style="padding: 14px 20px; background: #f3f4f6; color: #4b5563; border: 1.5px solid #d1d5db; border-radius: 8px; font-weight: 600; cursor: pointer;">← Back</button>
+        <button type="button" class="btn-step-next" id="btnToStep3" onclick="goToStep(3)" style="flex: 1; padding: 14px 20px; background: #f89b1e; color: #ffffff; border: none; border-radius: 8px; font-weight: 800; font-size: 1rem; text-transform: uppercase; cursor: pointer;">
           Continue
         </button>
       </div>
@@ -262,8 +262,8 @@
       </div>
 
       <div class="step-actions" style="display: flex; gap: 12px; margin-top: 24px;">
-        <button type="button" class="btn-step-back" id="btnBackToStep2" style="padding: 14px 20px; background: #f3f4f6; color: #4b5563; border: 1.5px solid #d1d5db; border-radius: 8px; font-weight: 600; cursor: pointer;">← Back</button>
-        <button type="button" class="btn-step-next" id="btnToStep4" style="flex: 1; padding: 14px 20px; background: #f89b1e; color: #ffffff; border: none; border-radius: 8px; font-weight: 800; font-size: 1rem; text-transform: uppercase; cursor: pointer;">
+        <button type="button" class="btn-step-back" id="btnBackToStep2" onclick="goToStep(2)" style="padding: 14px 20px; background: #f3f4f6; color: #4b5563; border: 1.5px solid #d1d5db; border-radius: 8px; font-weight: 600; cursor: pointer;">← Back</button>
+        <button type="button" class="btn-step-next" id="btnToStep4" onclick="goToStep(4)" style="flex: 1; padding: 14px 20px; background: #f89b1e; color: #ffffff; border: none; border-radius: 8px; font-weight: 800; font-size: 1rem; text-transform: uppercase; cursor: pointer;">
           Continue
         </button>
       </div>
@@ -307,7 +307,7 @@
       </div>
 
       <div class="step-actions" style="display: flex; gap: 12px; margin-top: 24px;">
-        <button type="button" class="btn-step-back" id="btnBackToStep3" style="padding: 14px 20px; background: #f3f4f6; color: #4b5563; border: 1.5px solid #d1d5db; border-radius: 8px; font-weight: 600; cursor: pointer;">← Edit Details</button>
+        <button type="button" class="btn-step-back" id="btnBackToStep3" onclick="goToStep(3)" style="padding: 14px 20px; background: #f3f4f6; color: #4b5563; border: 1.5px solid #d1d5db; border-radius: 8px; font-weight: 600; cursor: pointer;">← Edit Details</button>
         {{-- DONATE SUBMIT BUTTON --}}
         <button type="submit" class="btn-donate-submit" id="donateSubmitBtn" style="flex: 1; border:none; background: #f89b1e; color: #ffffff; padding: 16px; border-radius: 8px; font-weight: 800; font-size: 1rem; text-transform: uppercase; cursor: pointer;">
           <span class="btn-text">CONFIRM &amp; DONATE NOW 🎉</span>
