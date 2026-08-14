@@ -260,8 +260,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     updateStep1ButtonState();
   });
-    updateStep1ButtonState();
-  });
 
   /* ================================================================
    * 4. PAYMENT METHOD CONFIG
