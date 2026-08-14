@@ -261,12 +261,18 @@
 
       <div class="form-row">
         <div class="form-group">
-          <label for="city">City / Municipality</label>
-          <input type="text" id="city" name="city" placeholder="e.g. Manila / Quezon City" />
+          <label for="citySelect">City / Municipality</label>
+          <select id="citySelect" name="city" class="form-select-custom" style="width: 100%; padding: 12px 14px; font-size: 0.95rem; border: 1px solid #d1d5db; border-radius: 8px; background-color: #ffffff; color: #1f2937; outline: none; cursor: pointer;">
+            <option value="" disabled selected>Select Province First</option>
+          </select>
+          <input type="text" id="cityCustom" name="city_custom" placeholder="Type city/municipality name" style="display: none; margin-top: 8px;" />
         </div>
         <div class="form-group">
-          <label for="barangay">Barangay</label>
-          <input type="text" id="barangay" name="barangay" placeholder="e.g. Barangay 123 / San Lorenzo" />
+          <label for="barangaySelect">Barangay</label>
+          <select id="barangaySelect" name="barangay" class="form-select-custom" style="width: 100%; padding: 12px 14px; font-size: 0.95rem; border: 1px solid #d1d5db; border-radius: 8px; background-color: #ffffff; color: #1f2937; outline: none; cursor: pointer;">
+            <option value="" disabled selected>Select City First</option>
+          </select>
+          <input type="text" id="barangayCustom" name="barangay_custom" placeholder="Type barangay name" style="display: none; margin-top: 8px;" />
         </div>
       </div>
 
