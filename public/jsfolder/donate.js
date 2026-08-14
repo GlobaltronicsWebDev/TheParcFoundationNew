@@ -819,5 +819,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (sumReceipt) sumReceipt.textContent = receiptFile ? receiptFile.name : "Attached";
   }
 
+  // Expose wizard functions globally for inline onclick handlers
+  window.goToStep = goToStep;
+  window.updateStepperUI = updateStepperUI;
+  window.validateStep = validateStep;
+
   console.log("donate.js: 4-step wizard integration loaded ✅");
 });
