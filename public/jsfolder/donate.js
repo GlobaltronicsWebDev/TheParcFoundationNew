@@ -701,6 +701,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function validateStep(stepNum) {
+    stepNum = Number(stepNum);
     clearAllErrors();
 
     const giveTypeEl = document.getElementById("giveType");
@@ -749,6 +750,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function goToStep(targetStep) {
+    targetStep = Number(targetStep);
+
     if (targetStep > currentStep) {
       for (let i = currentStep; i < targetStep; i++) {
         if (!validateStep(i)) return;
@@ -759,52 +762,77 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Node clicks
   [1, 2, 3, 4].forEach(stepNum => {
-    document.getElementById("stepNode" + stepNum)?.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (stepNum <= currentStep) {
-        updateStepperUI(stepNum);
-      } else {
-        goToStep(stepNum);
+    const node = document.getElementById("stepNode" + stepNum);
+    if (node) {
+      node.onclick = function (e) {
+        if (e) e.preventDefault();
+        if (stepNum <= currentStep) {
+          updateStepperUI(stepNum);
+        } else {
+          goToStep(stepNum);
+        }
+        return false;
+      };
+    }
+  });
+
+  // Action buttons direct onclick assignment
+  const btn2 = document.getElementById("btnToStep2");
+  if (btn2) {
+    btn2.onclick = function (e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
       }
-    });
-  });
+      goToStep(2);
+      return false;
+    };
+  }
 
-  // Action buttons
-  document.getElementById("btnToStep2")?.addEventListener("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    goToStep(2);
-  });
+  const btnBack1 = document.getElementById("btnBackToStep1");
+  if (btnBack1) {
+    btnBack1.onclick = function (e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      goToStep(1);
+      return false;
+    };
+  }
 
-  document.getElementById("btnBackToStep1")?.addEventListener("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    goToStep(1);
-  });
+  const btn3 = document.getElementById("btnToStep3");
+  if (btn3) {
+    btn3.onclick = function (e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      goToStep(3);
+      return false;
+    };
+  }
 
-  document.getElementById("btnToStep3")?.addEventListener("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    goToStep(3);
-  });
+  const btnBack2 = document.getElementById("btnBackToStep2");
+  if (btnBack2) {
+    btnBack2.onclick = function (e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      goToStep(2);
+      return false;
+    };
+  }
 
-  document.getElementById("btnBackToStep2")?.addEventListener("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    goToStep(2);
-  });
+  const btn4 = document.getElementById("btnToStep4");
+  if (btn4) {
+    btn4.onclick = function (e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      goToStep(4);
+      return false;
+    };
+  }
 
-  document.getElementById("btnToStep4")?.addEventListener("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    goToStep(4);
-  });
-
-  document.getElementById("btnBackToStep3")?.addEventListener("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    goToStep(3);
-  });
+  const btnBack3 = document.getElementById("btnBackToStep3");
+  if (btnBack3) {
+    btnBack3.onclick = function (e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      goToStep(3);
+      return false;
+    };
+  }
 
   function populateConfirmSummary() {
     const amountVal = amountDisplayValue?.textContent || formatPeso(currentRawAmount || selectedAmountInput?.value || 0);
