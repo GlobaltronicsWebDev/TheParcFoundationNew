@@ -119,20 +119,28 @@ document.addEventListener("DOMContentLoaded", function () {
     const btn = document.getElementById("btnToStep2");
     if (!btn) return;
 
-    const hasType = !!giveTypeInput?.value;
+    const giveTypeEl = document.getElementById("giveType");
+    const amountEl   = document.getElementById("selectedAmount");
 
-    if (hasType) {
+    const hasType = !!giveTypeEl?.value;
+    const hasAmount = !!amountEl?.value && Number(amountEl.value) > 0;
+
+    if (hasType && hasAmount) {
       btn.disabled = false;
+      btn.removeAttribute("disabled");
       btn.style.background = "#f89b1e";
       btn.style.color = "#ffffff";
       btn.style.cursor = "pointer";
       btn.style.opacity = "1";
+      btn.style.pointerEvents = "auto";
     } else {
       btn.disabled = true;
+      btn.setAttribute("disabled", "disabled");
       btn.style.background = "#d1d5db";
       btn.style.color = "#777777";
       btn.style.cursor = "not-allowed";
       btn.style.opacity = "0.7";
+      btn.style.pointerEvents = "none";
     }
   }
 

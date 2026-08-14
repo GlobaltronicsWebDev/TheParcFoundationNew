@@ -119,7 +119,7 @@
       </div>
 
       <div class="step-actions" style="margin-top: 24px;">
-        <button type="button" class="btn-step-next" id="btnToStep2" onclick="goToStep(2)" disabled style="width: 100%; padding: 16px; background: #d1d5db; color: #777777; border: none; border-radius: 8px; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; cursor: not-allowed; transition: all 0.25s ease;">
+        <button type="button" class="btn-step-next" id="btnToStep2" onclick="goToStep(2)" style="width: 100%; padding: 16px; background: #d1d5db; color: #777777; border: none; border-radius: 8px; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; cursor: not-allowed; transition: all 0.25s ease;">
           Donate Now
         </button>
       </div>
