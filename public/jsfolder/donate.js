@@ -102,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const noteTitle      = document.getElementById("noteTitle");
   const noteSubtitle   = document.getElementById("noteSubtitle");
   const amountBtns     = document.querySelectorAll(".amount-btn");
+  const btnToStep2     = document.getElementById("btnToStep2");
 
   const giveTexts = {
     once: {
@@ -115,6 +116,19 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   function setGiveType(type) {
+    if (!type) {
+      if (giveTypeInput) giveTypeInput.value = "";
+      giveOnceBtn?.classList.remove("active");
+      giveMonthlyBtn?.classList.remove("active");
+      if (btnToStep2) {
+        btnToStep2.disabled = true;
+        btnToStep2.style.background = "#d1d5db";
+        btnToStep2.style.color = "#777777";
+        btnToStep2.style.cursor = "not-allowed";
+      }
+      return;
+    }
+
     giveTypeInput.value = type;
     giveOnceBtn?.classList.toggle("active", type === "once");
     giveMonthlyBtn?.classList.toggle("active", type === "monthly");
@@ -129,11 +143,18 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.innerHTML = label;
       }
     });
+
+    if (btnToStep2) {
+      btnToStep2.disabled = false;
+      btnToStep2.style.background = "#f89b1e";
+      btnToStep2.style.color = "#ffffff";
+      btnToStep2.style.cursor = "pointer";
+    }
   }
 
   giveOnceBtn?.addEventListener("click",    e => { e.preventDefault(); setGiveType("once"); });
   giveMonthlyBtn?.addEventListener("click", e => { e.preventDefault(); setGiveType("monthly"); });
-  setGiveType("once");
+  setGiveType(null);
 
   /* ================================================================
    * 3. AMOUNT SELECTION
@@ -653,6 +674,10 @@ document.addEventListener("DOMContentLoaded", function () {
     clearAllErrors();
 
     if (stepNum === 1) {
+      if (!giveTypeInput?.value) {
+        alert("Please select a donation frequency ('Give Once' or 'Give Monthly') to proceed.");
+        return false;
+      }
       const selectedVal = selectedAmountInput?.value;
       if (!selectedVal || Number(selectedVal) <= 0) {
         alert("Please select or enter a donation amount to proceed.");

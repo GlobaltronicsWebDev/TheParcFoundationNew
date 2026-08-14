@@ -80,7 +80,7 @@
     <div class="step-panel active" id="stepPanel1" style="display: block;">
       <!-- One-time / Monthly Toggle -->
       <div class="center-btn" id="giveTypeBtns" role="group" aria-label="Donation frequency">
-        <a href="#" class="btn1 active" data-give="once" id="giveOnceBtn">Give Once</a>
+        <a href="#" class="btn1" data-give="once" id="giveOnceBtn">Give Once</a>
         <a href="#" class="btn2" data-give="monthly" id="giveMonthlyBtn">Give Monthly</a>
       </div>
 
@@ -88,7 +88,7 @@
       <div class="note1">
         <p class="p1" id="noteTitle">Thank you for making a difference.</p>
         <p class="p2" id="noteSubtitle">
-          One-time giving is a powerful way to support PARCaralan Scholars
+          Select a giving frequency to support PARCaralan Scholars
         </p>
       </div>
 
@@ -119,7 +119,7 @@
       </div>
 
       <div class="step-actions" style="margin-top: 24px;">
-        <button type="button" class="btn-step-next" id="btnToStep2" style="width: 100%; padding: 16px; background: #f89b1e; color: #ffffff; border: none; border-radius: 8px; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer;">
+        <button type="button" class="btn-step-next" id="btnToStep2" disabled style="width: 100%; padding: 16px; background: #d1d5db; color: #777777; border: none; border-radius: 8px; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; cursor: not-allowed; transition: all 0.25s ease;">
           Donate Now
         </button>
       </div>
