@@ -1282,7 +1282,7 @@ body {
   top: 18px;
   left: 12%;
   height: 2.5px;
-  background-color: #00aeef;
+  background-color: #ffa200;
   width: 0%; /* Dynamic fill based on step */
   transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 2;
@@ -1320,7 +1320,7 @@ body {
   justify-content: center;
   width: 100%;
   height: 100%;
-  color: #00aeef;
+  color: #ffa200;
 }
 
 .parc-p-icon {
@@ -1354,22 +1354,22 @@ body {
 /* State: Active */
 .step-item.active .step-circle {
   background-color: #ffffff;
-  border: 2.5px solid #00aeef;
-  box-shadow: 0 0 0 4px rgba(0, 174, 239, 0.15);
+  border: 2.5px solid #ffa200;
+  box-shadow: 0 0 0 4px rgba(255, 162, 0, 0.15);
   transform: scale(1.08);
 }
 .step-item.active .step-icon {
   display: flex;
 }
 .step-item.active .step-label {
-  color: #00aeef;
+  color: #ffa200;
   font-weight: 700;
 }
 
 /* State: Completed */
 .step-item.completed .step-circle {
-  background-color: #00aeef;
-  border: 2.5px solid #00aeef;
+  background-color: #ffa200;
+  border: 2.5px solid #ffa200;
 }
 .step-item.completed .step-icon {
   display: none;
@@ -1378,7 +1378,7 @@ body {
   display: block;
 }
 .step-item.completed .step-label {
-  color: #00aeef;
+  color: #ffa200;
   font-weight: 600;
 }
 
@@ -1414,7 +1414,7 @@ body {
 .btn-step-next {
   flex: 1;
   padding: 14px 20px;
-  background: linear-gradient(135deg, #00aeef 0%, #0088cc 100%);
+  background: linear-gradient(135deg, #ffa200 0%, #f89b1e 100%);
   color: white;
   border: none;
   border-radius: 10px;
@@ -1426,12 +1426,12 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 4px 12px rgba(0, 174, 239, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 162, 0, 0.3);
 }
 
 .btn-step-next:hover {
-  background: linear-gradient(135deg, #18baf7 0%, #0099e6 100%);
-  box-shadow: 0 6px 16px rgba(0, 174, 239, 0.45);
+  background: linear-gradient(135deg, #ffb326 0%, #fa8f05 100%);
+  box-shadow: 0 6px 16px rgba(255, 162, 0, 0.45);
   transform: translateY(-1px);
 }
 

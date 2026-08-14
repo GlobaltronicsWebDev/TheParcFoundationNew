@@ -636,27 +636,27 @@ document.addEventListener("DOMContentLoaded", function () {
       if (stepNum < targetStep) {
         node.classList.add("completed");
         if (circle) {
-          circle.style.backgroundColor = "#00aeef";
-          circle.style.border = "2.5px solid #00aeef";
+          circle.style.backgroundColor = "#ffa200";
+          circle.style.border = "2.5px solid #ffa200";
           circle.style.boxShadow = "none";
         }
         if (icon) icon.style.display = "none";
         if (check) check.style.display = "block";
         if (label) {
-          label.style.color = "#00aeef";
+          label.style.color = "#ffa200";
           label.style.fontWeight = "600";
         }
       } else if (stepNum === targetStep) {
         node.classList.add("active");
         if (circle) {
           circle.style.backgroundColor = "#ffffff";
-          circle.style.border = "2.5px solid #00aeef";
-          circle.style.boxShadow = "0 0 0 3px rgba(0, 174, 239, 0.15)";
+          circle.style.border = "2.5px solid #ffa200";
+          circle.style.boxShadow = "0 0 0 3px rgba(255, 162, 0, 0.15)";
         }
         if (icon) icon.style.display = "flex";
         if (check) check.style.display = "none";
         if (label) {
-          label.style.color = "#00aeef";
+          label.style.color = "#ffa200";
           label.style.fontWeight = "700";
         }
       } else {

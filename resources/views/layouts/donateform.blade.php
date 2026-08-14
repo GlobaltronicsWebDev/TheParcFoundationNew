@@ -7,20 +7,20 @@
       
       <!-- Track lines -->
       <div class="stepper-track-bg" style="position: absolute; top: 14px; left: 12%; right: 12%; height: 2px; background-color: #e5e7eb; z-index: 1;"></div>
-      <div class="stepper-track-fill" id="stepperTrackFill" style="position: absolute; top: 14px; left: 12%; height: 2px; background-color: #00aeef; width: 0%; transition: width 0.35s ease; z-index: 2;"></div>
+      <div class="stepper-track-fill" id="stepperTrackFill" style="position: absolute; top: 14px; left: 12%; height: 2px; background-color: #ffa200; width: 0%; transition: width 0.35s ease; z-index: 2;"></div>
       
       <!-- Step 1: Amount -->
       <div class="step-item active" data-step="1" id="stepNode1" style="display: flex; flex-direction: column; align-items: center; position: relative; z-index: 3; cursor: pointer; width: 65px;">
-        <div class="step-circle" id="stepCircle1" style="width: 28px; height: 28px; border-radius: 50%; background-color: #ffffff; border: 2.5px solid #00aeef; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 3px rgba(0, 174, 239, 0.15); transition: all 0.3s ease;">
+        <div class="step-circle" id="stepCircle1" style="width: 28px; height: 28px; border-radius: 50%; background-color: #ffffff; border: 2.5px solid #ffa200; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 3px rgba(255, 162, 0, 0.15); transition: all 0.3s ease;">
           <span class="step-icon" id="stepIcon1" style="display: flex; align-items: center; justify-content: center;">
             <svg width="18" height="18" viewBox="0 0 32 32" style="width:18px; height:18px; max-width:18px; max-height:18px; display:block;" fill="none">
-              <circle cx="16" cy="16" r="14" stroke="#00aeef" stroke-width="2.5"/>
-              <path d="M11 9h6.5a4.5 4.5 0 0 1 0 9H14v6M14 13.5h7" stroke="#00aeef" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="16" cy="16" r="14" stroke="#ffa200" stroke-width="2.5"/>
+              <path d="M11 9h6.5a4.5 4.5 0 0 1 0 9H14v6M14 13.5h7" stroke="#ffa200" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
           <span class="step-check" id="stepCheck1" style="display: none; color: #ffffff; font-weight: bold; font-size: 14px;">✓</span>
         </div>
-        <span class="step-label" id="stepLabel1" style="font-size: 0.8rem; font-weight: 700; color: #00aeef; margin-top: 6px; white-space: nowrap;">Amount</span>
+        <span class="step-label" id="stepLabel1" style="font-size: 0.8rem; font-weight: 700; color: #ffa200; margin-top: 6px; white-space: nowrap;">Amount</span>
       </div>
 
       <!-- Step 2: My Info -->
@@ -28,8 +28,8 @@
         <div class="step-circle" id="stepCircle2" style="width: 28px; height: 28px; border-radius: 50%; background-color: #d1d5db; border: 2.5px solid transparent; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
           <span class="step-icon" id="stepIcon2" style="display: none; align-items: center; justify-content: center;">
             <svg width="18" height="18" viewBox="0 0 32 32" style="width:18px; height:18px; max-width:18px; max-height:18px; display:block;" fill="none">
-              <circle cx="16" cy="16" r="14" stroke="#00aeef" stroke-width="2.5"/>
-              <path d="M11 9h6.5a4.5 4.5 0 0 1 0 9H14v6M14 13.5h7" stroke="#00aeef" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="16" cy="16" r="14" stroke="#ffa200" stroke-width="2.5"/>
+              <path d="M11 9h6.5a4.5 4.5 0 0 1 0 9H14v6M14 13.5h7" stroke="#ffa200" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
           <span class="step-check" id="stepCheck2" style="display: none; color: #ffffff; font-weight: bold; font-size: 14px;">✓</span>
@@ -42,8 +42,8 @@
         <div class="step-circle" id="stepCircle3" style="width: 28px; height: 28px; border-radius: 50%; background-color: #d1d5db; border: 2.5px solid transparent; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
           <span class="step-icon" id="stepIcon3" style="display: none; align-items: center; justify-content: center;">
             <svg width="18" height="18" viewBox="0 0 32 32" style="width:18px; height:18px; max-width:18px; max-height:18px; display:block;" fill="none">
-              <circle cx="16" cy="16" r="14" stroke="#00aeef" stroke-width="2.5"/>
-              <path d="M11 9h6.5a4.5 4.5 0 0 1 0 9H14v6M14 13.5h7" stroke="#00aeef" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="16" cy="16" r="14" stroke="#ffa200" stroke-width="2.5"/>
+              <path d="M11 9h6.5a4.5 4.5 0 0 1 0 9H14v6M14 13.5h7" stroke="#ffa200" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
           <span class="step-check" id="stepCheck3" style="display: none; color: #ffffff; font-weight: bold; font-size: 14px;">✓</span>
@@ -56,8 +56,8 @@
         <div class="step-circle" id="stepCircle4" style="width: 28px; height: 28px; border-radius: 50%; background-color: #d1d5db; border: 2.5px solid transparent; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
           <span class="step-icon" id="stepIcon4" style="display: none; align-items: center; justify-content: center;">
             <svg width="18" height="18" viewBox="0 0 32 32" style="width:18px; height:18px; max-width:18px; max-height:18px; display:block;" fill="none">
-              <circle cx="16" cy="16" r="14" stroke="#00aeef" stroke-width="2.5"/>
-              <path d="M11 9h6.5a4.5 4.5 0 0 1 0 9H14v6M14 13.5h7" stroke="#00aeef" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="16" cy="16" r="14" stroke="#ffa200" stroke-width="2.5"/>
+              <path d="M11 9h6.5a4.5 4.5 0 0 1 0 9H14v6M14 13.5h7" stroke="#ffa200" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
           <span class="step-check" id="stepCheck4" style="display: none; color: #ffffff; font-weight: bold; font-size: 14px;">✓</span>
