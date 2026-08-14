@@ -177,6 +177,9 @@ document.addEventListener("DOMContentLoaded", function () {
   giveOnceBtn?.addEventListener("click",    e => { e.preventDefault(); setGiveType("once"); });
   giveMonthlyBtn?.addEventListener("click", e => { e.preventDefault(); setGiveType("monthly"); });
   setGiveType(null);
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur();
+  }
 
   /* ================================================================
    * 3. AMOUNT SELECTION
