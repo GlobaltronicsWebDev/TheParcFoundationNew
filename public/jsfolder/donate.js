@@ -120,9 +120,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!btn) return;
 
     const hasType = !!giveTypeInput?.value;
-    const hasAmount = !!selectedAmountInput?.value && Number(selectedAmountInput.value) > 0;
 
-    if (hasType && hasAmount) {
+    if (hasType) {
       btn.disabled = false;
       btn.style.background = "#f89b1e";
       btn.style.color = "#ffffff";
@@ -161,12 +160,23 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
+    // Default to 500 if no amount selected yet
+    if (!selectedAmountInput?.value) {
+      const defaultBtn = document.querySelector('.amount-btn[data-amount="500"]');
+      if (defaultBtn) {
+        amountBtns.forEach(b => b.classList.remove("active"));
+        defaultBtn.classList.add("active");
+        const label = type === "monthly" ? "₱500/mo" : "₱500";
+        setSelectedAmount(label, "500");
+      }
+    }
+
     updateStep1ButtonState();
   }
 
   giveOnceBtn?.addEventListener("click",    e => { e.preventDefault(); setGiveType("once"); });
   giveMonthlyBtn?.addEventListener("click", e => { e.preventDefault(); setGiveType("monthly"); });
-  setGiveType("once");
+  setGiveType(null);
 
   /* ================================================================
    * 3. AMOUNT SELECTION
