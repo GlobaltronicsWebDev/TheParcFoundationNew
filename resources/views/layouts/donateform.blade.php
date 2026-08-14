@@ -2,65 +2,67 @@
 <div class="donate-form-wrapper">
 
   <!-- Stepper Bar Header -->
-  <div class="donate-stepper-wrapper">
-    <div class="donate-stepper" id="donateStepper">
-      <div class="stepper-track-bg"></div>
-      <div class="stepper-track-fill" id="stepperTrackFill"></div>
+  <div class="donate-stepper-wrapper" style="width: 100%; padding: 15px 0 25px; margin-bottom: 25px;">
+    <div class="donate-stepper" id="donateStepper" style="display: flex; justify-content: space-between; align-items: flex-start; position: relative; width: 100%; max-width: 440px; margin: 0 auto;">
+      
+      <!-- Track lines -->
+      <div class="stepper-track-bg" style="position: absolute; top: 14px; left: 12%; right: 12%; height: 2px; background-color: #e5e7eb; z-index: 1;"></div>
+      <div class="stepper-track-fill" id="stepperTrackFill" style="position: absolute; top: 14px; left: 12%; height: 2px; background-color: #00aeef; width: 0%; transition: width 0.35s ease; z-index: 2;"></div>
       
       <!-- Step 1: Amount -->
-      <div class="step-item active" data-step="1" id="stepNode1" title="Step 1: Amount">
-        <div class="step-circle">
-          <span class="step-icon">
-            <svg viewBox="0 0 32 32" class="parc-p-icon" fill="none">
-              <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2.5"/>
-              <path d="M11 9h6.5a4.5 4.5 0 0 1 0 9H14v6M14 13.5h7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <div class="step-item active" data-step="1" id="stepNode1" style="display: flex; flex-direction: column; align-items: center; position: relative; z-index: 3; cursor: pointer; width: 65px;">
+        <div class="step-circle" id="stepCircle1" style="width: 28px; height: 28px; border-radius: 50%; background-color: #ffffff; border: 2.5px solid #00aeef; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 3px rgba(0, 174, 239, 0.15); transition: all 0.3s ease;">
+          <span class="step-icon" id="stepIcon1" style="display: flex; align-items: center; justify-content: center;">
+            <svg width="18" height="18" viewBox="0 0 32 32" style="width:18px; height:18px; max-width:18px; max-height:18px; display:block;" fill="none">
+              <circle cx="16" cy="16" r="14" stroke="#00aeef" stroke-width="2.5"/>
+              <path d="M11 9h6.5a4.5 4.5 0 0 1 0 9H14v6M14 13.5h7" stroke="#00aeef" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
-          <span class="step-check">✓</span>
+          <span class="step-check" id="stepCheck1" style="display: none; color: #ffffff; font-weight: bold; font-size: 14px;">✓</span>
         </div>
-        <span class="step-label">Amount</span>
+        <span class="step-label" id="stepLabel1" style="font-size: 0.8rem; font-weight: 700; color: #00aeef; margin-top: 6px; white-space: nowrap;">Amount</span>
       </div>
 
       <!-- Step 2: My Info -->
-      <div class="step-item" data-step="2" id="stepNode2" title="Step 2: My Info">
-        <div class="step-circle">
-          <span class="step-icon">
-            <svg viewBox="0 0 32 32" class="parc-p-icon" fill="none">
-              <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2.5"/>
-              <path d="M11 9h6.5a4.5 4.5 0 0 1 0 9H14v6M14 13.5h7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <div class="step-item" data-step="2" id="stepNode2" style="display: flex; flex-direction: column; align-items: center; position: relative; z-index: 3; cursor: pointer; width: 65px;">
+        <div class="step-circle" id="stepCircle2" style="width: 28px; height: 28px; border-radius: 50%; background-color: #d1d5db; border: 2.5px solid transparent; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+          <span class="step-icon" id="stepIcon2" style="display: none; align-items: center; justify-content: center;">
+            <svg width="18" height="18" viewBox="0 0 32 32" style="width:18px; height:18px; max-width:18px; max-height:18px; display:block;" fill="none">
+              <circle cx="16" cy="16" r="14" stroke="#00aeef" stroke-width="2.5"/>
+              <path d="M11 9h6.5a4.5 4.5 0 0 1 0 9H14v6M14 13.5h7" stroke="#00aeef" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
-          <span class="step-check">✓</span>
+          <span class="step-check" id="stepCheck2" style="display: none; color: #ffffff; font-weight: bold; font-size: 14px;">✓</span>
         </div>
-        <span class="step-label">My Info</span>
+        <span class="step-label" id="stepLabel2" style="font-size: 0.8rem; font-weight: 500; color: #6b7280; margin-top: 6px; white-space: nowrap;">My Info</span>
       </div>
 
       <!-- Step 3: Payment -->
-      <div class="step-item" data-step="3" id="stepNode3" title="Step 3: Payment">
-        <div class="step-circle">
-          <span class="step-icon">
-            <svg viewBox="0 0 32 32" class="parc-p-icon" fill="none">
-              <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2.5"/>
-              <path d="M11 9h6.5a4.5 4.5 0 0 1 0 9H14v6M14 13.5h7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <div class="step-item" data-step="3" id="stepNode3" style="display: flex; flex-direction: column; align-items: center; position: relative; z-index: 3; cursor: pointer; width: 65px;">
+        <div class="step-circle" id="stepCircle3" style="width: 28px; height: 28px; border-radius: 50%; background-color: #d1d5db; border: 2.5px solid transparent; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+          <span class="step-icon" id="stepIcon3" style="display: none; align-items: center; justify-content: center;">
+            <svg width="18" height="18" viewBox="0 0 32 32" style="width:18px; height:18px; max-width:18px; max-height:18px; display:block;" fill="none">
+              <circle cx="16" cy="16" r="14" stroke="#00aeef" stroke-width="2.5"/>
+              <path d="M11 9h6.5a4.5 4.5 0 0 1 0 9H14v6M14 13.5h7" stroke="#00aeef" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
-          <span class="step-check">✓</span>
+          <span class="step-check" id="stepCheck3" style="display: none; color: #ffffff; font-weight: bold; font-size: 14px;">✓</span>
         </div>
-        <span class="step-label">Payment</span>
+        <span class="step-label" id="stepLabel3" style="font-size: 0.8rem; font-weight: 500; color: #6b7280; margin-top: 6px; white-space: nowrap;">Payment</span>
       </div>
 
       <!-- Step 4: Confirm -->
-      <div class="step-item" data-step="4" id="stepNode4" title="Step 4: Confirm">
-        <div class="step-circle">
-          <span class="step-icon">
-            <svg viewBox="0 0 32 32" class="parc-p-icon" fill="none">
-              <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2.5"/>
-              <path d="M11 9h6.5a4.5 4.5 0 0 1 0 9H14v6M14 13.5h7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <div class="step-item" data-step="4" id="stepNode4" style="display: flex; flex-direction: column; align-items: center; position: relative; z-index: 3; cursor: pointer; width: 65px;">
+        <div class="step-circle" id="stepCircle4" style="width: 28px; height: 28px; border-radius: 50%; background-color: #d1d5db; border: 2.5px solid transparent; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+          <span class="step-icon" id="stepIcon4" style="display: none; align-items: center; justify-content: center;">
+            <svg width="18" height="18" viewBox="0 0 32 32" style="width:18px; height:18px; max-width:18px; max-height:18px; display:block;" fill="none">
+              <circle cx="16" cy="16" r="14" stroke="#00aeef" stroke-width="2.5"/>
+              <path d="M11 9h6.5a4.5 4.5 0 0 1 0 9H14v6M14 13.5h7" stroke="#00aeef" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
-          <span class="step-check">✓</span>
+          <span class="step-check" id="stepCheck4" style="display: none; color: #ffffff; font-weight: bold; font-size: 14px;">✓</span>
         </div>
-        <span class="step-label">Confirm</span>
+        <span class="step-label" id="stepLabel4" style="font-size: 0.8rem; font-weight: 500; color: #6b7280; margin-top: 6px; white-space: nowrap;">Confirm</span>
       </div>
     </div>
   </div>
@@ -75,7 +77,7 @@
     <input type="hidden" id="stripeStatus"     name="stripe_status"             value="pending" />
 
     <!-- ==================== STEP 1: AMOUNT ==================== -->
-    <div class="step-panel active" id="stepPanel1">
+    <div class="step-panel active" id="stepPanel1" style="display: block;">
       <!-- One-time / Monthly Toggle -->
       <div class="center-btn" id="giveTypeBtns" role="group" aria-label="Donation frequency">
         <a href="#" class="btn1 active" data-give="once" id="giveOnceBtn">Give Once</a>
@@ -116,16 +118,15 @@
         <span class="amount-value" id="amountDisplayValue">—</span>
       </div>
 
-      <div class="step-actions">
-        <button type="button" class="btn-step-next" id="btnToStep2">
-          <span>Continue to My Info</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <div class="step-actions" style="margin-top: 24px;">
+        <button type="button" class="btn-step-next" id="btnToStep2" style="width: 100%; padding: 16px; background: #f89b1e; color: #ffffff; border: none; border-radius: 8px; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer;">
+          Donate Now
         </button>
       </div>
     </div>
 
     <!-- ==================== STEP 2: MY INFO ==================== -->
-    <div class="step-panel" id="stepPanel2">
+    <div class="step-panel" id="stepPanel2" style="display: none;">
       <h3 class="formtitle">Your Information</h3>
 
       <div class="form-row">
@@ -173,17 +174,16 @@
         <p class="p3">We will keep your information safe and secure. Please see our <b class="privacy">Privacy Policy</b> for details.</p>
       </div>
 
-      <div class="step-actions">
-        <button type="button" class="btn-step-back" id="btnBackToStep1">← Back</button>
-        <button type="button" class="btn-step-next" id="btnToStep3">
-          <span>Continue to Payment</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <div class="step-actions" style="display: flex; gap: 12px; margin-top: 24px;">
+        <button type="button" class="btn-step-back" id="btnBackToStep1" style="padding: 14px 20px; background: #f3f4f6; color: #4b5563; border: 1.5px solid #d1d5db; border-radius: 8px; font-weight: 600; cursor: pointer;">← Back</button>
+        <button type="button" class="btn-step-next" id="btnToStep3" style="flex: 1; padding: 14px 20px; background: #f89b1e; color: #ffffff; border: none; border-radius: 8px; font-weight: 800; font-size: 1rem; text-transform: uppercase; cursor: pointer;">
+          Continue
         </button>
       </div>
     </div>
 
     <!-- ==================== STEP 3: PAYMENT ==================== -->
-    <div class="step-panel" id="stepPanel3">
+    <div class="step-panel" id="stepPanel3" style="display: none;">
       <h3 class="formtitle">Payment Method</h3>
 
       <a href="#" class="btnm9" id="btn-bank">Bank Account</a>
@@ -261,17 +261,16 @@
         </script>
       </div>
 
-      <div class="step-actions">
-        <button type="button" class="btn-step-back" id="btnBackToStep2">← Back</button>
-        <button type="button" class="btn-step-next" id="btnToStep4">
-          <span>Review &amp; Confirm</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <div class="step-actions" style="display: flex; gap: 12px; margin-top: 24px;">
+        <button type="button" class="btn-step-back" id="btnBackToStep2" style="padding: 14px 20px; background: #f3f4f6; color: #4b5563; border: 1.5px solid #d1d5db; border-radius: 8px; font-weight: 600; cursor: pointer;">← Back</button>
+        <button type="button" class="btn-step-next" id="btnToStep4" style="flex: 1; padding: 14px 20px; background: #f89b1e; color: #ffffff; border: none; border-radius: 8px; font-weight: 800; font-size: 1rem; text-transform: uppercase; cursor: pointer;">
+          Continue
         </button>
       </div>
     </div>
 
     <!-- ==================== STEP 4: CONFIRM ==================== -->
-    <div class="step-panel" id="stepPanel4">
+    <div class="step-panel" id="stepPanel4" style="display: none;">
       <h3 class="formtitle">Review Your Donation</h3>
 
       <div class="summary-card">
@@ -307,10 +306,10 @@
         </p>
       </div>
 
-      <div class="step-actions">
-        <button type="button" class="btn-step-back" id="btnBackToStep3">← Edit Details</button>
+      <div class="step-actions" style="display: flex; gap: 12px; margin-top: 24px;">
+        <button type="button" class="btn-step-back" id="btnBackToStep3" style="padding: 14px 20px; background: #f3f4f6; color: #4b5563; border: 1.5px solid #d1d5db; border-radius: 8px; font-weight: 600; cursor: pointer;">← Edit Details</button>
         {{-- DONATE SUBMIT BUTTON --}}
-        <button type="submit" class="btn-donate-submit" id="donateSubmitBtn" style="border:none;">
+        <button type="submit" class="btn-donate-submit" id="donateSubmitBtn" style="flex: 1; border:none; background: #f89b1e; color: #ffffff; padding: 16px; border-radius: 8px; font-weight: 800; font-size: 1rem; text-transform: uppercase; cursor: pointer;">
           <span class="btn-text">CONFIRM &amp; DONATE NOW 🎉</span>
           <span class="btn-spinner" id="btnSpinner" style="display:none;">
             <svg class="spin-svg" width="20" height="20" viewBox="0 0 24 24" fill="none">

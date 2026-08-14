@@ -579,12 +579,51 @@ document.addEventListener("DOMContentLoaded", function () {
     stepNodes.forEach((node, index) => {
       if (!node) return;
       const stepNum = index + 1;
+      const circle = document.getElementById("stepCircle" + stepNum);
+      const icon = document.getElementById("stepIcon" + stepNum);
+      const check = document.getElementById("stepCheck" + stepNum);
+      const label = document.getElementById("stepLabel" + stepNum);
+
       node.classList.remove("active", "completed");
 
       if (stepNum < targetStep) {
         node.classList.add("completed");
+        if (circle) {
+          circle.style.backgroundColor = "#00aeef";
+          circle.style.border = "2.5px solid #00aeef";
+          circle.style.boxShadow = "none";
+        }
+        if (icon) icon.style.display = "none";
+        if (check) check.style.display = "block";
+        if (label) {
+          label.style.color = "#00aeef";
+          label.style.fontWeight = "600";
+        }
       } else if (stepNum === targetStep) {
         node.classList.add("active");
+        if (circle) {
+          circle.style.backgroundColor = "#ffffff";
+          circle.style.border = "2.5px solid #00aeef";
+          circle.style.boxShadow = "0 0 0 3px rgba(0, 174, 239, 0.15)";
+        }
+        if (icon) icon.style.display = "flex";
+        if (check) check.style.display = "none";
+        if (label) {
+          label.style.color = "#00aeef";
+          label.style.fontWeight = "700";
+        }
+      } else {
+        if (circle) {
+          circle.style.backgroundColor = "#d1d5db";
+          circle.style.border = "2.5px solid transparent";
+          circle.style.boxShadow = "none";
+        }
+        if (icon) icon.style.display = "none";
+        if (check) check.style.display = "none";
+        if (label) {
+          label.style.color = "#6b7280";
+          label.style.fontWeight = "500";
+        }
       }
     });
 
@@ -594,8 +633,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const stepNum = index + 1;
       if (stepNum === targetStep) {
         panel.classList.add("active");
+        panel.style.display = "block";
       } else {
         panel.classList.remove("active");
+        panel.style.display = "none";
       }
     });
 
