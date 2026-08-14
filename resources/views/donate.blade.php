@@ -117,43 +117,7 @@
       <div class="col col2">
         <div class="donateform">
 
-          <!-- One-time / Monthly -->
-          <div class="center-btn" id="giveTypeBtns" role="group" aria-label="Donation frequency">
-            <a href="#" class="btn1 active" data-give="once" id="giveOnceBtn">Give Once</a>
-            <a href="#" class="btn2" data-give="monthly" id="giveMonthlyBtn">Give Monthly</a>
-          </div>
-
-          <!-- Note -->
-          <div class="note1">
-            <p class="p1" id="noteTitle">Thank you for making a difference.</p>
-            <p class="p2" id="noteSubtitle">
-              One-time giving is a powerful way to support PARCaralan Scholars
-            </p>
-          </div>
-
-          <!-- Amount Options -->
-          <div class="btn-monthly" id="amountSection">
-            <div class="center-btn amount-grid" id="amountBtns" role="group" aria-label="Donation amount">
-              <a href="#" class="btnm1 amount-btn" data-amount="500" data-once="₱500" data-monthly="₱500/mo">₱500</a>
-              <a href="#" class="btnm2 amount-btn" data-amount="1000" data-once="₱1,000" data-monthly="₱1,000/mo">₱1,000</a>
-              <a href="#" class="btnm3 amount-btn" data-amount="1500" data-once="₱1,500" data-monthly="₱1,500/mo">₱1,500</a>
-              <a href="#" class="btnm4 amount-btn" data-amount="2000" data-once="₱2,000" data-monthly="₱2,000/mo">₱2,000</a>
-              <a href="#" class="btnm5 amount-btn" data-amount="5000" data-once="₱5,000" data-monthly="₱5,000/mo">₱5,000</a>
-              <a href="#" class="btnm6 amount-btn other-btn" data-amount="other" data-once="Custom" data-monthly="Custom/mo">
-                <b class="dollar">₱</b>Other
-              </a>
-            </div>
-
-            <!-- Custom Amount Input -->
-            <div class="custom-amount-wrap" id="customAmountWrap" style="display:none;">
-              <label for="customAmountInput">Enter custom amount (₱)</label>
-              <input type="number" id="customAmountInput" min="1" placeholder="e.g. 3000" />
-            </div>
-          </div>
-
-          <hr class="break" />
-
-          <!-- Include Donate Form -->
+          <!-- Include 4-Step Donate Form Layout -->
           @include('layouts.donateform')
 
         </div>

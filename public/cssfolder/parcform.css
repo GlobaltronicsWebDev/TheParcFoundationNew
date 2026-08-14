@@ -1245,3 +1245,244 @@ body {
   box-shadow: 0 2px 8px rgba(248, 155, 30, 0.3);
 }
 
+/* ================================================================
+   4-STEP PROGRESS STEPPER HEADER
+   Reference design matching Cyan/Blue active step with PARC (P) icon
+   ================================================================ */
+.donate-stepper-wrapper {
+  width: 100%;
+  padding: 10px 0 25px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.donate-stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Horizontal Track Lines */
+.stepper-track-bg {
+  position: absolute;
+  top: 18px;
+  left: 12%;
+  right: 12%;
+  height: 2.5px;
+  background-color: #e2e8f0;
+  z-index: 1;
+}
+
+.stepper-track-fill {
+  position: absolute;
+  top: 18px;
+  left: 12%;
+  height: 2.5px;
+  background-color: #00aeef;
+  width: 0%; /* Dynamic fill based on step */
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+}
+
+/* Individual Step Node */
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+  cursor: pointer;
+  width: 70px;
+  text-decoration: none !important;
+  user-select: none;
+}
+
+/* Step Circle */
+.step-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.step-icon {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #00aeef;
+}
+
+.parc-p-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.step-check {
+  display: none;
+  font-weight: bold;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+/* Step Labels */
+.step-label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #6b7280;
+  margin-top: 8px;
+  white-space: nowrap;
+  transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+/* State: Inactive (default) */
+.step-item .step-circle {
+  background-color: #d1d5db;
+  border: 2.5px solid transparent;
+}
+
+/* State: Active */
+.step-item.active .step-circle {
+  background-color: #ffffff;
+  border: 2.5px solid #00aeef;
+  box-shadow: 0 0 0 4px rgba(0, 174, 239, 0.15);
+  transform: scale(1.08);
+}
+.step-item.active .step-icon {
+  display: flex;
+}
+.step-item.active .step-label {
+  color: #00aeef;
+  font-weight: 700;
+}
+
+/* State: Completed */
+.step-item.completed .step-circle {
+  background-color: #00aeef;
+  border: 2.5px solid #00aeef;
+}
+.step-item.completed .step-icon {
+  display: none;
+}
+.step-item.completed .step-check {
+  display: block;
+}
+.step-item.completed .step-label {
+  color: #00aeef;
+  font-weight: 600;
+}
+
+/* Step Panel transitions */
+.step-panel {
+  display: none;
+  animation: stepFadeIn 0.3s ease-in-out forwards;
+}
+
+.step-panel.active {
+  display: block;
+}
+
+@keyframes stepFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Wizard Button Actions */
+.step-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  align-items: center;
+}
+
+.btn-step-next {
+  flex: 1;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #00aeef 0%, #0088cc 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0, 174, 239, 0.3);
+}
+
+.btn-step-next:hover {
+  background: linear-gradient(135deg, #18baf7 0%, #0099e6 100%);
+  box-shadow: 0 6px 16px rgba(0, 174, 239, 0.45);
+  transform: translateY(-1px);
+}
+
+.btn-step-back {
+  padding: 14px 22px;
+  background: #f3f4f6;
+  color: #4b5563;
+  border: 1.5px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-step-back:hover {
+  background: #e5e7eb;
+  color: #1f2937;
+}
+
+/* Step 4 Confirmation Card */
+.summary-card {
+  background: #f9fafb;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+.summary-row:last-child {
+  border-bottom: none;
+}
+
+.summary-label {
+  font-size: 0.88rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.summary-value {
+  font-size: 0.95rem;
+  color: #111827;
+  font-weight: 700;
+  text-align: right;
+}
+

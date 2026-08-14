@@ -507,6 +507,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (notebank) notebank.style.display = "none";
     // Clear Stripe card element
     cardElement?.clear();
+    // Reset stepper to Step 1
+    if (typeof updateStepperUI === "function") {
+      updateStepperUI(1);
+    }
   }
 
   modalCloseBtn?.addEventListener("click", hideSuccessModal);
@@ -539,5 +543,159 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  console.log("donate.js: Stripe integration loaded ✅");
+  /* ================================================================
+   * 16. STEPPER & WIZARD NAVIGATION LOGIC
+   * ================================================================ */
+  let currentStep = 1;
+  const totalSteps = 4;
+
+  const stepNodes = [
+    document.getElementById("stepNode1"),
+    document.getElementById("stepNode2"),
+    document.getElementById("stepNode3"),
+    document.getElementById("stepNode4")
+  ];
+
+  const stepPanels = [
+    document.getElementById("stepPanel1"),
+    document.getElementById("stepPanel2"),
+    document.getElementById("stepPanel3"),
+    document.getElementById("stepPanel4")
+  ];
+
+  const stepperTrackFill = document.getElementById("stepperTrackFill");
+  const paymentMethodInput = document.getElementById("paymentMethod");
+
+  function updateStepperUI(targetStep) {
+    currentStep = targetStep;
+
+    // Update track line fill width: Step 1 = 0%, Step 2 = 33.33%, Step 3 = 66.66%, Step 4 = 100%
+    const percentage = ((targetStep - 1) / (totalSteps - 1)) * 100;
+    if (stepperTrackFill) {
+      stepperTrackFill.style.width = percentage + "%";
+    }
+
+    // Update step nodes
+    stepNodes.forEach((node, index) => {
+      if (!node) return;
+      const stepNum = index + 1;
+      node.classList.remove("active", "completed");
+
+      if (stepNum < targetStep) {
+        node.classList.add("completed");
+      } else if (stepNum === targetStep) {
+        node.classList.add("active");
+      }
+    });
+
+    // Update step panels visibility
+    stepPanels.forEach((panel, index) => {
+      if (!panel) return;
+      const stepNum = index + 1;
+      if (stepNum === targetStep) {
+        panel.classList.add("active");
+      } else {
+        panel.classList.remove("active");
+      }
+    });
+
+    // If entering Step 4, populate summary
+    if (targetStep === 4) {
+      populateConfirmSummary();
+    }
+
+    // Scroll smoothly to top of donate form
+    document.querySelector(".donateform")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  function validateStep(stepNum) {
+    clearAllErrors();
+
+    if (stepNum === 1) {
+      const selectedVal = selectedAmountInput?.value;
+      if (!selectedVal || Number(selectedVal) <= 0) {
+        alert("Please select or enter a donation amount to proceed.");
+        return false;
+      }
+      return true;
+    }
+
+    if (stepNum === 2) {
+      let valid = true;
+      const fname = document.getElementById("fname")?.value.trim();
+      const lname = document.getElementById("lname")?.value.trim();
+      const email = document.getElementById("email")?.value.trim();
+
+      if (!fname) { showFieldError("err-fname", "First name is required."); valid = false; }
+      if (!lname) { showFieldError("err-lname", "Last name is required."); valid = false; }
+      if (!email) { showFieldError("err-email", "Email address is required."); valid = false; }
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showFieldError("err-email", "Enter a valid email address."); valid = false;
+      }
+      return valid;
+    }
+
+    if (stepNum === 3) {
+      const receiptInput = document.getElementById("receipt");
+      if (!receiptInput || !receiptInput.files[0]) {
+        showFieldError("err-receipt", "Please attach your receipt screenshot.");
+        return false;
+      }
+      return true;
+    }
+
+    return true;
+  }
+
+  function goToStep(targetStep) {
+    if (targetStep > currentStep) {
+      for (let i = currentStep; i < targetStep; i++) {
+        if (!validateStep(i)) return;
+      }
+    }
+    updateStepperUI(targetStep);
+  }
+
+  // Node clicks
+  stepNodes.forEach((node, idx) => {
+    node?.addEventListener("click", () => {
+      const targetStep = idx + 1;
+      if (targetStep <= currentStep) {
+        updateStepperUI(targetStep);
+      } else {
+        goToStep(targetStep);
+      }
+    });
+  });
+
+  // Action buttons
+  document.getElementById("btnToStep2")?.addEventListener("click", () => goToStep(2));
+  document.getElementById("btnBackToStep1")?.addEventListener("click", () => goToStep(1));
+  document.getElementById("btnToStep3")?.addEventListener("click", () => goToStep(3));
+  document.getElementById("btnBackToStep2")?.addEventListener("click", () => goToStep(2));
+  document.getElementById("btnToStep4")?.addEventListener("click", () => goToStep(4));
+  document.getElementById("btnBackToStep3")?.addEventListener("click", () => goToStep(3));
+
+  function populateConfirmSummary() {
+    const amountVal = amountDisplayValue?.textContent || formatPeso(currentRawAmount || selectedAmountInput?.value || 0);
+    const giveType = giveTypeInput?.value === "monthly" ? "Give Monthly" : "Give Once";
+    const fname = document.getElementById("fname")?.value.trim() || "";
+    const lname = document.getElementById("lname")?.value.trim() || "";
+    const email = document.getElementById("email")?.value.trim() || "";
+    const receiptFile = document.getElementById("receipt")?.files[0];
+
+    const sumAmount = document.getElementById("sumAmount");
+    const sumType = document.getElementById("sumType");
+    const sumName = document.getElementById("sumName");
+    const sumEmail = document.getElementById("sumEmail");
+    const sumReceipt = document.getElementById("sumReceipt");
+
+    if (sumAmount) sumAmount.textContent = amountVal;
+    if (sumType) sumType.textContent = giveType;
+    if (sumName) sumName.textContent = `${fname} ${lname}`;
+    if (sumEmail) sumEmail.textContent = email;
+    if (sumReceipt) sumReceipt.textContent = receiptFile ? receiptFile.name : "Attached";
+  }
+
+  console.log("donate.js: 4-step wizard integration loaded ✅");
 });
