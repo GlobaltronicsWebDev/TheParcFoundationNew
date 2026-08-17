@@ -317,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const typeVal   = giveTypeInput?.value || "once";
 
     if (bannerAmount) {
-      bannerAmount.textContent = "₱ " + formatPeso(amountVal);
+      bannerAmount.textContent = formatPeso(amountVal);
     }
     if (bannerType) {
       bannerType.textContent = typeVal === "monthly" ? "MONTHLY DONATION" : "ONE-TIME DONATION";

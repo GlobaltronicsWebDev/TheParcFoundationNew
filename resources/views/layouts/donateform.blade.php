@@ -306,7 +306,7 @@
       <!-- Dynamic Payment Summary Pill Banner -->
       <div class="payment-summary-banner" style="background: linear-gradient(135deg, #f89b1e 0%, #ffa200 100%); color: #ffffff; border-radius: 14px; padding: 20px 15px; text-align: center; margin-bottom: 22px; box-shadow: 0 6px 18px rgba(248, 155, 30, 0.3);">
         <div style="font-size: 2.2rem; font-weight: 900; letter-spacing: -0.5px; line-height: 1.2;">
-          <span id="paymentSummaryAmount">₱ 1,000</span>
+          <span id="paymentSummaryAmount">₱1,000</span>
         </div>
         <div id="paymentSummaryType" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.95; margin-top: 4px;">
           MONTHLY DONATION
