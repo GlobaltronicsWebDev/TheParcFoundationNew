@@ -844,8 +844,8 @@ document.addEventListener("DOMContentLoaded", function () {
     launchConfetti();
     modalCloseBtn?.focus();
 
-    // Start 3-second countdown
-    let secondsLeft = 3;
+    // Start 8-second countdown
+    let secondsLeft = 8;
     if (autoCloseCountdown) autoCloseCountdown.textContent = secondsLeft;
 
     if (countdownInterval) clearInterval(countdownInterval);
@@ -860,11 +860,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }, 1000);
 
-    // Automatically close modal after 3 seconds (3000 ms)
+    // Automatically close modal after 8 seconds (8000 ms)
     if (autoCloseTimer) clearTimeout(autoCloseTimer);
     autoCloseTimer = setTimeout(() => {
       hideSuccessModal();
-    }, 3000);
+    }, 8000);
   }
 
   function hideSuccessModal() {
