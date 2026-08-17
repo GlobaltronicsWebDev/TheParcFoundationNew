@@ -361,15 +361,15 @@
             <div style="padding: 6px 0;">
               
               <!-- GCash -->
-              <div class="ewallet-item" data-wallet="gcash" title="GCash" style="padding: 14px 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
-                <img src="{{ asset('assets/icons/GCASH.png') }}" alt="GCash Logo" style="height: 32px; width: auto; max-width: 160px;" />
+              <div class="ewallet-item" data-wallet="gcash" title="GCash" style="padding: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
+                <img src="{{ asset('assets/icons/GCASH.png') }}" alt="GCash Logo" style="height: 56px; width: auto; max-width: 220px; object-fit: contain;" />
               </div>
 
               <div class="ewallet-divider"></div>
 
               <!-- Maya -->
-              <div class="ewallet-item" data-wallet="maya" title="Maya" style="padding: 14px 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
-                <img src="{{ asset('assets/icons/MAYA.PNG') }}" alt="Maya Logo" style="height: 30px; width: auto; max-width: 140px;" />
+              <div class="ewallet-item" data-wallet="maya" title="Maya" style="padding: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
+                <img src="{{ asset('assets/icons/MAYA.png') }}" alt="Maya Logo" style="height: 52px; width: auto; max-width: 200px; object-fit: contain;" />
               </div>
 
             </div>
