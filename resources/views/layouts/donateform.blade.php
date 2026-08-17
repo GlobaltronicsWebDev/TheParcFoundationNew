@@ -362,21 +362,14 @@
               
               <!-- GCash -->
               <div class="ewallet-item" data-wallet="gcash" title="GCash" style="padding: 14px 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
-                <svg width="140" height="32" viewBox="0 0 170 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="22" cy="18" r="14" fill="#0066FF"/>
-                  <path d="M25 13h-5a4 4 0 0 0-4 4v2a4 4 0 0 0 4 4h5v-5h-3" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M39 11a10 10 0 0 1 0 14M43 8a14 14 0 0 1 0 20" stroke="#0066FF" stroke-width="2.5" stroke-linecap="round"/>
-                  <text x="52" y="26" font-family="'Inter', system-ui, sans-serif" font-weight="800" font-size="24" fill="#0052CC">GCash</text>
-                </svg>
+                <img src="{{ asset('assets/icons/gcash.svg') }}" alt="GCash Logo" style="height: 32px; width: auto; max-width: 160px;" />
               </div>
 
               <div class="ewallet-divider"></div>
 
               <!-- Maya -->
               <div class="ewallet-item" data-wallet="maya" title="Maya" style="padding: 14px 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
-                <svg width="120" height="32" viewBox="0 0 140 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <text x="12" y="27" font-family="'Inter', system-ui, sans-serif" font-weight="700" font-size="32" fill="#00B865" letter-spacing="-1">maya</text>
-                </svg>
+                <img src="{{ asset('assets/icons/maya.svg') }}" alt="Maya Logo" style="height: 30px; width: auto; max-width: 140px;" />
               </div>
 
               <div class="ewallet-divider"></div>
