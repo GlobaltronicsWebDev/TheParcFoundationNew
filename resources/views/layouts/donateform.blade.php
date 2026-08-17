@@ -304,9 +304,9 @@
     <div class="step-panel" id="stepPanel3" style="display: none;">
       
       <!-- Dynamic Payment Summary Pill Banner -->
-      <div class="payment-summary-banner" style="background: linear-gradient(135deg, #0044bb 0%, #002b80 100%); color: #ffffff; border-radius: 14px; padding: 22px 15px; text-align: center; margin-bottom: 22px; box-shadow: 0 8px 20px rgba(0, 68, 187, 0.25);">
+      <div class="payment-summary-banner" style="background-color: #f89b1e; color: #ffffff; border-radius: 14px; padding: 22px 15px; text-align: center; margin-bottom: 22px; box-shadow: 0 8px 20px rgba(0, 68, 187, 0.25);">
         <div style="font-size: 2.2rem; font-weight: 900; letter-spacing: -0.5px; line-height: 1.2;">
-          <span id="paymentSummaryAmount">₱ 1,000</span>
+          <span id="paymentSummaryAmount"> 1,000</span>
         </div>
         <div id="paymentSummaryType" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.9; margin-top: 4px;">
           MONTHLY DONATION
