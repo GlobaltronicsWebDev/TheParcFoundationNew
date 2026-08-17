@@ -1594,6 +1594,26 @@ select.form-select-custom:focus {
   background-color: #fff1d6;
 }
 
+.ewallet-item .ewallet-check {
+  display: none !important;
+}
+
+.ewallet-item.selected .ewallet-check {
+  display: flex !important;
+  animation: ewalletCheckPop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes ewalletCheckPop {
+  from {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 .ewallet-divider {
   height: 1px;
   background-color: #e5e7eb;

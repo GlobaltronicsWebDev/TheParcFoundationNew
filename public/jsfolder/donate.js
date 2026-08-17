@@ -323,8 +323,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (paymentMethodInput && (paymentMethodInput.value === "visa" || !paymentMethodInput.value)) {
       paymentMethodInput.value = "gcash";
     }
+    const currentWallet = paymentMethodInput?.value || "gcash";
+    ewalletItems.forEach(i => {
+      i.classList.toggle("selected", i.dataset.wallet === currentWallet);
+    });
     if (sumPaymentMethod) {
-      const currentWallet = paymentMethodInput?.value || "gcash";
       const formatName = currentWallet === "maya" ? "Maya" : "GCash";
       sumPaymentMethod.textContent = "e-Wallet (" + formatName + ")";
     }

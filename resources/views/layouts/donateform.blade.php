@@ -361,15 +361,17 @@
             <div style="padding: 6px 0;">
               
               <!-- GCash -->
-              <div class="ewallet-item" data-wallet="gcash" title="GCash" style="padding: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
+              <div class="ewallet-item selected" data-wallet="gcash" title="GCash" style="padding: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; position: relative;">
                 <img src="{{ asset('assets/icons/GCASH.png') }}" alt="GCash Logo" style="height: 56px; width: auto; max-width: 220px; object-fit: contain;" />
+                <span class="ewallet-check" style="width: 28px; height: 28px; border-radius: 50%; background: #22c55e; color: #ffffff; font-weight: bold; font-size: 16px; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4); position: absolute; right: 20px;">✓</span>
               </div>
 
               <div class="ewallet-divider"></div>
 
               <!-- Maya -->
-              <div class="ewallet-item" data-wallet="maya" title="Maya" style="padding: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
+              <div class="ewallet-item" data-wallet="maya" title="Maya" style="padding: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; position: relative;">
                 <img src="{{ asset('assets/icons/MAYA.png') }}" alt="Maya Logo" style="height: 52px; width: auto; max-width: 200px; object-fit: contain;" />
+                <span class="ewallet-check" style="width: 28px; height: 28px; border-radius: 50%; background: #22c55e; color: #ffffff; font-weight: bold; font-size: 16px; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4); position: absolute; right: 20px;">✓</span>
               </div>
 
             </div>
