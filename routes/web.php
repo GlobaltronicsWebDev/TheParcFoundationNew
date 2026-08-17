@@ -86,15 +86,3 @@ Route::post('/stripe/create-intent', [StripeController::class, 'createIntent'])-
 // Stripe webhook – receives events from Stripe servers (CSRF excluded in bootstrap/app.php)
 Route::post('/stripe/webhook', [StripeController::class, 'webhook'])->name('stripe.webhook');
 
-// Web deployment endpoint to pull latest code on Hostinger
-Route::get('/deploy-git-pull', function () {
-    $output = [];
-    $code = 0;
-    exec('git pull origin main 2>&1', $output, $code);
-    return response()->json([
-        'success' => ($code === 0),
-        'code'    => $code,
-        'output'  => $output,
-    ]);
-});
-
