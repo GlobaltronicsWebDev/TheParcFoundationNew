@@ -275,11 +275,14 @@ document.addEventListener("DOMContentLoaded", function () {
     btnPayCard.classList.add("active");
     btnPayCard.style.background = "linear-gradient(135deg, #ffa200 0%, #f89b1e 100%)";
     btnPayCard.style.color = "#ffffff";
+    btnPayCard.style.border = "2px solid #f89b1e";
     btnPayCard.style.boxShadow = "0 4px 14px rgba(255, 162, 0, 0.4)";
 
     btnPayOthers.classList.remove("active");
-    btnPayOthers.style.background = "transparent";
-    btnPayOthers.style.color = "#ffffff";
+    btnPayOthers.style.background = "#ffffff";
+    btnPayOthers.style.color = "#1f2937";
+    btnPayOthers.style.border = "2px solid #f89b1e";
+    btnPayOthers.style.boxShadow = "0 2px 6px rgba(0,0,0,0.06)";
 
     if (cardInfoBox) cardInfoBox.style.display = "flex";
     if (notebank) notebank.style.display = "none";
@@ -291,12 +294,14 @@ document.addEventListener("DOMContentLoaded", function () {
     btnPayOthers.classList.add("active");
     btnPayOthers.style.background = "linear-gradient(135deg, #ffa200 0%, #f89b1e 100%)";
     btnPayOthers.style.color = "#ffffff";
+    btnPayOthers.style.border = "2px solid #f89b1e";
     btnPayOthers.style.boxShadow = "0 4px 14px rgba(255, 162, 0, 0.4)";
 
     btnPayCard.classList.remove("active");
-    btnPayCard.style.background = "transparent";
-    btnPayCard.style.color = "#ffffff";
-    btnPayCard.style.boxShadow = "none";
+    btnPayCard.style.background = "#ffffff";
+    btnPayCard.style.color = "#1f2937";
+    btnPayCard.style.border = "2px solid #f89b1e";
+    btnPayCard.style.boxShadow = "0 2px 6px rgba(0,0,0,0.06)";
 
     if (cardInfoBox) cardInfoBox.style.display = "none";
     if (notebank) notebank.style.display = "block";

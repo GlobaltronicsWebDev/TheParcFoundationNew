@@ -304,17 +304,17 @@
     <div class="step-panel" id="stepPanel3" style="display: none;">
       
       <!-- Dynamic Payment Summary Pill Banner -->
-      <div class="payment-summary-banner" style="background-color: #f89b1e; color: #ffffff; border-radius: 14px; padding: 22px 15px; text-align: center; margin-bottom: 22px; box-shadow: 0 8px 20px rgba(0, 68, 187, 0.25);">
+      <div class="payment-summary-banner" style="background: linear-gradient(135deg, #f89b1e 0%, #ffa200 100%); color: #ffffff; border-radius: 14px; padding: 20px 15px; text-align: center; margin-bottom: 22px; box-shadow: 0 6px 18px rgba(248, 155, 30, 0.3);">
         <div style="font-size: 2.2rem; font-weight: 900; letter-spacing: -0.5px; line-height: 1.2;">
-          <span id="paymentSummaryAmount"> 1,000</span>
+          <span id="paymentSummaryAmount">₱ 1,000</span>
         </div>
-        <div id="paymentSummaryType" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.9; margin-top: 4px;">
+        <div id="paymentSummaryType" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.95; margin-top: 4px;">
           MONTHLY DONATION
         </div>
       </div>
 
       <!-- Sub-heading instructions -->
-      <p style="text-align: center; font-size: 1rem; font-weight: 600; color: #000; margin-bottom: 18px; text-shadow: 0 1px 3px rgba(0,0,0,0.15);">
+      <p style="text-align: center; font-size: 1.05rem; font-weight: 700; color: #1f2937; margin-bottom: 18px;">
         Please select your mode of payment
       </p>
 
@@ -322,36 +322,37 @@
       <div style="display: flex; flex-direction: column; gap: 14px; align-items: center;">
         
         <!-- Credit / Debit Card Option (Primary Active Button) -->
-        <button type="button" id="btn-pay-card" class="payment-mode-btn active" style="width: 100%; max-width: 380px; padding: 14px 20px; background: linear-gradient(135deg, #ffa200 0%, #f89b1e 100%); color: #ffffff; border: 2px solid #ffffff; border-radius: 30px; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 14px rgba(255, 162, 0, 0.4); transition: all 0.25s ease;">
-          <span style="font-size: 1.4rem;">💳</span>
+        <button type="button" id="btn-pay-card" class="payment-mode-btn active" style="width: 100%; max-width: 380px; padding: 14px 20px; background: linear-gradient(135deg, #ffa200 0%, #f89b1e 100%); color: #ffffff; border: 2px solid #f89b1e; border-radius: 30px; font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 14px rgba(255, 162, 0, 0.4); transition: all 0.25s ease;">
+          <span style="font-size: 1.3rem;">💳</span>
           <span>CREDIT / DEBIT CARD</span>
         </button>
 
         <!-- Feature Info Box (Card Benefits Note with Avatar) -->
-        <div id="cardInfoBox" class="card-info-box" style="width: 100%; max-width: 380px; border: 2px dashed rgba(255, 255, 255, 0.7); border-radius: 12px; padding: 16px; display: flex; align-items: center; gap: 14px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(4px);">
-          <div style="width: 68px; height: 68px; min-width: 68px; border-radius: 50%; overflow: hidden; border: 2px solid #ffffff; box-shadow: 0 3px 8px rgba(0,0,0,0.2); background: #ffffff;">
+        <div id="cardInfoBox" class="card-info-box" style="width: 100%; max-width: 380px; border: 2px dashed #f89b1e; border-radius: 12px; padding: 16px; display: flex; align-items: center; gap: 14px; background: #fff7ed;">
+          <div style="width: 68px; height: 68px; min-width: 68px; border-radius: 50%; overflow: hidden; border: 2px solid #f89b1e; box-shadow: 0 3px 8px rgba(0,0,0,0.15); background: #ffffff;">
             <img src="{{ asset('assets/image/groupart.png') }}" alt="PARC Children" style="width: 100%; height: 100%; object-fit: cover;" />
           </div>
-          <p style="font-size: 0.85rem; line-height: 1.35; color: #000; font-weight: 500; margin: 0; text-align: left;">
+          <p style="font-size: 0.85rem; line-height: 1.35; color: #374151; font-weight: 500; margin: 0; text-align: left;">
             Donations via credit/debit cards provide a more stable and secure way to manage your support to children in need.
           </p>
         </div>
 
         <!-- Others / Bank Account & QR Code Option -->
-        <button type="button" id="btn-pay-others" class="payment-mode-btn" style="color: #000; background-color:#ffffff;" style="width: auto; min-width: 160px; padding: 10px 28px; background: transparent; color: #ffffff; border: 2px solid #ffffff; border-radius: 25px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.25s ease; margin-top: 4px;">
-          Others (Bank / QR Code)
+        <button type="button" id="btn-pay-others" class="payment-mode-btn" style="width: 100%; max-width: 380px; padding: 14px 20px; background: #ffffff; color: #1f2937; border: 2px solid #f89b1e; border-radius: 30px; font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); transition: all 0.25s ease;">
+          <span style="font-size: 1.3rem;">🏦</span>
+          <span>OTHERS (BANK / QR CODE)</span>
         </button>
 
       </div>
 
       <!-- Bank Transfer / QR Code Details (Hidden by default, shown when clicking 'Others') -->
-      <div class="notebank" id="notebank" style="display: none; background-color: #f89b1e; color:#000; padding: 20px; margin-top: 20px; border-radius: 12px; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.1);">
-        <p style="font-weight: bold; color: #ffffff; font-size: 1.1rem; margin-bottom: 15px;">Scan QR Code or Transfer via Bank</p>
+      <div class="notebank" id="notebank" style="display: none; background-color: #ffffff; padding: 22px; margin-top: 20px; border-radius: 12px; border: 2px solid #f89b1e; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.08);">
+        <p style="font-weight: 800; color: #f89b1e; font-size: 1.1rem; margin-bottom: 15px;">Scan QR Code or Transfer via Bank</p>
         
         <div style="display: flex; justify-content: center; align-items: center;">
           <img src="{{ asset('assets/image/qr_code.png') }}" alt="PARC Foundation QR Code" style="width: 240px; height: auto; border: 1px solid #ccc; border-radius: 8px; background: #fff; padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
         </div>
-        <p style="margin-top: 15px; font-size: 13px; color: #ffffffff;">After scanning, please screenshot your receipt and attach it below:</p>
+        <p style="margin-top: 15px; font-size: 14px; color: #4b5563; font-weight: 500;">After scanning, please screenshot your receipt and attach it below:</p>
 
         <!-- Receipt Upload -->
         <div style="margin-top: 15px; text-align: left;">
@@ -366,7 +367,7 @@
             style="display: none;"
             onchange="handleReceiptChange(this)"
           />
-          <label for="receipt" id="receipt-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer; background: #fff; border: 2px dashed #ffa200; border-radius: 8px; padding: 14px 18px; font-size: 13px; color: #888; transition: border-color 0.2s;">
+          <label for="receipt" id="receipt-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer; background: #fff; border: 2px dashed #f89b1e; border-radius: 8px; padding: 14px 18px; font-size: 13px; color: #666; transition: border-color 0.2s;">
             <span style="font-size: 22px;">🖼️</span>
             <span id="receipt-label-text">Click to upload (JPG, PNG, PDF — max 5MB)</span>
           </label>
@@ -420,7 +421,7 @@
       </div>
 
       <!-- Gateway Disclaimer Note -->
-      <p style="font-size: 0.8rem; line-height: 1.4; color: rgba(255, 255, 255, 0.9); margin: 22px 0 10px; text-align: center; font-style: italic;">
+      <p style="font-size: 0.8rem; line-height: 1.4; color: #6b7280; margin: 22px 0 10px; text-align: center; font-style: italic;">
         *Upon clicking "Continue", you will be redirected to our partner's secure payment gateway. Do not close or refresh the page.
       </p>
 
