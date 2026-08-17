@@ -362,14 +362,14 @@
               
               <!-- GCash -->
               <div class="ewallet-item" data-wallet="gcash" title="GCash" style="padding: 14px 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
-                <img src="{{ asset('assets/icons/gcash.svg') }}" alt="GCash Logo" style="height: 32px; width: auto; max-width: 160px;" />
+                <img src="{{ asset('assets/icons/GCASH.png') }}" alt="GCash Logo" style="height: 32px; width: auto; max-width: 160px;" />
               </div>
 
               <div class="ewallet-divider"></div>
 
               <!-- Maya -->
               <div class="ewallet-item" data-wallet="maya" title="Maya" style="padding: 14px 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
-                <img src="{{ asset('assets/icons/maya.svg') }}" alt="Maya Logo" style="height: 30px; width: auto; max-width: 140px;" />
+                <img src="{{ asset('assets/icons/MAYA.PNG') }}" alt="Maya Logo" style="height: 30px; width: auto; max-width: 140px;" />
               </div>
 
             </div>
