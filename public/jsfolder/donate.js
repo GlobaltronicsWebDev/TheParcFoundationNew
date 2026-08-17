@@ -264,10 +264,14 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ================================================================
    * 4. PAYMENT METHOD TOGGLE & DYNAMIC SUMMARY BANNER
    * ================================================================ */
-  const btnPayCard   = document.getElementById("btn-pay-card");
-  const btnPayOthers = document.getElementById("btn-pay-others");
-  const cardInfoBox  = document.getElementById("cardInfoBox");
-  const notebank     = document.getElementById("notebank");
+  const btnPayCard          = document.getElementById("btn-pay-card");
+  const btnPayOthers        = document.getElementById("btn-pay-others");
+  const cardInfoBox         = document.getElementById("cardInfoBox");
+  const notebank            = document.getElementById("notebank");
+  const ewalletDropdownMenu  = document.getElementById("ewalletDropdownMenu");
+  const ewalletItems         = document.querySelectorAll(".ewallet-item");
+  const ewalletBtnTitle      = document.getElementById("ewalletBtnTitle");
+  const sumPaymentMethod    = document.getElementById("sumPaymentMethod");
 
   if (paymentMethodInput) paymentMethodInput.value = "visa";
 
@@ -279,6 +283,7 @@ document.addEventListener("DOMContentLoaded", function () {
     btnPayCard.style.boxShadow = "0 4px 14px rgba(255, 162, 0, 0.4)";
 
     btnPayOthers.classList.remove("active");
+    btnPayOthers.classList.remove("open-menu");
     btnPayOthers.style.background = "#ffffff";
     btnPayOthers.style.color = "#1f2937";
     btnPayOthers.style.border = "2px solid #f89b1e";
@@ -286,8 +291,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (cardInfoBox) cardInfoBox.style.display = "flex";
     if (notebank) notebank.style.display = "none";
+    if (ewalletDropdownMenu) ewalletDropdownMenu.style.display = "none";
 
     if (paymentMethodInput) paymentMethodInput.value = "visa";
+    if (sumPaymentMethod) sumPaymentMethod.textContent = "Credit / Debit Card";
   });
 
   btnPayOthers?.addEventListener("click", () => {
@@ -306,7 +313,38 @@ document.addEventListener("DOMContentLoaded", function () {
     if (cardInfoBox) cardInfoBox.style.display = "none";
     if (notebank) notebank.style.display = "block";
 
-    if (paymentMethodInput) paymentMethodInput.value = "bank";
+    // Toggle dropdown menu
+    if (ewalletDropdownMenu) {
+      const isMenuVisible = ewalletDropdownMenu.style.display === "block";
+      ewalletDropdownMenu.style.display = isMenuVisible ? "none" : "block";
+      btnPayOthers.classList.toggle("open-menu", !isMenuVisible);
+    }
+
+    if (paymentMethodInput && (paymentMethodInput.value === "visa" || !paymentMethodInput.value)) {
+      paymentMethodInput.value = "gcash";
+    }
+    if (sumPaymentMethod) {
+      const currentWallet = paymentMethodInput?.value || "gcash";
+      const formatName = currentWallet === "gcash" ? "GCash" : (currentWallet === "maya" ? "Maya" : (currentWallet === "grabpay" ? "GrabPay" : (currentWallet === "shopeepay" ? "ShopeePay" : "PayPal")));
+      sumPaymentMethod.textContent = "e-Wallet (" + formatName + ")";
+    }
+  });
+
+  ewalletItems.forEach(item => {
+    item.addEventListener("click", function (e) {
+      e.stopPropagation();
+      ewalletItems.forEach(i => i.classList.remove("selected"));
+      this.classList.add("selected");
+
+      const wallet = this.dataset.wallet;
+      const formattedName = wallet === "gcash" ? "GCash" : (wallet === "maya" ? "Maya" : (wallet === "grabpay" ? "GrabPay" : (wallet === "shopeepay" ? "ShopeePay" : "PayPal")));
+
+      if (paymentMethodInput) paymentMethodInput.value = wallet;
+      if (ewalletBtnTitle) ewalletBtnTitle.textContent = `e-Wallets (${formattedName})`;
+      if (sumPaymentMethod) sumPaymentMethod.textContent = `e-Wallet (${formattedName})`;
+
+      if (notebank) notebank.style.display = "block";
+    });
   });
 
   function updatePaymentSummaryBanner() {

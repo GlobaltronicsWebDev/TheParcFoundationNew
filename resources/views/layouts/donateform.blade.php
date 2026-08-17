@@ -337,17 +337,90 @@
           </p>
         </div>
 
-        <!-- Others / Bank Account & QR Code Option -->
-        <button type="button" id="btn-pay-others" class="payment-mode-btn" style="width: 100%; max-width: 380px; padding: 14px 20px; background: #ffffff; color: #1f2937; border: 2px solid #f89b1e; border-radius: 30px; font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); transition: all 0.25s ease;">
-          <span style="font-size: 1.3rem;">🏦</span>
-          <span>OTHERS (BANK / QR CODE)</span>
-        </button>
+        <!-- e-Wallets Payment Option (Matches Image Reference) -->
+        <div class="ewallet-dropdown-wrapper" style="width: 100%; max-width: 380px;">
+          <!-- e-Wallets Toggle Button -->
+          <button type="button" id="btn-pay-others" class="payment-mode-btn ewallet-toggle-btn" style="width: 100%; padding: 14px 20px; background: #ffffff; color: #1f2937; border: 2px solid #f89b1e; border-radius: 14px; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); transition: all 0.25s ease;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <svg width="24" height="20" viewBox="0 0 32 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 7.5A2.5 2.5 0 0 1 4.5 5h23A2.5 2.5 0 0 1 30 7.5v13a2.5 2.5 0 0 1-2.5 2.5h-23A2.5 2.5 0 0 1 2 20.5v-13z" stroke="currentColor" stroke-width="2.5"/>
+                <path d="M7 5V3.5A2.5 2.5 0 0 1 9.5 1h13A2.5 2.5 0 0 1 25 3.5V5" stroke="currentColor" stroke-width="2.5"/>
+                <circle cx="22" cy="14" r="2" fill="currentColor"/>
+              </svg>
+              <span id="ewalletBtnTitle">e-Wallets</span>
+            </div>
+            <span class="ewallet-caret" style="display: flex; align-items: center; transition: transform 0.3s ease;">
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="currentColor">
+                <path d="M7 10L0 0h14L7 10z"/>
+              </svg>
+            </span>
+          </button>
+
+          <!-- e-Wallets Dropdown Menu (Matches Image Reference 2) -->
+          <div id="ewalletDropdownMenu" class="ewallet-dropdown-menu" style="display: none; width: 100%; background: #ffffff; border: 2px solid #f89b1e; border-top: none; border-radius: 0 0 14px 14px; margin-top: -2px; box-shadow: 0 8px 20px rgba(0,0,0,0.12); overflow: hidden;">
+            <div style="padding: 6px 0;">
+              
+              <!-- GCash -->
+              <div class="ewallet-item" data-wallet="gcash" title="GCash" style="padding: 14px 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
+                <svg width="140" height="32" viewBox="0 0 170 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="22" cy="18" r="14" fill="#0066FF"/>
+                  <path d="M25 13h-5a4 4 0 0 0-4 4v2a4 4 0 0 0 4 4h5v-5h-3" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M39 11a10 10 0 0 1 0 14M43 8a14 14 0 0 1 0 20" stroke="#0066FF" stroke-width="2.5" stroke-linecap="round"/>
+                  <text x="52" y="26" font-family="'Inter', system-ui, sans-serif" font-weight="800" font-size="24" fill="#0052CC">GCash</text>
+                </svg>
+              </div>
+
+              <div class="ewallet-divider"></div>
+
+              <!-- Maya -->
+              <div class="ewallet-item" data-wallet="maya" title="Maya" style="padding: 14px 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
+                <svg width="120" height="32" viewBox="0 0 140 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <text x="12" y="27" font-family="'Inter', system-ui, sans-serif" font-weight="700" font-size="32" fill="#00B865" letter-spacing="-1">maya</text>
+                </svg>
+              </div>
+
+              <div class="ewallet-divider"></div>
+
+              <!-- GrabPay -->
+              <div class="ewallet-item" data-wallet="grabpay" title="GrabPay" style="padding: 14px 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
+                <svg width="140" height="32" viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <text x="8" y="26" font-family="'Inter', system-ui, sans-serif" font-weight="700" font-size="26" fill="#00B14F" letter-spacing="-0.5">Grab<tspan font-weight="400">Pay</tspan></text>
+                </svg>
+              </div>
+
+              <div class="ewallet-divider"></div>
+
+              <!-- ShopeePay -->
+              <div class="ewallet-item" data-wallet="shopeepay" title="ShopeePay" style="padding: 14px 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
+                <svg width="160" height="32" viewBox="0 0 180 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="4" width="28" height="28" rx="6" fill="#EE4D2D"/>
+                  <path d="M11 11c0-1.5 1.2-2.5 3-2.5s3 1 3 2.5v2h-6v-2z" stroke="#FFFFFF" stroke-width="1.8" fill="none"/>
+                  <path d="M9 13h10v11a2 2 0 0 1-2 2h-6a2 2 0 0 1-2-2V13z" fill="#FFFFFF"/>
+                  <text x="12" y="22" font-family="'Inter', system-ui, sans-serif" font-weight="800" font-size="10" fill="#EE4D2D">S</text>
+                  <text x="36" y="25" font-family="'Inter', system-ui, sans-serif" font-weight="700" font-size="22" fill="#EE4D2D">Shopee<tspan font-weight="500">Pay</tspan></text>
+                </svg>
+              </div>
+
+              <div class="ewallet-divider"></div>
+
+              <!-- PayPal -->
+              <div class="ewallet-item" data-wallet="paypal" title="PayPal" style="padding: 14px 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
+                <svg width="120" height="32" viewBox="0 0 140 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 6h8a5 5 0 0 1 5 5c0 3.5-2.5 5-5 5h-4l-2 12h-4l3.5-22z" fill="#003087"/>
+                  <path d="M16 10h8a5 5 0 0 1 5 5c0 3.5-2.5 5-5 5h-4l-2 12h-4l3.5-22z" fill="#0079C1" opacity="0.85"/>
+                  <text x="42" y="26" font-family="'Inter', system-ui, sans-serif" font-weight="800" font-style="italic" font-size="24" fill="#003087">Pay<tspan fill="#0079C1">Pal</tspan></text>
+                </svg>
+              </div>
+
+            </div>
+          </div>
+        </div>
 
       </div>
 
-      <!-- Bank Transfer / QR Code Details (Hidden by default, shown when clicking 'Others') -->
+      <!-- Bank Transfer / QR Code Details (Shown when e-Wallets is selected) -->
       <div class="notebank" id="notebank" style="display: none; background-color: #ffffff; padding: 22px; margin-top: 20px; border-radius: 12px; border: 2px solid #f89b1e; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.08);">
-        <p style="font-weight: 800; color: #f89b1e; font-size: 1.1rem; margin-bottom: 15px;">Scan QR Code or Transfer via Bank</p>
+        <p style="font-weight: 800; color: #f89b1e; font-size: 1.1rem; margin-bottom: 15px;">Scan QR Code to Pay via e-Wallet (GCash, Maya, etc.)</p>
         
         <div style="display: flex; justify-content: center; align-items: center;">
           <img src="{{ asset('assets/image/qr_code.png') }}" alt="PARC Foundation QR Code" style="width: 240px; height: auto; border: 1px solid #ccc; border-radius: 8px; background: #fff; padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
@@ -456,7 +529,7 @@
         </div>
         <div class="summary-row">
           <span class="summary-label">Payment Method:</span>
-          <span class="summary-value">Bank Account / Scan QR</span>
+          <span class="summary-value" id="sumPaymentMethod">e-Wallet (GCash / Maya)</span>
         </div>
         <div class="summary-row">
           <span class="summary-label">Attached Receipt:</span>

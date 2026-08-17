@@ -1505,3 +1505,99 @@ select.form-select-custom:focus {
   text-align: right;
 }
 
+/* ================================================================
+   E-WALLETS DROPDOWN PAYMENT OPTION (Matching Image Reference)
+   ================================================================ */
+.ewallet-dropdown-wrapper {
+  width: 100%;
+  max-width: 380px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.ewallet-toggle-btn {
+  width: 100%;
+  padding: 14px 20px;
+  background: #ffffff;
+  color: #1f2937;
+  border: 2px solid #f89b1e;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  transition: all 0.25s ease;
+}
+
+.ewallet-toggle-btn.active {
+  background: linear-gradient(135deg, #ffa200 0%, #f89b1e 100%) !important;
+  color: #ffffff !important;
+  border-color: #f89b1e !important;
+  box-shadow: 0 4px 14px rgba(255, 162, 0, 0.4) !important;
+}
+
+.ewallet-toggle-btn.active .ewallet-caret {
+  transform: rotate(180deg);
+}
+
+.ewallet-toggle-btn.open-menu {
+  border-radius: 14px 14px 0 0 !important;
+}
+
+.ewallet-dropdown-menu {
+  display: none;
+  width: 100%;
+  background: #ffffff;
+  border: 2px solid #f89b1e;
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+  margin-top: -2px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  overflow: hidden;
+  animation: ewalletFadeDown 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 10;
+}
+
+@keyframes ewalletFadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ewallet-item {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+  position: relative;
+}
+
+.ewallet-item:hover {
+  background-color: #fff8ed;
+}
+
+.ewallet-item.selected {
+  background-color: #fff1d6;
+}
+
+.ewallet-divider {
+  height: 1px;
+  background-color: #e5e7eb;
+  margin: 0 16px;
+}
+
+

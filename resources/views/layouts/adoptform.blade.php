@@ -142,7 +142,24 @@
     {{-- ── PAYMENT METHOD ── --}}
     <h3 class="formtitle">Payment Method</h3>
 
-    <a href="#" class="btnm9" id="btn-bank">Bank Account</a>
+    <div class="ewallet-dropdown-wrapper" style="width: 100%; max-width: 100%; margin-bottom: 15px;">
+      <!-- e-Wallets Toggle Button -->
+      <button type="button" id="btn-bank" class="payment-mode-btn ewallet-toggle-btn" style="width: 100%; padding: 14px 20px; background: #ffffff; color: #1f2937; border: 2px solid #f78f1e; border-radius: 14px; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <svg width="24" height="20" viewBox="0 0 32 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 7.5A2.5 2.5 0 0 1 4.5 5h23A2.5 2.5 0 0 1 30 7.5v13a2.5 2.5 0 0 1-2.5 2.5h-23A2.5 2.5 0 0 1 2 20.5v-13z" stroke="currentColor" stroke-width="2.5"/>
+            <path d="M7 5V3.5A2.5 2.5 0 0 1 9.5 1h13A2.5 2.5 0 0 1 25 3.5V5" stroke="currentColor" stroke-width="2.5"/>
+            <circle cx="22" cy="14" r="2" fill="currentColor"/>
+          </svg>
+          <span id="adoptEwalletBtnTitle">e-Wallets (GCash, Maya, etc.)</span>
+        </div>
+        <span class="ewallet-caret" style="display: flex; align-items: center; transition: transform 0.3s ease;">
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="currentColor">
+            <path d="M7 10L0 0h14L7 10z"/>
+          </svg>
+        </span>
+      </button>
+    </div>
 
     <div class="notebank" id="notebank" style="display: none; background-color: #eae8e8; padding: 20px; margin-top: 15px; border-radius: 8px; text-align: center;">
       <p style="font-weight: bold; color: #f78f1e; margin-bottom: 15px;">Scan to Donate</p>
