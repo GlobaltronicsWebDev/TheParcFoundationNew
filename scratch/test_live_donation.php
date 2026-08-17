@@ -33,12 +33,13 @@ try {
 
     $rawPhone = '+63 905 123 4567';
     $phoneFormatted = "'" . $rawPhone;
+    $id = 1;
 
     $row = [
-        '101',
-        'PhoneFixTest',
+        'DNT-ID-' . str_pad($id, 3, '0', STR_PAD_LEFT),
+        'DNTIDTest',
         'Donor',
-        'phonefix@theparcfoundation.ph',
+        'dntidtest@theparcfoundation.ph',
         $phoneFormatted,
         'Philippines',
         'Metro Manila (NCR)',
@@ -50,7 +51,7 @@ try {
         'once',
         'gcash',
         'https://theparcfoundation.ph/receipts/test.jpg',
-        date('n/j/Y'),
+        date('m/d/Y'),
     ];
 
     echo "Calling GoogleSheetsExporter::append()...\n";
@@ -61,7 +62,7 @@ try {
         row:           $row
     );
 
-    echo "SUCCESS! Row appended with single apostrophe prefix for phone number!\n";
+    echo "SUCCESS! Row appended with DNT-ID-001 ID!\n";
 
 } catch (\Throwable $e) {
     echo "ERROR: " . $e->getMessage() . "\n";
