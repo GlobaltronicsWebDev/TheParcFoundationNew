@@ -35,11 +35,16 @@ try {
     $phoneFormatted = "'" . $rawPhone;
     $id = 1;
 
+    $receiptPath = 'receipts/test_receipt_sample.png';
+    $baseUrl = 'https://theparcfoundation.ph';
+    $receiptFullUrl = rtrim($baseUrl, '/') . '/' . ltrim($receiptPath, '/');
+    $receiptCell = '=HYPERLINK("' . $receiptFullUrl . '", "View Receipt")';
+
     $row = [
         'DNT-ID-' . str_pad($id, 3, '0', STR_PAD_LEFT),
-        'DNTIDTest',
+        'ReceiptTest',
         'Donor',
-        'dntidtest@theparcfoundation.ph',
+        'receipttest@theparcfoundation.ph',
         $phoneFormatted,
         'Philippines',
         'Metro Manila (NCR)',
@@ -49,9 +54,9 @@ try {
         '1100',
         '500',
         'once',
-        'gcash',
-        'https://theparcfoundation.ph/receipts/test.jpg',
-        date('m/d/Y'),
+        'bank',
+        $receiptCell,
+        "'" . date('m/d/Y'),
     ];
 
     echo "Calling GoogleSheetsExporter::append()...\n";
@@ -62,7 +67,7 @@ try {
         row:           $row
     );
 
-    echo "SUCCESS! Row appended with DNT-ID-001 ID!\n";
+    echo "SUCCESS! Row appended with HYPERLINK formula for receipt: $receiptCell\n";
 
 } catch (\Throwable $e) {
     echo "ERROR: " . $e->getMessage() . "\n";
