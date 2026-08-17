@@ -338,14 +338,14 @@
         </div>
 
         <!-- Others / Bank Account & QR Code Option -->
-        <button type="button" id="btn-pay-others" class="payment-mode-btn" style="color: #000" style="width: auto; min-width: 160px; padding: 10px 28px; background: transparent; color: #ffffff; border: 2px solid #ffffff; border-radius: 25px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.25s ease; margin-top: 4px;">
+        <button type="button" id="btn-pay-others" class="payment-mode-btn" style="color: #000; background-color:#ffffff;" style="width: auto; min-width: 160px; padding: 10px 28px; background: transparent; color: #ffffff; border: 2px solid #ffffff; border-radius: 25px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.25s ease; margin-top: 4px;">
           Others (Bank / QR Code)
         </button>
 
       </div>
 
       <!-- Bank Transfer / QR Code Details (Hidden by default, shown when clicking 'Others') -->
-      <div class="notebank" id="notebank" style="display: none; background-color: #000; padding: 20px; margin-top: 20px; border-radius: 12px; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.1);">
+      <div class="notebank" id="notebank" style="display: none; background-color: #f89b1e; color:#000; padding: 20px; margin-top: 20px; border-radius: 12px; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.1);">
         <p style="font-weight: bold; color: #ffa200; font-size: 1.1rem; margin-bottom: 15px;">Scan QR Code or Transfer via Bank</p>
         
         <div style="display: flex; justify-content: center; align-items: center;">
