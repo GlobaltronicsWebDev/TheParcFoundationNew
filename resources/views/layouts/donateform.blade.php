@@ -338,7 +338,7 @@
         </div>
 
         <!-- Others / Bank Account & QR Code Option -->
-        <button type="button" id="btn-pay-others" class="payment-mode-btn" style="width: auto; min-width: 160px; padding: 10px 28px; background: transparent; color: #ffffff; border: 2px solid #ffffff; border-radius: 25px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.25s ease; margin-top: 4px;">
+        <button type="button" id="btn-pay-others" class="payment-mode-btn" style="color: #000" style="width: auto; min-width: 160px; padding: 10px 28px; background: transparent; color: #ffffff; border: 2px solid #ffffff; border-radius: 25px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.25s ease; margin-top: 4px;">
           Others (Bank / QR Code)
         </button>
 
