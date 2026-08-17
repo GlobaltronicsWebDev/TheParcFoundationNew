@@ -77,7 +77,7 @@ class AdoptionController extends Controller
                 $adoption->textUpdates          ?? 'no',
                 $adoption->cover_processing_fee ? 'Yes' : 'No',
                 $adoption->receipt_path         ? url($adoption->receipt_path) : 'No Receipt Attached',
-                $adoption->created_at ? $adoption->created_at->format('Y-m-d H:i:s') : date('Y-m-d H:i:s'),
+                $adoption->created_at ? $adoption->created_at->format('n/j/Y') : date('n/j/Y'),
             ];
 
             GoogleSheetsExporter::append(
