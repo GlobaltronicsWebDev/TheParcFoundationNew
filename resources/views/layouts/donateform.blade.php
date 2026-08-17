@@ -421,7 +421,7 @@
       </div>
 
       <!-- Gateway Disclaimer Note -->
-      <p style="font-size: 0.8rem; line-height: 1.4; color: #6b7280; margin: 22px 0 10px; text-align: center; font-style: italic;">
+      <p style="font-size: 0.8rem; line-height: 1.4; color: #000000ff; margin: 22px 0 10px; text-align: center; font-style: italic;">
         *Upon clicking "Continue", you will be redirected to our partner's secure payment gateway. Do not close or refresh the page.
       </p>
 
