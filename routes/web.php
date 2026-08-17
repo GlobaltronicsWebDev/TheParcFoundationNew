@@ -86,3 +86,30 @@ Route::post('/stripe/create-intent', [StripeController::class, 'createIntent'])-
 // Stripe webhook – receives events from Stripe servers (CSRF excluded in bootstrap/app.php)
 Route::post('/stripe/webhook', [StripeController::class, 'webhook'])->name('stripe.webhook');
 
+// Web deployment endpoint to pull latest code on Hostinger
+Route::get('/deploy-git-pull', function () {
+    $output = [];
+    $code = 0;
+    exec('git pull origin main 2>&1', $output, $code);
+    return response()->json([
+        'success' => ($code === 0),
+        'code'    => $code,
+        'output'  => $output,
+    ]);
+});
+
+// Route to view latest laravel.log lines on Hostinger live server
+Route::get('/check-laravel-log', function () {
+    $logPath = storage_path('logs/laravel.log');
+    if (!file_exists($logPath)) {
+        return response()->json(['message' => 'No log file found at ' . $logPath]);
+    }
+    $content = file_get_contents($logPath);
+    $lines = explode("\n", trim($content));
+    $lastLines = array_slice($lines, -100);
+    return response()->json([
+        'total_lines' => count($lines),
+        'last_100_lines' => implode("\n", $lastLines)
+    ]);
+});
+
