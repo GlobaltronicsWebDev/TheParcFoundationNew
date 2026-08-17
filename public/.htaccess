@@ -23,3 +23,17 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+# Security Hardening: Block access to hidden & sensitive files
+<FilesMatch "^\.env|\.git|\.yml|composer\.(json|lock)|package\.(json|lock)|\.json$|\.log$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Security Hardening: HTTP Response Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

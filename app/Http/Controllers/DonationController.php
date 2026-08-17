@@ -67,10 +67,15 @@ class DonationController extends Controller
         $validated['city']  = $city;
         $validated['phone'] = $phoneVal;
 
-        // Handle receipt file upload — stored in public/receipts/
+        // Handle receipt file upload — stored in public/receipts/ with secure randomized filename
         if ($request->hasFile('receipt')) {
-            $file     = $request->file('receipt');
-            $filename = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+            $file      = $request->file('receipt');
+            $extension = strtolower($file->getClientOriginalExtension() ?: 'jpg');
+            $allowed   = ['jpg', 'jpeg', 'png', 'pdf'];
+            if (!in_array($extension, $allowed)) {
+                return response()->json(['success' => false, 'error' => 'Invalid receipt file type.'], 422);
+            }
+            $filename = time() . '_' . \Illuminate\Support\Str::random(24) . '.' . $extension;
             $file->move(public_path('receipts'), $filename);
             $validated['receipt_path'] = 'receipts/' . $filename;
         }

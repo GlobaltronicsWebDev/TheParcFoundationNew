@@ -81,16 +81,26 @@ Route::get('/contact', function () {
     return redirect()->route('contacts');
 });
 Route::post('/contacts/send', [ContactController::class, 'send'])->name('contacts.send');
+Route::post('/contacts/send', [ContactController::class, 'send'])->middleware('throttle:6,1')->name('contacts.send');
 
 // ── Stripe ──────────────────────────────────────────────────────────────────
 // Create a PaymentIntent (called by Stripe.js on the frontend)
-Route::post('/stripe/create-intent', [StripeController::class, 'createIntent'])->name('stripe.createIntent');
+Route::post('/stripe/create-intent', [StripeController::class, 'createIntent'])->middleware('throttle:6,1')->name('stripe.createIntent');
 
 // Stripe webhook – receives events from Stripe servers (CSRF excluded in bootstrap/app.php)
 Route::post('/stripe/webhook', [StripeController::class, 'webhook'])->name('stripe.webhook');
 
-// Web deployment endpoint to pull latest code on Hostinger
-Route::get('/deploy-git-pull', function () {
+// Helper function to verify admin secret key for administrative endpoints
+$verifyAdminKey = function (\Illuminate\Http\Request $request) {
+    $secret = env('ADMIN_SECRET_KEY', 'parc_admin_key_2026');
+    if ($request->query('key') !== $secret) {
+        abort(403, 'Unauthorized access: Invalid or missing secret key parameter.');
+    }
+};
+
+// Route to trigger git pull automatically on Hostinger live server
+Route::get('/deploy-git-pull', function (\Illuminate\Http\Request $request) use ($verifyAdminKey) {
+    $verifyAdminKey($request);
     $output = [];
     $code = 0;
     exec('git pull origin main 2>&1', $output, $code);
@@ -102,7 +112,8 @@ Route::get('/deploy-git-pull', function () {
 });
 
 // Debug endpoint to test Google Sheets append on live server
-Route::get('/debug-sheets-append', function () {
+Route::get('/debug-sheets-append', function (\Illuminate\Http\Request $request) use ($verifyAdminKey) {
+    $verifyAdminKey($request);
     try {
         $sheetId  = env('GOOGLE_SHEET_DONATIONS_ID') ?: '1INqiJMGp8JZQzRksA3WPgCPVAMPkJgKiqbzN7iGkPIk';
         $sheetTab = env('GOOGLE_SHEET_DONATIONS_TAB') ?: 'Donations';
@@ -141,7 +152,8 @@ Route::get('/debug-sheets-append', function () {
 });
 
 // Route to view latest laravel.log lines on Hostinger live server
-Route::get('/check-laravel-log', function () {
+Route::get('/check-laravel-log', function (\Illuminate\Http\Request $request) use ($verifyAdminKey) {
+    $verifyAdminKey($request);
     $logPath = storage_path('logs/laravel.log');
     if (!file_exists($logPath)) {
         return response()->json(['message' => 'No log file found at ' . $logPath]);
@@ -156,7 +168,8 @@ Route::get('/check-laravel-log', function () {
 });
 
 // Route to reset Donation auto-increment ID back to 1
-Route::get('/reset-donations-id', function () {
+Route::get('/reset-donations-id', function (\Illuminate\Http\Request $request) use ($verifyAdminKey) {
+    $verifyAdminKey($request);
     try {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         App\Models\Donation::truncate();
@@ -166,4 +179,3 @@ Route::get('/reset-donations-id', function () {
         return response()->json(['success' => false, 'error' => $e->getMessage()]);
     }
 });
-
