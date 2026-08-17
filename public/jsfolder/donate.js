@@ -853,6 +853,12 @@ document.addEventListener("DOMContentLoaded", function () {
     launchConfetti();
 
     if (downloadReceiptBtn) {
+      if (currentReceiptUrl) {
+        downloadReceiptBtn.href = currentReceiptUrl + (currentReceiptUrl.includes('?') ? '&print=1' : '?print=1');
+        downloadReceiptBtn.target = "_blank";
+      } else {
+        downloadReceiptBtn.href = "#";
+      }
       downloadReceiptBtn.focus();
     } else {
       modalCloseBtn?.focus();

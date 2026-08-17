@@ -588,9 +588,9 @@
     </div>
 
     <div class="modal-actions-wrap" style="display: flex; flex-direction: column; gap: 10px; margin-top: 22px; width: 100%;">
-      <button type="button" class="btn-download-receipt" id="downloadReceiptBtn" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 18px; background: #f89b1e; color: #ffffff; border: none; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(248,155,30,0.25);">
+      <a id="downloadReceiptBtn" href="#" target="_blank" class="btn-download-receipt" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 18px; background: #f89b1e; color: #ffffff; border: none; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(248,155,30,0.25);">
         <i class="fa-solid fa-download"></i> Download Official Receipt
-      </button>
+      </a>
       <button type="button" class="modal-close-btn" id="modalCloseBtn" style="width: 100%; padding: 12px; background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer;">
         Close
       </button>

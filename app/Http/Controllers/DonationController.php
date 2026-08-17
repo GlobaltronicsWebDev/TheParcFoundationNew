@@ -133,7 +133,7 @@ class DonationController extends Controller
                 $donation->give_type       ?? 'once',
                 $donation->payment_method  ?? 'bank',
                 $donation->receipt_path ? url($donation->receipt_path) : 'No Receipt',
-                $donation->created_at ? $donation->created_at->setTimezone('Asia/Manila')->format('m/d/Y') : now()->setTimezone('Asia/Manila')->format('m/d/Y'),
+                "'" . ($donation->created_at ? $donation->created_at->setTimezone('Asia/Manila')->format('m/d/Y') : now()->setTimezone('Asia/Manila')->format('m/d/Y')),
             ];
 
             $sheetId  = env('GOOGLE_SHEET_DONATIONS_ID') ?: '1INqiJMGp8JZQzRksA3WPgCPVAMPkJgKiqbzN7iGkPIk';
