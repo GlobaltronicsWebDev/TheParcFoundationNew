@@ -123,11 +123,13 @@ class DonationController extends Controller
                 headers:       $headers,
                 row:           $row
             );
+            Log::info('Google Sheets (Donations) append SUCCESS for donation #' . $donation->id);
         } catch (\Throwable $e) {
             // Log the error but do NOT fail the user's submission —
             // data is already safely saved in the database.
-            Log::error('Google Sheets (Donations) append failed: ' . $e->getMessage(), [
+            Log::error('Google Sheets (Donations) append FAILED: ' . $e->getMessage(), [
                 'donation_id' => $donation->id,
+                'error_msg'   => $e->getMessage(),
                 'trace'       => $e->getTraceAsString(),
             ]);
         }
