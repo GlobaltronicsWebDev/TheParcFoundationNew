@@ -346,7 +346,7 @@
 
       <!-- Bank Transfer / QR Code Details (Hidden by default, shown when clicking 'Others') -->
       <div class="notebank" id="notebank" style="display: none; background-color: #f89b1e; color:#000; padding: 20px; margin-top: 20px; border-radius: 12px; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.1);">
-        <p style="font-weight: bold; color: #ffa200; font-size: 1.1rem; margin-bottom: 15px;">Scan QR Code or Transfer via Bank</p>
+        <p style="font-weight: bold; color: #ffffff; font-size: 1.1rem; margin-bottom: 15px;">Scan QR Code or Transfer via Bank</p>
         
         <div style="display: flex; justify-content: center; align-items: center;">
           <img src="{{ asset('assets/image/qr_code.png') }}" alt="PARC Foundation QR Code" style="width: 240px; height: auto; border: 1px solid #ccc; border-radius: 8px; background: #fff; padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
