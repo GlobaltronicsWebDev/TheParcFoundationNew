@@ -262,9 +262,62 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   /* ================================================================
-   * 4. PAYMENT METHOD CONFIG
+   * 4. PAYMENT METHOD TOGGLE & DYNAMIC SUMMARY BANNER
    * ================================================================ */
-  if (paymentMethodInput) paymentMethodInput.value = "bank";
+  const btnPayCard   = document.getElementById("btn-pay-card");
+  const btnPayOthers = document.getElementById("btn-pay-others");
+  const cardInfoBox  = document.getElementById("cardInfoBox");
+  const notebank     = document.getElementById("notebank");
+
+  if (paymentMethodInput) paymentMethodInput.value = "visa";
+
+  btnPayCard?.addEventListener("click", () => {
+    btnPayCard.classList.add("active");
+    btnPayCard.style.background = "linear-gradient(135deg, #ffa200 0%, #f89b1e 100%)";
+    btnPayCard.style.color = "#ffffff";
+    btnPayCard.style.boxShadow = "0 4px 14px rgba(255, 162, 0, 0.4)";
+
+    btnPayOthers.classList.remove("active");
+    btnPayOthers.style.background = "transparent";
+    btnPayOthers.style.color = "#ffffff";
+
+    if (cardInfoBox) cardInfoBox.style.display = "flex";
+    if (notebank) notebank.style.display = "none";
+
+    if (paymentMethodInput) paymentMethodInput.value = "visa";
+  });
+
+  btnPayOthers?.addEventListener("click", () => {
+    btnPayOthers.classList.add("active");
+    btnPayOthers.style.background = "linear-gradient(135deg, #ffa200 0%, #f89b1e 100%)";
+    btnPayOthers.style.color = "#ffffff";
+    btnPayOthers.style.boxShadow = "0 4px 14px rgba(255, 162, 0, 0.4)";
+
+    btnPayCard.classList.remove("active");
+    btnPayCard.style.background = "transparent";
+    btnPayCard.style.color = "#ffffff";
+    btnPayCard.style.boxShadow = "none";
+
+    if (cardInfoBox) cardInfoBox.style.display = "none";
+    if (notebank) notebank.style.display = "block";
+
+    if (paymentMethodInput) paymentMethodInput.value = "bank";
+  });
+
+  function updatePaymentSummaryBanner() {
+    const bannerAmount = document.getElementById("paymentSummaryAmount");
+    const bannerType   = document.getElementById("paymentSummaryType");
+
+    const amountVal = currentRawAmount || Number(selectedAmountInput?.value) || 0;
+    const typeVal   = giveTypeInput?.value || "once";
+
+    if (bannerAmount) {
+      bannerAmount.textContent = "₱ " + formatPeso(amountVal);
+    }
+    if (bannerType) {
+      bannerType.textContent = typeVal === "monthly" ? "MONTHLY DONATION" : "ONE-TIME DONATION";
+    }
+  }
 
   /* ================================================================
    * 5. COPY ACCOUNT NUMBER
@@ -892,6 +945,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
+    if (targetStep === 3) {
+      updatePaymentSummaryBanner();
+    }
     if (targetStep === 4) {
       populateConfirmSummary();
     }
@@ -937,10 +993,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (stepNum === 3) {
-      const receiptInput = document.getElementById("receipt");
-      if (!receiptInput || !receiptInput.files[0]) {
-        showFieldError("err-receipt", "Please attach your receipt screenshot.");
-        return false;
+      const method = paymentMethodInput?.value || "visa";
+      if (method === "bank") {
+        const receiptInput = document.getElementById("receipt");
+        if (!receiptInput || !receiptInput.files[0]) {
+          showFieldError("err-receipt", "Please attach your receipt screenshot for Bank / QR donation.");
+          return false;
+        }
       }
       return true;
     }

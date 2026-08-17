@@ -263,7 +263,7 @@
         <div class="form-group">
           <label for="citySelect">City / Municipality</label>
           <select id="citySelect" name="city" class="form-select-custom" style="width: 100%; padding: 12px 14px; font-size: 0.95rem; border: 1px solid #d1d5db; border-radius: 8px; background-color: #ffffff; color: #1f2937; outline: none; cursor: pointer;">
-            <option value="" disabled selected>Province</option>
+            <option value="" disabled selected>Provinced</option>
           </select>
           <input type="text" id="cityCustom" name="city_custom" placeholder="Type city/municipality name" style="display: none; margin-top: 8px;" />
         </div>
@@ -302,16 +302,56 @@
 
     <!-- ==================== STEP 3: PAYMENT ==================== -->
     <div class="step-panel" id="stepPanel3" style="display: none;">
-      <h3 class="formtitle">Payment Method</h3>
-
-      <a href="#" class="btnm9" id="btn-bank">Bank Account</a>
-
-      <div class="notebank" id="notebank" style="display: block; background-color: #eae8e8; padding: 20px; margin-top: 15px; border-radius: 8px; text-align: center;">
-        <p style="font-weight: bold; color: #f78f1e; margin-bottom: 15px;">Scan to Donate</p>
-        <div style="display: flex; justify-content: center; align-items: center;">
-          <img src="{{ asset('assets/image/qr_code.png') }}" alt="PARC Foundation QR Code" style="width: 260px; height: auto; border: 1px solid #ccc; border-radius: 8px; background: #fff; padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+      
+      <!-- Dynamic Payment Summary Pill Banner -->
+      <div class="payment-summary-banner" style="background: linear-gradient(135deg, #0044bb 0%, #002b80 100%); color: #ffffff; border-radius: 14px; padding: 22px 15px; text-align: center; margin-bottom: 22px; box-shadow: 0 8px 20px rgba(0, 68, 187, 0.25);">
+        <div style="font-size: 2.2rem; font-weight: 900; letter-spacing: -0.5px; line-height: 1.2;">
+          <span id="paymentSummaryAmount">₱ 1,000</span>
         </div>
-        <p style="margin-top: 15px; font-size: 14px; color: #555;">After scanning please screenshot your receipt and attach it on form </p>
+        <div id="paymentSummaryType" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.9; margin-top: 4px;">
+          MONTHLY DONATION
+        </div>
+      </div>
+
+      <!-- Sub-heading instructions -->
+      <p style="text-align: center; font-size: 1rem; font-weight: 600; color: #ffffff; margin-bottom: 18px; text-shadow: 0 1px 3px rgba(0,0,0,0.15);">
+        Please select your mode of payment
+      </p>
+
+      <!-- Payment Mode Selector Options -->
+      <div style="display: flex; flex-direction: column; gap: 14px; align-items: center;">
+        
+        <!-- Credit / Debit Card Option (Primary Active Button) -->
+        <button type="button" id="btn-pay-card" class="payment-mode-btn active" style="width: 100%; max-width: 380px; padding: 14px 20px; background: linear-gradient(135deg, #ffa200 0%, #f89b1e 100%); color: #ffffff; border: 2px solid #ffffff; border-radius: 30px; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 14px rgba(255, 162, 0, 0.4); transition: all 0.25s ease;">
+          <span style="font-size: 1.4rem;">💳</span>
+          <span>CREDIT / DEBIT CARD</span>
+        </button>
+
+        <!-- Feature Info Box (Card Benefits Note with Avatar) -->
+        <div id="cardInfoBox" class="card-info-box" style="width: 100%; max-width: 380px; border: 2px dashed rgba(255, 255, 255, 0.7); border-radius: 12px; padding: 16px; display: flex; align-items: center; gap: 14px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(4px);">
+          <div style="width: 68px; height: 68px; min-width: 68px; border-radius: 50%; overflow: hidden; border: 2px solid #ffffff; box-shadow: 0 3px 8px rgba(0,0,0,0.2); background: #ffffff;">
+            <img src="{{ asset('assets/image/groupart.png') }}" alt="PARC Children" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <p style="font-size: 0.85rem; line-height: 1.35; color: #ffffff; font-weight: 500; margin: 0; text-align: left;">
+            Donations via credit/debit cards provide a more stable and secure way to manage your support to children in need.
+          </p>
+        </div>
+
+        <!-- Others / Bank Account & QR Code Option -->
+        <button type="button" id="btn-pay-others" class="payment-mode-btn" style="width: auto; min-width: 160px; padding: 10px 28px; background: transparent; color: #ffffff; border: 2px solid #ffffff; border-radius: 25px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.25s ease; margin-top: 4px;">
+          Others (Bank / QR Code)
+        </button>
+
+      </div>
+
+      <!-- Bank Transfer / QR Code Details (Hidden by default, shown when clicking 'Others') -->
+      <div class="notebank" id="notebank" style="display: none; background-color: #ffffff; padding: 20px; margin-top: 20px; border-radius: 12px; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.1);">
+        <p style="font-weight: bold; color: #ffa200; font-size: 1.1rem; margin-bottom: 15px;">Scan QR Code or Transfer via Bank</p>
+        
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <img src="{{ asset('assets/image/qr_code.png') }}" alt="PARC Foundation QR Code" style="width: 240px; height: auto; border: 1px solid #ccc; border-radius: 8px; background: #fff; padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+        </div>
+        <p style="margin-top: 15px; font-size: 13px; color: #555;">After scanning, please screenshot your receipt and attach it below:</p>
 
         <!-- Receipt Upload -->
         <div style="margin-top: 15px; text-align: left;">
@@ -326,7 +366,7 @@
             style="display: none;"
             onchange="handleReceiptChange(this)"
           />
-          <label for="receipt" id="receipt-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer; background: #fff; border: 2px dashed #f78f1e; border-radius: 8px; padding: 14px 18px; font-size: 13px; color: #888; transition: border-color 0.2s;">
+          <label for="receipt" id="receipt-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer; background: #fff; border: 2px dashed #ffa200; border-radius: 8px; padding: 14px 18px; font-size: 13px; color: #888; transition: border-color 0.2s;">
             <span style="font-size: 22px;">🖼️</span>
             <span id="receipt-label-text">Click to upload (JPG, PNG, PDF — max 5MB)</span>
           </label>
@@ -379,7 +419,12 @@
         </script>
       </div>
 
-      <div class="step-actions" style="display: flex; gap: 12px; margin-top: 24px;">
+      <!-- Gateway Disclaimer Note -->
+      <p style="font-size: 0.8rem; line-height: 1.4; color: rgba(255, 255, 255, 0.9); margin: 22px 0 10px; text-align: center; font-style: italic;">
+        *Upon clicking "Continue", you will be redirected to our partner's secure payment gateway. Do not close or refresh the page.
+      </p>
+
+      <div class="step-actions" style="display: flex; gap: 12px; margin-top: 20px;">
         <button type="button" class="btn-step-back" id="btnBackToStep2" style="padding: 14px 20px; background: #f3f4f6; color: #4b5563; border: 1.5px solid #d1d5db; border-radius: 8px; font-weight: 600; cursor: pointer;">← Back</button>
         <button type="button" class="btn-step-next" id="btnToStep4" style="flex: 1; padding: 14px 20px; background: #f89b1e; color: #ffffff; border: none; border-radius: 8px; font-weight: 800; font-size: 1rem; text-transform: uppercase; cursor: pointer;">
           Continue
