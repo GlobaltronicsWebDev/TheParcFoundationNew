@@ -6,6 +6,7 @@ use App\Helpers\GoogleSheetsExporter;
 use App\Models\Donation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
 
 class DonationController extends Controller
 {
