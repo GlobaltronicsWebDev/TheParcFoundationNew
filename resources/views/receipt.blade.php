@@ -293,7 +293,7 @@
 
         <div class="receipt-badge">
           <span class="receipt-badge-title">Official Receipt</span>
-          <div class="receipt-number">DNT-{{ $donation->id }}</div>
+          <div class="receipt-number">DNT-ID-{{ str_pad($donation->id, 3, '0', STR_PAD_LEFT) }}</div>
           <div class="receipt-date">{{ $donation->created_at ? $donation->created_at->setTimezone('Asia/Manila')->format('M d, Y h:i A') : date('M d, Y h:i A') }}</div>
         </div>
       </div>
@@ -342,7 +342,7 @@
         <tbody>
           <tr>
             <td>Donation Reference ID</td>
-            <td>DNT-{{ $donation->id }}</td>
+            <td>DNT-ID-{{ str_pad($donation->id, 3, '0', STR_PAD_LEFT) }}</td>
           </tr>
           <tr>
             <td>Payment Method</td>

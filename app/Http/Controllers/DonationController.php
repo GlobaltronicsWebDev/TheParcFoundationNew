@@ -118,7 +118,7 @@ class DonationController extends Controller
             }
 
             $row = [
-                'DNT-' . $donation->id,
+                'DNT-ID-' . str_pad($donation->id, 3, '0', STR_PAD_LEFT),
                 $donation->fname,
                 $donation->lname,
                 $donation->email,
