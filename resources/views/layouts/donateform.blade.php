@@ -372,39 +372,6 @@
                 <img src="{{ asset('assets/icons/maya.svg') }}" alt="Maya Logo" style="height: 30px; width: auto; max-width: 140px;" />
               </div>
 
-              <div class="ewallet-divider"></div>
-
-              <!-- GrabPay -->
-              <div class="ewallet-item" data-wallet="grabpay" title="GrabPay" style="padding: 14px 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
-                <svg width="140" height="32" viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <text x="8" y="26" font-family="'Inter', system-ui, sans-serif" font-weight="700" font-size="26" fill="#00B14F" letter-spacing="-0.5">Grab<tspan font-weight="400">Pay</tspan></text>
-                </svg>
-              </div>
-
-              <div class="ewallet-divider"></div>
-
-              <!-- ShopeePay -->
-              <div class="ewallet-item" data-wallet="shopeepay" title="ShopeePay" style="padding: 14px 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
-                <svg width="160" height="32" viewBox="0 0 180 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="2" y="4" width="28" height="28" rx="6" fill="#EE4D2D"/>
-                  <path d="M11 11c0-1.5 1.2-2.5 3-2.5s3 1 3 2.5v2h-6v-2z" stroke="#FFFFFF" stroke-width="1.8" fill="none"/>
-                  <path d="M9 13h10v11a2 2 0 0 1-2 2h-6a2 2 0 0 1-2-2V13z" fill="#FFFFFF"/>
-                  <text x="12" y="22" font-family="'Inter', system-ui, sans-serif" font-weight="800" font-size="10" fill="#EE4D2D">S</text>
-                  <text x="36" y="25" font-family="'Inter', system-ui, sans-serif" font-weight="700" font-size="22" fill="#EE4D2D">Shopee<tspan font-weight="500">Pay</tspan></text>
-                </svg>
-              </div>
-
-              <div class="ewallet-divider"></div>
-
-              <!-- PayPal -->
-              <div class="ewallet-item" data-wallet="paypal" title="PayPal" style="padding: 14px 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;">
-                <svg width="120" height="32" viewBox="0 0 140 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 6h8a5 5 0 0 1 5 5c0 3.5-2.5 5-5 5h-4l-2 12h-4l3.5-22z" fill="#003087"/>
-                  <path d="M16 10h8a5 5 0 0 1 5 5c0 3.5-2.5 5-5 5h-4l-2 12h-4l3.5-22z" fill="#0079C1" opacity="0.85"/>
-                  <text x="42" y="26" font-family="'Inter', system-ui, sans-serif" font-weight="800" font-style="italic" font-size="24" fill="#003087">Pay<tspan fill="#0079C1">Pal</tspan></text>
-                </svg>
-              </div>
-
             </div>
           </div>
         </div>

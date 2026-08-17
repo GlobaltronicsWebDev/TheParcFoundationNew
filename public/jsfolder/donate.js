@@ -325,7 +325,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     if (sumPaymentMethod) {
       const currentWallet = paymentMethodInput?.value || "gcash";
-      const formatName = currentWallet === "gcash" ? "GCash" : (currentWallet === "maya" ? "Maya" : (currentWallet === "grabpay" ? "GrabPay" : (currentWallet === "shopeepay" ? "ShopeePay" : "PayPal")));
+      const formatName = currentWallet === "maya" ? "Maya" : "GCash";
       sumPaymentMethod.textContent = "e-Wallet (" + formatName + ")";
     }
   });
@@ -337,7 +337,7 @@ document.addEventListener("DOMContentLoaded", function () {
       this.classList.add("selected");
 
       const wallet = this.dataset.wallet;
-      const formattedName = wallet === "gcash" ? "GCash" : (wallet === "maya" ? "Maya" : (wallet === "grabpay" ? "GrabPay" : (wallet === "shopeepay" ? "ShopeePay" : "PayPal")));
+      const formattedName = wallet === "maya" ? "Maya" : "GCash";
 
       if (paymentMethodInput) paymentMethodInput.value = wallet;
       if (ewalletBtnTitle) ewalletBtnTitle.textContent = `e-Wallets (${formattedName})`;
