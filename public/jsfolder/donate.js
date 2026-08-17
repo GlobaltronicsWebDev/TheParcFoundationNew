@@ -655,31 +655,57 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* ================================================================
-   * 9. AJAX HELPERS
+   * 9. AJAX HELPERS WITH DYNAMIC CSRF TOKEN RECOVERY
    * ================================================================ */
+  function getCsrfToken() {
+    return document.querySelector('meta[name="csrf-token"]')?.content ||
+           document.querySelector('input[name="_token"]')?.value || "";
+  }
+
   async function postJSON(url, data) {
+    const token = getCsrfToken();
     const res = await fetch(url, {
       method:  "POST",
       headers: {
         "Content-Type": "application/json",
         "Accept":       "application/json",
-        "X-CSRF-TOKEN": CSRF_TOKEN,
+        "X-CSRF-TOKEN": token,
       },
       body: JSON.stringify(data),
     });
+
+    if (res.status === 419) {
+      setTimeout(() => { window.location.reload(); }, 2000);
+      throw new Error("CSRF token mismatch. Session expired — refreshing page to renew security token...");
+    }
+
     const json = await res.json();
-    if (!res.ok) throw new Error(json.error || "Request failed");
+    if (!res.ok) throw new Error(json.error || json.message || "Request failed");
     return json;
   }
 
   async function postForm(url, formData) {
+    const token = getCsrfToken();
+    if (token && !formData.has("_token")) {
+      formData.append("_token", token);
+    }
+
     const res = await fetch(url, {
       method:  "POST",
-      headers: { "Accept": "application/json", "X-CSRF-TOKEN": CSRF_TOKEN },
-      body:    formData,
+      headers: {
+        "Accept": "application/json",
+        "X-CSRF-TOKEN": token,
+      },
+      body: formData,
     });
+
+    if (res.status === 419) {
+      setTimeout(() => { window.location.reload(); }, 2000);
+      throw new Error("CSRF token mismatch. Session expired — refreshing page to renew security token...");
+    }
+
     const json = await res.json();
-    if (!res.ok) throw new Error(json.message || "Failed to save donation");
+    if (!res.ok) throw new Error(json.message || json.error || "Failed to save donation");
     return json;
   }
 
