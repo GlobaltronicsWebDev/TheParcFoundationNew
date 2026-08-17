@@ -314,7 +314,7 @@
       </div>
 
       <!-- Sub-heading instructions -->
-      <p style="text-align: center; font-size: 1rem; font-weight: 600; color: #ffffff; margin-bottom: 18px; text-shadow: 0 1px 3px rgba(0,0,0,0.15);">
+      <p style="text-align: center; font-size: 1rem; font-weight: 600; color: #000; margin-bottom: 18px; text-shadow: 0 1px 3px rgba(0,0,0,0.15);">
         Please select your mode of payment
       </p>
 
@@ -332,7 +332,7 @@
           <div style="width: 68px; height: 68px; min-width: 68px; border-radius: 50%; overflow: hidden; border: 2px solid #ffffff; box-shadow: 0 3px 8px rgba(0,0,0,0.2); background: #ffffff;">
             <img src="{{ asset('assets/image/groupart.png') }}" alt="PARC Children" style="width: 100%; height: 100%; object-fit: cover;" />
           </div>
-          <p style="font-size: 0.85rem; line-height: 1.35; color: #ffffff; font-weight: 500; margin: 0; text-align: left;">
+          <p style="font-size: 0.85rem; line-height: 1.35; color: #000; font-weight: 500; margin: 0; text-align: left;">
             Donations via credit/debit cards provide a more stable and secure way to manage your support to children in need.
           </p>
         </div>
@@ -345,7 +345,7 @@
       </div>
 
       <!-- Bank Transfer / QR Code Details (Hidden by default, shown when clicking 'Others') -->
-      <div class="notebank" id="notebank" style="display: none; background-color: #ffffff; padding: 20px; margin-top: 20px; border-radius: 12px; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.1);">
+      <div class="notebank" id="notebank" style="display: none; background-color: #000; padding: 20px; margin-top: 20px; border-radius: 12px; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.1);">
         <p style="font-weight: bold; color: #ffa200; font-size: 1.1rem; margin-bottom: 15px;">Scan QR Code or Transfer via Bank</p>
         
         <div style="display: flex; justify-content: center; align-items: center;">
