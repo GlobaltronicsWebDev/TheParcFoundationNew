@@ -118,7 +118,7 @@ class DonationController extends Controller
             }
 
             $row = [
-                $donation->id,
+                'DNT-' . $donation->id,
                 $donation->fname,
                 $donation->lname,
                 $donation->email,
