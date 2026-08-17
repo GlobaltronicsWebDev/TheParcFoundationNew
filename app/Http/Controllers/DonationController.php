@@ -97,9 +97,6 @@ class DonationController extends Controller
                 'Amount',
                 'Give Type',
                 'Payment Method',
-                'Email Updates',
-                'Text Updates',
-                'Cover Processing Fee',
                 'Receipt',
                 'Date Submitted',
             ];
@@ -116,9 +113,6 @@ class DonationController extends Controller
                 $donation->amount          ?? '',
                 $donation->give_type       ?? 'once',
                 $donation->payment_method  ?? 'bank',
-                $donation->emailUpdates    ?? 'no',
-                $donation->textUpdates     ?? 'no',
-                $donation->cover_processing_fee ? 'Yes' : 'No',
                 $donation->receipt_path ? url($donation->receipt_path) : 'No Receipt',
                 $donation->created_at ? $donation->created_at->format('Y-m-d H:i:s') : date('Y-m-d H:i:s'),
             ];
