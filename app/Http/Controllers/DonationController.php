@@ -60,9 +60,7 @@ class DonationController extends Controller
             ? ($request->input('barangay_custom') ?? '')
             : $request->input('barangay');
 
-        $validated['province'] = $province;
-        $validated['city']     = $city;
-        $validated['barangay'] = $barangay;
+        $validated['city'] = $city;
 
         // Handle receipt file upload — stored in public/receipts/
         if ($request->hasFile('receipt')) {
@@ -78,8 +76,12 @@ class DonationController extends Controller
         $validated['cover_processing_fee'] = $request->has('cover_processing_fee');
         $validated['stripe_status']        = $request->input('stripe_status', 'pending');
 
+        // Prepare database array (only existing columns in donations table)
+        $dbData = $validated;
+        unset($dbData['province'], $dbData['barangay'], $dbData['city_custom'], $dbData['barangay_custom']);
+
         // ── Save to database ───────────────────────────────────────────────
-        $donation = Donation::create($validated);
+        $donation = Donation::create($dbData);
 
         // ── Append to Google Sheets (non-blocking: errors are logged, not thrown) ──
         try {
