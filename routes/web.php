@@ -152,3 +152,15 @@ Route::get('/check-laravel-log', function () {
     ]);
 });
 
+// Route to reset Donation auto-increment ID back to 1
+Route::get('/reset-donations-id', function () {
+    try {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        App\Models\Donation::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        return response()->json(['success' => true, 'message' => '✅ Donation IDs reset to 1 successfully! Next donation will be ID #1.']);
+    } catch (\Throwable $e) {
+        return response()->json(['success' => false, 'error' => $e->getMessage()]);
+    }
+});
+
