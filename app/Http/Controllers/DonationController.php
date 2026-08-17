@@ -112,12 +112,17 @@ class DonationController extends Controller
                 'Date Submitted',
             ];
 
+            $phoneDisplay = $phoneVal ?: ($donation->phone ?? '');
+            if ($phoneDisplay && str_starts_with($phoneDisplay, '+')) {
+                $phoneDisplay = "'" . $phoneDisplay;
+            }
+
             $row = [
                 $donation->id,
                 $donation->fname,
                 $donation->lname,
                 $donation->email,
-                $phoneVal ?: ($donation->phone ?? ''),
+                $phoneDisplay,
                 $donation->country         ?? 'Philippines',
                 $province                  ?? '',
                 $city                      ?? '',
