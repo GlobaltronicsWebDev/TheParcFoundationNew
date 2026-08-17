@@ -98,3 +98,17 @@ Route::get('/deploy-git-pull', function () {
     ]);
 });
 
+// Diagnostic check route for Hostinger live server
+Route::get('/deploy-check-env', function () {
+    $credRel  = env('GOOGLE_SHEETS_CREDENTIALS', 'storage/app/spheric-hawk-503003-u8-640ae5efc019.json');
+    $credPath = base_path($credRel);
+    
+    return response()->json([
+        'sheet_id'    => env('GOOGLE_SHEET_DONATIONS_ID'),
+        'sheet_tab'   => env('GOOGLE_SHEET_DONATIONS_TAB'),
+        'cred_rel'    => $credRel,
+        'cred_path'   => $credPath,
+        'file_exists' => file_exists($credPath),
+    ]);
+});
+
