@@ -295,169 +295,190 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* ================================================================
-   * 6. CASCADING ADDRESS DROPDOWNS (PROVINCE -> CITY -> BARANGAY)
+   * 6. OFFICIAL PSGC PHILIPPINE LOCATION FETCH (100% ALL REGIONS, PROVINCES, CITIES, BARANGAYS)
    * ================================================================ */
-  const phLocations = {
-    "Metro Manila": {
-      "Manila": ["Barangay 1", "Barangay 2", "Barangay 3", "Binondo", "Ermita", "Intramuros", "Malate", "Paco", "Pandacan", "Port Area", "Quiapo", "Sampaloc", "San Andreas", "San Miguel", "San Nicolas", "Santa Cruz", "Santa Mesa", "Tondo"],
-      "Quezon City": ["Alicia", "Bagong Pag-asa", "Bahay Toro", "Batasan Hills", "Commonwealth", "Cubao", "Diliman", "Fairview", "Holy Spirit", "Kamuning", "Katipunan", "Loyola Heights", "New Manila", "Novaliches", "Project 6", "San Bartolome", "Tandang Sora", "Ugong Norte"],
-      "Makati": ["Bel-Air", "Carmona", "Cembo", "Comembo", "Dasmariñas", "Forbes Park", "Guadalupe Nuevo", "Guadalupe Viejo", "Kasilawan", "Magallanes", "Poblacion", "San Antonio", "San Isidro", "San Lorenzo", "Singkamas", "Tejeros", "Urdaneta"],
-      "Taguig": ["Bambang", "Calzada", "Central Signal Village", "Fort Bonifacio", "Hagonoy", "Lower Bicutan", "Maharlika Village", "Napindan", "Pinagsama", "San Miguel", "Santa Ana", "Tuktukan", "Upper Bicutan", "Ususan", "Western Bicutan"],
-      "Pasig": ["Bagong Ilog", "Bambang", "Buting", "Caniogan", "Dela Paz", "Kapasigan", "Kapitolyo", "Manggahan", "Maybunga", "Oranbo", "Pinagbuhatan", "Pineda", "Rosario", "San Antonio", "San Joaquin", "Santa Lucia", "Ugong"],
-      "Mandaluyong": ["Addition Hills", "Bagong Silang", "Barangka Drive", "Barangka Ilaya", "Hulo", "Plainview", "Poblacion", "San Jose", "Vergara", "Wack-Wack Greenhills"],
-      "Pasay": ["Barangay 1", "Barangay 2", "Barangay 183 (Villamor)", "Barangay 190", "Barangay 201"],
-      "Caloocan": ["Bagong Barrio", "Bagong Silang", "Camarin", "Grace Park", "Maypajo", "Tala"],
-      "Las Piñas": ["Almanza Uno", "Almanza Dos", "BF International Village", "Pamplona Uno", "Pilar", "Talon Uno"],
-      "Marikina": ["Barangka", "Concepcion Uno", "Concepcion Dos", "Fortune", "Marikina Heights", "Parang", "San Roque", "Santa Elena", "Santo Niño"],
-      "Muntinlupa": ["Alabang", "Bayanan", "Buli", "Cupang", "Poblacion", "Putatan", "Sucat", "Tunasan"],
-      "Parañaque": ["Baclaran", "BF Homes", "Don Bosco", "Don Galo", "La Huerta", "Moonwalk", "San Dionisio", "San Isidro", "Santo Niño", "Sun Valley", "Tambo"],
-      "San Juan": ["Addition Hills", "Balong-Bato", "Greenhills", "Little Baguio", "Pasadena", "Pedro Cruz", "Progreso", "Salapan"],
-      "Valenzuela": ["Arkong Bato", "Bagbaguin", "Canumay", "Dalandanan", "Karuhatan", "Lawang Bato", "Malanday", "Mapulang Lupa", "Paso de Blas", "Poblacion", "Ugong"]
-    },
-    "Cavite": {
-      "Bacoor": ["Alima", "Aniban", "Bayanan", "Habay", "Ligas", "Mambog", "Molino", "Niog", "Panapaan", "Real", "Salawag", "Talaba", "Zapote"],
-      "Dasmariñas": ["Burol", "Datu Esmael", "Fatima", "Langkaan", "Paliparan", "Salawag", "Salitran", "San Agustin", "San Jose", "Sampaloc"],
-      "Imus": ["Anabu", "Bayan Luma", "Bucandala", "Carsadang Bago", "Malagasang", "Medicion", "Palico", "Poblacion", "Tanzang Luma", "Toclong"],
-      "General Trias": ["Alingaro", "Bacao", "Buenavista", "Dulong Bayan", "Javalera", "Manggahan", "Navarro", "Pasong Kawayan", "San Francisco", "Tejero"],
-      "Tagaytay": ["Asisan", "Bagong Tubig", "Iruhin", "Kaybagal", "Maharlika", "Mendez Crossing", "Neogan", "Sungay", "Tolentino"]
-    },
-    "Laguna": {
-      "Calamba": ["Bañadero", "Barandal", "Bucal", "Canlubang", "Halang", "Lawa", "Makiling", "Parian", "Poblacion", "Real", "Saimsim", "Turbina"],
-      "Santa Rosa": ["Aplaya", "Balibago", "Caingins", "Dita", "Don Jose", "Ibaba", "Kanluran", "Labas", "Macabling", "Malusak", "Sinalhan", "Tagapo"],
-      "Biñan": ["Bungahan", "Canlalay", "Casas", "De La Paz", "Langkiwa", "Loma", "Malaban", "Poblacion", "San Antonio", "San Francisco", "San Jose", "Santo Tomas", "Tubigan"],
-      "Cabuyao": ["Baclaran", "Banay-banay", "Banlic", "Bigaa", "Butong", "Gulod", "Mamatid", "Marinig", "Niugan", "Poblacion", "Pulo", "Sala"],
-      "San Pedro": ["Landayan", "Laram", "Magsaysay", "Nueva", "Poblacion", "San Antonio", "San Roque", "San Vicente", "Santo Niño"]
-    },
-    "Batangas": {
-      "Batangas City": ["Alangilan", "Bolbok", "Calicanto", "Cuta", "Gulod", "Kumintang Ibaba", "Kumintang Ilaya", "Poblacion", "San Isidro", "Santa Clara"],
-      "Lipa City": ["Antipolo del Norte", "Balintawak", "Bugtong na Pulo", "Calamias", "Inosloban", "Marawoy", "Poblacion", "Sabang", "Tambo"],
-      "Tanauan": ["Bagumbayan", "Balele", "Banjo East", "Darasa", "Hidalgo", "Janopol", "Natatas", "Poblacion", "Sambat", "Trapiche"]
-    },
-    "Bulacan": {
-      "Malolos": ["Babatnin", "Bagna", "Barihan", "Bulihan", "Calero", "Catmon", "Mojon", "Pamarawan", "Panasahan", "San Gabriel", "San Vicente", "Santo Rosario"],
-      "Meycauayan": ["Bangcal", "Calvario", "Camalig", "Iba", "Lawa", "Libtong", "Malhacan", "Perez", "Poblacion", "Saluysoy", "Zamora"],
-      "San Jose del Monte": ["Assumption", "Bagong Buhay", "Citrus", "Dulong Bayan", "Fatima", "Gaya-gaya", "Grace Ville", "Muzon", "Poblacion", "San Martin", "Santo Cristo", "Tungkong Mangga"]
-    },
-    "Pampanga": {
-      "Angeles City": ["Balibago", "Cutcut", "Malabanias", "Margot", "Pampang", "Pulung Maragul", "Santo Domingo", "Santo Rosario"],
-      "San Fernando": ["Calulut", "Dolores", "Lomboy", "Magliman", "Maimpis", "Palawe", "San Agustin", "San Jose", "Sindalan", "Telabastagan"]
-    },
-    "Rizal": {
-      "Antipolo": ["Bagong Nayon", "Beverly Hills", "Cupang", "Dalig", "Inarawan", "Mambugan", "Mayamot", "San Isidro", "San Jose", "San Juan", "San Luis", "San Roque", "Santa Cruz"],
-      "Cainta": ["Muntindilaw", "San Andres", "San Isidro", "San Juan", "San Roque", "Santa Rosa", "Santo Domingo", "Santo Niño"],
-      "Taytay": ["Dolores", "Muzon", "San Juan", "San Lorenzo", "Santa Ana"]
-    },
-    "Cebu": {
-      "Cebu City": ["Banilad", "Basak", "Capitol Site", "Guadalupe", "Lahug", "Mabolo", "Pardo", "Pit-os", "Poblacion", "Punta Princesa", "Sambag", "Talamban", "Tisa"],
-      "Mandaue City": ["Bakilid", "Banilad", "Basak", "Cabancalan", "Centro", "Jagobiao", "Looc", "Maguikay", "Subangdaku", "Tipolo"],
-      "Lapu-Lapu City": ["Basak", "Buaya", "Ibo", "Mactan", "Marigondon", "Pajac", "Poblacion", "Punta Engaño", "Pusok", "Subabasbas"]
-    },
-    "Davao del Sur": {
-      "Davao City": ["Agdao", "Buhangin", "Bunawan", "Calinan", "Matina", "Ma-a", "Poblacion", "Sasa", "Talomo", "Toril"]
-    },
-    "Benguet": {
-      "Baguio City": ["Asin Road", "Bakakeng", "Camp 7", "Camp 8", "Irisan", "Loakan", "Mines View", "Pacdal", "Quirino Hill", "Session Road", "Upper General Luna"]
-    },
-    "Iloilo": {
-      "Iloilo City": ["Arevalo", "City Proper", "Jaro", "La Paz", "Mandurriao", "Molo", "Villa Arevalo"]
-    },
-    "Negros Occidental": {
-      "Bacolod City": ["Bata", "Estefania", "Mandalagan", "Mansilingan", "Pahanocoy", "Poblacion", "Singcang", "Tangub", "Villamonte"]
-    }
+  const provinceSelect = document.getElementById("province");
+  const citySelect     = document.getElementById("citySelect");
+  const cityCustom     = document.getElementById("cityCustom");
+  const barangaySelect = document.getElementById("barangaySelect");
+  const barangayCustom = document.getElementById("barangayCustom");
+
+  // In-memory cache for API requests
+  const psgcCache = {
+    provinces: [],
+    regions: [],
+    cities: {},
+    barangays: {}
   };
 
-  const provinceSelect   = document.getElementById("province");
-  const citySelect       = document.getElementById("citySelect");
-  const cityCustom       = document.getElementById("cityCustom");
-  const barangaySelect   = document.getElementById("barangaySelect");
-  const barangayCustom   = document.getElementById("barangayCustom");
+  async function loadProvincesAndRegions() {
+    if (!provinceSelect) return;
+    try {
+      provinceSelect.innerHTML = '<option value="" disabled selected>Loading Provinces & Regions...</option>';
 
-  provinceSelect?.addEventListener("change", function () {
-    const province = this.value;
+      // Fetch official provinces & Metro Manila (NCR) region
+      const [provRes, regRes] = await Promise.all([
+        fetch("https://psgc.gitlab.io/api/provinces/").then(r => r.json()).catch(() => []),
+        fetch("https://psgc.gitlab.io/api/regions/").then(r => r.json()).catch(() => [])
+      ]);
+
+      provinceSelect.innerHTML = '<option value="" disabled selected>Select Province / Region</option>';
+
+      let allLocations = [];
+
+      // Add Metro Manila / NCR
+      if (Array.isArray(regRes)) {
+        regRes.forEach(reg => {
+          if (reg.code === "130000000" || reg.name.toLowerCase().includes("ncr") || reg.name.toLowerCase().includes("metro manila")) {
+            allLocations.push({ name: "Metro Manila (NCR)", code: reg.code, isRegion: true });
+          }
+        });
+      }
+
+      // Add all 82 provinces
+      if (Array.isArray(provRes)) {
+        provRes.forEach(p => {
+          allLocations.push({ name: p.name, code: p.code, isRegion: false });
+        });
+      }
+
+      // Sort alphabetically
+      allLocations.sort((a, b) => a.name.localeCompare(b.name));
+
+      allLocations.forEach(loc => {
+        const opt = document.createElement("option");
+        opt.value = loc.name;
+        opt.dataset.code = loc.code;
+        opt.dataset.isRegion = loc.isRegion ? "true" : "false";
+        opt.textContent = loc.name;
+        provinceSelect.appendChild(opt);
+      });
+
+      // Add Other option
+      const otherOpt = document.createElement("option");
+      otherOpt.value = "Other";
+      otherOpt.textContent = "Other / Custom Region";
+      provinceSelect.appendChild(otherOpt);
+
+    } catch (err) {
+      console.warn("PSGC API failed to load provinces, using fallback.", err);
+    }
+  }
+
+  provinceSelect?.addEventListener("change", async function () {
+    const selectedOpt = this.options[this.selectedIndex];
+    const locationName = this.value;
+    const locationCode = selectedOpt?.dataset?.code;
+    const isRegion = selectedOpt?.dataset?.isRegion === "true";
+
     if (!citySelect || !barangaySelect) return;
 
-    citySelect.innerHTML = '<option value="" disabled selected>Select City / Municipality</option>';
+    citySelect.innerHTML = '<option value="" disabled selected>Loading Cities / Municipalities...</option>';
     barangaySelect.innerHTML = '<option value="" disabled selected>Select City First</option>';
 
     if (cityCustom) cityCustom.style.display = "none";
     if (barangayCustom) barangayCustom.style.display = "none";
 
-    const citiesData = phLocations[province];
+    if (locationName === "Other") {
+      citySelect.innerHTML = '<option value="Other" selected>Type Custom City Name</option>';
+      barangaySelect.innerHTML = '<option value="Other" selected>Type Custom Barangay Name</option>';
+      if (cityCustom) cityCustom.style.display = "block";
+      if (barangayCustom) barangayCustom.style.display = "block";
+      return;
+    }
 
-    if (citiesData) {
-      citySelect.style.display = "block";
-      Object.keys(citiesData).sort().forEach(cityName => {
-        const opt = document.createElement("option");
-        opt.value = cityName;
-        opt.textContent = cityName;
-        citySelect.appendChild(opt);
-      });
+    if (!locationCode) return;
+
+    try {
+      let cities = psgcCache.cities[locationCode];
+      if (!cities) {
+        const endpoint = isRegion
+          ? `https://psgc.gitlab.io/api/regions/${locationCode}/cities-municipalities/`
+          : `https://psgc.gitlab.io/api/provinces/${locationCode}/cities-municipalities/`;
+
+        const res = await fetch(endpoint);
+        cities = await res.json();
+        psgcCache.cities[locationCode] = cities;
+      }
+
+      citySelect.innerHTML = '<option value="" disabled selected>Select City / Municipality</option>';
+
+      if (Array.isArray(cities) && cities.length > 0) {
+        cities.sort((a, b) => a.name.localeCompare(b.name));
+        cities.forEach(c => {
+          const opt = document.createElement("option");
+          opt.value = c.name;
+          opt.dataset.code = c.code;
+          opt.textContent = c.name;
+          citySelect.appendChild(opt);
+        });
+      }
 
       const otherOpt = document.createElement("option");
       otherOpt.value = "Other";
       otherOpt.textContent = "Other / Type City Name";
       citySelect.appendChild(otherOpt);
-    } else {
-      const customOpt = document.createElement("option");
-      customOpt.value = "Other";
-      customOpt.textContent = "Type Custom City Name";
-      citySelect.appendChild(customOpt);
-      citySelect.value = "Other";
-      if (cityCustom) cityCustom.style.display = "block";
 
-      const bgyCustomOpt = document.createElement("option");
-      bgyCustomOpt.value = "Other";
-      bgyCustomOpt.textContent = "Type Custom Barangay Name";
-      barangaySelect.appendChild(bgyCustomOpt);
-      barangaySelect.value = "Other";
-      if (barangayCustom) barangayCustom.style.display = "block";
+    } catch (err) {
+      console.warn("PSGC API cities fetch error:", err);
+      citySelect.innerHTML = '<option value="Other" selected>Type Custom City Name</option>';
+      if (cityCustom) cityCustom.style.display = "block";
     }
   });
 
-  citySelect?.addEventListener("change", function () {
-    const province = provinceSelect?.value || "";
-    const city = this.value;
+  citySelect?.addEventListener("change", async function () {
+    const selectedOpt = this.options[this.selectedIndex];
+    const cityName = this.value;
+    const cityCode = selectedOpt?.dataset?.code;
+
     if (!barangaySelect) return;
 
-    barangaySelect.innerHTML = '<option value="" disabled selected>Select Barangay</option>';
+    barangaySelect.innerHTML = '<option value="" disabled selected>Loading Barangays...</option>';
 
-    if (city === "Other") {
+    if (cityName === "Other") {
       if (cityCustom) cityCustom.style.display = "block";
       if (barangayCustom) barangayCustom.style.display = "block";
-      const bgyCustomOpt = document.createElement("option");
-      bgyCustomOpt.value = "Other";
-      bgyCustomOpt.textContent = "Type Custom Barangay Name";
-      barangaySelect.appendChild(bgyCustomOpt);
-      barangaySelect.value = "Other";
+      barangaySelect.innerHTML = '<option value="Other" selected>Type Custom Barangay Name</option>';
       return;
     }
 
     if (cityCustom) cityCustom.style.display = "none";
 
-    const barangays = phLocations[province]?.[city];
+    if (!cityCode) {
+      barangaySelect.innerHTML = '<option value="Other" selected>Type Custom Barangay Name</option>';
+      if (barangayCustom) barangayCustom.style.display = "block";
+      return;
+    }
 
-    if (barangays && barangays.length > 0) {
-      barangaySelect.style.display = "block";
-      if (barangayCustom) barangayCustom.style.display = "none";
+    try {
+      let barangays = psgcCache.barangays[cityCode];
+      if (!barangays) {
+        const res = await fetch(`https://psgc.gitlab.io/api/cities-municipalities/${cityCode}/barangays/`);
+        barangays = await res.json();
+        psgcCache.barangays[cityCode] = barangays;
+      }
 
-      barangays.sort().forEach(bgyName => {
-        const opt = document.createElement("option");
-        opt.value = bgyName;
-        opt.textContent = bgyName;
-        barangaySelect.appendChild(opt);
-      });
+      barangaySelect.innerHTML = '<option value="" disabled selected>Select Barangay</option>';
+
+      if (Array.isArray(barangays) && barangays.length > 0) {
+        barangays.sort((a, b) => a.name.localeCompare(b.name));
+        barangays.forEach(b => {
+          const opt = document.createElement("option");
+          opt.value = b.name;
+          opt.textContent = b.name;
+          barangaySelect.appendChild(opt);
+        });
+      }
 
       const otherOpt = document.createElement("option");
       otherOpt.value = "Other";
       otherOpt.textContent = "Other / Type Barangay Name";
       barangaySelect.appendChild(otherOpt);
-    } else {
+
+    } catch (err) {
+      console.warn("PSGC API barangays fetch error:", err);
+      barangaySelect.innerHTML = '<option value="Other" selected>Type Custom Barangay Name</option>';
       if (barangayCustom) barangayCustom.style.display = "block";
-      const bgyCustomOpt = document.createElement("option");
-      bgyCustomOpt.value = "Other";
-      bgyCustomOpt.textContent = "Type Custom Barangay Name";
-      barangaySelect.appendChild(bgyCustomOpt);
-      barangaySelect.value = "Other";
     }
   });
 
@@ -468,6 +489,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (barangayCustom) barangayCustom.style.display = "none";
     }
   });
+
+  // Load official PSGC Philippine provinces on startup
+  loadProvincesAndRegions();
 
   /* ================================================================
    * 7. CLIENT-SIDE VALIDATION
