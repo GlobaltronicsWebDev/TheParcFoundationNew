@@ -98,6 +98,45 @@ Route::get('/deploy-git-pull', function () {
     ]);
 });
 
+// Debug endpoint to test Google Sheets append on live server
+Route::get('/debug-sheets-append', function () {
+    try {
+        $sheetId  = env('GOOGLE_SHEET_DONATIONS_ID') ?: '1INqiJMGp8JZQzRksA3WPgCPVAMPkJgKiqbzN7iGkPIk';
+        $sheetTab = env('GOOGLE_SHEET_DONATIONS_TAB') ?: 'Donations';
+
+        $headers = [
+            'Donation ID', 'First Name', 'Last Name', 'Email',
+            'Country', 'Province / Region', 'City', 'Barangay',
+            'Street', 'Postal Code', 'Amount', 'Give Type',
+            'Payment Method', 'Receipt', 'Date Submitted',
+        ];
+
+        $row = [
+            '999', 'Debug', 'Test', 'debug@theparcfoundation.ph',
+            'Philippines', 'Metro Manila', 'Quezon City', 'Batasan Hills',
+            '123 Debug St', '1100', '500', 'once',
+            'gcash', 'https://theparcfoundation.ph/receipts/test.jpg', date('n/j/Y')
+        ];
+
+        App\Helpers\GoogleSheetsExporter::append(
+            spreadsheetId: $sheetId,
+            tab:           $sheetTab,
+            headers:       $headers,
+            row:           $row
+        );
+
+        return response()->json(['success' => true, 'message' => 'Row 999 appended successfully to Google Sheet!']);
+    } catch (\Throwable $e) {
+        return response()->json([
+            'success' => false,
+            'error'   => $e->getMessage(),
+            'file'    => $e->getFile(),
+            'line'    => $e->getLine(),
+            'trace'   => $e->getTraceAsString(),
+        ]);
+    }
+});
+
 // Route to view latest laravel.log lines on Hostinger live server
 Route::get('/check-laravel-log', function () {
     $logPath = storage_path('logs/laravel.log');
