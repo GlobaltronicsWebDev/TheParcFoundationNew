@@ -263,14 +263,14 @@
         <div class="form-group">
           <label for="citySelect">City / Municipality</label>
           <select id="citySelect" name="city" class="form-select-custom" style="width: 100%; padding: 12px 14px; font-size: 0.95rem; border: 1px solid #d1d5db; border-radius: 8px; background-color: #ffffff; color: #1f2937; outline: none; cursor: pointer;">
-            <option value="" disabled selected>Select Province First</option>
+            <option value="" disabled selected>Province</option>
           </select>
           <input type="text" id="cityCustom" name="city_custom" placeholder="Type city/municipality name" style="display: none; margin-top: 8px;" />
         </div>
         <div class="form-group">
           <label for="barangaySelect">Barangay</label>
           <select id="barangaySelect" name="barangay" class="form-select-custom" style="width: 100%; padding: 12px 14px; font-size: 0.95rem; border: 1px solid #d1d5db; border-radius: 8px; background-color: #ffffff; color: #1f2937; outline: none; cursor: pointer;">
-            <option value="" disabled selected>Select City First</option>
+            <option value="" disabled selected>City</option>
           </select>
           <input type="text" id="barangayCustom" name="barangay_custom" placeholder="Type barangay name" style="display: none; margin-top: 8px;" />
         </div>
