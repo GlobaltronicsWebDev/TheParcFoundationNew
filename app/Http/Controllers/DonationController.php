@@ -89,63 +89,37 @@ class DonationController extends Controller
                 'Donation ID',
                 'First Name',
                 'Last Name',
-                'Email Address',
-                'Amount',
-                'Frequency',
-                'Payment Method',
+                'Email',
                 'Country',
-                'Province / Region',
-                'City / Municipality',
-                'Barangay',
-                'Street Address',
+                'City',
+                'Street',
                 'Postal Code',
-                'Receipt Attachment URL',
-                'Stripe Status',
+                'Amount',
+                'Give Type',
+                'Payment Method',
+                'Email Updates',
+                'Text Updates',
+                'Cover Processing Fee',
+                'Receipt',
                 'Date Submitted',
             ];
-
-            $pm = strtolower($donation->payment_method ?? '');
-            $paymentMethodFormatted = match($pm) {
-                'gcash'     => 'e-Wallet (GCash)',
-                'maya'      => 'e-Wallet (Maya)',
-                'grabpay'   => 'e-Wallet (GrabPay)',
-                'shopeepay'  => 'e-Wallet (ShopeePay)',
-                'paypal'    => 'e-Wallet (PayPal)',
-                'visa'      => 'Credit / Debit Card',
-                'card'      => 'Credit / Debit Card',
-                'bank'      => 'e-Wallet / QR Code',
-                default     => $donation->payment_method ? ('e-Wallet (' . strtoupper($donation->payment_method) . ')') : 'e-Wallet'
-            };
-
-            $amountRaw = str_replace([',', '₱', ' '], '', $donation->amount ?? '0');
-            $amountFormatted = is_numeric($amountRaw) && (float)$amountRaw > 0
-                ? ('₱' . number_format((float)$amountRaw))
-                : ($donation->amount ?? 'N/A');
-
-            $receiptUrl = $donation->receipt_path
-                ? url($donation->receipt_path)
-                : 'No Receipt Attached';
-
-            $barangay = ($request->input('barangay') === 'Other' || !$request->input('barangay'))
-                ? ($request->input('barangay_custom') ?? '')
-                : $request->input('barangay');
 
             $row = [
                 $donation->id,
                 $donation->fname,
                 $donation->lname,
                 $donation->email,
-                $amountFormatted,
-                $donation->give_type === 'monthly' ? 'Monthly' : 'One-Time',
-                $paymentMethodFormatted,
-                $donation->country        ?? 'Philippines',
-                $request->input('province') ?? '',
-                $city                     ?? '',
-                $barangay                 ?? '',
-                $donation->street         ?? '',
-                $donation->postal         ?? '',
-                $receiptUrl,
-                ucfirst($donation->stripe_status ?? 'pending'),
+                $donation->country         ?? 'Philippines',
+                $city                      ?? '',
+                $donation->street          ?? '',
+                $donation->postal          ?? '',
+                $donation->amount          ?? '',
+                $donation->give_type       ?? 'once',
+                $donation->payment_method  ?? 'bank',
+                $donation->emailUpdates    ?? 'no',
+                $donation->textUpdates     ?? 'no',
+                $donation->cover_processing_fee ? 'Yes' : 'No',
+                $donation->receipt_path ? url($donation->receipt_path) : 'No Receipt',
                 $donation->created_at ? $donation->created_at->format('Y-m-d H:i:s') : date('Y-m-d H:i:s'),
             ];
 

@@ -43,20 +43,26 @@ class GoogleSheetsExporter
 
         $service = new Sheets($client);
 
-        // ── Write / Sync Header Row (A3) ──────────────────────────────────
-        $headerBody = new ValueRange(['values' => [$headers]]);
-        $service->spreadsheets_values->update(
-            $spreadsheetId,
-            "{$tab}!A3",
-            $headerBody,
-            ['valueInputOption' => 'USER_ENTERED']
-        );
+        // ── Check if headers need to be written (empty sheet) ─────────────
+        $range    = "{$tab}!A1:Z1";
+        $response = $service->spreadsheets_values->get($spreadsheetId, $range);
+        $existing = $response->getValues();
 
-        // ── Append the data row starting from A3 ──────────────────────────
+        if (empty($existing)) {
+            $headerBody = new ValueRange(['values' => [$headers]]);
+            $service->spreadsheets_values->update(
+                $spreadsheetId,
+                "{$tab}!A1",
+                $headerBody,
+                ['valueInputOption' => 'USER_ENTERED']
+            );
+        }
+
+        // ── Append the data row ───────────────────────────────────────────
         $body = new ValueRange(['values' => [$row]]);
         $service->spreadsheets_values->append(
             $spreadsheetId,
-            "{$tab}!A3",
+            "{$tab}!A1",
             $body,
             [
                 'valueInputOption'  => 'USER_ENTERED',  // Lets Google parse dates/numbers
