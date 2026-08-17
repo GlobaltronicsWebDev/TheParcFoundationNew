@@ -117,6 +117,19 @@ class DonationController extends Controller
                 $phoneDisplay = "'" . $phoneDisplay;
             }
 
+            $receiptCell = 'No Receipt';
+            if (!empty($donation->receipt_path)) {
+                $baseUrl = config('app.url');
+                if (empty($baseUrl) || str_contains($baseUrl, 'localhost')) {
+                    $baseUrl = 'https://theparcfoundation.ph';
+                }
+                $receiptFullUrl = str_starts_with($donation->receipt_path, 'http')
+                    ? $donation->receipt_path
+                    : rtrim($baseUrl, '/') . '/' . ltrim($donation->receipt_path, '/');
+
+                $receiptCell = '=HYPERLINK("' . $receiptFullUrl . '", "View Receipt")';
+            }
+
             $row = [
                 'DNT-ID-' . str_pad($donation->id, 3, '0', STR_PAD_LEFT),
                 $donation->fname,
@@ -132,7 +145,7 @@ class DonationController extends Controller
                 $donation->amount          ?? '',
                 $donation->give_type       ?? 'once',
                 $donation->payment_method  ?? 'bank',
-                $donation->receipt_path ? url($donation->receipt_path) : 'No Receipt',
+                $receiptCell,
                 "'" . ($donation->created_at ? $donation->created_at->setTimezone('Asia/Manila')->format('m/d/Y') : now()->setTimezone('Asia/Manila')->format('m/d/Y')),
             ];
 
