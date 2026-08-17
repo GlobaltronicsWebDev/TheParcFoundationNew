@@ -31,12 +31,15 @@ try {
         'Date Submitted',
     ];
 
+    $rawPhone = '+63 905 123 4567';
+    $phoneFormatted = "'" . $rawPhone;
+
     $row = [
-        '100',
-        'PhoneTest',
+        '101',
+        'PhoneFixTest',
         'Donor',
-        'phonetest@theparcfoundation.ph',
-        '+63 905 123 4567',
+        'phonefix@theparcfoundation.ph',
+        $phoneFormatted,
         'Philippines',
         'Metro Manila (NCR)',
         'Quezon City',
@@ -58,7 +61,7 @@ try {
         row:           $row
     );
 
-    echo "SUCCESS! Row appended to Google Sheet with Contact #!\n";
+    echo "SUCCESS! Row appended with single apostrophe prefix for phone number!\n";
 
 } catch (\Throwable $e) {
     echo "ERROR: " . $e->getMessage() . "\n";
