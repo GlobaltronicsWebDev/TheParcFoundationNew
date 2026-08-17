@@ -17,6 +17,7 @@ try {
         'First Name',
         'Last Name',
         'Email',
+        'Contact #',
         'Country',
         'Province / Region',
         'City',
@@ -31,10 +32,11 @@ try {
     ];
 
     $row = [
-        '99',
-        'LiveTest',
+        '100',
+        'PhoneTest',
         'Donor',
-        'livetest@theparcfoundation.ph',
+        'phonetest@theparcfoundation.ph',
+        '+63 905 123 4567',
         'Philippines',
         'Metro Manila (NCR)',
         'Quezon City',
@@ -56,7 +58,7 @@ try {
         row:           $row
     );
 
-    echo "SUCCESS! Row appended to Google Sheet!\n";
+    echo "SUCCESS! Row appended to Google Sheet with Contact #!\n";
 
 } catch (\Throwable $e) {
     echo "ERROR: " . $e->getMessage() . "\n";
