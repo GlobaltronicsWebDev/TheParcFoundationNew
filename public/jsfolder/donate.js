@@ -786,11 +786,10 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("stripeIntentId").value = paymentIntent.id;
       document.getElementById("stripeStatus").value   = "succeeded";
 
-      const formData = new FormData(donationForm);
-      await postForm(DONATE_URL, formData);
+      const resData = await postForm(DONATE_URL, formData);
 
       setLoading(false);
-      showSuccessModal();
+      showSuccessModal(resData);
     } else {
       throw new Error("Payment not completed. Status: " + paymentIntent.status);
     }
@@ -807,10 +806,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (stripeStatusEl) stripeStatusEl.value = "pending";
 
     const formData = new FormData(donationForm);
-    await postForm(DONATE_URL, formData);
+    const resData = await postForm(DONATE_URL, formData);
 
     setLoading(false);
-    showSuccessModal();
+    showSuccessModal(resData);
   }
 
   /* ================================================================
@@ -834,50 +833,33 @@ document.addEventListener("DOMContentLoaded", function () {
    * ================================================================ */
   const successModal       = document.getElementById("successModal");
   const modalCloseBtn      = document.getElementById("modalCloseBtn");
+  const downloadReceiptBtn = document.getElementById("downloadReceiptBtn");
   const confettiContainer  = document.getElementById("confettiContainer");
-  const autoCloseCountdown = document.getElementById("autoCloseCountdown");
-  let autoCloseTimer       = null;
-  let countdownInterval    = null;
+  let currentReceiptUrl    = null;
 
-  function showSuccessModal() {
+  function showSuccessModal(data) {
     if (!successModal) return;
+
+    if (data && data.receipt_url) {
+      currentReceiptUrl = data.receipt_url;
+    } else if (data && data.donation_id) {
+      currentReceiptUrl = `/donations/${data.donation_id}/receipt`;
+    } else {
+      currentReceiptUrl = null;
+    }
+
     successModal.style.display = "flex";
     document.body.style.overflow = "hidden";
     launchConfetti();
-    modalCloseBtn?.focus();
 
-    // Start 8-second countdown
-    let secondsLeft = 8;
-    if (autoCloseCountdown) autoCloseCountdown.textContent = secondsLeft;
-
-    if (countdownInterval) clearInterval(countdownInterval);
-    countdownInterval = setInterval(() => {
-      secondsLeft--;
-      if (secondsLeft >= 0 && autoCloseCountdown) {
-        autoCloseCountdown.textContent = secondsLeft;
-      }
-      if (secondsLeft <= 0) {
-        clearInterval(countdownInterval);
-        countdownInterval = null;
-      }
-    }, 1000);
-
-    // Automatically close modal after 8 seconds (8000 ms)
-    if (autoCloseTimer) clearTimeout(autoCloseTimer);
-    autoCloseTimer = setTimeout(() => {
-      hideSuccessModal();
-    }, 8000);
+    if (downloadReceiptBtn) {
+      downloadReceiptBtn.focus();
+    } else {
+      modalCloseBtn?.focus();
+    }
   }
 
   function hideSuccessModal() {
-    if (autoCloseTimer) {
-      clearTimeout(autoCloseTimer);
-      autoCloseTimer = null;
-    }
-    if (countdownInterval) {
-      clearInterval(countdownInterval);
-      countdownInterval = null;
-    }
     if (!successModal) return;
     successModal.style.display = "none";
     document.body.style.overflow = "";
@@ -896,6 +878,14 @@ document.addEventListener("DOMContentLoaded", function () {
       updateStepperUI(1);
     }
   }
+
+  downloadReceiptBtn?.addEventListener("click", function () {
+    if (currentReceiptUrl) {
+      window.open(currentReceiptUrl + "?print=1", "_blank");
+    } else {
+      window.print();
+    }
+  });
 
   modalCloseBtn?.addEventListener("click", hideSuccessModal);
   successModal?.addEventListener("click", e => { if (e.target === successModal) hideSuccessModal(); });
