@@ -117,9 +117,12 @@ class DonationController extends Controller
                 $donation->created_at ? $donation->created_at->format('Y-m-d H:i:s') : date('Y-m-d H:i:s'),
             ];
 
+            $sheetId  = env('GOOGLE_SHEET_DONATIONS_ID') ?: '1INqiJMGp8JZQzRksA3WPgCPVAMPkJgKiqbzN7iGkPIk';
+            $sheetTab = env('GOOGLE_SHEET_DONATIONS_TAB') ?: 'Donations';
+
             GoogleSheetsExporter::append(
-                spreadsheetId: env('GOOGLE_SHEET_DONATIONS_ID'),
-                tab:           env('GOOGLE_SHEET_DONATIONS_TAB', 'Donations'),
+                spreadsheetId: $sheetId,
+                tab:           $sheetTab,
                 headers:       $headers,
                 row:           $row
             );
