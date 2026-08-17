@@ -148,6 +148,41 @@
         <span class="field-error" id="err-email"></span>
       </div>
 
+      <div class="form-group" style="margin-top: 15px;">
+        <label for="phone">Contact Number <span class="req">*</span></label>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <select id="country_code" name="country_code" style="width: 110px; padding: 12px 6px; font-size: 0.9rem; border: 1px solid #d1d5db; border-radius: 8px; background-color: #ffffff; color: #1f2937; outline: none; cursor: pointer;">
+            <option value="+63" selected>🇵🇭 +63</option>
+            <option value="+1">🇺🇸 +1</option>
+            <option value="+1">🇨🇦 +1</option>
+            <option value="+61">🇦🇺 +61</option>
+            <option value="+44">🇬🇧 +44</option>
+            <option value="+65">🇸🇬 +65</option>
+            <option value="+81">🇯🇵 +81</option>
+            <option value="+971">🇦🇪 +971</option>
+            <option value="+82">🇰🇷 +82</option>
+            <option value="+886">🇹🇼 +886</option>
+            <option value="+852">🇭🇰 +852</option>
+            <option value="+60">🇲🇾 +60</option>
+            <option value="+62">🇮🇩 +62</option>
+            <option value="+66">🇹🇭 +66</option>
+            <option value="+84">🇻🇳 +84</option>
+            <option value="+91">🇮🇳 +91</option>
+            <option value="+966">🇸🇦 +966</option>
+            <option value="+974">🇶🇦 +974</option>
+            <option value="+965">🇰🇼 +965</option>
+            <option value="+33">🇫🇷 +33</option>
+            <option value="+49">🇩🇪 +49</option>
+            <option value="+39">🇮🇹 +39</option>
+            <option value="+34">🇪🇸 +34</option>
+            <option value="+31">🇳🇱 +31</option>
+            <option value="+64">🇳🇿 +64</option>
+          </select>
+          <input type="tel" id="phone" name="phone" placeholder="905 123 4567 *" required style="flex: 1; padding: 12px 14px; font-size: 0.95rem; border: 1px solid #d1d5db; border-radius: 8px; outline: none;" />
+        </div>
+        <span class="field-error" id="err-phone"></span>
+      </div>
+
       {{-- Address Section (Optional) --}}
       <h4 style="font-size: 0.95rem; font-weight: 700; color: #4b5563; margin: 20px 0 12px; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px;">
         My Address <span style="font-size: 0.8rem; font-weight: 400; color: #888;">(Optional)</span>

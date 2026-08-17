@@ -31,6 +31,8 @@ class DonationController extends Controller
             'fname'                    => 'required|string|max:50',
             'lname'                    => 'required|string|max:50',
             'email'                    => 'required|email|max:100',
+            'phone'                    => 'nullable|string|max:30',
+            'country_code'             => 'nullable|string|max:10',
             'country'                  => 'nullable|string|max:100',
             'province'                 => 'nullable|string|max:100',
             'city'                     => 'nullable|string|max:100',
@@ -51,7 +53,8 @@ class DonationController extends Controller
             'stripe_status'            => 'nullable|string|max:20',
         ]);
 
-        // Resolve location fields cleanly
+        // Resolve location and phone fields cleanly
+        $phoneVal = trim(($request->input('country_code', '+63')) . ' ' . ($request->input('phone', '')));
         $province = $request->input('province', '');
         $city = ($request->input('city') === 'Other' || !$request->input('city'))
             ? ($request->input('city_custom') ?? '')
@@ -60,7 +63,8 @@ class DonationController extends Controller
             ? ($request->input('barangay_custom') ?? '')
             : $request->input('barangay');
 
-        $validated['city'] = $city;
+        $validated['city']  = $city;
+        $validated['phone'] = $phoneVal;
 
         // Handle receipt file upload — stored in public/receipts/
         if ($request->hasFile('receipt')) {
@@ -78,7 +82,10 @@ class DonationController extends Controller
 
         // Prepare database array (only existing columns in donations table)
         $dbData = $validated;
-        unset($dbData['province'], $dbData['barangay'], $dbData['city_custom'], $dbData['barangay_custom']);
+        unset($dbData['province'], $dbData['barangay'], $dbData['city_custom'], $dbData['barangay_custom'], $dbData['country_code']);
+        if (!Schema::hasColumn('donations', 'phone')) {
+            unset($dbData['phone']);
+        }
 
         // ── Save to database ───────────────────────────────────────────────
         $donation = Donation::create($dbData);
@@ -90,6 +97,7 @@ class DonationController extends Controller
                 'First Name',
                 'Last Name',
                 'Email',
+                'Contact #',
                 'Country',
                 'Province / Region',
                 'City',
@@ -108,6 +116,7 @@ class DonationController extends Controller
                 $donation->fname,
                 $donation->lname,
                 $donation->email,
+                $phoneVal ?: ($donation->phone ?? ''),
                 $donation->country         ?? 'Philippines',
                 $province                  ?? '',
                 $city                      ?? '',

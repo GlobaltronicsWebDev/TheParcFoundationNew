@@ -13,6 +13,7 @@ class Donation extends Model
         'fname',
         'lname',
         'email',
+        'phone',
         'country',
         'city',
         'street',

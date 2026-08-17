@@ -616,6 +616,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const fname  = document.getElementById("fname")?.value.trim();
     const lname  = document.getElementById("lname")?.value.trim();
     const email  = document.getElementById("email")?.value.trim();
+    const phone  = document.getElementById("phone")?.value.trim();
     const method = paymentMethodInput?.value;
 
     if (!fname) { showFieldError("err-fname", "First name is required."); valid = false; }
@@ -624,6 +625,7 @@ document.addEventListener("DOMContentLoaded", function () {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       showFieldError("err-email", "Enter a valid email address."); valid = false;
     }
+    if (!phone) { showFieldError("err-phone", "Contact number is required."); valid = false; }
 
     // Warn if no amount selected (not a hard block)
     if (!selectedAmountInput?.value) {
