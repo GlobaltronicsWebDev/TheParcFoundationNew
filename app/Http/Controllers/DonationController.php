@@ -162,10 +162,20 @@ class DonationController extends Controller
                 'success'     => true,
                 'message'     => '✅ Thank you for your donation!',
                 'donation_id' => $donation->id,
+                'receipt_url' => route('donations.receipt', $donation->id),
             ]);
         }
 
         // ── Regular form POST (Bank Transfer) ─────────────────────────────
         return redirect()->back()->with('success', '✅ Thank you for your donation! Your information has been recorded.');
+    }
+
+    /**
+     * Show official donation receipt for downloading/printing.
+     */
+    public function receipt($id)
+    {
+        $donation = Donation::findOrFail($id);
+        return view('receipt', compact('donation'));
     }
 }
