@@ -113,3 +113,23 @@ Route::get('/check-laravel-log', function () {
     ]);
 });
 
+// Test sheet append route on Hostinger live server
+Route::get('/test-sheet-append', function () {
+    try {
+        App\Helpers\GoogleSheetsExporter::append(
+            spreadsheetId: '1INqiJMGp8JZQzRksA3WPgCPVAMPkJgKiqbzN7iGkPIk',
+            tab:           'Donations',
+            headers:       ['Donation ID', 'First Name', 'Last Name', 'Email', 'Country', 'Province / Region', 'City', 'Barangay', 'Street', 'Postal Code', 'Amount', 'Give Type', 'Payment Method', 'Receipt', 'Date Submitted'],
+            row:           ['TEST-WEB', 'LiveWeb', 'Test', 'liveweb@theparcfoundation.ph', 'Philippines', 'Metro Manila', 'Quezon City', 'Batasan Hills', '123 Main St', '1100', '500', 'once', 'gcash', 'https://theparcfoundation.ph/receipts/test.jpg', date('n/j/Y')]
+        );
+        return response()->json(['success' => true, 'message' => 'Row appended to Google Sheet from live server!']);
+    } catch (\Throwable $e) {
+        return response()->json([
+            'success' => false,
+            'error'   => $e->getMessage(),
+            'file'    => $e->getFile(),
+            'line'    => $e->getLine()
+        ]);
+    }
+});
+
