@@ -853,12 +853,11 @@ document.addEventListener("DOMContentLoaded", function () {
     launchConfetti();
 
     if (downloadReceiptBtn) {
-      if (currentReceiptUrl) {
-        downloadReceiptBtn.href = currentReceiptUrl + (currentReceiptUrl.includes('?') ? '&print=1' : '?print=1');
-        downloadReceiptBtn.target = "_blank";
-      } else {
-        downloadReceiptBtn.href = "#";
-      }
+      const downloadUrl = (data && data.download_url)
+        ? data.download_url
+        : ((data && data.donation_id) ? `/donations/${data.donation_id}/download-receipt` : '#');
+      downloadReceiptBtn.href = downloadUrl;
+      downloadReceiptBtn.setAttribute("download", "");
       downloadReceiptBtn.focus();
     } else {
       modalCloseBtn?.focus();

@@ -63,6 +63,7 @@ use App\Http\Controllers\DonationController;
 Route::get('/donations', [DonationController::class, 'create'])->name('donations.create');
 Route::post('/donations', [DonationController::class, 'store'])->name('donations.store');
 Route::get('/donations/{id}/receipt', [DonationController::class, 'receipt'])->name('donations.receipt');
+Route::get('/donations/{id}/download-receipt', [DonationController::class, 'downloadReceipt'])->name('donations.downloadReceipt');
 
 use App\Http\Controllers\AdoptionController;
 

@@ -172,10 +172,11 @@ class DonationController extends Controller
         // ── JSON (Stripe AJAX) path ────────────────────────────────────────
         if ($request->expectsJson()) {
             return response()->json([
-                'success'     => true,
-                'message'     => '✅ Thank you for your donation!',
-                'donation_id' => $donation->id,
-                'receipt_url' => route('donations.receipt', $donation->id),
+                'success'      => true,
+                'message'      => '✅ Thank you for your donation!',
+                'donation_id'  => $donation->id,
+                'receipt_url'  => route('donations.receipt', $donation->id),
+                'download_url' => route('donations.downloadReceipt', $donation->id),
             ]);
         }
 
@@ -190,5 +191,19 @@ class DonationController extends Controller
     {
         $donation = Donation::findOrFail($id);
         return view('receipt', compact('donation'));
+    }
+
+    /**
+     * Download official donation receipt file directly.
+     */
+    public function downloadReceipt($id)
+    {
+        $donation = Donation::findOrFail($id);
+        $html = view('receipt', compact('donation'))->render();
+        $fileName = 'PARC_Donation_Receipt_DNT_ID_' . str_pad($donation->id, 3, '0', STR_PAD_LEFT) . '.html';
+
+        return response($html)
+            ->header('Content-Type', 'text/html; charset=utf-8')
+            ->header('Content-Disposition', 'attachment; filename="' . $fileName . '"');
     }
 }
