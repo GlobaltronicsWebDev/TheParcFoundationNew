@@ -25,7 +25,8 @@ class GoogleSheetsExporter
         array  $headers,
         array  $row
     ): void {
-        $credentialsPath = base_path(env('GOOGLE_SHEETS_CREDENTIALS', 'storage/app/google-service-account.json'));
+        $credentialsRel  = env('GOOGLE_SHEETS_CREDENTIALS') ?: 'storage/app/spheric-hawk-503003-u8-640ae5efc019.json';
+        $credentialsPath = base_path($credentialsRel);
 
         if (!file_exists($credentialsPath)) {
             throw new \RuntimeException(
