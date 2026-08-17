@@ -43,21 +43,14 @@ class GoogleSheetsExporter
 
         $service = new Sheets($client);
 
-        // ── Check if headers need to be written (empty sheet) ─────────────
-        $range    = "{$tab}!A1:Z1";
-        $response = $service->spreadsheets_values->get($spreadsheetId, $range);
-        $existing = $response->getValues();
-
-        if (empty($existing)) {
-            // Sheet is blank — write the header row first
-            $headerBody = new ValueRange(['values' => [$headers]]);
-            $service->spreadsheets_values->update(
-                $spreadsheetId,
-                "{$tab}!A1",
-                $headerBody,
-                ['valueInputOption' => 'RAW']
-            );
-        }
+        // ── Write / Sync Header Row (A1) ──────────────────────────────────
+        $headerBody = new ValueRange(['values' => [$headers]]);
+        $service->spreadsheets_values->update(
+            $spreadsheetId,
+            "{$tab}!A1",
+            $headerBody,
+            ['valueInputOption' => 'USER_ENTERED']
+        );
 
         // ── Append the data row ───────────────────────────────────────────
         $body = new ValueRange(['values' => [$row]]);

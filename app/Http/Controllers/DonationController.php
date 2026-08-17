@@ -51,11 +51,18 @@ class DonationController extends Controller
             'stripe_status'            => 'nullable|string|max:20',
         ]);
 
-        // Resolve city & barangay cleanly
+        // Resolve location fields cleanly
+        $province = $request->input('province', '');
         $city = ($request->input('city') === 'Other' || !$request->input('city'))
             ? ($request->input('city_custom') ?? '')
             : $request->input('city');
-        $validated['city'] = $city;
+        $barangay = ($request->input('barangay') === 'Other' || !$request->input('barangay'))
+            ? ($request->input('barangay_custom') ?? '')
+            : $request->input('barangay');
+
+        $validated['province'] = $province;
+        $validated['city']     = $city;
+        $validated['barangay'] = $barangay;
 
         // Handle receipt file upload — stored in public/receipts/
         if ($request->hasFile('receipt')) {
