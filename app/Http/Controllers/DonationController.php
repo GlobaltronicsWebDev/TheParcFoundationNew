@@ -111,7 +111,7 @@ class DonationController extends Controller
                 $donation->country         ?? 'Philippines',
                 $province                  ?? '',
                 $city                      ?? '',
-                $donation->barangay        ?? '',
+                $barangay                  ?? '',
                 $donation->street          ?? '',
                 $donation->postal          ?? '',
                 $donation->amount          ?? '',
