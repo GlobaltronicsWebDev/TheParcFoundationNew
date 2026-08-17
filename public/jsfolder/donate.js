@@ -868,20 +868,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!successModal) return;
     successModal.style.display = "none";
     document.body.style.overflow = "";
-    donationForm?.reset();
-    amountBtns.forEach(b => b.classList.remove("active"));
-    if (customAmountWrap) customAmountWrap.style.display = "none";
-    if (selectedAmountDisplay) selectedAmountDisplay.style.display = "none";
-    if (selectedAmountInput) selectedAmountInput.value = "";
-    currentRawAmount = 0;
-    const notebank = document.getElementById("notebank");
-    if (notebank) notebank.style.display = "none";
-    // Clear Stripe card element
-    cardElement?.clear();
-    // Reset stepper to Step 1
-    if (typeof updateStepperUI === "function") {
-      updateStepperUI(1);
-    }
+    window.location.href = "/";
   }
 
   downloadReceiptBtn?.addEventListener("click", function () {
