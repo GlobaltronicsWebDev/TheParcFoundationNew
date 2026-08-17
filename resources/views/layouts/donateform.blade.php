@@ -584,7 +584,7 @@
     </div>
 
     <div class="modal-amount-summary" id="modalAmountSummary">
-      <p>Your donation of <strong id="modalAmountVal">—</strong> has been recorded.</p>
+      <p>Your donation has been recorded.</p>
     </div>
 
     <div class="modal-actions-wrap" style="display: flex; flex-direction: column; gap: 10px; margin-top: 22px; width: 100%;">
