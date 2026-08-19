@@ -283,47 +283,57 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Step 3 Payment Radio Toggles & Bank Details Card
-  const paymentRadios = document.querySelectorAll('input[name="adopt_payment_radio"]');
-  const adoptBankDetailsBox = document.getElementById("adoptBankDetailsBox");
-  const adoptQrBox = document.getElementById("adoptQrBox");
-  const adoptPaymentBoxTitle = document.getElementById("adoptPaymentBoxTitle");
-  const copyBankAccBtn = document.getElementById("copyBankAccBtn");
+  // ── Step 3 Payment Method Toggle Function ──
+  function selectAdoptPaymentMethod(method) {
+    const adoptPaymentMethodInput = document.getElementById("adoptPaymentMethod");
+    const optEwallet = document.getElementById("adoptOptEwallet");
+    const optBank = document.getElementById("adoptOptBank");
+    const radioEwallet = document.querySelector('input[name="adopt_payment_radio"][value="ewallet"]');
+    const radioBank = document.querySelector('input[name="adopt_payment_radio"][value="bank"]');
+    const adoptBankDetailsBox = document.getElementById("adoptBankDetailsBox");
+    const adoptQrBox = document.getElementById("adoptQrBox");
+    const adoptPaymentBoxTitle = document.getElementById("adoptPaymentBoxTitle");
 
-  paymentRadios.forEach((r) => {
-    r.addEventListener("change", function () {
-      const val = this.value;
-      adoptPaymentMethodInput.value = val;
-      const optEwallet = document.getElementById("adoptOptEwallet");
-      const optBank = document.getElementById("adoptOptBank");
+    if (adoptPaymentMethodInput) adoptPaymentMethodInput.value = method;
 
-      if (val === "ewallet") {
-        if (optEwallet) {
-          optEwallet.style.border = "2px solid #f89b1e";
-          optEwallet.style.background = "#fff8f0";
-        }
-        if (optBank) {
-          optBank.style.border = "1.5px solid #d1d5db";
-          optBank.style.background = "#ffffff";
-        }
-        if (adoptBankDetailsBox) adoptBankDetailsBox.style.display = "none";
-        if (adoptQrBox) adoptQrBox.style.display = "block";
-        if (adoptPaymentBoxTitle) adoptPaymentBoxTitle.textContent = "Scan QR Code to Pay";
-      } else {
-        if (optBank) {
-          optBank.style.border = "2px solid #f89b1e";
-          optBank.style.background = "#fff8f0";
-        }
-        if (optEwallet) {
-          optEwallet.style.border = "1.5px solid #d1d5db";
-          optEwallet.style.background = "#ffffff";
-        }
-        if (adoptBankDetailsBox) adoptBankDetailsBox.style.display = "block";
-        if (adoptQrBox) adoptQrBox.style.display = "none";
-        if (adoptPaymentBoxTitle) adoptPaymentBoxTitle.textContent = "Attach Receipt / Deposit Slip";
+    if (method === "ewallet") {
+      if (radioEwallet) radioEwallet.checked = true;
+      if (radioBank) radioBank.checked = false;
+
+      if (optEwallet) {
+        optEwallet.style.border = "2px solid #f89b1e";
+        optEwallet.style.background = "#fff8f0";
       }
-    });
-  });
+      if (optBank) {
+        optBank.style.border = "1.5px solid #d1d5db";
+        optBank.style.background = "#ffffff";
+      }
+
+      if (adoptBankDetailsBox) adoptBankDetailsBox.style.setProperty("display", "none", "important");
+      if (adoptQrBox) adoptQrBox.style.setProperty("display", "block", "important");
+      if (adoptPaymentBoxTitle) adoptPaymentBoxTitle.textContent = "Scan QR Code to Pay";
+    } else {
+      if (radioBank) radioBank.checked = true;
+      if (radioEwallet) radioEwallet.checked = false;
+
+      if (optBank) {
+        optBank.style.border = "2px solid #f89b1e";
+        optBank.style.background = "#fff8f0";
+      }
+      if (optEwallet) {
+        optEwallet.style.border = "1.5px solid #d1d5db";
+        optEwallet.style.background = "#ffffff";
+      }
+
+      if (adoptBankDetailsBox) adoptBankDetailsBox.style.setProperty("display", "block", "important");
+      if (adoptQrBox) adoptQrBox.style.setProperty("display", "none", "important");
+      if (adoptPaymentBoxTitle) adoptPaymentBoxTitle.textContent = "Attach Receipt / Deposit Slip";
+    }
+  }
+
+  window.selectAdoptPaymentMethod = selectAdoptPaymentMethod;
+
+  const copyBankAccBtn = document.getElementById("copyBankAccBtn");
 
   if (copyBankAccBtn) {
     copyBankAccBtn.addEventListener("click", function () {
