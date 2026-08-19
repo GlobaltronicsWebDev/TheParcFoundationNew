@@ -226,7 +226,7 @@
   </section>
 
   <!-- Newsletter & Footer Includes -->
-  @include('layouts.contacts')
+
   @include('layouts.footer')
 
   <!-- ── Contact Success Popup Modal ── -->
