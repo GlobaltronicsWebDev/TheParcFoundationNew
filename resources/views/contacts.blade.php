@@ -13,7 +13,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css') }}">
   <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css?v=2') }}" />
-  <link rel="stylesheet" href="{{ asset('cssfolder/contactspage.css') }}" />
+  <link rel="stylesheet" href="{{ asset('cssfolder/contactspage.css?v=5') }}" />
 </head>
 <body>
   @include('layouts.preloader')
@@ -201,7 +201,7 @@
             <!-- Social Media Card -->
             <div class="social-connect-card">
               <h4>Connect With Us</h4>
-              <p class="text-muted small mb-3" style="color: #b5b5b5 !important;">Follow our journey on social media and stay involved in empowering youth through music.</p>
+              <p class="small mb-3" style="color: #4b5563 !important;">Follow our journey on social media and stay involved in empowering youth through music.</p>
               <div class="social-buttons-grid">
                 <a href="https://www.facebook.com/parcph" target="_blank" class="social-btn" title="Facebook">
                   <i class="bi bi-facebook"></i>
