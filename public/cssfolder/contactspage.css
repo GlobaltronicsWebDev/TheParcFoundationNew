@@ -363,3 +363,82 @@ textarea.contact-input {
     height: 250px;
   }
 }
+
+/* ── Contact Success Popup Modal ── */
+.contact-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeInModal 0.3s ease;
+}
+
+.contact-modal-card {
+  background: #ffffff;
+  border-radius: 16px;
+  max-width: 480px;
+  width: 100%;
+  padding: 36px 30px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid #e5e7eb;
+  animation: popInCard 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.contact-modal-icon {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-modal-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.contact-modal-subtitle {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.55;
+  margin-bottom: 24px;
+}
+
+.contact-modal-close-btn {
+  width: 100%;
+  padding: 14px;
+  background: #f89b1e;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(248, 155, 30, 0.25);
+  transition: all 0.2s ease;
+}
+
+.contact-modal-close-btn:hover {
+  background: #e0840b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(248, 155, 30, 0.35);
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popInCard {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}

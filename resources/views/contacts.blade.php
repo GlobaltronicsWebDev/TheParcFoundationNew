@@ -252,8 +252,48 @@
   @include('layouts.contacts')
   @include('layouts.footer')
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- ── Contact Success Popup Modal ── -->
+  <div class="contact-modal-overlay" id="contactSuccessModal" style="display: {{ session('contact_success') ? 'flex' : 'none' }};">
+    <div class="contact-modal-card">
+      <div class="contact-modal-icon">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="11" fill="#22c55e"/>
+          <path d="M7 13l3 3 7-7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3 class="contact-modal-title">Message Successfully Sent! 🎉</h3>
+      <p class="contact-modal-subtitle">
+        {{ session('contact_success') ?? 'Thank you for reaching out to The PARC Foundation. We have received your inquiry and our team will get back to you soon!' }}
+      </p>
+      <button type="button" class="contact-modal-close-btn" id="contactModalCloseBtn">OK / Close</button>
+    </div>
+  </div>
 
+  <!-- Bootstrap JS & Modal JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const contactSuccessModal = document.getElementById("contactSuccessModal");
+      const contactModalCloseBtn = document.getElementById("contactModalCloseBtn");
+
+      function closeContactModal() {
+        if (contactSuccessModal) {
+          contactSuccessModal.style.display = "none";
+        }
+      }
+
+      if (contactModalCloseBtn) {
+        contactModalCloseBtn.addEventListener("click", closeContactModal);
+      }
+      if (contactSuccessModal) {
+        contactSuccessModal.addEventListener("click", function (e) {
+          if (e.target === contactSuccessModal) closeContactModal();
+        });
+      }
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeContactModal();
+      });
+    });
+  </script>
 </body>
 </html>
