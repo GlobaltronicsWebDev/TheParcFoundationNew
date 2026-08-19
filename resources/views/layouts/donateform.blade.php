@@ -413,18 +413,69 @@
           </div>
         </div>
 
+        <!-- Option 3: Bank Deposit / Transfer Option Card -->
+        <label class="payment-mode-btn" id="donateOptBank" onclick="if(window.selectDonatePaymentMethod) window.selectDonatePaymentMethod('bank');" style="width: 100%; max-width: 380px; padding: 14px 20px; background: #ffffff; color: #1f2937; border: 2px solid #f89b1e; border-radius: 14px; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); transition: all 0.25s ease;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.3rem;">🏛️</span>
+            <span>BANK DEPOSIT / TRANSFER</span>
+          </div>
+          <span style="font-size: 0.85rem; font-weight: 600; color: #6b7280;">View Details</span>
+        </label>
+
       </div>
 
-      <!-- Bank Transfer / QR Code Details (Shown when e-Wallets is selected) -->
-      <div class="notebank" id="notebank" style="display: none; background-color: #ffffff; padding: 22px; margin-top: 20px; border-radius: 12px; border: 2px solid #f89b1e; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.08);">
-        <p style="font-weight: 800; color: #f89b1e; font-size: 1.1rem; margin-bottom: 15px;">Scan QR Code to Pay via e-Wallet (GCash, Maya, etc.)</p>
-        
-        <div style="display: flex; justify-content: center; align-items: center;">
-          <img src="{{ asset('assets/image/qr_code.png') }}" alt="PARC Foundation QR Code" style="width: 240px; height: auto; border: 1px solid #ccc; border-radius: 8px; background: #fff; padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+      <!-- Bank Transfer Details Card (Shown when Bank Deposit / Transfer is selected) -->
+      <div class="donate-bank-details-box" id="donateBankDetailsBox" style="display: none; width: 100%; max-width: 440px; margin: 20px auto 0; background: #ffffff; border: 2px solid #f89b1e; border-radius: 14px; padding: 22px; box-shadow: 0 6px 18px rgba(0,0,0,0.06);">
+        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #f89b1e; padding-bottom: 12px; margin-bottom: 16px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.5rem;">🏛️</span>
+            <h4 style="font-size: 1.15rem; font-weight: 800; color: #111827; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">BANK TRANSFER DETAILS</h4>
+          </div>
+          <span style="background: #fff8f0; color: #f89b1e; border: 1px solid #f89b1e; font-size: 0.78rem; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase;">OFFICIAL ACCOUNT</span>
         </div>
-        <p style="margin-top: 15px; font-size: 14px; color: #4b5563; font-weight: 700;">1.OPEN THE SELECTED APP FIRST, BEFORE SCANNING.</p>
 
-        <p style="margin-top: 15px; font-size: 14px; color: #4b5563; font-weight: 700;">2. After scanning, please screenshot your receipt and attach it below.</p>
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #f9fafb; padding: 10px 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
+            <span style="color: #6b7280; font-weight: 600;">Bank Name:</span>
+            <strong style="color: #111827; font-size: 0.98rem; text-align: right;">BDO Unibank (Bank of the Philippine Islands / BDO)</strong>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #f9fafb; padding: 10px 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
+            <span style="color: #6b7280; font-weight: 600;">Account Name:</span>
+            <strong style="color: #111827; font-size: 0.98rem;">THE PARC FOUNDATION INC.</strong>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #fff8f0; padding: 12px 14px; border-radius: 8px; border: 1.5px solid #f89b1e;">
+            <span style="color: #6b7280; font-weight: 700;">Account Number:</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <strong id="donateBankAccNoText" style="color: #f89b1e; font-size: 1.15rem; font-weight: 800; letter-spacing: 1px;">0072 6800 5419</strong>
+              <button type="button" id="copyDonateBankAccBtn" style="background: #f89b1e; color: #ffffff; border: none; border-radius: 6px; padding: 4px 10px; font-size: 0.78rem; font-weight: 700; cursor: pointer;">Copy</button>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #f9fafb; padding: 10px 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
+            <span style="color: #6b7280; font-weight: 600;">Branch / Location:</span>
+            <strong style="color: #111827; font-size: 0.95rem;">San Juan, Metro Manila, Philippines</strong>
+          </div>
+        </div>
+
+        <div style="margin-top: 16px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px 16px; font-size: 0.88rem; color: #15803d; line-height: 1.45; text-align: left; font-weight: 500;">
+          💡 <strong>Instructions:</strong> Please transfer or deposit your pledge amount using your bank app or online banking. Once completed, screenshot your deposit slip or receipt and attach it below for validation.
+        </div>
+      </div>
+
+      <!-- Bank Transfer / QR Code Details -->
+      <div class="notebank" id="notebank" style="display: none; background-color: #ffffff; padding: 22px; margin-top: 20px; border-radius: 12px; border: 2px solid #f89b1e; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.08);">
+        <p style="font-weight: 800; color: #f89b1e; font-size: 1.1rem; margin-bottom: 15px;" id="donatePaymentBoxTitle">Scan QR Code to Pay via e-Wallet (GCash, Maya, etc.)</p>
+        
+        <div id="donateQrBox" style="display: block;">
+          <div style="display: flex; justify-content: center; align-items: center;">
+            <img src="{{ asset('assets/image/qr_code.png') }}" alt="PARC Foundation QR Code" style="width: 240px; height: auto; border: 1px solid #ccc; border-radius: 8px; background: #fff; padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+          </div>
+          <p style="margin-top: 15px; font-size: 14px; color: #4b5563; font-weight: 700;">1. OPEN THE SELECTED APP FIRST, BEFORE SCANNING.</p>
+
+          <p style="margin-top: 15px; font-size: 14px; color: #4b5563; font-weight: 700;">2. After scanning, please screenshot your receipt and attach it below.</p>
+        </div>
 
         <!-- Receipt Upload -->
         <div style="margin-top: 15px; text-align: left;">

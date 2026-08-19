@@ -273,63 +273,164 @@ document.addEventListener("DOMContentLoaded", function () {
   const ewalletBtnTitle      = document.getElementById("ewalletBtnTitle");
   const sumPaymentMethod    = document.getElementById("sumPaymentMethod");
 
+  const donateOptBank = document.getElementById("donateOptBank");
+  const donateBankDetailsBox = document.getElementById("donateBankDetailsBox");
+  const donateQrBox = document.getElementById("donateQrBox");
+  const donatePaymentBoxTitle = document.getElementById("donatePaymentBoxTitle");
+  const copyDonateBankAccBtn = document.getElementById("copyDonateBankAccBtn");
+
+  function selectDonatePaymentMethod(method) {
+    const radioBankDonate = document.getElementById("radioBankDonate");
+
+    if (method === "card") {
+      btnPayCard?.classList.add("active");
+      if (btnPayCard) {
+        btnPayCard.style.background = "linear-gradient(135deg, #ffa200 0%, #f89b1e 100%)";
+        btnPayCard.style.color = "#ffffff";
+        btnPayCard.style.border = "2px solid #f89b1e";
+        btnPayCard.style.boxShadow = "0 4px 14px rgba(255, 162, 0, 0.4)";
+      }
+
+      btnPayOthers?.classList.remove("active", "open-menu");
+      if (btnPayOthers) {
+        btnPayOthers.style.background = "#ffffff";
+        btnPayOthers.style.color = "#1f2937";
+        btnPayOthers.style.border = "2px solid #f89b1e";
+        btnPayOthers.style.boxShadow = "0 2px 6px rgba(0,0,0,0.06)";
+      }
+
+      donateOptBank?.classList.remove("active");
+      if (donateOptBank) {
+        donateOptBank.style.border = "2px solid #f89b1e";
+        donateOptBank.style.background = "#ffffff";
+      }
+
+      if (cardInfoBox) cardInfoBox.style.display = "flex";
+      if (notebank) notebank.style.display = "none";
+      if (donateBankDetailsBox) donateBankDetailsBox.style.display = "none";
+      if (ewalletDropdownMenu) ewalletDropdownMenu.style.display = "none";
+
+      if (paymentMethodInput) paymentMethodInput.value = "visa";
+      if (sumPaymentMethod) sumPaymentMethod.textContent = "Credit / Debit Card";
+
+    } else if (method === "ewallet") {
+      btnPayOthers?.classList.add("active");
+      if (btnPayOthers) {
+        btnPayOthers.style.background = "linear-gradient(135deg, #ffa200 0%, #f89b1e 100%)";
+        btnPayOthers.style.color = "#ffffff";
+        btnPayOthers.style.border = "2px solid #f89b1e";
+        btnPayOthers.style.boxShadow = "0 4px 14px rgba(255, 162, 0, 0.4)";
+      }
+
+      btnPayCard?.classList.remove("active");
+      if (btnPayCard) {
+        btnPayCard.style.background = "#ffffff";
+        btnPayCard.style.color = "#1f2937";
+        btnPayCard.style.border = "2px solid #f89b1e";
+        btnPayCard.style.boxShadow = "0 2px 6px rgba(0,0,0,0.06)";
+      }
+
+      donateOptBank?.classList.remove("active");
+      if (donateOptBank) {
+        donateOptBank.style.border = "2px solid #f89b1e";
+        donateOptBank.style.background = "#ffffff";
+      }
+
+      if (cardInfoBox) cardInfoBox.style.display = "none";
+      if (donateBankDetailsBox) donateBankDetailsBox.style.display = "none";
+      if (notebank) notebank.style.display = "block";
+      if (donateQrBox) donateQrBox.style.display = "block";
+      if (donatePaymentBoxTitle) donatePaymentBoxTitle.textContent = "Scan QR Code to Pay via e-Wallet (GCash, Maya, etc.)";
+
+      if (paymentMethodInput && (paymentMethodInput.value === "visa" || paymentMethodInput.value === "bank" || !paymentMethodInput.value)) {
+        paymentMethodInput.value = "gcash";
+      }
+      const currentWallet = paymentMethodInput?.value || "gcash";
+      if (sumPaymentMethod) {
+        const formatName = currentWallet === "maya" ? "Maya" : "GCash";
+        sumPaymentMethod.textContent = "e-Wallet (" + formatName + ")";
+      }
+
+    } else if (method === "bank") {
+      if (radioBankDonate) radioBankDonate.checked = true;
+
+      donateOptBank?.classList.add("active");
+      if (donateOptBank) {
+        donateOptBank.style.border = "2px solid #f89b1e";
+        donateOptBank.style.background = "#fff8f0";
+      }
+
+      btnPayCard?.classList.remove("active");
+      if (btnPayCard) {
+        btnPayCard.style.background = "#ffffff";
+        btnPayCard.style.color = "#1f2937";
+        btnPayCard.style.border = "2px solid #f89b1e";
+        btnPayCard.style.boxShadow = "0 2px 6px rgba(0,0,0,0.06)";
+      }
+
+      btnPayOthers?.classList.remove("active", "open-menu");
+      if (btnPayOthers) {
+        btnPayOthers.style.background = "#ffffff";
+        btnPayOthers.style.color = "#1f2937";
+        btnPayOthers.style.border = "2px solid #f89b1e";
+        btnPayOthers.style.boxShadow = "0 2px 6px rgba(0,0,0,0.06)";
+      }
+
+      if (cardInfoBox) cardInfoBox.style.display = "none";
+      if (ewalletDropdownMenu) ewalletDropdownMenu.style.display = "none";
+      if (donateBankDetailsBox) donateBankDetailsBox.style.display = "block";
+      if (notebank) notebank.style.display = "block";
+      if (donateQrBox) donateQrBox.style.display = "none";
+      if (donatePaymentBoxTitle) donatePaymentBoxTitle.textContent = "Attach Receipt / Deposit Slip";
+
+      if (paymentMethodInput) paymentMethodInput.value = "bank";
+      if (sumPaymentMethod) sumPaymentMethod.textContent = "Bank Deposit / Transfer";
+    }
+  }
+
+  window.selectDonatePaymentMethod = selectDonatePaymentMethod;
+
+  if (copyDonateBankAccBtn) {
+    copyDonateBankAccBtn.addEventListener("click", function () {
+      const accNo = "007268005419";
+      navigator.clipboard.writeText(accNo).then(() => {
+        copyDonateBankAccBtn.textContent = "Copied! ✓";
+        copyDonateBankAccBtn.style.background = "#22c55e";
+        setTimeout(() => {
+          copyDonateBankAccBtn.textContent = "Copy";
+          copyDonateBankAccBtn.style.background = "#f89b1e";
+        }, 2000);
+      }).catch(() => {
+        const el = document.createElement("textarea");
+        el.value = accNo;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+        copyDonateBankAccBtn.textContent = "Copied! ✓";
+        copyDonateBankAccBtn.style.background = "#22c55e";
+        setTimeout(() => {
+          copyDonateBankAccBtn.textContent = "Copy";
+          copyDonateBankAccBtn.style.background = "#f89b1e";
+        }, 2000);
+      });
+    });
+  }
+
   if (paymentMethodInput) paymentMethodInput.value = "visa";
 
   btnPayCard?.addEventListener("click", () => {
-    btnPayCard.classList.add("active");
-    btnPayCard.style.background = "linear-gradient(135deg, #ffa200 0%, #f89b1e 100%)";
-    btnPayCard.style.color = "#ffffff";
-    btnPayCard.style.border = "2px solid #f89b1e";
-    btnPayCard.style.boxShadow = "0 4px 14px rgba(255, 162, 0, 0.4)";
-
-    btnPayOthers.classList.remove("active");
-    btnPayOthers.classList.remove("open-menu");
-    btnPayOthers.style.background = "#ffffff";
-    btnPayOthers.style.color = "#1f2937";
-    btnPayOthers.style.border = "2px solid #f89b1e";
-    btnPayOthers.style.boxShadow = "0 2px 6px rgba(0,0,0,0.06)";
-
-    if (cardInfoBox) cardInfoBox.style.display = "flex";
-    if (notebank) notebank.style.display = "none";
-    if (ewalletDropdownMenu) ewalletDropdownMenu.style.display = "none";
-
-    if (paymentMethodInput) paymentMethodInput.value = "visa";
-    if (sumPaymentMethod) sumPaymentMethod.textContent = "Credit / Debit Card";
+    selectDonatePaymentMethod("card");
   });
 
   btnPayOthers?.addEventListener("click", () => {
-    btnPayOthers.classList.add("active");
-    btnPayOthers.style.background = "linear-gradient(135deg, #ffa200 0%, #f89b1e 100%)";
-    btnPayOthers.style.color = "#ffffff";
-    btnPayOthers.style.border = "2px solid #f89b1e";
-    btnPayOthers.style.boxShadow = "0 4px 14px rgba(255, 162, 0, 0.4)";
-
-    btnPayCard.classList.remove("active");
-    btnPayCard.style.background = "#ffffff";
-    btnPayCard.style.color = "#1f2937";
-    btnPayCard.style.border = "2px solid #f89b1e";
-    btnPayCard.style.boxShadow = "0 2px 6px rgba(0,0,0,0.06)";
-
-    if (cardInfoBox) cardInfoBox.style.display = "none";
-    if (notebank) notebank.style.display = "block";
+    selectDonatePaymentMethod("ewallet");
 
     // Toggle dropdown menu
     if (ewalletDropdownMenu) {
       const isMenuVisible = ewalletDropdownMenu.style.display === "block";
       ewalletDropdownMenu.style.display = isMenuVisible ? "none" : "block";
       btnPayOthers.classList.toggle("open-menu", !isMenuVisible);
-    }
-
-    if (paymentMethodInput && (paymentMethodInput.value === "visa" || !paymentMethodInput.value)) {
-      paymentMethodInput.value = "gcash";
-    }
-    const currentWallet = paymentMethodInput?.value || "gcash";
-    ewalletItems.forEach(i => {
-      i.classList.toggle("selected", i.dataset.wallet === currentWallet);
-    });
-    if (sumPaymentMethod) {
-      const formatName = currentWallet === "maya" ? "Maya" : "GCash";
-      sumPaymentMethod.textContent = "e-Wallet (" + formatName + ")";
     }
   });
 
@@ -347,6 +448,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (sumPaymentMethod) sumPaymentMethod.textContent = `e-Wallet (${formattedName})`;
 
       if (notebank) notebank.style.display = "block";
+      if (donateQrBox) donateQrBox.style.display = "block";
+      if (donateBankDetailsBox) donateBankDetailsBox.style.display = "none";
     });
   });
 
