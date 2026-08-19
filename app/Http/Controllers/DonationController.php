@@ -137,6 +137,9 @@ class DonationController extends Controller
 
             $receiptCell = '=HYPERLINK("' . $receiptFullUrl . '", "View Receipt")';
 
+            $rawAmount = (float) str_replace(['₱', ','], '', $donation->amount ?? 0);
+            $formattedAmount = $rawAmount > 0 ? '₱' . number_format($rawAmount, 2) : ($donation->amount ? '₱' . $donation->amount : '₱0.00');
+
             $row = [
                 'DNT-ID-' . str_pad($donation->id, 3, '0', STR_PAD_LEFT),
                 $donation->fname,
@@ -149,7 +152,7 @@ class DonationController extends Controller
                 $barangay                  ?? '',
                 $donation->street          ?? '',
                 $donation->postal          ?? '',
-                $donation->amount          ?? '',
+                $formattedAmount,
                 $donation->give_type       ?? 'once',
                 $donation->payment_method  ?? 'bank',
                 $receiptCell,

@@ -115,6 +115,9 @@ class AdoptionController extends Controller
                 $receiptCell = '=HYPERLINK("' . $officialReceiptUrl . '", "View Receipt")';
             }
 
+            $rawAmount = (float) str_replace(['₱', ','], '', $adoption->amount ?? 0);
+            $formattedAmount = $rawAmount > 0 ? '₱' . number_format($rawAmount, 2) : ($adoption->amount ? '₱' . $adoption->amount : '₱0.00');
+
             $row = [
                 'ADPT-ID-' . str_pad($adoption->id, 3, '0', STR_PAD_LEFT),
                 $adoption->fname,
@@ -128,7 +131,7 @@ class AdoptionController extends Controller
                 $adoption->street               ?? '',
                 $adoption->postal               ?? '',
                 $adoption->package              ?? '',
-                $adoption->amount               ?? '',
+                $formattedAmount,
                 $adoption->payment_method       ?? 'ewallet',
                 $receiptCell,
                 "'" . ($adoption->created_at ? $adoption->created_at->setTimezone('Asia/Manila')->format('m/d/Y h:i A') : now()->setTimezone('Asia/Manila')->format('m/d/Y h:i A')),
