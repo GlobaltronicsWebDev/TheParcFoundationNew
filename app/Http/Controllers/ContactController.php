@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\GoogleSheetsExporter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -40,7 +41,7 @@ class ContactController extends Controller
         $validated['email_updates'] = $emailUpdates;
         $validated['text_updates']  = $textUpdates;
 
-        // Store inquiry locally as backup
+        // 1. Store inquiry locally as backup
         try {
             $backupFile = 'contact_inquiries.json';
             $inquiries = [];
@@ -58,9 +59,50 @@ class ContactController extends Controller
             Log::error('Contact form storage failed. Error: ' . $e->getMessage());
         }
 
-        // Send email to designated receiving email address
-        $receiverEmail = env('CONTACT_RECEIVER_EMAIL', env('MAIL_FROM_ADDRESS', 'jose.jalandoni@theparcfoundation.ph'));
+        // 2. Append inquiry data to Google Sheets (Contacts_Inquiry tab)
+        try {
+            $sheetId  = env('GOOGLE_SHEET_CONTACTS_ID') ?: (env('GOOGLE_SHEET_DONATIONS_ID') ?: '1INqiJMGp8JZQzRksA3WPgCPVAMPkJgKiqbzN7iGkPIk');
+            $sheetTab = env('GOOGLE_SHEET_CONTACTS_TAB') ?: 'Contacts_Inquiry';
 
+            $headers = [
+                'First Name',
+                'Last Name',
+                'Email Address',
+                'Phone Number',
+                'Subject / Inquiry Type',
+                'Message',
+                'Date Submitted',
+            ];
+
+            $phoneDisplay = !empty($validated['phone']) ? $validated['phone'] : 'N/A';
+            if ($phoneDisplay && str_starts_with($phoneDisplay, '+')) {
+                $phoneDisplay = "'" . $phoneDisplay;
+            }
+
+            $row = [
+                $validated['first_name'],
+                $validated['last_name'],
+                $validated['email'],
+                $phoneDisplay,
+                $validated['subject'],
+                $validated['message'],
+                "'" . now()->setTimezone('Asia/Manila')->format('m/d/Y h:i A'),
+            ];
+
+            GoogleSheetsExporter::append(
+                spreadsheetId: $sheetId,
+                tab:           $sheetTab,
+                headers:       $headers,
+                row:           $row
+            );
+
+            Log::info('Google Sheets (Contacts_Inquiry) append SUCCESS for ' . $validated['email']);
+        } catch (Exception $e) {
+            Log::error('Google Sheets (Contacts_Inquiry) append FAILED: ' . $e->getMessage());
+        }
+
+        // 3. Send email to designated receiving email address
+        $receiverEmail = env('CONTACT_RECEIVER_EMAIL', env('MAIL_FROM_ADDRESS', 'jose.jalandoni@theparcfoundation.ph'));
 
         try {
             Mail::send('emails.contact', ['data' => $validated], function ($message) use ($validated, $receiverEmail) {

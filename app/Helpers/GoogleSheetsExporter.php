@@ -75,11 +75,13 @@ class GoogleSheetsExporter
 
         $service = new Sheets($client);
 
+        $tabRange = str_starts_with($tab, "'") ? "{$tab}!A1" : "'{$tab}'!A1";
+
         // ── Write / Sync Header Row (A1) ──────────────────────────────────
         $headerBody = new ValueRange(['values' => [$headers]]);
         $service->spreadsheets_values->update(
             $spreadsheetId,
-            "{$tab}!A1",
+            $tabRange,
             $headerBody,
             ['valueInputOption' => 'USER_ENTERED']
         );
@@ -88,7 +90,7 @@ class GoogleSheetsExporter
         $body = new ValueRange(['values' => [$row]]);
         $service->spreadsheets_values->append(
             $spreadsheetId,
-            "{$tab}!A1",
+            $tabRange,
             $body,
             [
                 'valueInputOption'  => 'USER_ENTERED',  // Lets Google parse dates/numbers
