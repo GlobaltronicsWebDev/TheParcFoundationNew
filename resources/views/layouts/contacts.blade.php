@@ -35,6 +35,18 @@
       <div class="footer-form">
         <h4 class="highlight">CONTACT US</h4>
 
+        @if(session('contact_success'))
+        <div style="background:#2e7d32;color:#fff;padding:10px 14px;border-radius:6px;margin-bottom:12px;font-size:0.9rem;">
+          {{ session('contact_success') }}
+        </div>
+        @endif
+
+        @if(session('contact_error'))
+        <div style="background:#c62828;color:#fff;padding:10px 14px;border-radius:6px;margin-bottom:12px;font-size:0.9rem;">
+          {{ session('contact_error') }}
+        </div>
+        @endif
+
         <form id="footerContactForm" action="{{ route('contacts.send') }}" method="POST">
           @csrf
           <label for="footer_first_name">First Name <span class="required">*required</span></label>
