@@ -1,289 +1,310 @@
 {{-- ============================================================
-     Adopt a Scholar — Personal Info & Payment Form
+     Adopt a Scholar — 4-Step Payment & Adoption Wizard Form
      ============================================================ --}}
-<div>
+<div class="adopt-form-wrapper">
 
-  {{-- ── SUCCESS FLASH ── --}}
-  @if(session('success'))
-    <div class="adopt-success-alert" id="adoptSuccessAlert">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="11" fill="#22c55e"/>
-        <path d="M7 13l3 3 7-7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span>{{ session('success') }}</span>
+  <!-- Stepper Header Bar -->
+  <div class="adopt-stepper-wrapper" style="width: 100%; padding: 15px 0 25px; margin-bottom: 25px;">
+    <div class="adopt-stepper" id="adoptStepper" style="display: flex; justify-content: space-between; align-items: flex-start; position: relative; width: 100%; max-width: 440px; margin: 0 auto;">
+      
+      <!-- Track lines -->
+      <div class="stepper-track-bg" style="position: absolute; top: 14px; left: 12%; right: 12%; height: 2px; background-color: #e5e7eb; z-index: 1;"></div>
+      <div class="stepper-track-fill" id="adoptStepperTrackFill" style="position: absolute; top: 14px; left: 12%; height: 2px; background-color: #f89b1e; width: 0%; transition: width 0.35s ease; z-index: 2;"></div>
+      
+      <!-- Step 1: Package -->
+      <div class="step-item active" data-step="1" id="adoptStepNode1" style="display: flex; flex-direction: column; align-items: center; position: relative; z-index: 3; cursor: pointer; width: 65px;">
+        <div class="step-circle" id="adoptStepCircle1" style="width: 28px; height: 28px; border-radius: 50%; background-color: #ffffff; border: 2.5px solid #f89b1e; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 3px rgba(248, 155, 30, 0.15); transition: all 0.3s ease;">
+          <span class="step-icon" id="adoptStepIcon1" style="display: flex; align-items: center; justify-content: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#f89b1e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="step-check" id="adoptStepCheck1" style="display: none; color: #ffffff; font-weight: bold; font-size: 14px;">✓</span>
+        </div>
+        <span class="step-label" id="adoptStepLabel1" style="font-size: 0.8rem; font-weight: 700; color: #f89b1e; margin-top: 6px; white-space: nowrap;">Package</span>
+      </div>
+
+      <!-- Step 2: My Info -->
+      <div class="step-item" data-step="2" id="adoptStepNode2" style="display: flex; flex-direction: column; align-items: center; position: relative; z-index: 3; cursor: pointer; width: 65px;">
+        <div class="step-circle" id="adoptStepCircle2" style="width: 28px; height: 28px; border-radius: 50%; background-color: #d1d5db; border: 2.5px solid transparent; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+          <span class="step-icon" id="adoptStepIcon2" style="display: none; align-items: center; justify-content: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="#f89b1e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="step-check" id="adoptStepCheck2" style="display: none; color: #ffffff; font-weight: bold; font-size: 14px;">✓</span>
+        </div>
+        <span class="step-label" id="adoptStepLabel2" style="font-size: 0.8rem; font-weight: 500; color: #6b7280; margin-top: 6px; white-space: nowrap;">My Info</span>
+      </div>
+
+      <!-- Step 3: Payment -->
+      <div class="step-item" data-step="3" id="adoptStepNode3" style="display: flex; flex-direction: column; align-items: center; position: relative; z-index: 3; cursor: pointer; width: 65px;">
+        <div class="step-circle" id="adoptStepCircle3" style="width: 28px; height: 28px; border-radius: 50%; background-color: #d1d5db; border: 2.5px solid transparent; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+          <span class="step-icon" id="adoptStepIcon3" style="display: none; align-items: center; justify-content: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="5" width="20" height="14" rx="2" stroke="#f89b1e" stroke-width="2"/>
+              <line x1="2" y1="10" x2="22" y2="10" stroke="#f89b1e" stroke-width="2"/>
+            </svg>
+          </span>
+          <span class="step-check" id="adoptStepCheck3" style="display: none; color: #ffffff; font-weight: bold; font-size: 14px;">✓</span>
+        </div>
+        <span class="step-label" id="adoptStepLabel3" style="font-size: 0.8rem; font-weight: 500; color: #6b7280; margin-top: 6px; white-space: nowrap;">Payment</span>
+      </div>
+
+      <!-- Step 4: Confirm -->
+      <div class="step-item" data-step="4" id="adoptStepNode4" style="display: flex; flex-direction: column; align-items: center; position: relative; z-index: 3; cursor: pointer; width: 65px;">
+        <div class="step-circle" id="adoptStepCircle4" style="width: 28px; height: 28px; border-radius: 50%; background-color: #d1d5db; border: 2.5px solid transparent; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+          <span class="step-icon" id="adoptStepIcon4" style="display: none; align-items: center; justify-content: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="#f89b1e" stroke-width="2" stroke-linecap="round"/>
+              <polyline points="22 4 12 14.01 9 11.01" stroke="#f89b1e" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="step-check" id="adoptStepCheck4" style="display: none; color: #ffffff; font-weight: bold; font-size: 14px;">✓</span>
+        </div>
+        <span class="step-label" id="adoptStepLabel4" style="font-size: 0.8rem; font-weight: 500; color: #6b7280; margin-top: 6px; white-space: nowrap;">Confirm</span>
+      </div>
     </div>
-  @endif
+  </div>
 
-  <h3 class="formtitle">Your Information</h3>
-
-  <form action="{{ route('adoptions.store') }}" method="POST"
-        class="personalinfo" id="adoptionForm" enctype="multipart/form-data" novalidate>
+  <form id="adoptionForm" action="{{ route('adoptions.store') }}" method="POST" class="personalinfo" enctype="multipart/form-data" novalidate>
     @csrf
 
-    {{-- Hidden: selected package + amount --}}
-    <input type="hidden" id="selectedPackage" name="package" value="{{ old('package') }}">
-    <input type="hidden" id="selectedAmount"  name="amount"  value="{{ old('amount') }}">
+    <input type="hidden" id="selectedPackage"   name="package"        value="{{ old('package') }}" />
+    <input type="hidden" id="selectedAmount"    name="amount"         value="{{ old('amount') }}" />
+    <input type="hidden" id="adoptPaymentMethod" name="payment_method" value="ewallet" />
 
-    {{-- Selected package display --}}
-    <div class="selected-pkg-display" id="selectedPkgDisplay" style="display:{{ old('package') ? 'flex' : 'none' }};">
-      <span class="pkg-display-label">Selected Package:</span>
-      <span class="pkg-display-value" id="selectedPkgText">{{ old('package', '') }}{{ old('amount') ? ' — ' . old('amount') : '' }}</span>
-    </div>
-
-    {{-- ── FIRST NAME ── --}}
-    <div class="form-group">
-      <label for="fname">First Name <span class="req">*</span></label>
-      <input type="text" id="fname" name="fname"
-             placeholder="Enter first name"
-             value="{{ old('fname') }}"
-             required />
-      @error('fname')
-        <span class="field-error" style="display:block;">{{ $message }}</span>
-      @enderror
-    </div>
-
-    {{-- ── LAST NAME ── --}}
-    <div class="form-group">
-      <label for="lname">Last Name <span class="req">*</span></label>
-      <input type="text" id="lname" name="lname"
-             placeholder="Enter last name"
-             value="{{ old('lname') }}"
-             required />
-      @error('lname')
-        <span class="field-error" style="display:block;">{{ $message }}</span>
-      @enderror
-    </div>
-
-    {{-- ── EMAIL ── --}}
-    <div class="form-group">
-      <label for="email">Email Address <span class="req">*</span></label>
-      <input type="email" id="email" name="email"
-             placeholder="you@example.com"
-             value="{{ old('email') }}"
-             required />
-      @error('email')
-        <span class="field-error" style="display:block;">{{ $message }}</span>
-      @enderror
-    </div>
-
-    {{-- ── COUNTRY ── --}}
-    <div class="form-group">
-      <label for="country">Country</label>
-      <input type="text" id="country" name="country"
-             placeholder="e.g. Philippines"
-             value="{{ old('country') }}" />
-    </div>
-
-    {{-- ── STREET ── --}}
-    <div class="form-group">
-      <label for="street">Street Address</label>
-      <input type="text" id="street" name="street"
-             placeholder="123 Main St"
-             value="{{ old('street') }}" />
-    </div>
-
-    {{-- ── CITY ── --}}
-    <div class="form-group">
-      <label for="city">City</label>
-      <input type="text" id="city" name="city"
-             placeholder="e.g. Manila"
-             value="{{ old('city') }}" />
-    </div>
-
-    {{-- ── POSTAL ── --}}
-    <div class="form-group">
-      <label for="postal">Postal Code</label>
-      <input type="text" id="postal" name="postal"
-             placeholder="e.g. 1000"
-             value="{{ old('postal') }}" />
-    </div>
-
-    {{-- ── COMMUNITY OPT-IN ── --}}
-    <!-- <div class="community-section">
-      <p class="p1form">BE PART OF OUR COMMUNITY</p>
-      <p class="p2form">Stay updated on how you can help empower youth through music. You can unsubscribe at any time.</p>
-
-      <div class="radio-block">
-        <b><p>I would like to get email updates:</p></b>
-        <fieldset class="radio-group">
-          <label class="radio-label">
-            <input type="radio" name="emailUpdates" id="emailYes" value="yes"
-                   {{ old('emailUpdates') === 'yes' ? 'checked' : '' }} /> Yes
-          </label>
-          <label class="radio-label">
-            <input type="radio" name="emailUpdates" id="emailNo" value="no"
-                   {{ old('emailUpdates', 'no') === 'no' ? 'checked' : '' }} /> No
-          </label>
-        </fieldset>
-      </div> -->
-
-      <!-- <div class="radio-block">
-        <b><p>I would like to get PARC text messages:</p></b>
-        <fieldset class="radio-group">
-          <label class="radio-label">
-            <input type="radio" name="textUpdates" id="textYes" value="yes"
-                   {{ old('textUpdates') === 'yes' ? 'checked' : '' }} /> Yes
-          </label>
-          <label class="radio-label">
-            <input type="radio" name="textUpdates" id="textNo" value="no"
-                   {{ old('textUpdates', 'no') === 'no' ? 'checked' : '' }} /> No
-          </label>
-        </fieldset>
-      </div>
-    </div> -->
-
-    {{-- ── PRIVACY NOTE ── --}}
-    <div class="note2">
-      <p class="p3">We will keep your information safe and secure. Please see our
-        <b class="privacy">Privacy Policy</b> for details of how we use your information.
+    <!-- ==================== STEP 1: PACKAGE ==================== -->
+    <div class="adopt-step-panel active" id="adoptStepPanel1" style="display: block;">
+      <h3 class="formtitle" style="color: #f89b1e; font-weight: 800; text-transform: uppercase;">Step 1: Choose Adoption Package</h3>
+      
+      <p style="font-size: 0.95rem; color: #4b5563; margin-bottom: 20px; line-height: 1.5;">
+        Select an adoption package or share what you can to support underprivileged young talents in the arts.
       </p>
-    </div>
 
-    {{-- ── PAYMENT METHOD ── --}}
-    <h3 class="formtitle">Payment Method</h3>
-
-    <div class="ewallet-dropdown-wrapper" style="width: 100%; max-width: 100%; margin-bottom: 15px;">
-      <!-- e-Wallets Toggle Button -->
-      <button type="button" id="btn-bank" class="payment-mode-btn ewallet-toggle-btn" style="width: 100%; padding: 14px 20px; background: #ffffff; color: #1f2937; border: 2px solid #f78f1e; border-radius: 14px; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <svg width="24" height="20" viewBox="0 0 32 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 7.5A2.5 2.5 0 0 1 4.5 5h23A2.5 2.5 0 0 1 30 7.5v13a2.5 2.5 0 0 1-2.5 2.5h-23A2.5 2.5 0 0 1 2 20.5v-13z" stroke="currentColor" stroke-width="2.5"/>
-            <path d="M7 5V3.5A2.5 2.5 0 0 1 9.5 1h13A2.5 2.5 0 0 1 25 3.5V5" stroke="currentColor" stroke-width="2.5"/>
-            <circle cx="22" cy="14" r="2" fill="currentColor"/>
-          </svg>
-          <span id="adoptEwalletBtnTitle">e-Wallets (GCash, Maya, etc.)</span>
+      {{-- Selected Package Display Card --}}
+      <div class="selected-pkg-card" id="selectedPkgCard" style="background: #fff8f0; border: 2px solid #f89b1e; border-radius: 12px; padding: 18px 22px; margin-bottom: 25px; display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <span style="font-size: 0.85rem; font-weight: 700; color: #6b7280; text-transform: uppercase;">Selected Package</span>
+            <h4 id="summaryPkgTitle" style="font-size: 1.25rem; font-weight: 800; color: #111827; margin: 4px 0 0 0;">—</h4>
+          </div>
+          <div style="text-align: right;">
+            <span id="summaryPkgAmount" style="font-size: 1.3rem; font-weight: 800; color: #f89b1e;">—</span>
+          </div>
         </div>
-        <span class="ewallet-caret" style="display: flex; align-items: center; transition: transform 0.3s ease;">
-          <svg width="14" height="10" viewBox="0 0 14 10" fill="currentColor">
-            <path d="M7 10L0 0h14L7 10z"/>
-          </svg>
-        </span>
-      </button>
-    </div>
-
-    <div class="notebank" id="notebank" style="display: none; background-color: #eae8e8; padding: 20px; margin-top: 15px; border-radius: 8px; text-align: center;">
-      <p style="font-weight: bold; color: #f78f1e; margin-bottom: 15px;">Scan to Donate</p>
-      <div style="display: flex; justify-content: center; align-items: center;">
-        <img src="{{ asset('assets/image/qr_code.png') }}" alt="PARC Foundation QR Code"
-             style="width: 260px; height: auto; border: 1px solid #ccc; border-radius: 8px; background: #fff; padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
       </div>
-      <p style="margin-top: 15px; font-size: 14px; color: #555;">After scanning please screenshot your receipt and attach it on form</p>
 
-      {{-- Receipt Upload --}}
-      <div style="margin-top: 15px; text-align: left;">
-        <label for="receipt" style="display: block; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 8px;">
-          📎 Attach Receipt Screenshot
-        </label>
-        <input type="file" id="receipt" name="receipt" accept="image/*,.pdf"
-               style="display: none;" onchange="handleReceiptChange(this)" />
-        <label for="receipt" id="receipt-label"
-               style="display: flex; align-items: center; gap: 10px; cursor: pointer; background: #fff; border: 2px dashed #f78f1e; border-radius: 8px; padding: 14px 18px; font-size: 13px; color: #888; transition: border-color 0.2s;">
-          <span style="font-size: 22px;">🖼️</span>
-          <span id="receipt-label-text">Click to upload (JPG, PNG, PDF — max 5MB)</span>
-        </label>
-        <div id="receipt-preview" style="display: none; margin-top: 10px; text-align: center;">
-          <img id="receipt-img-preview" src="" alt="Receipt Preview"
-               style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 1px solid #ccc; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" />
-          <p id="receipt-file-name" style="font-size: 12px; color: #666; margin-top: 6px;"></p>
-          <button type="button" onclick="clearReceipt()"
-                  style="margin-top: 4px; background: none; border: none; color: #e74c3c; font-size: 12px; cursor: pointer;">✕ Remove</button>
-        </div>
+      {{-- Custom Amount Input --}}
+      <div class="custom-amount-wrap" id="adoptCustomAmountWrap" style="display: none; margin-bottom: 20px;">
+        <label for="adoptCustomAmountInput" style="font-size: 0.9rem; font-weight: 700; color: #1f2937; margin-bottom: 6px; display: block;">Enter Your Support Amount (₱) <span class="req">*</span></label>
+        <input type="number" id="adoptCustomAmountInput" min="1" placeholder="e.g. 5000" style="width: 100%; padding: 12px 16px; border: 1.5px solid #d1d5db; border-radius: 8px; font-size: 1rem;" />
+      </div>
+
+      <div class="step-actions" style="margin-top: 24px;">
+        <button type="button" class="btn-step-next" id="btnAdoptToStep2" style="width: 100%; padding: 16px; background: #d1d5db; color: #777777; border: none; border-radius: 8px; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; cursor: not-allowed; transition: all 0.25s ease;">
+          Continue to My Information →
+        </button>
       </div>
     </div>
 
-    {{-- ── COVER FEE ── --}}
-    <!-- <div class="last">
-      <label class="checkbox-label">
-        <input type="checkbox" id="checkparc" name="cover_processing_fee" value="1"
-               {{ old('cover_processing_fee') ? 'checked' : '' }}>
-        I want PARC to receive 100% of my donation. I'll cover processing fees ($0.30).
-      </label>
-    </div> -->
+    <!-- ==================== STEP 2: MY INFO ==================== -->
+    <div class="adopt-step-panel" id="adoptStepPanel2" style="display: none;">
+      <h3 class="formtitle" style="color: #f89b1e; font-weight: 800; text-transform: uppercase;">Step 2: Donor Information</h3>
 
-    {{-- ── DONATE NOW BUTTON ── --}}
-    <button type="submit" class="adopt-donate-btn" id="adoptSubmitBtn">
-      <span class="btn-text">DONATE NOW</span>
-      <span class="btn-spinner" id="adoptBtnSpinner" style="display:none;">
-        <svg class="spin-svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.3)" stroke-width="3"/>
-          <path d="M12 2a10 10 0 0110 10" stroke="white" stroke-width="3" stroke-linecap="round"/>
-        </svg>
-      </span>
-    </button>
+      <div class="form-row" style="display: flex; gap: 16px; margin-bottom: 15px;">
+        <div class="form-group" style="flex: 1;">
+          <label for="fname" style="font-weight: 700; color: #1f2937;">First Name <span class="req">*</span></label>
+          <input type="text" id="fname" name="fname" placeholder="Enter first name" required style="width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
+          <span class="field-error" id="err-fname" style="color: #e11d48; font-size: 0.82rem; margin-top: 4px; display: none;">First name is required</span>
+        </div>
+        <div class="form-group" style="flex: 1;">
+          <label for="lname" style="font-weight: 700; color: #1f2937;">Last Name <span class="req">*</span></label>
+          <input type="text" id="lname" name="lname" placeholder="Enter last name" required style="width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
+          <span class="field-error" id="err-lname" style="color: #e11d48; font-size: 0.82rem; margin-top: 4px; display: none;">Last name is required</span>
+        </div>
+      </div>
+
+      <div class="form-row" style="display: flex; gap: 16px; margin-bottom: 15px;">
+        <div class="form-group" style="flex: 1;">
+          <label for="email" style="font-weight: 700; color: #1f2937;">Email Address <span class="req">*</span></label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required style="width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
+          <span class="field-error" id="err-email" style="color: #e11d48; font-size: 0.82rem; margin-top: 4px; display: none;">Valid email address is required</span>
+        </div>
+        <div class="form-group" style="flex: 1;">
+          <label for="phone" style="font-weight: 700; color: #1f2937;">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+63 912 345 6789" style="width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
+        </div>
+      </div>
+
+      <div class="form-row" style="display: flex; gap: 16px; margin-bottom: 15px;">
+        <div class="form-group" style="flex: 1;">
+          <label for="country" style="font-weight: 700; color: #1f2937;">Country</label>
+          <input type="text" id="country" name="country" placeholder="e.g. Philippines" value="Philippines" style="width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
+        </div>
+        <div class="form-group" style="flex: 1;">
+          <label for="city" style="font-weight: 700; color: #1f2937;">City / Municipality</label>
+          <input type="text" id="city" name="city" placeholder="e.g. Manila" style="width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
+        </div>
+      </div>
+
+      <div class="form-row" style="display: flex; gap: 16px; margin-bottom: 15px;">
+        <div class="form-group" style="flex: 2;">
+          <label for="street" style="font-weight: 700; color: #1f2937;">Street Address</label>
+          <input type="text" id="street" name="street" placeholder="House/Bldg No., Street" style="width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
+        </div>
+        <div class="form-group" style="flex: 1;">
+          <label for="postal" style="font-weight: 700; color: #1f2937;">Postal Code</label>
+          <input type="text" id="postal" name="postal" placeholder="e.g. 1000" style="width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
+        </div>
+      </div>
+
+      <div class="step-actions" style="display: flex; gap: 14px; margin-top: 24px;">
+        <button type="button" class="btn-step-back" id="btnAdoptBackToStep1" style="flex: 1; padding: 14px; background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; border-radius: 8px; font-weight: 700; cursor: pointer;">
+          ← Back
+        </button>
+        <button type="button" class="btn-step-next active-btn" id="btnAdoptToStep3" style="flex: 2; padding: 14px; background: #f89b1e; color: #ffffff; border: none; border-radius: 8px; font-weight: 800; text-transform: uppercase; cursor: pointer;">
+          Proceed to Payment →
+        </button>
+      </div>
+    </div>
+
+    <!-- ==================== STEP 3: PAYMENT ==================== -->
+    <div class="adopt-step-panel" id="adoptStepPanel3" style="display: none;">
+      <h3 class="formtitle" style="color: #f89b1e; font-weight: 800; text-transform: uppercase;">Step 3: Select Payment Method</h3>
+
+      <div class="payment-method-selector" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+        <!-- Option 1: e-Wallets -->
+        <label class="payment-opt-box active" id="adoptOptEwallet" style="display: flex; align-items: center; justify-content: space-between; padding: 16px; border: 2px solid #f89b1e; border-radius: 12px; background: #fff8f0; cursor: pointer;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <input type="radio" name="adopt_payment_radio" value="ewallet" checked style="accent-color: #f89b1e; width: 18px; height: 18px;" />
+            <span style="font-weight: 700; color: #111827; font-size: 1rem;">e-Wallets (GCash, Maya, QR Ph)</span>
+          </div>
+          <span style="font-size: 0.85rem; font-weight: 600; color: #f89b1e;">Scan QR</span>
+        </label>
+
+        <!-- Option 2: Bank Transfer -->
+        <label class="payment-opt-box" id="adoptOptBank" style="display: flex; align-items: center; justify-content: space-between; padding: 16px; border: 1.5px solid #d1d5db; border-radius: 12px; background: #ffffff; cursor: pointer;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <input type="radio" name="adopt_payment_radio" value="bank" style="accent-color: #f89b1e; width: 18px; height: 18px;" />
+            <span style="font-weight: 700; color: #111827; font-size: 1rem;">Bank Deposit / Transfer</span>
+          </div>
+          <span style="font-size: 0.85rem; font-weight: 600; color: #6b7280;">Upload Receipt</span>
+        </label>
+      </div>
+
+      <!-- QR & Receipt Box -->
+      <div class="notebank" id="adoptNotebank" style="display: block; background-color: #f9fafb; padding: 20px; border-radius: 12px; border: 1px solid #e5e7eb; text-align: center; margin-bottom: 20px;">
+        <p style="font-weight: 800; color: #f89b1e; margin-bottom: 12px; font-size: 1.1rem;" id="adoptPaymentBoxTitle">Scan QR Code to Pay</p>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <img src="{{ asset('assets/image/qr_code.png') }}" alt="PARC Foundation QR Code"
+               style="width: 240px; height: auto; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff; padding: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);" />
+        </div>
+        <p style="margin-top: 14px; font-size: 0.88rem; color: #4b5563; line-height: 1.4;">
+          After sending your payment, please screenshot your receipt and attach it below.
+        </p>
+
+        {{-- Receipt Upload --}}
+        <div style="margin-top: 18px; text-align: left;">
+          <label for="receipt" style="display: block; font-size: 0.9rem; font-weight: 700; color: #1f2937; margin-bottom: 8px;">
+            📎 Attach Receipt Screenshot <span class="req">*required</span>
+          </label>
+          <input type="file" id="receipt" name="receipt" accept="image/*,.pdf" style="display: none;" onchange="handleReceiptChange(this)" />
+          <label for="receipt" id="receipt-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer; background: #fff; border: 2px dashed #f89b1e; border-radius: 10px; padding: 14px 18px; font-size: 0.9rem; color: #4b5563; transition: border-color 0.2s;">
+            <span style="font-size: 22px;">🖼️</span>
+            <span id="receipt-label-text">Click to upload receipt (JPG, PNG, PDF — max 5MB)</span>
+          </label>
+          <div id="receipt-preview" style="display: none; margin-top: 12px; text-align: center;">
+            <img id="receipt-img-preview" src="" alt="Receipt Preview" style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 1px solid #ccc; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" />
+            <p id="receipt-file-name" style="font-size: 0.82rem; color: #4b5563; margin-top: 6px; font-weight: 600;"></p>
+            <button type="button" onclick="clearReceipt()" style="margin-top: 4px; background: none; border: none; color: #e11d48; font-size: 0.82rem; cursor: pointer; font-weight: 700;">✕ Remove File</button>
+          </div>
+          <span class="field-error" id="err-receipt" style="color: #e11d48; font-size: 0.82rem; margin-top: 4px; display: none;">Please attach proof of payment / receipt</span>
+        </div>
+      </div>
+
+      <div class="step-actions" style="display: flex; gap: 14px; margin-top: 24px;">
+        <button type="button" class="btn-step-back" id="btnAdoptBackToStep2" style="flex: 1; padding: 14px; background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; border-radius: 8px; font-weight: 700; cursor: pointer;">
+          ← Back
+        </button>
+        <button type="button" class="btn-step-next active-btn" id="btnAdoptToStep4" style="flex: 2; padding: 14px; background: #f89b1e; color: #ffffff; border: none; border-radius: 8px; font-weight: 800; text-transform: uppercase; cursor: pointer;">
+          Review & Confirm →
+        </button>
+      </div>
+    </div>
+
+    <!-- ==================== STEP 4: CONFIRM ==================== -->
+    <div class="adopt-step-panel" id="adoptStepPanel4" style="display: none;">
+      <h3 class="formtitle" style="color: #f89b1e; font-weight: 800; text-transform: uppercase;">Step 4: Confirm Adoption Details</h3>
+
+      {{-- Final Summary Card --}}
+      <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 22px; margin-bottom: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
+        <h4 style="font-size: 1.1rem; font-weight: 800; color: #111827; margin-bottom: 16px; border-bottom: 1px solid #f3f4f6; padding-bottom: 10px;">Summary of Your Support</h4>
+
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <span style="color: #6b7280; font-size: 0.95rem;">Adoption Package:</span>
+          <strong id="finalSummaryPkg" style="color: #111827; font-size: 0.95rem;">—</strong>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <span style="color: #6b7280; font-size: 0.95rem;">Pledge Amount:</span>
+          <strong id="finalSummaryAmount" style="color: #f89b1e; font-size: 1.1rem; font-weight: 800;">—</strong>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <span style="color: #6b7280; font-size: 0.95rem;">Donor Name:</span>
+          <strong id="finalSummaryName" style="color: #111827; font-size: 0.95rem;">—</strong>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <span style="color: #6b7280; font-size: 0.95rem;">Email Address:</span>
+          <strong id="finalSummaryEmail" style="color: #111827; font-size: 0.95rem;">—</strong>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <span style="color: #6b7280; font-size: 0.95rem;">Payment Method:</span>
+          <strong id="finalSummaryPayment" style="color: #111827; font-size: 0.95rem;">—</strong>
+        </div>
+      </div>
+
+      <div class="note2" style="margin-bottom: 20px;">
+        <p class="p3" style="font-size: 0.85rem; color: #6b7280; line-height: 1.4;">
+          By completing this form, you agree to support PARCaralan Scholars. We will keep your information safe and secure in accordance with our Privacy Policy.
+        </p>
+      </div>
+
+      <div class="step-actions" style="display: flex; gap: 14px;">
+        <button type="button" class="btn-step-back" id="btnAdoptBackToStep3" style="flex: 1; padding: 14px; background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; border-radius: 8px; font-weight: 700; cursor: pointer;">
+          ← Back
+        </button>
+        <button type="submit" class="adopt-donate-btn" id="adoptSubmitBtn" style="flex: 2; padding: 16px; background: #f89b1e; color: #ffffff; border: none; border-radius: 8px; font-size: 1.05rem; font-weight: 800; text-transform: uppercase; cursor: pointer; box-shadow: 0 4px 12px rgba(248,155,30,0.3);">
+          <span class="btn-text">CONFIRM & ADOPT SCHOLAR</span>
+          <span class="btn-spinner" id="adoptBtnSpinner" style="display:none;">
+            <svg class="spin-svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.3)" stroke-width="3"/>
+              <path d="M12 2a10 10 0 0110 10" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            </svg> Submitting...
+          </span>
+        </button>
+      </div>
+    </div>
 
   </form>
 </div>
 
-{{-- ── SCRIPTS ── --}}
-<script>
-  /* ---- Receipt upload helpers ---- */
-  function handleReceiptChange(input) {
-    const preview   = document.getElementById('receipt-preview');
-    const imgPrev   = document.getElementById('receipt-img-preview');
-    const fileName  = document.getElementById('receipt-file-name');
-    const labelText = document.getElementById('receipt-label-text');
-
-    if (input.files && input.files[0]) {
-      const file = input.files[0];
-      labelText.textContent = file.name;
-      fileName.textContent  = file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
-
-      if (file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          imgPrev.src = e.target.result;
-          imgPrev.style.display = 'block';
-          preview.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-      } else {
-        imgPrev.style.display = 'none';
-        preview.style.display = 'block';
-      }
-    }
-  }
-
-  function clearReceipt() {
-    document.getElementById('receipt').value = '';
-    document.getElementById('receipt-preview').style.display = 'none';
-    document.getElementById('receipt-label-text').textContent = 'Click to upload (JPG, PNG, PDF — max 5MB)';
-  }
-
-  /* ---- Bank toggle ---- */
-  document.addEventListener("DOMContentLoaded", function () {
-    const btnBank  = document.getElementById("btn-bank");
-    const noteBank = document.getElementById("notebank");
-
-    if (btnBank && noteBank) {
-      btnBank.addEventListener("click", function (e) {
-        e.preventDefault();
-        noteBank.style.display = noteBank.style.display === "none" ? "block" : "none";
-      });
-    }
-
-    /* ---- Spinner on submit ---- */
-    const adoptForm = document.getElementById("adoptionForm");
-    const submitBtn = document.getElementById("adoptSubmitBtn");
-    const spinner   = document.getElementById("adoptBtnSpinner");
-    const btnText   = submitBtn ? submitBtn.querySelector(".btn-text") : null;
-
-    if (adoptForm && submitBtn) {
-      adoptForm.addEventListener("submit", function () {
-        // Basic HTML5 check first
-        if (!adoptForm.checkValidity()) return;
-        submitBtn.disabled = true;
-        if (spinner) spinner.style.display = "inline-flex";
-        if (btnText) btnText.textContent   = "Submitting…";
-      });
-    }
-
-    /* ---- Auto-scroll to error or success ---- */
-    const firstError = document.querySelector('.field-error[style*="display:block"], .field-error[style*="display: block"]');
-    const successBox = document.getElementById('adoptSuccessAlert');
-    if (firstError) {
-      firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    } else if (successBox) {
-      successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  });
-</script>
+<!-- ── Adoption Success Popup Modal ── -->
+<div class="contact-modal-overlay" id="adoptSuccessModal" style="display: none;">
+  <div class="contact-modal-card">
+    <div class="contact-modal-icon">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="11" fill="#22c55e"/>
+        <path d="M7 13l3 3 7-7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h3 class="contact-modal-title">Adoption Application Received! 🎉</h3>
+    <p class="contact-modal-subtitle" id="adoptModalSubtitle">
+      Thank you for adopting a scholar! Your pledge has been recorded and our team will get in touch with you shortly with scholar updates.
+    </p>
+    <button type="button" class="contact-modal-close-btn" id="adoptModalCloseBtn">OK / Return to Home</button>
+  </div>
+</div>

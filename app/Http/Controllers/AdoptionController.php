@@ -6,6 +6,7 @@ use App\Helpers\GoogleSheetsExporter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Models\Adoption;
+use Exception;
 
 class AdoptionController extends Controller
 {
@@ -19,79 +20,100 @@ class AdoptionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'fname'               => 'required|string|max:255',
-            'lname'               => 'required|string|max:255',
-            'email'               => 'required|email|max:255',
-            'country'             => 'nullable|string|max:255',
-            'street'              => 'nullable|string|max:255',
-            'city'                => 'nullable|string|max:255',
-            'postal'              => 'nullable|string|max:255',
-            'package'             => 'nullable|string|max:255',
-            'amount'              => 'nullable|string|max:255',
-            'emailUpdates'        => 'nullable|in:yes,no',
-            'textUpdates'         => 'nullable|in:yes,no',
-            'cover_processing_fee'=> 'nullable|boolean',
-            'receipt'             => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5120',
+            'fname'          => 'required|string|max:255',
+            'lname'          => 'required|string|max:255',
+            'email'          => 'required|email|max:255',
+            'phone'          => 'nullable|string|max:50',
+            'country'        => 'nullable|string|max:255',
+            'street'         => 'nullable|string|max:255',
+            'city'           => 'nullable|string|max:255',
+            'postal'         => 'nullable|string|max:255',
+            'package'        => 'required|string|max:255',
+            'amount'         => 'required|string|max:255',
+            'payment_method' => 'nullable|string|max:50',
+            'receipt'        => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5120',
         ]);
 
-        // Handle receipt file upload — stored in public/receipts/
+        // Handle receipt file upload — stored in public/receipts/ with randomized name
         if ($request->hasFile('receipt')) {
-            $file     = $request->file('receipt');
-            $filename = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+            $file      = $request->file('receipt');
+            $extension = strtolower($file->getClientOriginalExtension() ?: 'jpg');
+            $filename  = time() . '_' . \Illuminate\Support\Str::random(24) . '.' . $extension;
             $file->move(public_path('receipts'), $filename);
             $validated['receipt_path'] = 'receipts/' . $filename;
         }
 
-        // Default boolean
-        $validated['cover_processing_fee'] = $request->boolean('cover_processing_fee');
-
-        // Default radio values if not provided
-        $validated['emailUpdates'] = $request->input('emailUpdates', 'no');
-        $validated['textUpdates']  = $request->input('textUpdates', 'no');
+        $validated['payment_method'] = $request->input('payment_method', 'ewallet');
 
         // ── Save to database ───────────────────────────────────────────────
         $adoption = Adoption::create($validated);
 
-        // ── Append to Google Sheets (non-blocking: errors are logged, not thrown) ──
+        // ── Append to Google Sheets ("Adoptions" tab) ─────────────────────────
         try {
+            $sheetId  = env('GOOGLE_SHEET_ADOPTIONS_ID') ?: (env('GOOGLE_SHEET_DONATIONS_ID') ?: '1INqiJMGp8JZQzRksA3WPgCPVAMPkJgKiqbzN7iGkPIk');
+            $sheetTab = env('GOOGLE_SHEET_ADOPTIONS_TAB') ?: 'Adoptions';
+
             $headers = [
                 'Adoption ID', 'First Name', 'Last Name', 'Email',
-                'Country', 'City', 'Street', 'Postal Code',
-                'Package', 'Amount',
-                'Email Updates', 'Text Updates', 'Cover Processing Fee',
+                'Phone Number', 'Country', 'City', 'Street', 'Postal Code',
+                'Package', 'Amount', 'Payment Method',
                 'Receipt Uploaded', 'Date Submitted',
             ];
 
+            $phoneDisplay = !empty($adoption->phone) ? $adoption->phone : 'N/A';
+            if ($phoneDisplay && str_starts_with($phoneDisplay, '+')) {
+                $phoneDisplay = "'" . $phoneDisplay;
+            }
+
+            $baseUrl = config('app.url');
+            if (empty($baseUrl) || str_contains($baseUrl, 'localhost')) {
+                $baseUrl = 'https://theparcfoundation.ph';
+            }
+
+            $receiptCell = 'No Receipt Attached';
+            if (!empty($adoption->receipt_path)) {
+                $receiptFullUrl = str_starts_with($adoption->receipt_path, 'http')
+                    ? $adoption->receipt_path
+                    : rtrim($baseUrl, '/') . '/' . ltrim($adoption->receipt_path, '/');
+                $receiptCell = '=HYPERLINK("' . $receiptFullUrl . '", "View Receipt")';
+            }
+
             $row = [
-                $adoption->id,
+                'ADPT-ID-' . str_pad($adoption->id, 3, '0', STR_PAD_LEFT),
                 $adoption->fname,
                 $adoption->lname,
                 $adoption->email,
-                $adoption->country              ?? '',
+                $phoneDisplay,
+                $adoption->country              ?? 'Philippines',
                 $adoption->city                 ?? '',
                 $adoption->street               ?? '',
                 $adoption->postal               ?? '',
                 $adoption->package              ?? '',
                 $adoption->amount               ?? '',
-                $adoption->emailUpdates         ?? 'no',
-                $adoption->textUpdates          ?? 'no',
-                $adoption->cover_processing_fee ? 'Yes' : 'No',
-                $adoption->receipt_path         ? url($adoption->receipt_path) : 'No Receipt Attached',
-                $adoption->created_at ? $adoption->created_at->format('n/j/Y') : date('n/j/Y'),
+                $adoption->payment_method       ?? 'ewallet',
+                $receiptCell,
+                "'" . ($adoption->created_at ? $adoption->created_at->setTimezone('Asia/Manila')->format('m/d/Y h:i A') : now()->setTimezone('Asia/Manila')->format('m/d/Y h:i A')),
             ];
 
             GoogleSheetsExporter::append(
-                spreadsheetId: env('GOOGLE_SHEET_ADOPTIONS_ID'),
-                tab:           env('GOOGLE_SHEET_ADOPTIONS_TAB', 'Adoptions'),
+                spreadsheetId: $sheetId,
+                tab:           $sheetTab,
                 headers:       $headers,
                 row:           $row
             );
+            Log::info('Google Sheets (Adoptions) append SUCCESS for adoption #' . $adoption->id);
         } catch (\Throwable $e) {
-            // Log the error but do NOT fail the user's submission —
-            // data is already safely saved in the database.
             Log::error('Google Sheets (Adoptions) append failed: ' . $e->getMessage(), [
                 'adoption_id' => $adoption->id,
                 'trace'       => $e->getTraceAsString(),
+            ]);
+        }
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success'     => true,
+                'message'     => 'Thank you! Your adoption application has been submitted successfully.',
+                'adoption_id' => $adoption->id,
             ]);
         }
 
