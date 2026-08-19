@@ -236,23 +236,23 @@
     <div class="adopt-step-panel" id="adoptStepPanel3" style="display: none;">
       <h3 class="formtitle" style="color: #f89b1e; font-weight: 800; text-transform: uppercase;">Step 3: Select Payment Method</h3>
 
-      <div class="payment-method-selector" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+      <div class="payment-method-selector" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
         <!-- Option 1: e-Wallets -->
-        <label class="payment-opt-box active" id="adoptOptEwallet" onclick="if(window.selectAdoptPaymentMethod) window.selectAdoptPaymentMethod('ewallet');" style="display: flex; align-items: center; justify-content: space-between; padding: 16px; border: 2px solid #f89b1e; border-radius: 12px; background: #fff8f0; cursor: pointer;">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <input type="radio" name="adopt_payment_radio" value="ewallet" checked onchange="if(window.selectAdoptPaymentMethod) window.selectAdoptPaymentMethod('ewallet');" style="accent-color: #f89b1e; width: 18px; height: 18px;" />
-            <span style="font-weight: 700; color: #111827; font-size: 1rem;">e-Wallets (GCash, Maya, QR Ph)</span>
+        <label class="payment-opt-box active" id="adoptOptEwallet" onclick="if(window.selectAdoptPaymentMethod) window.selectAdoptPaymentMethod('ewallet');" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border: 2px solid #f89b1e; border-radius: 12px; background: #fff8f0; cursor: pointer; transition: all 0.2s ease;">
+          <div style="display: flex; align-items: center; gap: 10px; white-space: nowrap;">
+            <input type="radio" name="adopt_payment_radio" value="ewallet" checked onchange="if(window.selectAdoptPaymentMethod) window.selectAdoptPaymentMethod('ewallet');" style="accent-color: #f89b1e; width: 16px; height: 16px;" />
+            <span style="font-weight: 700; color: #111827; font-size: 0.92rem; white-space: nowrap;">e-Wallets (GCash, Maya, QR Ph)</span>
           </div>
-          <span style="font-size: 0.85rem; font-weight: 600; color: #f89b1e;">Scan QR</span>
+          <span style="font-size: 0.78rem; font-weight: 600; color: #f89b1e; white-space: nowrap;">Scan QR</span>
         </label>
 
         <!-- Option 2: Bank Transfer -->
-        <label class="payment-opt-box" id="adoptOptBank" onclick="if(window.selectAdoptPaymentMethod) window.selectAdoptPaymentMethod('bank');" style="display: flex; align-items: center; justify-content: space-between; padding: 16px; border: 1.5px solid #d1d5db; border-radius: 12px; background: #ffffff; cursor: pointer;">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <input type="radio" name="adopt_payment_radio" value="bank" onchange="if(window.selectAdoptPaymentMethod) window.selectAdoptPaymentMethod('bank');" style="accent-color: #f89b1e; width: 18px; height: 18px;" />
-            <span style="font-weight: 700; color: #111827; font-size: 1rem;">Bank Deposit / Transfer</span>
+        <label class="payment-opt-box" id="adoptOptBank" onclick="if(window.selectAdoptPaymentMethod) window.selectAdoptPaymentMethod('bank');" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border: 1.5px solid #d1d5db; border-radius: 12px; background: #ffffff; cursor: pointer; transition: all 0.2s ease;">
+          <div style="display: flex; align-items: center; gap: 10px; white-space: nowrap;">
+            <input type="radio" name="adopt_payment_radio" value="bank" onchange="if(window.selectAdoptPaymentMethod) window.selectAdoptPaymentMethod('bank');" style="accent-color: #f89b1e; width: 16px; height: 16px;" />
+            <span style="font-weight: 700; color: #111827; font-size: 0.92rem; white-space: nowrap;">Bank Deposit / Transfer</span>
           </div>
-          <span style="font-size: 0.85rem; font-weight: 600; color: #6b7280;">View Bank Details</span>
+          <span style="font-size: 0.78rem; font-weight: 600; color: #6b7280; white-space: nowrap;">View Details</span>
         </label>
       </div>
 

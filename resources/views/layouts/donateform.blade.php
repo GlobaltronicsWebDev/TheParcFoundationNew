@@ -357,56 +357,56 @@
       <div style="display: flex; flex-direction: column; gap: 14px; align-items: center;">
         
         <!-- Credit / Debit Card Option (Primary Active Button) -->
-        <button type="button" id="btn-pay-card" class="payment-mode-btn active" style="width: 100%; max-width: 380px; padding: 14px 20px; background: linear-gradient(135deg, #ffa200 0%, #f89b1e 100%); color: #ffffff; border: 2px solid #f89b1e; border-radius: 30px; font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 14px rgba(255, 162, 0, 0.4); transition: all 0.25s ease;">
-          <span style="font-size: 1.3rem;">💳</span>
+        <button type="button" id="btn-pay-card" class="payment-mode-btn active" style="width: 100%; max-width: 380px; padding: 10px 18px; background: linear-gradient(135deg, #ffa200 0%, #f89b1e 100%); color: #ffffff; border: 2px solid #f89b1e; border-radius: 12px; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 3px 10px rgba(255, 162, 0, 0.3); transition: all 0.25s ease;">
+          <span style="font-size: 1.1rem;">💳</span>
           <span>CREDIT / DEBIT CARD</span>
         </button>
 
         <!-- Feature Info Box (Card Benefits Note with Avatar) -->
-        <div id="cardInfoBox" class="card-info-box" style="width: 100%; max-width: 380px; border: 2px dashed #f89b1e; border-radius: 12px; padding: 16px; display: flex; align-items: center; gap: 14px; background: #fff7ed;">
-          <div style="width: 68px; height: 68px; min-width: 68px; border-radius: 50%; overflow: hidden; border: 2px solid #f89b1e; box-shadow: 0 3px 8px rgba(0,0,0,0.15); background: #ffffff;">
+        <div id="cardInfoBox" class="card-info-box" style="width: 100%; max-width: 380px; border: 2px dashed #f89b1e; border-radius: 12px; padding: 14px; display: flex; align-items: center; gap: 12px; background: #fff7ed;">
+          <div style="width: 58px; height: 58px; min-width: 58px; border-radius: 50%; overflow: hidden; border: 2px solid #f89b1e; box-shadow: 0 3px 8px rgba(0,0,0,0.15); background: #ffffff;">
             <img src="{{ asset('assets/image/groupart.png') }}" alt="PARC Children" style="width: 100%; height: 100%; object-fit: cover;" />
           </div>
-          <p style="font-size: 0.85rem; line-height: 1.35; color: #374151; font-weight: 500; margin: 0; text-align: left;">
+          <p style="font-size: 0.82rem; line-height: 1.35; color: #374151; font-weight: 500; margin: 0; text-align: left;">
             Donations via credit/debit cards provide a more stable and secure way to manage your support to children in need.
           </p>
         </div>
 
-        <!-- e-Wallets Payment Option (Matches Image Reference) -->
+        <!-- e-Wallets Payment Option -->
         <div class="ewallet-dropdown-wrapper" style="width: 100%; max-width: 380px;">
           <!-- e-Wallets Toggle Button -->
-          <button type="button" id="btn-pay-others" class="payment-mode-btn ewallet-toggle-btn" style="width: 100%; padding: 14px 20px; background: #ffffff; color: #1f2937; border: 2px solid #f89b1e; border-radius: 14px; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); transition: all 0.25s ease;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <svg width="24" height="20" viewBox="0 0 32 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <button type="button" id="btn-pay-others" class="payment-mode-btn ewallet-toggle-btn" style="width: 100%; padding: 10px 18px; background: #ffffff; color: #1f2937; border: 2px solid #f89b1e; border-radius: 12px; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: all 0.25s ease;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <svg width="20" height="18" viewBox="0 0 32 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2 7.5A2.5 2.5 0 0 1 4.5 5h23A2.5 2.5 0 0 1 30 7.5v13a2.5 2.5 0 0 1-2.5 2.5h-23A2.5 2.5 0 0 1 2 20.5v-13z" stroke="currentColor" stroke-width="2.5"/>
                 <path d="M7 5V3.5A2.5 2.5 0 0 1 9.5 1h13A2.5 2.5 0 0 1 25 3.5V5" stroke="currentColor" stroke-width="2.5"/>
                 <circle cx="22" cy="14" r="2" fill="currentColor"/>
               </svg>
-              <span id="ewalletBtnTitle">e-Wallets</span>
+              <span id="ewalletBtnTitle">E-WALLETS</span>
             </div>
             <span class="ewallet-caret" style="display: flex; align-items: center; transition: transform 0.3s ease;">
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="currentColor">
+              <svg width="12" height="8" viewBox="0 0 14 10" fill="currentColor">
                 <path d="M7 10L0 0h14L7 10z"/>
               </svg>
             </span>
           </button>
 
-          <!-- e-Wallets Dropdown Menu (Matches Image Reference 2) -->
-          <div id="ewalletDropdownMenu" class="ewallet-dropdown-menu" style="display: none; width: 100%; background: #ffffff; border: 2px solid #f89b1e; border-top: none; border-radius: 0 0 14px 14px; margin-top: -2px; box-shadow: 0 8px 20px rgba(0,0,0,0.12); overflow: hidden;">
-            <div style="padding: 6px 0;">
+          <!-- e-Wallets Dropdown Menu -->
+          <div id="ewalletDropdownMenu" class="ewallet-dropdown-menu" style="display: none; width: 100%; background: #ffffff; border: 2px solid #f89b1e; border-top: none; border-radius: 0 0 12px 12px; margin-top: -2px; box-shadow: 0 6px 16px rgba(0,0,0,0.1); overflow: hidden;">
+            <div style="padding: 4px 0;">
               
               <!-- GCash -->
-              <div class="ewallet-item selected" data-wallet="gcash" title="GCash" style="padding: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; position: relative;">
-                <img src="{{ asset('assets/icons/GCASH.png') }}" alt="GCash Logo" style="height: 56px; width: auto; max-width: 220px; object-fit: contain;" />
-                <span class="ewallet-check" style="width: 28px; height: 28px; border-radius: 50%; background: #22c55e; color: #ffffff; font-size: 14px; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4); position: absolute; right: 20px;"><i class="fa-solid fa-check"></i></span>
+              <div class="ewallet-item selected" data-wallet="gcash" title="GCash" style="padding: 14px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; position: relative;">
+                <img src="{{ asset('assets/icons/GCASH.png') }}" alt="GCash Logo" style="height: 42px; width: auto; max-width: 180px; object-fit: contain;" />
+                <span class="ewallet-check" style="width: 24px; height: 24px; border-radius: 50%; background: #22c55e; color: #ffffff; font-size: 12px; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(34, 197, 94, 0.4); position: absolute; right: 16px;"><i class="fa-solid fa-check"></i></span>
               </div>
 
               <div class="ewallet-divider"></div>
 
               <!-- Maya -->
-              <div class="ewallet-item" data-wallet="maya" title="Maya" style="padding: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; position: relative;">
-                <img src="{{ asset('assets/icons/MAYA.png') }}" alt="Maya Logo" style="height: 52px; width: auto; max-width: 200px; object-fit: contain;" />
-                <span class="ewallet-check" style="width: 28px; height: 28px; border-radius: 50%; background: #22c55e; color: #ffffff; font-size: 14px; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4); position: absolute; right: 20px;"><i class="fa-solid fa-check"></i></span>
+              <div class="ewallet-item" data-wallet="maya" title="Maya" style="padding: 14px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; position: relative;">
+                <img src="{{ asset('assets/icons/MAYA.png') }}" alt="Maya Logo" style="height: 38px; width: auto; max-width: 160px; object-fit: contain;" />
+                <span class="ewallet-check" style="width: 24px; height: 24px; border-radius: 50%; background: #22c55e; color: #ffffff; font-size: 12px; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(34, 197, 94, 0.4); position: absolute; right: 16px;"><i class="fa-solid fa-check"></i></span>
               </div>
 
             </div>
@@ -414,12 +414,12 @@
         </div>
 
         <!-- Option 3: Bank Deposit / Transfer Option Card -->
-        <label class="payment-mode-btn" id="donateOptBank" onclick="if(window.selectDonatePaymentMethod) window.selectDonatePaymentMethod('bank');" style="width: 100%; max-width: 380px; padding: 14px 20px; background: #ffffff; color: #1f2937; border: 2px solid #f89b1e; border-radius: 14px; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); transition: all 0.25s ease;">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 1.3rem;">🏛️</span>
-            <span>BANK DEPOSIT / TRANSFER</span>
+        <label class="payment-mode-btn" id="donateOptBank" onclick="if(window.selectDonatePaymentMethod) window.selectDonatePaymentMethod('bank');" style="width: 100%; max-width: 380px; padding: 10px 18px; background: #ffffff; color: #1f2937; border: 2px solid #f89b1e; border-radius: 12px; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: all 0.25s ease;">
+          <div style="display: flex; align-items: center; gap: 8px; white-space: nowrap;">
+            <span style="font-size: 1.1rem;">🏛️</span>
+            <span style="white-space: nowrap;">BANK DEPOSIT / TRANSFER</span>
           </div>
-          <span style="font-size: 0.85rem; font-weight: 600; color: #6b7280;">View Details</span>
+          <span style="font-size: 0.78rem; font-weight: 600; color: #6b7280; white-space: nowrap;">View Details</span>
         </label>
 
       </div>
