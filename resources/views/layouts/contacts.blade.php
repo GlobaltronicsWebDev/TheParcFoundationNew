@@ -61,6 +61,10 @@
           <input type="email" id="footer_email" name="email" value="{{ old('email') }}" required placeholder="Email Address" style="width:100% !important;max-width:100% !important;display:block !important;padding:10px 12px !important;margin-top:5px !important;border:1px solid #ccc !important;border-radius:4px !important;background-color:#ffffff !important;color:#222222 !important;font-size:13px !important;box-sizing:border-box !important;">
           @error('email')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
 
+          <label for="footer_phone">Phone Number</label>
+          <input type="tel" id="footer_phone" name="phone" value="{{ old('phone') }}" placeholder="Phone Number (e.g. +63 912 345 6789)" style="width:100% !important;max-width:100% !important;display:block !important;padding:10px 12px !important;margin-top:5px !important;border:1px solid #ccc !important;border-radius:4px !important;background-color:#ffffff !important;color:#222222 !important;font-size:13px !important;box-sizing:border-box !important;">
+          @error('phone')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
+
           <label for="footer_subject">Subject / Inquiry Type <span class="required">*required</span></label>
           <select id="footer_subject" name="subject" required style="width:100% !important;max-width:100% !important;display:block !important;padding:10px 12px !important;margin-top:5px !important;border:1px solid #ccc !important;border-radius:4px !important;background-color:#ffffff !important;color:#222222 !important;font-size:13px !important;box-sizing:border-box !important;cursor:pointer !important;">
             <option value="" disabled selected>Select an inquiry type</option>
