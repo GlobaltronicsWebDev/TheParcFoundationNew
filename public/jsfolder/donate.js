@@ -1174,5 +1174,52 @@ document.addEventListener("DOMContentLoaded", function () {
   window.updateStepperUI = updateStepperUI;
   window.validateStep = validateStep;
 
+  window.handleReceiptChange = function(input) {
+    const previewContainer = document.getElementById("receipt-preview");
+    const imgPreview = document.getElementById("receipt-img-preview");
+    const fileNameEl = document.getElementById("receipt-file-name");
+    const labelText = document.getElementById("receipt-label-text");
+    const errReceipt = document.getElementById("err-receipt");
+
+    if (errReceipt) errReceipt.style.display = "none";
+
+    if (input && input.files && input.files[0]) {
+      const file = input.files[0];
+      const fileSizeMB = (file.size / 1024 / 1024).toFixed(2);
+
+      if (fileNameEl) fileNameEl.textContent = file.name + " (" + fileSizeMB + " MB)";
+      if (labelText) labelText.textContent = "Uploaded: " + file.name;
+
+      if (file.type.startsWith("image/")) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          if (imgPreview) {
+            imgPreview.src = e.target.result;
+            imgPreview.style.display = "inline-block";
+          }
+        };
+        reader.readAsDataURL(file);
+      } else {
+        if (imgPreview) imgPreview.style.display = "none";
+      }
+
+      if (previewContainer) previewContainer.style.display = "block";
+    }
+  };
+
+  window.clearReceipt = function() {
+    const input = document.getElementById("receipt");
+    const previewContainer = document.getElementById("receipt-preview");
+    const imgPreview = document.getElementById("receipt-img-preview");
+    const fileNameEl = document.getElementById("receipt-file-name");
+    const labelText = document.getElementById("receipt-label-text");
+
+    if (input) input.value = "";
+    if (imgPreview) imgPreview.src = "";
+    if (fileNameEl) fileNameEl.textContent = "";
+    if (labelText) labelText.textContent = "Click to upload receipt (JPG, PNG, PDF — max 5MB)";
+    if (previewContainer) previewContainer.style.display = "none";
+  };
+
   console.log("donate.js: 4-step wizard integration loaded ✅");
 });
