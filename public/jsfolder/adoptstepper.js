@@ -283,8 +283,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Step 3 Payment Radio Toggles
+  // Step 3 Payment Radio Toggles & Bank Details Card
   const paymentRadios = document.querySelectorAll('input[name="adopt_payment_radio"]');
+  const adoptBankDetailsBox = document.getElementById("adoptBankDetailsBox");
+  const adoptQrBox = document.getElementById("adoptQrBox");
+  const adoptPaymentBoxTitle = document.getElementById("adoptPaymentBoxTitle");
+  const copyBankAccBtn = document.getElementById("copyBankAccBtn");
+
   paymentRadios.forEach((r) => {
     r.addEventListener("change", function () {
       const val = this.value;
@@ -301,6 +306,9 @@ document.addEventListener("DOMContentLoaded", function () {
           optBank.style.border = "1.5px solid #d1d5db";
           optBank.style.background = "#ffffff";
         }
+        if (adoptBankDetailsBox) adoptBankDetailsBox.style.display = "none";
+        if (adoptQrBox) adoptQrBox.style.display = "block";
+        if (adoptPaymentBoxTitle) adoptPaymentBoxTitle.textContent = "Scan QR Code to Pay";
       } else {
         if (optBank) {
           optBank.style.border = "2px solid #f89b1e";
@@ -310,9 +318,39 @@ document.addEventListener("DOMContentLoaded", function () {
           optEwallet.style.border = "1.5px solid #d1d5db";
           optEwallet.style.background = "#ffffff";
         }
+        if (adoptBankDetailsBox) adoptBankDetailsBox.style.display = "block";
+        if (adoptQrBox) adoptQrBox.style.display = "none";
+        if (adoptPaymentBoxTitle) adoptPaymentBoxTitle.textContent = "Attach Receipt / Deposit Slip";
       }
     });
   });
+
+  if (copyBankAccBtn) {
+    copyBankAccBtn.addEventListener("click", function () {
+      const accNo = "007268005419";
+      navigator.clipboard.writeText(accNo).then(() => {
+        copyBankAccBtn.textContent = "Copied! ✓";
+        copyBankAccBtn.style.background = "#22c55e";
+        setTimeout(() => {
+          copyBankAccBtn.textContent = "Copy";
+          copyBankAccBtn.style.background = "#f89b1e";
+        }, 2000);
+      }).catch(() => {
+        const el = document.createElement("textarea");
+        el.value = accNo;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+        copyBankAccBtn.textContent = "Copied! ✓";
+        copyBankAccBtn.style.background = "#22c55e";
+        setTimeout(() => {
+          copyBankAccBtn.textContent = "Copy";
+          copyBankAccBtn.style.background = "#f89b1e";
+        }, 2000);
+      });
+    });
+  }
 
   if (btnAdoptToStep4) {
     btnAdoptToStep4.addEventListener("click", function () {

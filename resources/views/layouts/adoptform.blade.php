@@ -252,20 +252,63 @@
             <input type="radio" name="adopt_payment_radio" value="bank" style="accent-color: #f89b1e; width: 18px; height: 18px;" />
             <span style="font-weight: 700; color: #111827; font-size: 1rem;">Bank Deposit / Transfer</span>
           </div>
-          <span style="font-size: 0.85rem; font-weight: 600; color: #6b7280;">Upload Receipt</span>
+          <span style="font-size: 0.85rem; font-weight: 600; color: #6b7280;">View Bank Details</span>
         </label>
+      </div>
+
+      <!-- Bank Account Details Card (Shown when Bank Deposit / Transfer is selected) -->
+      <div class="adopt-bank-details-box" id="adoptBankDetailsBox" style="display: none; background: #ffffff; border: 2px solid #f89b1e; border-radius: 12px; padding: 22px; margin-bottom: 20px; box-shadow: 0 6px 18px rgba(0,0,0,0.06);">
+        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #f89b1e; padding-bottom: 12px; margin-bottom: 16px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.5rem;">🏛️</span>
+            <h4 style="font-size: 1.15rem; font-weight: 800; color: #111827; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">Bank Transfer Details</h4>
+          </div>
+          <span style="background: #fff8f0; color: #f89b1e; border: 1px solid #f89b1e; font-size: 0.78rem; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase;">Official Account</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #f9fafb; padding: 10px 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
+            <span style="color: #6b7280; font-weight: 600;">Bank Name:</span>
+            <strong style="color: #111827; font-size: 1rem;">BDO Unibank (Bank of the Philippine Islands / BDO)</strong>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #f9fafb; padding: 10px 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
+            <span style="color: #6b7280; font-weight: 600;">Account Name:</span>
+            <strong style="color: #111827; font-size: 1rem;">THE PARC FOUNDATION INC.</strong>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #fff8f0; padding: 12px 14px; border-radius: 8px; border: 1.5px solid #f89b1e;">
+            <span style="color: #6b7280; font-weight: 700;">Account Number:</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <strong id="bankAccNoText" style="color: #f89b1e; font-size: 1.15rem; font-weight: 800; letter-spacing: 1px;">0072 6800 5419</strong>
+              <button type="button" id="copyBankAccBtn" style="background: #f89b1e; color: #ffffff; border: none; border-radius: 6px; padding: 4px 10px; font-size: 0.78rem; font-weight: 700; cursor: pointer;">Copy</button>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #f9fafb; padding: 10px 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
+            <span style="color: #6b7280; font-weight: 600;">Branch / Location:</span>
+            <strong style="color: #111827; font-size: 0.95rem;">San Juan, Metro Manila, Philippines</strong>
+          </div>
+        </div>
+
+        <div style="margin-top: 16px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px 16px; font-size: 0.88rem; color: #15803d; line-height: 1.45; text-align: left; font-weight: 500;">
+          💡 <strong>Instructions:</strong> Please transfer or deposit your pledge amount using your bank app or online banking. Once completed, screenshot your deposit slip or receipt and attach it below for validation.
+        </div>
       </div>
 
       <!-- QR & Receipt Box -->
       <div class="notebank" id="adoptNotebank" style="display: block; background-color: #f9fafb; padding: 20px; border-radius: 12px; border: 1px solid #e5e7eb; text-align: center; margin-bottom: 20px;">
         <p style="font-weight: 800; color: #f89b1e; margin-bottom: 12px; font-size: 1.1rem;" id="adoptPaymentBoxTitle">Scan QR Code to Pay</p>
-        <div style="display: flex; justify-content: center; align-items: center;">
-          <img src="{{ asset('assets/image/qr_code.png') }}" alt="PARC Foundation QR Code"
-               style="width: 240px; height: auto; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff; padding: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);" />
+        
+        <div id="adoptQrBox" style="display: block;">
+          <div style="display: flex; justify-content: center; align-items: center;">
+            <img src="{{ asset('assets/image/qr_code.png') }}" alt="PARC Foundation QR Code"
+                 style="width: 240px; height: auto; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff; padding: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);" />
+          </div>
+          <p style="margin-top: 14px; font-size: 0.88rem; color: #4b5563; line-height: 1.4;">
+            After sending your payment, please screenshot your receipt and attach it below.
+          </p>
         </div>
-        <p style="margin-top: 14px; font-size: 0.88rem; color: #4b5563; line-height: 1.4;">
-          After sending your payment, please screenshot your receipt and attach it below.
-        </p>
 
         {{-- Receipt Upload --}}
         <div style="margin-top: 18px; text-align: left;">
