@@ -60,12 +60,20 @@ class AdoptionController extends Controller
         $validated['barangay'] = $barangayVal;
         $validated['phone']    = $phoneVal;
 
-        // Handle receipt file upload — stored in public/receipts/ with randomized name
+        // Handle receipt file upload — stored in public/receipts/ & public/storage/receipts/
         if ($request->hasFile('receipt')) {
             $file      = $request->file('receipt');
             $extension = strtolower($file->getClientOriginalExtension() ?: 'jpg');
             $filename  = time() . '_' . \Illuminate\Support\Str::random(24) . '.' . $extension;
-            $file->move(public_path('receipts'), $filename);
+
+            $dir1 = public_path('receipts');
+            $dir2 = public_path('storage/receipts');
+            if (!file_exists($dir1)) { @mkdir($dir1, 0755, true); }
+            if (!file_exists($dir2)) { @mkdir($dir2, 0755, true); }
+
+            $file->move($dir1, $filename);
+            @copy($dir1 . '/' . $filename, $dir2 . '/' . $filename);
+
             $validated['receipt_path'] = 'receipts/' . $filename;
         }
 
@@ -96,14 +104,16 @@ class AdoptionController extends Controller
                 $baseUrl = 'https://theparcfoundation.ph';
             }
 
+            $officialReceiptUrl = rtrim($baseUrl, '/') . '/adoptions/' . $adoption->id . '/receipt';
+
             if (!empty($adoption->receipt_path)) {
                 $receiptFullUrl = str_starts_with($adoption->receipt_path, 'http')
                     ? $adoption->receipt_path
                     : rtrim($baseUrl, '/') . '/' . ltrim($adoption->receipt_path, '/');
+                $receiptCell = '=HYPERLINK("' . $receiptFullUrl . '", "View Receipt")';
             } else {
-                $receiptFullUrl = rtrim($baseUrl, '/') . '/adoptions/' . $adoption->id . '/receipt';
+                $receiptCell = '=HYPERLINK("' . $officialReceiptUrl . '", "View Receipt")';
             }
-            $receiptCell = '=HYPERLINK("' . $receiptFullUrl . '", "View Receipt")';
 
             $row = [
                 'ADPT-ID-' . str_pad($adoption->id, 3, '0', STR_PAD_LEFT),

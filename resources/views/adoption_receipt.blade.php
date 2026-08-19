@@ -359,6 +359,37 @@
         </tbody>
       </table>
 
+      {{-- Uploaded Receipt Attachment (If attached by donor) --}}
+      @if(!empty($adoption->receipt_path))
+        <div style="background: #fff8f0; border: 1.5px solid #fed7aa; border-radius: 12px; padding: 18px; margin-bottom: 28px;">
+          <div style="font-size: 0.85rem; font-weight: 700; color: #d97706; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-paperclip"></i> Uploaded Deposit Slip / Receipt Attachment
+          </div>
+          @php
+            $isPdf = str_ends_with(strtolower($adoption->receipt_path), '.pdf');
+            $receiptUrl = str_starts_with($adoption->receipt_path, 'http')
+              ? $adoption->receipt_path
+              : asset($adoption->receipt_path);
+          @endphp
+          @if($isPdf)
+            <a href="{{ $receiptUrl }}" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: #ffffff; color: #d97706; border: 1px solid #fed7aa; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.9rem;">
+              <i class="fa-solid fa-file-pdf" style="font-size: 1.2rem; color: #dc2626;"></i> View Attached PDF Receipt Document
+            </a>
+          @else
+            <div style="text-align: center;">
+              <a href="{{ $receiptUrl }}" target="_blank" title="Click to view full image">
+                <img src="{{ $receiptUrl }}" alt="Uploaded Receipt Screenshot" style="max-width: 100%; max-height: 300px; border-radius: 8px; border: 1px solid #e5e7eb; box-shadow: 0 4px 10px rgba(0,0,0,0.08);" />
+              </a>
+              <div style="margin-top: 8px;">
+                <a href="{{ $receiptUrl }}" target="_blank" style="font-size: 0.82rem; color: #d97706; font-weight: 600; text-decoration: underline;">
+                  🔍 Click to open full-size uploaded receipt in new tab
+                </a>
+              </div>
+            </div>
+          @endif
+        </div>
+      @endif
+
       {{-- Thank you Note --}}
       <div class="thankyou-note">
         <i class="fa-solid fa-graduation-cap thankyou-icon"></i>
