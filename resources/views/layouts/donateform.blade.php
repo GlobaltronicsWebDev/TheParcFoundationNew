@@ -434,28 +434,38 @@
           <span style="background: #fff8f0; color: #f89b1e; border: 1px solid #f89b1e; font-size: 0.78rem; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase;">OFFICIAL ACCOUNT</span>
         </div>
 
-        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem; text-align: left;">
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.92rem; text-align: left;">
           <div style="display: flex; justify-content: space-between; align-items: center; background: #f9fafb; padding: 10px 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
             <span style="color: #6b7280; font-weight: 600;">Bank Name:</span>
-            <strong style="color: #111827; font-size: 0.98rem; text-align: right;">BDO Unibank (Bank of the Philippine Islands / BDO)</strong>
+            <strong style="color: #111827; font-size: 0.95rem; text-align: right;">Philippine National Bank (PNB)</strong>
           </div>
 
-          <div style="display: flex; justify-content: space-between; align-items: center; background: #f9fafb; padding: 10px 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
-            <span style="color: #6b7280; font-weight: 600;">Account Name:</span>
-            <strong style="color: #111827; font-size: 0.98rem;">THE PARC FOUNDATION INC.</strong>
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; background: #f9fafb; padding: 10px 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
+            <span style="color: #6b7280; font-weight: 600; min-width: 100px;">Bank Address:</span>
+            <strong style="color: #111827; font-size: 0.88rem; text-align: right; line-height: 1.35;">929 Consuelo Building, Nicanor Reyes Street, Sampaloc, Manila</strong>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; background: #f9fafb; padding: 10px 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
+            <span style="color: #6b7280; font-weight: 600; min-width: 110px;">Account Name:</span>
+            <strong style="color: #111827; font-size: 0.92rem; text-align: right; line-height: 1.35;">The Performing Arts and Recreation Center Foundation, Inc.</strong>
           </div>
 
           <div style="display: flex; justify-content: space-between; align-items: center; background: #fff8f0; padding: 12px 14px; border-radius: 8px; border: 1.5px solid #f89b1e;">
             <span style="color: #6b7280; font-weight: 700;">Account Number:</span>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <strong id="donateBankAccNoText" style="color: #f89b1e; font-size: 1.15rem; font-weight: 800; letter-spacing: 1px;">0072 6800 5419</strong>
+              <strong id="donateBankAccNoText" style="color: #f89b1e; font-size: 1.15rem; font-weight: 800; letter-spacing: 1px;">1657 7000 3447</strong>
               <button type="button" id="copyDonateBankAccBtn" style="background: #f89b1e; color: #ffffff; border: none; border-radius: 6px; padding: 4px 10px; font-size: 0.78rem; font-weight: 700; cursor: pointer;">Copy</button>
             </div>
           </div>
 
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; background: #f9fafb; padding: 10px 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
+            <span style="color: #6b7280; font-weight: 600; min-width: 120px;">Account Address:</span>
+            <strong style="color: #111827; font-size: 0.88rem; text-align: right; line-height: 1.35;">494 Lt. Artiaga Street, San Juan City, Metro Manila, 1500</strong>
+          </div>
+
           <div style="display: flex; justify-content: space-between; align-items: center; background: #f9fafb; padding: 10px 14px; border-radius: 8px; border: 1px solid #e5e7eb;">
-            <span style="color: #6b7280; font-weight: 600;">Branch / Location:</span>
-            <strong style="color: #111827; font-size: 0.95rem;">San Juan, Metro Manila, Philippines</strong>
+            <span style="color: #6b7280; font-weight: 600;">SWIFT Code:</span>
+            <strong style="color: #111827; font-size: 0.98rem; font-weight: 800; letter-spacing: 0.5px;">PNBMPHMM</strong>
           </div>
         </div>
 

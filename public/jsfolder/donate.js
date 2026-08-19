@@ -392,7 +392,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (copyDonateBankAccBtn) {
     copyDonateBankAccBtn.addEventListener("click", function () {
-      const accNo = "007268005419";
+      const accNo = "165770003447";
       navigator.clipboard.writeText(accNo).then(() => {
         copyDonateBankAccBtn.textContent = "Copied! ✓";
         copyDonateBankAccBtn.style.background = "#22c55e";
