@@ -125,33 +125,96 @@
         </div>
       </div>
 
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label for="email" style="font-weight: 700; color: #1f2937;">Email Address <span class="req">*</span></label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required style="width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
+        <span class="field-error" id="err-email" style="color: #e11d48; font-size: 0.82rem; margin-top: 4px; display: none;">Valid email address is required</span>
+      </div>
+
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label for="phone" style="font-weight: 700; color: #1f2937;">Contact Number</label>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <select id="adopt_country_code" name="country_code" style="width: 110px; padding: 12px 6px; font-size: 0.9rem; border: 1.5px solid #d1d5db; border-radius: 8px; background-color: #ffffff; color: #1f2937; outline: none; cursor: pointer;">
+            <option value="+63" selected>🇵🇭 +63</option>
+            <option value="+1">🇺🇸 +1</option>
+            <option value="+1">🇨🇦 +1</option>
+            <option value="+61">🇦🇺 +61</option>
+            <option value="+44">🇬🇧 +44</option>
+            <option value="+65">🇸🇬 +65</option>
+            <option value="+81">🇯🇵 +81</option>
+            <option value="+971">🇦🇪 +971</option>
+            <option value="+82">🇰🇷 +82</option>
+            <option value="+886">🇹🇼 +886</option>
+            <option value="+852">🇭🇰 +852</option>
+            <option value="+60">🇲🇾 +60</option>
+            <option value="+62">🇮🇩 +62</option>
+            <option value="+66">🇹🇭 +66</option>
+            <option value="+84">🇻🇳 +84</option>
+            <option value="+91">🇮🇳 +91</option>
+            <option value="+966">🇸🇦 +966</option>
+            <option value="+974">🇶🇦 +974</option>
+            <option value="+965">🇰🇼 +965</option>
+            <option value="+33">🇫🇷 +33</option>
+            <option value="+49">🇩🇪 +49</option>
+            <option value="+39">🇮🇹 +39</option>
+            <option value="+34">🇪🇸 +34</option>
+            <option value="+31">🇳🇱 +31</option>
+            <option value="+64">🇳🇿 +64</option>
+          </select>
+          <input type="tel" id="phone" name="phone" placeholder="905 123 4567" style="flex: 1; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
+        </div>
+      </div>
+
+      <h4 style="font-size: 0.95rem; font-weight: 700; color: #4b5563; margin: 20px 0 12px; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px;">
+        My Address <span style="font-size: 0.8rem; font-weight: 400; color: #888;">(Optional)</span>
+      </h4>
+
       <div class="form-row" style="display: flex; gap: 16px; margin-bottom: 15px;">
         <div class="form-group" style="flex: 1;">
-          <label for="email" style="font-weight: 700; color: #1f2937;">Email Address <span class="req">*</span></label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required style="width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
-          <span class="field-error" id="err-email" style="color: #e11d48; font-size: 0.82rem; margin-top: 4px; display: none;">Valid email address is required</span>
+          <label for="country" style="font-weight: 700; color: #1f2937;">Country</label>
+          <select id="country" name="country" style="width: 100%; padding: 12px 14px; font-size: 0.95rem; border: 1.5px solid #d1d5db; border-radius: 8px; background-color: #ffffff; color: #1f2937; outline: none; cursor: pointer;">
+            <option value="Philippines" selected>Philippines</option>
+            <option value="United States">United States</option>
+            <option value="Canada">Canada</option>
+            <option value="Australia">Australia</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Singapore">Singapore</option>
+            <option value="Japan">Japan</option>
+            <option value="United Arab Emirates">United Arab Emirates</option>
+            <option value="Other">Other Country</option>
+          </select>
         </div>
+
         <div class="form-group" style="flex: 1;">
-          <label for="phone" style="font-weight: 700; color: #1f2937;">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="+63 912 345 6789" style="width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
+          <label for="adoptProvince" style="font-weight: 700; color: #1f2937;">Province / Region</label>
+          <select id="adoptProvince" name="province" style="width: 100%; padding: 12px 14px; font-size: 0.95rem; border: 1.5px solid #d1d5db; border-radius: 8px; background-color: #ffffff; color: #1f2937; outline: none; cursor: pointer;">
+            <option value="" disabled selected>Select Province / Region</option>
+          </select>
         </div>
       </div>
 
       <div class="form-row" style="display: flex; gap: 16px; margin-bottom: 15px;">
         <div class="form-group" style="flex: 1;">
-          <label for="country" style="font-weight: 700; color: #1f2937;">Country</label>
-          <input type="text" id="country" name="country" placeholder="e.g. Philippines" value="Philippines" style="width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
+          <label for="adoptCitySelect" style="font-weight: 700; color: #1f2937;">City / Municipality</label>
+          <select id="adoptCitySelect" name="city" style="width: 100%; padding: 12px 14px; font-size: 0.95rem; border: 1.5px solid #d1d5db; border-radius: 8px; background-color: #ffffff; color: #1f2937; outline: none; cursor: pointer;">
+            <option value="" disabled selected>Select Province First</option>
+          </select>
+          <input type="text" id="adoptCityCustom" name="city_custom" placeholder="Type city name" style="display: none; margin-top: 8px; width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
         </div>
+
         <div class="form-group" style="flex: 1;">
-          <label for="city" style="font-weight: 700; color: #1f2937;">City / Municipality</label>
-          <input type="text" id="city" name="city" placeholder="e.g. Manila" style="width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
+          <label for="adoptBarangaySelect" style="font-weight: 700; color: #1f2937;">Barangay</label>
+          <select id="adoptBarangaySelect" name="barangay" style="width: 100%; padding: 12px 14px; font-size: 0.95rem; border: 1.5px solid #d1d5db; border-radius: 8px; background-color: #ffffff; color: #1f2937; outline: none; cursor: pointer;">
+            <option value="" disabled selected>Select City First</option>
+          </select>
+          <input type="text" id="adoptBarangayCustom" name="barangay_custom" placeholder="Type barangay name" style="display: none; margin-top: 8px; width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
         </div>
       </div>
 
       <div class="form-row" style="display: flex; gap: 16px; margin-bottom: 15px;">
         <div class="form-group" style="flex: 2;">
           <label for="street" style="font-weight: 700; color: #1f2937;">Street Address</label>
-          <input type="text" id="street" name="street" placeholder="House/Bldg No., Street" style="width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
+          <input type="text" id="street" name="street" placeholder="House No., Building, Street Name" style="width: 100%; padding: 12px; border: 1.5px solid #d1d5db; border-radius: 8px;" />
         </div>
         <div class="form-group" style="flex: 1;">
           <label for="postal" style="font-weight: 700; color: #1f2937;">Postal Code</label>

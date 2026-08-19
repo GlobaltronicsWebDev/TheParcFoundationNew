@@ -20,19 +20,45 @@ class AdoptionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'fname'          => 'required|string|max:255',
-            'lname'          => 'required|string|max:255',
-            'email'          => 'required|email|max:255',
-            'phone'          => 'nullable|string|max:50',
-            'country'        => 'nullable|string|max:255',
-            'street'         => 'nullable|string|max:255',
-            'city'           => 'nullable|string|max:255',
-            'postal'         => 'nullable|string|max:255',
-            'package'        => 'required|string|max:255',
-            'amount'         => 'required|string|max:255',
-            'payment_method' => 'nullable|string|max:50',
-            'receipt'        => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5120',
+            'fname'           => 'required|string|max:255',
+            'lname'           => 'required|string|max:255',
+            'email'           => 'required|email|max:255',
+            'phone'           => 'nullable|string|max:50',
+            'country_code'    => 'nullable|string|max:10',
+            'country'         => 'nullable|string|max:255',
+            'province'        => 'nullable|string|max:255',
+            'city'            => 'nullable|string|max:255',
+            'city_custom'     => 'nullable|string|max:255',
+            'barangay'        => 'nullable|string|max:255',
+            'barangay_custom' => 'nullable|string|max:255',
+            'street'          => 'nullable|string|max:255',
+            'postal'          => 'nullable|string|max:255',
+            'package'         => 'required|string|max:255',
+            'amount'          => 'required|string|max:255',
+            'payment_method'  => 'nullable|string|max:50',
+            'receipt'         => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5120',
         ]);
+
+        // Resolve city & barangay custom inputs
+        $cityVal = ($validated['city'] ?? '') === 'Other'
+            ? ($validated['city_custom'] ?? 'Other')
+            : ($validated['city'] ?? '');
+
+        $barangayVal = ($validated['barangay'] ?? '') === 'Other'
+            ? ($validated['barangay_custom'] ?? 'Other')
+            : ($validated['barangay'] ?? '');
+
+        $phoneVal = '';
+        if (!empty($validated['phone'])) {
+            $code = $validated['country_code'] ?? '+63';
+            $phoneVal = str_starts_with($validated['phone'], '+')
+                ? $validated['phone']
+                : $code . ' ' . $validated['phone'];
+        }
+
+        $validated['city']     = $cityVal;
+        $validated['barangay'] = $barangayVal;
+        $validated['phone']    = $phoneVal;
 
         // Handle receipt file upload — stored in public/receipts/ with randomized name
         if ($request->hasFile('receipt')) {
@@ -55,7 +81,7 @@ class AdoptionController extends Controller
 
             $headers = [
                 'Adoption ID', 'First Name', 'Last Name', 'Email',
-                'Phone Number', 'Country', 'City', 'Street', 'Postal Code',
+                'Phone Number', 'Country', 'Province', 'City', 'Barangay', 'Street', 'Postal Code',
                 'Package', 'Amount', 'Payment Method',
                 'Receipt Uploaded', 'Date Submitted',
             ];
@@ -85,7 +111,9 @@ class AdoptionController extends Controller
                 $adoption->email,
                 $phoneDisplay,
                 $adoption->country              ?? 'Philippines',
+                $validated['province']          ?? '',
                 $adoption->city                 ?? '',
+                $validated['barangay']          ?? '',
                 $adoption->street               ?? '',
                 $adoption->postal               ?? '',
                 $adoption->package              ?? '',

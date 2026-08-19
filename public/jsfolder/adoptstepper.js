@@ -376,4 +376,184 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = "/";
     });
   }
+
+  /* ── PSGC PHILIPPINE LOCATIONS FETCH ── */
+  const adoptProvinceSelect = document.getElementById("adoptProvince");
+  const adoptCitySelect     = document.getElementById("adoptCitySelect");
+  const adoptCityCustom     = document.getElementById("adoptCityCustom");
+  const adoptBarangaySelect = document.getElementById("adoptBarangaySelect");
+  const adoptBarangayCustom = document.getElementById("adoptBarangayCustom");
+
+  const psgcCache = { provinces: [], regions: [], cities: {}, barangays: {} };
+
+  async function loadAdoptProvincesAndRegions() {
+    if (!adoptProvinceSelect) return;
+    try {
+      adoptProvinceSelect.innerHTML = '<option value="" disabled selected>Loading Provinces & Regions...</option>';
+
+      const [provRes, regRes] = await Promise.all([
+        fetch("https://psgc.gitlab.io/api/provinces/").then(r => r.json()).catch(() => []),
+        fetch("https://psgc.gitlab.io/api/regions/").then(r => r.json()).catch(() => [])
+      ]);
+
+      adoptProvinceSelect.innerHTML = '<option value="" disabled selected>Select Province / Region</option>';
+
+      let allLocations = [];
+
+      if (Array.isArray(regRes)) {
+        regRes.forEach(reg => {
+          if (reg.code === "130000000" || reg.name.toLowerCase().includes("ncr") || reg.name.toLowerCase().includes("metro manila")) {
+            allLocations.push({ name: "Metro Manila (NCR)", code: reg.code, isRegion: true });
+          }
+        });
+      }
+
+      if (Array.isArray(provRes)) {
+        provRes.forEach(p => {
+          allLocations.push({ name: p.name, code: p.code, isRegion: false });
+        });
+      }
+
+      allLocations.sort((a, b) => a.name.localeCompare(b.name));
+
+      allLocations.forEach(loc => {
+        const opt = document.createElement("option");
+        opt.value = loc.name;
+        opt.dataset.code = loc.code;
+        opt.dataset.isRegion = loc.isRegion ? "true" : "false";
+        opt.textContent = loc.name;
+        adoptProvinceSelect.appendChild(opt);
+      });
+
+      const otherOpt = document.createElement("option");
+      otherOpt.value = "Other";
+      otherOpt.textContent = "Other / Custom Region";
+      adoptProvinceSelect.appendChild(otherOpt);
+
+    } catch (err) {
+      console.warn("PSGC API failed to load provinces for adopt form.", err);
+    }
+  }
+
+  loadAdoptProvincesAndRegions();
+
+  adoptProvinceSelect?.addEventListener("change", async function () {
+    const selectedOpt = this.options[this.selectedIndex];
+    const locationName = this.value;
+    const locationCode = selectedOpt?.dataset?.code;
+    const isRegion = selectedOpt?.dataset?.isRegion === "true";
+
+    if (!adoptCitySelect || !adoptBarangaySelect) return;
+
+    adoptCitySelect.innerHTML = '<option value="" disabled selected>Loading Cities...</option>';
+    adoptBarangaySelect.innerHTML = '<option value="" disabled selected>Select City First</option>';
+
+    if (adoptCityCustom) adoptCityCustom.style.display = "none";
+    if (adoptBarangayCustom) adoptBarangayCustom.style.display = "none";
+
+    if (locationName === "Other") {
+      adoptCitySelect.innerHTML = '<option value="Other" selected>Type Custom City Name</option>';
+      adoptBarangaySelect.innerHTML = '<option value="Other" selected>Type Custom Barangay Name</option>';
+      if (adoptCityCustom) adoptCityCustom.style.display = "block";
+      if (adoptBarangayCustom) adoptBarangayCustom.style.display = "block";
+      return;
+    }
+
+    if (!locationCode) return;
+
+    try {
+      let cities = psgcCache.cities[locationCode];
+      if (!cities) {
+        const endpoint = isRegion
+          ? `https://psgc.gitlab.io/api/regions/${locationCode}/cities-municipalities/`
+          : `https://psgc.gitlab.io/api/provinces/${locationCode}/cities-municipalities/`;
+
+        const res = await fetch(endpoint);
+        cities = await res.json();
+        psgcCache.cities[locationCode] = cities;
+      }
+
+      adoptCitySelect.innerHTML = '<option value="" disabled selected>Select City / Municipality</option>';
+
+      if (Array.isArray(cities)) {
+        cities.sort((a, b) => a.name.localeCompare(b.name));
+        cities.forEach(c => {
+          const opt = document.createElement("option");
+          opt.value = c.name;
+          opt.dataset.code = c.code;
+          opt.textContent = c.name;
+          adoptCitySelect.appendChild(opt);
+        });
+      }
+
+      const otherOpt = document.createElement("option");
+      otherOpt.value = "Other";
+      otherOpt.textContent = "Other / Custom City";
+      adoptCitySelect.appendChild(otherOpt);
+
+    } catch (err) {
+      console.warn("Failed to load cities.", err);
+      adoptCitySelect.innerHTML = '<option value="Other" selected>Type Custom City Name</option>';
+      if (adoptCityCustom) adoptCityCustom.style.display = "block";
+    }
+  });
+
+  adoptCitySelect?.addEventListener("change", async function () {
+    const selectedOpt = this.options[this.selectedIndex];
+    const cityName = this.value;
+    const cityCode = selectedOpt?.dataset?.code;
+
+    if (!adoptBarangaySelect) return;
+
+    if (cityName === "Other") {
+      adoptBarangaySelect.innerHTML = '<option value="Other" selected>Type Custom Barangay Name</option>';
+      if (adoptBarangayCustom) adoptBarangayCustom.style.display = "block";
+      if (adoptCityCustom) adoptCityCustom.style.display = "block";
+      return;
+    }
+
+    if (adoptCityCustom) adoptCityCustom.style.display = "none";
+    if (adoptBarangayCustom) adoptBarangayCustom.style.display = "none";
+
+    if (!cityCode) return;
+
+    try {
+      let barangays = psgcCache.barangays[cityCode];
+      if (!barangays) {
+        const res = await fetch(`https://psgc.gitlab.io/api/cities-municipalities/${cityCode}/barangays/`);
+        barangays = await res.json();
+        psgcCache.barangays[cityCode] = barangays;
+      }
+
+      adoptBarangaySelect.innerHTML = '<option value="" disabled selected>Select Barangay</option>';
+
+      if (Array.isArray(barangays)) {
+        barangays.sort((a, b) => a.name.localeCompare(b.name));
+        barangays.forEach(b => {
+          const opt = document.createElement("option");
+          opt.value = b.name;
+          opt.textContent = b.name;
+          adoptBarangaySelect.appendChild(opt);
+        });
+      }
+
+      const otherOpt = document.createElement("option");
+      otherOpt.value = "Other";
+      otherOpt.textContent = "Other / Custom Barangay";
+      adoptBarangaySelect.appendChild(otherOpt);
+
+    } catch (err) {
+      console.warn("Failed to load barangays.", err);
+      adoptBarangaySelect.innerHTML = '<option value="Other" selected>Type Custom Barangay Name</option>';
+      if (adoptBarangayCustom) adoptBarangayCustom.style.display = "block";
+    }
+  });
+
+  adoptBarangaySelect?.addEventListener("change", function () {
+    if (this.value === "Other") {
+      if (adoptBarangayCustom) adoptBarangayCustom.style.display = "block";
+    } else {
+      if (adoptBarangayCustom) adoptBarangayCustom.style.display = "none";
+    }
+  });
 });
