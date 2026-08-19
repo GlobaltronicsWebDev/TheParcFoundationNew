@@ -122,18 +122,20 @@ class DonationController extends Controller
                 $phoneDisplay = "'" . $phoneDisplay;
             }
 
-            $receiptCell = 'No Receipt';
+            $baseUrl = config('app.url');
+            if (empty($baseUrl) || str_contains($baseUrl, 'localhost')) {
+                $baseUrl = 'https://theparcfoundation.ph';
+            }
+
             if (!empty($donation->receipt_path)) {
-                $baseUrl = config('app.url');
-                if (empty($baseUrl) || str_contains($baseUrl, 'localhost')) {
-                    $baseUrl = 'https://theparcfoundation.ph';
-                }
                 $receiptFullUrl = str_starts_with($donation->receipt_path, 'http')
                     ? $donation->receipt_path
                     : rtrim($baseUrl, '/') . '/' . ltrim($donation->receipt_path, '/');
-
-                $receiptCell = '=HYPERLINK("' . $receiptFullUrl . '", "View Receipt")';
+            } else {
+                $receiptFullUrl = rtrim($baseUrl, '/') . '/donations/' . $donation->id . '/receipt';
             }
+
+            $receiptCell = '=HYPERLINK("' . $receiptFullUrl . '", "View Receipt")';
 
             $row = [
                 'DNT-ID-' . str_pad($donation->id, 3, '0', STR_PAD_LEFT),
