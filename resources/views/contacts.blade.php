@@ -110,7 +110,7 @@
               </div>
             @endif
 
-            <form action="{{ route('contacts.send') }}" method="POST">
+            <form id="contactForm" action="{{ route('contacts.send') }}" method="POST">
               @csrf
 
               <div class="row g-3">
@@ -170,32 +170,9 @@
                 @error('message')<div class="text-danger small mt-1">{{ $message }}</div>@enderror
               </div>
 
-              <!-- <div class="contact-form-group">
-                <label>I would like to receive email updates from PARC Foundation:</label>
-                <div class="contact-radio-group">
-                  <label class="contact-radio-label">
-                    <input type="radio" name="email_updates" value="yes" checked> Yes
-                  </label>
-                  <label class="contact-radio-label">
-                    <input type="radio" name="email_updates" value="no"> No
-                  </label>
-                </div>
-              </div>
-
-              <div class="contact-form-group">
-                <label>I would like to receive text message updates:</label>
-                <div class="contact-radio-group">
-                  <label class="contact-radio-label">
-                    <input type="radio" name="text_updates" value="yes"> Yes
-                  </label>
-                  <label class="contact-radio-label">
-                    <input type="radio" name="text_updates" value="no" checked> No
-                  </label>
-                </div>
-              </div> -->
-
-              <button type="submit" class="btn-send-message mt-3">
-                <i class="bi bi-send-fill me-2"></i> Send Message
+              <button type="submit" id="contactSubmitBtn" class="btn-send-message mt-3">
+                <span class="btn-text"><i class="bi bi-send-fill me-2"></i> Send Message</span>
+                <span class="btn-spinner" id="contactBtnSpinner" style="display:none;"><i class="bi bi-arrow-repeat spin me-2"></i> Sending...</span>
               </button>
             </form>
 
@@ -262,7 +239,7 @@
         </svg>
       </div>
       <h3 class="contact-modal-title">Message Successfully Sent! 🎉</h3>
-      <p class="contact-modal-subtitle">
+      <p class="contact-modal-subtitle" id="contactModalSubtitle">
         {{ session('contact_success') ?? 'Thank you for reaching out to The PARC Foundation. We have received your inquiry and our team will get back to you soon!' }}
       </p>
       <button type="button" class="contact-modal-close-btn" id="contactModalCloseBtn">OK / Close</button>
@@ -273,13 +250,69 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      const contactForm = document.getElementById("contactForm");
+      const contactSubmitBtn = document.getElementById("contactSubmitBtn");
+      const btnText = contactSubmitBtn?.querySelector(".btn-text");
+      const btnSpinner = document.getElementById("contactBtnSpinner");
       const contactSuccessModal = document.getElementById("contactSuccessModal");
+      const contactModalSubtitle = document.getElementById("contactModalSubtitle");
       const contactModalCloseBtn = document.getElementById("contactModalCloseBtn");
+
+      function setLoading(loading) {
+        if (!contactSubmitBtn) return;
+        contactSubmitBtn.disabled = loading;
+        if (btnText) btnText.style.display = loading ? "none" : "inline-block";
+        if (btnSpinner) btnSpinner.style.display = loading ? "inline-block" : "none";
+      }
+
+      function openContactModal(msg) {
+        if (contactModalSubtitle && msg) {
+          contactModalSubtitle.textContent = msg;
+        }
+        if (contactSuccessModal) {
+          contactSuccessModal.style.display = "flex";
+        }
+      }
 
       function closeContactModal() {
         if (contactSuccessModal) {
           contactSuccessModal.style.display = "none";
         }
+      }
+
+      if (contactForm) {
+        contactForm.addEventListener("submit", async function (e) {
+          e.preventDefault();
+          setLoading(true);
+
+          const formData = new FormData(contactForm);
+          const actionUrl = contactForm.getAttribute("action");
+
+          try {
+            const res = await fetch(actionUrl, {
+              method: "POST",
+              headers: {
+                "Accept": "application/json",
+                "X-Requested-With": "XMLHttpRequest"
+              },
+              body: formData
+            });
+
+            const json = await res.json();
+
+            if (res.ok && json.success) {
+              contactForm.reset();
+              openContactModal(json.message || "Thank you for reaching out to The PARC Foundation. We have received your inquiry and our team will get back to you soon!");
+            } else {
+              alert(json.message || json.error || "An error occurred. Please try again.");
+            }
+          } catch (err) {
+            console.error("Contact form error:", err);
+            alert("Connection error. Please try again.");
+          } finally {
+            setLoading(false);
+          }
+        });
       }
 
       if (contactModalCloseBtn) {

@@ -115,6 +115,13 @@ class ContactController extends Controller
             Log::error('Contact email dispatch failed: ' . $e->getMessage());
         }
 
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Thank you for reaching out to The PARC Foundation. We have received your inquiry and our team will get back to you soon!',
+            ]);
+        }
+
         return back()->with('contact_success', 'Thank you! Your message has been sent successfully. We will get back to you soon.');
     }
 }
