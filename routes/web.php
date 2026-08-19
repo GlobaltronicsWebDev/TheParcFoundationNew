@@ -69,6 +69,8 @@ use App\Http\Controllers\AdoptionController;
 
 Route::get('/adoptions', [AdoptionController::class, 'create'])->name('adoptions.create');
 Route::post('/adoptions', [AdoptionController::class, 'store'])->name('adoptions.store');
+Route::get('/adoptions/{id}/receipt', [AdoptionController::class, 'receipt'])->name('adoptions.receipt');
+Route::get('/adoptions/{id}/download-receipt', [AdoptionController::class, 'downloadReceipt'])->name('adoptions.downloadReceipt');
 
 use App\Http\Controllers\NewsletterController;
 

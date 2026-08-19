@@ -96,13 +96,14 @@ class AdoptionController extends Controller
                 $baseUrl = 'https://theparcfoundation.ph';
             }
 
-            $receiptCell = 'No Receipt Attached';
             if (!empty($adoption->receipt_path)) {
                 $receiptFullUrl = str_starts_with($adoption->receipt_path, 'http')
                     ? $adoption->receipt_path
                     : rtrim($baseUrl, '/') . '/' . ltrim($adoption->receipt_path, '/');
-                $receiptCell = '=HYPERLINK("' . $receiptFullUrl . '", "View Receipt")';
+            } else {
+                $receiptFullUrl = rtrim($baseUrl, '/') . '/adoptions/' . $adoption->id . '/receipt';
             }
+            $receiptCell = '=HYPERLINK("' . $receiptFullUrl . '", "View Receipt")';
 
             $row = [
                 'ADPT-ID-' . str_pad($adoption->id, 3, '0', STR_PAD_LEFT),
@@ -139,9 +140,11 @@ class AdoptionController extends Controller
 
         if ($request->expectsJson()) {
             return response()->json([
-                'success'     => true,
-                'message'     => 'Thank you! Your adoption application has been submitted successfully.',
-                'adoption_id' => $adoption->id,
+                'success'      => true,
+                'message'      => 'Thank you! Your adoption application has been submitted successfully.',
+                'adoption_id'  => $adoption->id,
+                'receipt_url'  => route('adoptions.receipt', $adoption->id),
+                'download_url' => route('adoptions.downloadReceipt', $adoption->id),
             ]);
         }
 
@@ -149,5 +152,28 @@ class AdoptionController extends Controller
             'success',
             'Thank you! Your adoption form has been submitted successfully. We will be in touch soon.'
         );
+    }
+
+    /**
+     * Show official adoption receipt for viewing/printing.
+     */
+    public function receipt($id)
+    {
+        $adoption = Adoption::findOrFail($id);
+        return view('adoption_receipt', compact('adoption'));
+    }
+
+    /**
+     * Download official adoption receipt file directly.
+     */
+    public function downloadReceipt($id)
+    {
+        $adoption = Adoption::findOrFail($id);
+        $html = view('adoption_receipt', compact('adoption'))->render();
+        $fileName = 'PARC_Adoption_Receipt_ADPT_ID_' . str_pad($adoption->id, 3, '0', STR_PAD_LEFT) . '.html';
+
+        return response($html)
+            ->header('Content-Type', 'text/html; charset=utf-8')
+            ->header('Content-Disposition', 'attachment; filename="' . $fileName . '"');
     }
 }

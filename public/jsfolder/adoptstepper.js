@@ -454,6 +454,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (res.ok && json.success) {
           adoptionForm.reset();
+
+          const adoptDownloadReceiptBtn = document.getElementById("adoptDownloadReceiptBtn");
+          const adoptViewReceiptBtn = document.getElementById("adoptViewReceiptBtn");
+
+          if (adoptDownloadReceiptBtn && json.download_url) {
+            adoptDownloadReceiptBtn.href = json.download_url;
+          } else if (adoptDownloadReceiptBtn && json.adoption_id) {
+            adoptDownloadReceiptBtn.href = "/adoptions/" + json.adoption_id + "/download-receipt";
+          }
+
+          if (adoptViewReceiptBtn && json.receipt_url) {
+            adoptViewReceiptBtn.href = json.receipt_url;
+          } else if (adoptViewReceiptBtn && json.adoption_id) {
+            adoptViewReceiptBtn.href = "/adoptions/" + json.adoption_id + "/receipt";
+          }
+
           if (adoptSuccessModal) adoptSuccessModal.style.display = "flex";
         } else {
           alert(json.message || json.error || "An error occurred submitting your adoption form. Please try again.");

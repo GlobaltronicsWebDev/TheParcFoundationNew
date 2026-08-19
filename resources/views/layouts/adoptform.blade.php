@@ -400,17 +400,28 @@
 
 <!-- ── Adoption Success Popup Modal ── -->
 <div class="contact-modal-overlay" id="adoptSuccessModal" style="display: none;">
-  <div class="contact-modal-card">
+  <div class="contact-modal-card" style="max-width: 480px; text-align: center;">
     <div class="contact-modal-icon">
       <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
         <circle cx="12" cy="12" r="11" fill="#22c55e"/>
         <path d="M7 13l3 3 7-7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
-    <h3 class="contact-modal-title">Adoption Application Received! 🎉</h3>
-    <p class="contact-modal-subtitle" id="adoptModalSubtitle">
-      Thank you for adopting a scholar! Your pledge has been recorded and our team will get in touch with you shortly with scholar updates.
+    <h3 class="contact-modal-title" style="margin-top: 10px;">Adoption Application Received! 🎉</h3>
+    <p class="contact-modal-subtitle" id="adoptModalSubtitle" style="font-size: 0.92rem; color: #4b5563; line-height: 1.5; margin-top: 6px;">
+      Thank you for adopting a scholar! Your pledge has been recorded and our team will get in touch with you shortly. You can view or download your official receipt copy below.
     </p>
-    <button type="button" class="contact-modal-close-btn" id="adoptModalCloseBtn">OK / Return to Home</button>
+
+    <!-- Receipt Action Buttons -->
+    <div style="display: flex; flex-direction: column; gap: 10px; margin: 20px 0 10px; width: 100%;">
+      <a href="#" id="adoptDownloadReceiptBtn" target="_blank" download style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; background: #f89b1e; color: #ffffff; border-radius: 8px; font-weight: 800; text-decoration: none; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(248,155,30,0.3);">
+        <span>📄 Download Official Receipt</span>
+      </a>
+      <a href="#" id="adoptViewReceiptBtn" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: #ffffff; color: #374151; border: 1.5px solid #d1d5db; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.9rem;">
+        <span>👁️ View / Print Receipt in Browser</span>
+      </a>
+    </div>
+
+    <button type="button" class="contact-modal-close-btn" id="adoptModalCloseBtn" style="margin-top: 6px; width: 100%;">OK / Return to Home</button>
   </div>
 </div>
