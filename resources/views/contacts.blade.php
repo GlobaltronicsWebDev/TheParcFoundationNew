@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Contact Us — PARC Foundation</title>
+  <title>Contact Us</title>
   <link rel="icon" type="image/png" href="{{ asset('assets/logo/parclogosquare.png') }}">
 
   <!-- Bootstrap 5 & Bootstrap Icons -->
