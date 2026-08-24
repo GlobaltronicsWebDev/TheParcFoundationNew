@@ -231,6 +231,51 @@ body.dark-theme .highlight,
 body.dark-theme .text-highlight {
   color: #fb923c !important;
 }
+
+/* 🎨 PARCaralan Card & Home Page Dark Mode Overrides */
+body.dark-theme .parcaralan {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid #334155 !important;
+}
+
+body.dark-theme .parcaralan .partitle,
+body.dark-theme .parcaralan .parcdetails,
+body.dark-theme .parcaralan p,
+body.dark-theme .parcaralan h1 {
+  color: #ffffff !important;
+}
+
+body.dark-theme .logo {
+  background-color: #1e293b !important;
+  border-radius: 0 0 16px 16px;
+  padding: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-theme .top-bar {
+  background-color: #0b0f19 !important;
+}
+
+body.dark-theme .top-bar .contactlink {
+  color: #ffffff !important;
+}
+
+body.dark-theme .info-section,
+body.dark-theme .second-section,
+body.dark-theme .main-flex,
+body.dark-theme .sectitle {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+body.dark-theme .info-title,
+body.dark-theme .info-section h2,
+body.dark-theme .second-section p,
+body.dark-theme .sectitle p {
+  color: #f1f5f9 !important;
+}
 .wholenavbar {
   position: fixed;
   top: 0;
