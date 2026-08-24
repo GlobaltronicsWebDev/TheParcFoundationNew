@@ -68,7 +68,7 @@
     -->
 
     <!-- Visible cards (always shown — keep 9 max) -->
-         <div class="section-container" id="visible-cards">
+    <div class="section-container" id="visible-cards">
          <div class="card" data-link="https://www.facebook.com/reel/1002511812567161">
             <div class="card-image">
                    <img src="{{ asset('./assets/image/NEWS/PARC_MAYONAISE.png') }}"
@@ -82,7 +82,6 @@
                 <span class="event-date">July 14, 2026</span>
             </div>
         </div>
-    <div class="section-container" id="visible-cards">
          <div class="card" data-link="https://www.facebook.com/reel/1371132058230225">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/dartchamps.jpg') }}">
@@ -320,7 +319,7 @@
       </div>
 
     <!-- More / Back Button -->
-    <div class="text-center mt-4 mb-2">
+    <div class="more-btn-container d-flex justify-content-center align-items-center w-100 mt-4 mb-2">
       <button id="more-btn" class="btn btn-more">MORE</button>
     </div>
 
