@@ -108,10 +108,13 @@ Route::get('/deploy-git-pull', function (\Illuminate\Http\Request $request) use 
     $output = [];
     $code = 0;
     exec('git pull origin main 2>&1', $output, $code);
+    \Illuminate\Support\Facades\Artisan::call('view:clear');
+    \Illuminate\Support\Facades\Artisan::call('cache:clear');
     return response()->json([
         'success' => ($code === 0),
         'code'    => $code,
         'output'  => $output,
+        'cleared' => 'View & Cache cleared successfully',
     ]);
 });
 
