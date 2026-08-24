@@ -50,7 +50,7 @@
     @endif
 
     <!-- Top Stats Row -->
-    <div class="row g-4 mb-4">
+    <div class="row g-3 mb-4">
       <div class="col-md-3">
         <div class="stat-card">
           <div class="stat-icon"><i class="bi bi-currency-dollar"></i></div>
@@ -58,25 +58,32 @@
           <div class="stat-label">Total Funds Raised</div>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         <div class="stat-card">
           <div class="stat-icon"><i class="bi bi-heart-fill"></i></div>
           <div class="stat-value">{{ $donationCount }}</div>
           <div class="stat-label">Total Donations</div>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         <div class="stat-card">
           <div class="stat-icon"><i class="bi bi-mortarboard-fill"></i></div>
           <div class="stat-value">{{ $adoptionCount }}</div>
           <div class="stat-label">Adopted Scholars</div>
         </div>
       </div>
+      <div class="col-md-2">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="bi bi-chat-left-text-fill"></i></div>
+          <div class="stat-value">{{ $contactCount }}</div>
+          <div class="stat-label">Contact Messages</div>
+        </div>
+      </div>
       <div class="col-md-3">
         <div class="stat-card">
           <div class="stat-icon"><i class="bi bi-envelope-check-fill"></i></div>
           <div class="stat-value">{{ $subscriberCount }}</div>
-          <div class="stat-label">Newsletter Subscribers</div>
+          <div class="stat-label">Subscribers</div>
         </div>
       </div>
     </div>
@@ -198,6 +205,42 @@
                 @empty
                   <tr>
                     <td colspan="8" class="text-center text-secondary py-4">No scholar adoption records found. Click "Sync Google Sheets" to import.</td>
+                  </tr>
+                @endforelse
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Contact Messages Pane -->
+        <div class="tab-pane fade" id="contacts-pane">
+          <div class="table-responsive">
+            <table class="table table-dark-custom align-middle">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Sender Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Subject</th>
+                  <th>Message</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                @forelse($contacts as $contact)
+                  <tr>
+                    <td>#{{ $contact->id }}</td>
+                    <td class="fw-bold">{{ $contact->first_name }} {{ $contact->last_name }}</td>
+                    <td>{{ $contact->email }}</td>
+                    <td>{{ $contact->phone ?? 'N/A' }}</td>
+                    <td><span class="badge bg-info text-dark">{{ $contact->subject ?? 'Inquiry' }}</span></td>
+                    <td style="max-width: 320px; white-space: normal;">{{ $contact->message }}</td>
+                    <td>{{ $contact->created_at ? $contact->created_at->format('M d, Y') : 'N/A' }}</td>
+                  </tr>
+                @empty
+                  <tr>
+                    <td colspan="7" class="text-center text-secondary py-4">No contact messages found. Click "Sync Google Sheets" to import.</td>
                   </tr>
                 @endforelse
               </tbody>
