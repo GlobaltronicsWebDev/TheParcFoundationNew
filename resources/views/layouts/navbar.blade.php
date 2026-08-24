@@ -28,16 +28,11 @@
           <li class="nav-item {{ request()->is('events*') ? 'active' : '' }}"><a href="{{ url('/events') }}" class="nav-link">Events</a></li>
           <li class="nav-item {{ request()->is('news*') ? 'active' : '' }}"><a href="{{ url('/news') }}" class="nav-link">News</a></li>
           <li class="nav-item {{ request()->is('contacts*') || request()->is('contact*') ? 'active' : '' }}"><a href="{{ url('/contacts') }}" class="nav-link">Contact</a></li>
-          <li class="nav-item d-lg-none text-center my-2">
-            <button id="theme-toggle-mobile" class="btn btn-outline-warning btn-sm px-3 rounded-pill" type="button">
-              <i class="bi bi-moon-stars-fill" id="theme-toggle-mobile-icon"></i> Switch Theme
-            </button>
-          </li>
         </ul>
       </div>
 
-      <!-- Social Icons & Theme Toggle -->
-      <div class="social-icons d-none d-lg-flex align-items-center me-3">
+      <!-- Social Icons -->
+      <div class="social-icons d-none d-lg-block me-3">
         <a href="https://www.facebook.com/parcph" class="text-decoration-none">
           <i class="bi bi-facebook"></i>
         </a>
@@ -50,9 +45,6 @@
         <a href="https://www.instagram.com/theparcfoundation.ph?igsh=N3dteGZ5c242NnEz" class="text-decoration-none">
           <i class="bi bi-instagram"></i>
         </a>
-        <button id="theme-toggle" class="btn btn-theme-toggle ms-2" title="Toggle Dark/Light Mode" type="button">
-          <i class="bi bi-moon-stars-fill" id="theme-toggle-icon"></i>
-        </button>
       </div>
     </div>
   </nav>
@@ -65,49 +57,10 @@
 
 </div>
 
-<!-- 🎈 Floating Messenger-style Theme Toggle Button (Left Side, Desktop & Mobile) -->
-<button id="theme-toggle-floating" class="floating-theme-toggle" title="Toggle Dark/Light Mode" aria-label="Toggle Theme" type="button">
-  <i class="bi bi-moon-stars-fill" id="theme-toggle-floating-icon"></i>
-</button>
-
-<!-- Theme Toggle Script -->
 <script>
-  (function () {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      document.documentElement.classList.add('dark-theme');
-      document.body.classList.add('dark-theme');
-    }
+  (function() {
+    localStorage.removeItem('theme');
+    document.documentElement.classList.remove('dark-theme');
+    document.body.classList.remove('dark-theme');
   })();
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const toggleBtnHeader = document.getElementById('theme-toggle');
-    const toggleIconHeader = document.getElementById('theme-toggle-icon');
-    const toggleBtnFloat = document.getElementById('theme-toggle-floating');
-    const toggleIconFloat = document.getElementById('theme-toggle-floating-icon');
-    const toggleBtnMobile = document.getElementById('theme-toggle-mobile');
-    const toggleIconMobile = document.getElementById('theme-toggle-mobile-icon');
-
-    const updateIcons = (isDark) => {
-      const iconClass = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
-      if (toggleIconHeader) toggleIconHeader.className = iconClass;
-      if (toggleIconFloat) toggleIconFloat.className = iconClass;
-      if (toggleIconMobile) toggleIconMobile.className = iconClass;
-    };
-
-    if (document.body.classList.contains('dark-theme')) {
-      updateIcons(true);
-    }
-
-    const toggleTheme = () => {
-      const isDark = document.body.classList.toggle('dark-theme');
-      document.documentElement.classList.toggle('dark-theme', isDark);
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      updateIcons(isDark);
-    };
-
-    if (toggleBtnHeader) toggleBtnHeader.addEventListener('click', toggleTheme);
-    if (toggleBtnFloat) toggleBtnFloat.addEventListener('click', toggleTheme);
-    if (toggleBtnMobile) toggleBtnMobile.addEventListener('click', toggleTheme);
-  });
 </script>
