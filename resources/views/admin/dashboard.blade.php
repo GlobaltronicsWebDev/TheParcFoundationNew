@@ -17,11 +17,17 @@
       <img src="{{ asset('assets/logo/parclogosquare.png') }}" width="36" alt="Logo">
       PARC <span>Dashboard</span>
     </a>
-    <div class="d-flex align-items-center gap-3">
+    <div class="d-flex align-items-center gap-2">
       <form action="{{ route('admin.sync') }}" method="POST" class="d-inline">
         @csrf
         <button type="submit" class="btn btn-sync btn-sm">
           <i class="bi bi-arrow-repeat me-1"></i> Sync Google Sheets
+        </button>
+      </form>
+      <form action="{{ route('admin.reset') }}" method="POST" class="d-inline" onsubmit="return confirm('⚠️ ARE YOU SURE? This will delete all database records (Donations, Adoptions, Messages) and reset IDs to #1. This action cannot be undone!');">
+        @csrf
+        <button type="submit" class="btn btn-outline-danger btn-sm">
+          <i class="bi bi-trash3 me-1"></i> Reset All Data
         </button>
       </form>
       <form action="{{ route('admin.logout') }}" method="POST" class="d-inline">

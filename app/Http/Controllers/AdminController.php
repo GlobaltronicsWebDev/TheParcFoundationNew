@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Donation;
 use App\Models\Adoption;
@@ -111,6 +112,33 @@ class AdminController extends Controller
             return redirect()->route('admin.dashboard')->with('success', $msg);
         } catch (\Throwable $e) {
             return redirect()->route('admin.dashboard')->with('error', 'Sync failed: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Reset all database table records and auto-increment IDs.
+     */
+    public function resetData()
+    {
+        if (!session('admin_authenticated')) {
+            return redirect()->route('admin.login');
+        }
+
+        try {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+            Donation::truncate();
+            Adoption::truncate();
+            NewsletterSubscriber::truncate();
+            if (Schema::hasTable('contact_messages')) {
+                ContactMessage::truncate();
+            }
+
+            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+            return redirect()->route('admin.dashboard')->with('success', 'All database tables have been reset successfully! IDs reset to #1.');
+        } catch (\Throwable $e) {
+            return redirect()->route('admin.dashboard')->with('error', 'Reset failed: ' . $e->getMessage());
         }
     }
 }

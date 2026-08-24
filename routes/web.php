@@ -16,6 +16,7 @@ Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.logi
 Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::post('/admin/sync-sheets', [AdminController::class, 'syncSheets'])->name('admin.sync');
+Route::post('/admin/reset-data', [AdminController::class, 'resetData'])->name('admin.reset');
 
 Route::get('/', function () {
     return view('welcome');
