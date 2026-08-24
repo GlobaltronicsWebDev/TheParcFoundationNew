@@ -74,9 +74,10 @@
 
   if (!preloader) return;
 
-  var TOTAL_DURATION = 7000; // 7 seconds in milliseconds
-  var UPDATE_INTERVAL = 50;  // Update every 50ms for smooth animation
+  var TOTAL_DURATION = 3000; // 3 seconds in milliseconds
+  var UPDATE_INTERVAL = 30;  // Update every 30ms for super smooth animation
   var startTime = Date.now();
+  var isHidden = false;
 
   var progressInterval = setInterval(function () {
     var elapsedTime = Date.now() - startTime;
@@ -92,7 +93,18 @@
     }
   }, UPDATE_INTERVAL);
 
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      if (!isHidden) {
+        clearInterval(progressInterval);
+        hidePreloader();
+      }
+    }, 500);
+  });
+
   function hidePreloader() {
+    if (isHidden) return;
+    isHidden = true;
     if (progressBar) progressBar.style.width = '100%';
     if (statusText) statusText.textContent = 'Welcome!';
 
@@ -102,8 +114,8 @@
         if (preloader.parentNode) {
           preloader.parentNode.removeChild(preloader);
         }
-      }, 700);
-    }, 300);
+      }, 500);
+    }, 200);
   }
 })();
 </script>
