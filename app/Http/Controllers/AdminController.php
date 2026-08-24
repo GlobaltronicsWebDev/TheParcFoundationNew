@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use App\Models\Donation;
 use App\Models\Adoption;
 use App\Models\NewsletterSubscriber;
@@ -63,12 +64,13 @@ class AdminController extends Controller
         $donationCount = Donation::count();
         $adoptionCount = Adoption::count();
         $subscriberCount = NewsletterSubscriber::count();
-        $contactCount = class_exists(ContactMessage::class) ? ContactMessage::count() : 0;
+        $hasContactTable = Schema::hasTable('contact_messages');
+        $contactCount = $hasContactTable ? ContactMessage::count() : 0;
 
         $donations = Donation::orderBy('id', 'desc')->take(200)->get();
         $adoptions = Adoption::orderBy('id', 'desc')->take(200)->get();
         $subscribers = NewsletterSubscriber::orderBy('id', 'desc')->take(200)->get();
-        $contacts = class_exists(ContactMessage::class) ? ContactMessage::orderBy('id', 'desc')->take(200)->get() : collect();
+        $contacts = $hasContactTable ? ContactMessage::orderBy('id', 'desc')->take(200)->get() : collect();
 
         return view('admin.dashboard', compact(
             'totalRaised',
@@ -97,7 +99,7 @@ class AdminController extends Controller
         try {
             $donationResult = GoogleSheetsImporter::syncDonations();
             $adoptionResult = GoogleSheetsImporter::syncAdoptions();
-            $contactResult  = GoogleSheetsImporter::syncContacts();
+            $contactResult  = Schema::hasTable('contact_messages') ? GoogleSheetsImporter::syncContacts() : ['synced' => 0];
 
             $msg = sprintf(
                 'Google Sheets Sync Complete! Donations: %d new. Adoptions: %d new. Contact Messages: %d new.',

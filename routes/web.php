@@ -114,6 +114,25 @@ Route::get('/deploy-git-pull', function (\Illuminate\Http\Request $request) use 
     ]);
 });
 
+// Route to run database migrations automatically on Hostinger live server
+Route::get('/run-migrations', function (\Illuminate\Http\Request $request) use ($verifyAdminKey) {
+    $verifyAdminKey($request);
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        $output = \Illuminate\Support\Facades\Artisan::output();
+        return response()->json([
+            'success' => true,
+            'message' => 'Migrations executed successfully!',
+            'output'  => $output,
+        ]);
+    } catch (\Throwable $e) {
+        return response()->json([
+            'success' => false,
+            'error'   => $e->getMessage(),
+        ]);
+    }
+});
+
 // Debug endpoint to test Google Sheets append on live server
 Route::get('/debug-sheets-append', function (\Illuminate\Http\Request $request) use ($verifyAdminKey) {
     $verifyAdminKey($request);
