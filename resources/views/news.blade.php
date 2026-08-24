@@ -38,7 +38,7 @@
       <div class="row align-items-center g-0">
 
         <div class="col-md-5 news-image">
-          <img src="{{ asset('./assets/image/NEWS/WTG.jpg') }}"
+          <img src="{{ asset('assets/image/NEWS/WTG.jpg') }}"
                alt="WTG"
                class="img-fluid rounded-start">
         </div>
@@ -70,7 +70,7 @@
     <div class="section-container" id="visible-cards">
         <div class="card" data-link="https://www.youtube.com/watch?v=NAnJbEVWnLo">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/NEWS/AQ.png') }}" alt="ANGELINE_QUINTO" class="img-fluid rounded-start">
+                <img src="{{ asset('assets/image/NEWS/AQ.png') }}" alt="ANGELINE_QUINTO" class="img-fluid rounded-start">
             </div>
             <div class="card-content">
                 <h3>A Gift of Voice and Vision</h3>
@@ -81,7 +81,7 @@
         </div>
         <div class="card" data-link="https://www.facebook.com/reel/1002511812567161">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/NEWS/PARC_MAYONAISE.png') }}" alt="PARC MAYONAISE" class="img-fluid rounded-start">
+                <img src="{{ asset('assets/image/NEWS/PARC_MAYONAISE.png') }}" alt="PARC MAYONAISE" class="img-fluid rounded-start">
             </div>
             <div class="card-content">
                 <h3>PARC Foundation is turning a dream into a lasting legacy.</h3>
@@ -92,7 +92,7 @@
         </div>
         <div class="card" data-link="https://www.facebook.com/reel/1371132058230225">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/dartchamps.jpg') }}">
+                <img src="{{ asset('assets/image/dartchamps.jpg') }}">
             </div>
             <div class="card-content">
                 <h3>Exciting & Competitive
@@ -104,7 +104,7 @@
 
         <div class="card" data-link="https://www.facebook.com/photo/?fbid=1414804034010364&set=a.549799583844151">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/NEWS/CALLING.webp') }}">
+                <img src="{{ asset('assets/image/NEWS/CALLING.webp') }}">
             </div>
             <div class="card-content">
                 <h3>Calling All Aspiring Musicians</h3>
@@ -114,7 +114,7 @@
         </div>
         <div class="card" data-link="https://www.facebook.com/photo/?fbid=122123669025211806&set=pcb.122123669247211806">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/NEWS/HIYAS.png') }}">
+                <img src="{{ asset('assets/image/NEWS/HIYAS.png') }}">
             </div>
             <div class="card-content">
                 <h3>HIYAS Fashion Charity Gala</h3>
@@ -124,7 +124,7 @@
         </div>
         <div class="card" data-link="https://www.facebook.com/photo/?fbid=1309606077863665&set=a.566548612169419">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/NEWS/KRYSTEL GO.png') }}">
+                <img src="{{ asset('assets/image/NEWS/KRYSTEL GO.png') }}">
             </div>
             <div class="card-content">
                 <h3>A TRIUMPH FOR INCLUSION!</h3>
@@ -134,7 +134,7 @@
         </div>
         <div class="card" data-link="https://www.facebook.com/parcph">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/card1.webp') }}">
+                <img src="{{ asset('assets/image/card1.webp') }}">
             </div>
             <div class="card-content">
                 <h3>Corey Koh - A Night of Melodies</h3>
@@ -144,7 +144,7 @@
         </div>
         <div class="card" data-link="https://www.facebook.com/parcph">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/card2.webp') }}">
+                <img src="{{ asset('assets/image/card2.webp') }}">
             </div>
             <div class="card-content">
                 <h3>Corey Koh's Latest Release - "Heartstrings"</h3>
@@ -154,7 +154,7 @@
         </div>
         <div class="card" data-link="https://www.facebook.com/parcph">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/WTG2.webp') }}">
+                <img src="{{ asset('assets/image/WTG2.webp') }}">
             </div>
             <div class="card-content">
                 <h3>The PARC Foundation kicked off the year in style as Wish 107.5</h3>
@@ -164,7 +164,7 @@
         </div>
         <div class="card" data-link="https://www.facebook.com/parcph">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/spiritgiving.webp') }}">
+                <img src="{{ asset('assets/image/spiritgiving.webp') }}">
             </div>
             <div class="card-content">
                 <h3>What do Love, Hope, and Music have in common</h3>
@@ -174,7 +174,7 @@
         </div>
         <div class="card" data-link="https://www.facebook.com/parcph">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/SOGPOSTER2022.webp') }}">
+                <img src="{{ asset('assets/image/SOGPOSTER2022.webp') }}">
             </div>
             <div class="card-content">
                 <h3>Spirit of Giving 2022: A Celebration of Love, Hope, and Music</h3>
@@ -184,7 +184,7 @@
         </div>
         <div class="card" data-link="https://www.facebook.com/parcph">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/card3.webp') }}">
+                <img src="{{ asset('assets/image/card3.webp') }}">
             </div>
             <div class="card-content">
                 <h3>The young and talented Mr. Corey Kho, a "Singaporean Tenor"</h3>
@@ -194,7 +194,7 @@
         </div>
          <div class="card">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/sog2021part1.webp') }}">
+                <img src="{{ asset('assets/image/sog2021part1.webp') }}">
             </div>
             <div class="card-content">
                 <h3>Spirit of Giving 2021: Smile behind the Mask | 1 Day to Go</h3>
@@ -204,7 +204,7 @@
         </div>
           <div class="card">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/sog2021_DRMS.webp') }}">
+                <img src="{{ asset('assets/image/sog2021_DRMS.webp') }}">
             </div>
             <div class="card-content">
                 <h3>Spirit of Giving 2021: Smile Behind The Mask | Dr. Raul M. Sunico</h3>
@@ -220,7 +220,7 @@
       
         <div class="card">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/Slider_MG.webp') }}">
+                <img src="{{ asset('assets/image/Slider_MG.webp') }}">
             </div>
             <div class="card-content">
                 <h3>Spirit of Giving 2021: Smile behind the Mask | Mary Grace Khu</h3>
@@ -230,7 +230,7 @@
         </div>
           <div class="card">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/sog2021_NLA.webp') }}">
+                <img src="{{ asset('assets/image/sog2021_NLA.webp') }}">
             </div>
             <div class="card-content">
                 <h3>Spirit of Giving 2021: Smile behind the Mask | Nicole Asensio</h3>
@@ -241,7 +241,7 @@
         </div>
         <div class="card">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/sog2021_CK.webp') }}">
+                <img src="{{ asset('assets/image/sog2021_CK.webp') }}">
             </div>
             <div class="card-content">
                 <h3>Spirit of Giving 2021: Smile behind the Mask | Corey Koh</h3>
@@ -252,7 +252,7 @@
         </div>
         <div class="card">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/sog2021_kids_invite.webp') }}">
+                <img src="{{ asset('assets/image/sog2021_kids_invite.webp') }}">
             </div>
             <div class="card-content">
                 <h3>Spirit of Giving 2021: Smile Behind The Mask | PARCaralan Scholars</h3>
@@ -264,7 +264,7 @@
         </div>
         <div class="card">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/sog2021_gigi.webp') }}">
+                <img src="{{ asset('assets/image/sog2021_gigi.webp') }}">
             </div>
             <div class="card-content">
                 <h3>Spirit of Giving 2021: Smile Behind The Mask | Gigi De Lana and The Gigi Vibes</h3>
@@ -275,7 +275,7 @@
         </div>
          <div class="card">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/Capture.webp') }}">
+                <img src="{{ asset('assets/image/Capture.webp') }}">
             </div>
             <div class="card-content">
                 <h3>Project Tempo</h3>
@@ -285,7 +285,7 @@
         </div>
         <div class="card">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/Capture1.webp') }}">
+                <img src="{{ asset('assets/image/Capture1.webp') }}">
             </div>
             <div class="card-content">
                 <h3>The 4th Foundation Day</h3>
@@ -295,7 +295,7 @@
         </div>
          <div class="card">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/Capture3.webp') }}">
+                <img src="{{ asset('assets/image/Capture3.webp') }}">
             </div>
             <div class="card-content">
                 <h3>Projectt Tempo</h3>
@@ -305,7 +305,7 @@
         </div>
            <div class="card">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/wtg1.webp') }}">
+                <img src="{{ asset('assets/image/wtg1.webp') }}">
             </div>
             <div class="card-content">
                 <h3>Carrying the Torch</h3>
@@ -316,7 +316,7 @@
         </div>
            <div class="card">
             <div class="card-image">
-                <img src="{{ asset('./assets/image/Capture4.webp') }}">
+                <img src="{{ asset('assets/image/Capture4.webp') }}">
             </div>
             <div class="card-content">
                 <h3>REISE: Mixed Voices in Manila</h3>
