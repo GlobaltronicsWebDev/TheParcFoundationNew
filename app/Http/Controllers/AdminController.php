@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Donation;
 use App\Models\Adoption;
 use App\Models\NewsletterSubscriber;
+use App\Models\ContactMessage;
 use App\Helpers\GoogleSheetsImporter;
 
 class AdminController extends Controller
@@ -62,10 +63,12 @@ class AdminController extends Controller
         $donationCount = Donation::count();
         $adoptionCount = Adoption::count();
         $subscriberCount = NewsletterSubscriber::count();
+        $contactCount = class_exists(ContactMessage::class) ? ContactMessage::count() : 0;
 
         $donations = Donation::orderBy('id', 'desc')->take(200)->get();
         $adoptions = Adoption::orderBy('id', 'desc')->take(200)->get();
         $subscribers = NewsletterSubscriber::orderBy('id', 'desc')->take(200)->get();
+        $contacts = class_exists(ContactMessage::class) ? ContactMessage::orderBy('id', 'desc')->take(200)->get() : collect();
 
         return view('admin.dashboard', compact(
             'totalRaised',
@@ -74,9 +77,11 @@ class AdminController extends Controller
             'donationCount',
             'adoptionCount',
             'subscriberCount',
+            'contactCount',
             'donations',
             'adoptions',
-            'subscribers'
+            'subscribers',
+            'contacts'
         ));
     }
 
@@ -92,13 +97,13 @@ class AdminController extends Controller
         try {
             $donationResult = GoogleSheetsImporter::syncDonations();
             $adoptionResult = GoogleSheetsImporter::syncAdoptions();
+            $contactResult  = GoogleSheetsImporter::syncContacts();
 
             $msg = sprintf(
-                'Google Sheets Sync Complete! Donations: %d new, %d existing. Adoptions: %d new, %d existing.',
+                'Google Sheets Sync Complete! Donations: %d new. Adoptions: %d new. Contact Messages: %d new.',
                 $donationResult['synced'],
-                $donationResult['skipped'],
                 $adoptionResult['synced'],
-                $adoptionResult['skipped']
+                $contactResult['synced']
             );
 
             return redirect()->route('admin.dashboard')->with('success', $msg);

@@ -132,4 +132,69 @@ class GoogleSheetsImporter
 
         return ['synced' => $synced, 'skipped' => $skipped, 'total' => count($rows)];
     }
+
+    /**
+     * Sync Contacts_Inquiry tab from Google Sheets into MySQL database.
+     *
+     * @return array Summary of synced, skipped, and total records.
+     */
+    public static function syncContacts(): array
+    {
+        $sheetId  = env('GOOGLE_SHEET_CONTACTS_ID') ?: (env('GOOGLE_SHEET_DONATIONS_ID') ?: '1INqiJMGp8JZQzRksA3WPgCPVAMPkJgKiqbzN7iGkPIk');
+        $sheetTab = env('GOOGLE_SHEET_CONTACTS_TAB') ?: 'Contacts_Inquiry';
+
+        $rows = GoogleSheetsExporter::readTab($sheetId, $sheetTab);
+        if (count($rows) <= 1) {
+            return ['synced' => 0, 'skipped' => 0, 'total' => 0];
+        }
+
+        $header = array_shift($rows);
+
+        $synced = 0;
+        $skipped = 0;
+
+        foreach ($rows as $row) {
+            if (empty($row) || count($row) < 3) {
+                continue;
+            }
+
+            // Expected headers:
+            // 0: First Name, 1: Last Name, 2: Email Address,
+            // 3: Phone Number, 4: Subject / Inquiry Type, 5: Message, 6: Date Submitted
+
+            $fname   = trim($row[0] ?? 'Visitor');
+            $lname   = trim($row[1] ?? '');
+            $email   = trim($row[2] ?? '');
+            $phone   = trim($row[3] ?? '');
+            $subject = trim($row[4] ?? 'General Inquiry');
+            $message = trim($row[5] ?? '');
+
+            if (empty($email) && empty($message)) {
+                continue;
+            }
+
+            if (class_exists(\App\Models\ContactMessage::class)) {
+                $exists = \App\Models\ContactMessage::where('email', $email)
+                    ->where('first_name', $fname)
+                    ->where('subject', $subject)
+                    ->exists();
+
+                if ($exists) {
+                    $skipped++;
+                } else {
+                    \App\Models\ContactMessage::create([
+                        'first_name' => $fname ?: 'Visitor',
+                        'last_name'  => $lname,
+                        'email'      => $email ?: 'inquiry@theparcfoundation.ph',
+                        'phone'      => $phone,
+                        'subject'    => $subject,
+                        'message'    => $message ?: 'No message text provided.',
+                    ]);
+                    $synced++;
+                }
+            }
+        }
+
+        return ['synced' => $synced, 'skipped' => $skipped, 'total' => count($rows)];
+    }
 }

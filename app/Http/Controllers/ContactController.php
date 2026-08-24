@@ -41,8 +41,19 @@ class ContactController extends Controller
         $validated['email_updates'] = $emailUpdates;
         $validated['text_updates']  = $textUpdates;
 
-        // 1. Store inquiry locally as backup
+        // 1. Store inquiry in DB & backup
         try {
+            if (class_exists(\App\Models\ContactMessage::class)) {
+                \App\Models\ContactMessage::create([
+                    'first_name' => $validated['first_name'],
+                    'last_name'  => $validated['last_name'],
+                    'email'      => $validated['email'],
+                    'phone'      => $validated['phone'] ?? null,
+                    'subject'    => $validated['subject'] ?? null,
+                    'message'    => $validated['message'],
+                ]);
+            }
+
             $backupFile = 'contact_inquiries.json';
             $inquiries = [];
             if (Storage::exists($backupFile)) {

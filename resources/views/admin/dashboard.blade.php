@@ -97,6 +97,11 @@
           </button>
         </li>
         <li class="nav-item">
+          <button class="nav-link" id="contacts-tab" data-bs-toggle="tab" data-bs-target="#contacts-pane" type="button">
+            <i class="bi bi-chat-left-text me-1"></i> Contact Messages ({{ count($contacts) }})
+          </button>
+        </li>
+        <li class="nav-item">
           <button class="nav-link" id="subscribers-tab" data-bs-toggle="tab" data-bs-target="#subscribers-pane" type="button">
             <i class="bi bi-envelope me-1"></i> Newsletter Subscribers ({{ count($subscribers) }})
           </button>
