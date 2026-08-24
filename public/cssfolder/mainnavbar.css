@@ -124,11 +124,12 @@ body.dark-theme .floating-theme-toggle:hover {
   }
 }
 
-/* 🌙 Global Dark Theme Styles & Typography Contrast */
+/* 🌙 Universal Pure White Font Color in Dark Mode */
 body.dark-theme,
-html.dark-theme {
-  background-color: #0f172a !important;
-  color: #f8fafc !important;
+html.dark-theme,
+body.dark-theme *,
+html.dark-theme * {
+  color: #ffffff !important;
 }
 
 body.dark-theme h1,
@@ -138,25 +139,39 @@ body.dark-theme h4,
 body.dark-theme h5,
 body.dark-theme h6,
 body.dark-theme p,
-body.dark-theme span:not(.btn span):not(.badge),
+body.dark-theme span,
 body.dark-theme li,
 body.dark-theme label,
 body.dark-theme dt,
 body.dark-theme dd,
 body.dark-theme small,
-body.dark-theme div:not(.btn),
+body.dark-theme div,
+body.dark-theme a,
+body.dark-theme b,
+body.dark-theme strong,
+body.dark-theme td,
+body.dark-theme th,
+body.dark-theme input,
+body.dark-theme textarea,
+body.dark-theme select,
 body.dark-theme .subtitle,
 body.dark-theme .date,
 body.dark-theme .text-dark,
 body.dark-theme .text-secondary,
 body.dark-theme .text-muted,
 body.dark-theme .description,
-body.dark-theme .content {
-  color: #f1f5f9 !important;
+body.dark-theme .content,
+body.dark-theme .partitle,
+body.dark-theme .parcdetails,
+body.dark-theme .sectitle {
+  color: #ffffff !important;
 }
 
-body.dark-theme a:not(.btn):not(.nav-link) {
-  color: #fb923c !important;
+body.dark-theme .highlight,
+body.dark-theme .text-highlight,
+body.dark-theme .nav-item.active .nav-link,
+body.dark-theme .highlight * {
+  color: #f78f1e !important;
 }
 
 /* Navbar in Dark Mode */
