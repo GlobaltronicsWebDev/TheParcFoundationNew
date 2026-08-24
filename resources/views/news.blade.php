@@ -79,8 +79,8 @@
                     featuring her trending song Patuloy ang Pangarap.</p>
                 <span class="event-date">AUGUST 08, 2026</span>
             </div>
-        
-
+        </div>
+    <div class="section-container" id="visible-cards">
          <div class="card" data-link="https://www.facebook.com/reel/1002511812567161">
             <div class="card-image">
                    <img src="{{ asset('./assets/image/NEWS/PARC_MAYONAISE.png') }}"
@@ -93,7 +93,7 @@
           the most respected names in OPM.</p>
                 <span class="event-date">July 14, 2026</span>
             </div>
-
+    </div>
          <div class="card" data-link="https://www.facebook.com/reel/1371132058230225">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/dartchamps.jpg') }}">
