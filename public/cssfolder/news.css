@@ -146,7 +146,12 @@
 .card-image img.fit-full {
     object-fit: contain !important;
     object-position: center !important;
-    background-color: #f7941d !important;
+    background-color: #1a1a1a !important;
+}
+
+.card-image img.fit-center {
+    object-fit: cover !important;
+    object-position: center !important;
 }
 
 /* Card content */

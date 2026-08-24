@@ -13,7 +13,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css') }}">
   <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
-  <link rel="stylesheet" href="{{ asset('cssfolder/news.css?v=1.2') }}" />
+  <link rel="stylesheet" href="{{ asset('cssfolder/news.css?v=1.3') }}" />
 
 </head>
 <body>
@@ -81,7 +81,7 @@
         </div>
         <div class="card" data-link="https://www.youtube.com/watch?v=iuxoo8Jxi2Q">
             <div class="card-image">
-                <img src="{{ asset('assets/image/NEWS/MAYONAISE_BAND.jpg') }}" alt="PARC MAYONAISE">
+                <img src="{{ asset('assets/image/NEWS/MAYONAISE_BAND.jpg') }}" alt="PARC MAYONAISE" class="fit-center">
             </div>
             <div class="card-content">
                 <h3>A Dream. A Stage. A Legacy. </h3>
