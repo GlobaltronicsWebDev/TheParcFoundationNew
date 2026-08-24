@@ -79,15 +79,14 @@
                 <span class="event-date">AUGUST 08, 2026</span>
             </div>
         </div>
-        <div class="card" data-link="https://www.facebook.com/reel/1002511812567161">
+        <div class="card" data-link="https://www.youtube.com/watch?v=iuxoo8Jxi2Q">
             <div class="card-image">
-                <img src="{{ asset('assets/image/NEWS/PARC_MAYONAISE.png') }}" alt="PARC MAYONAISE" class="img-fluid rounded-start">
+                <img src="{{ asset('assets/image/NEWS/MAYONAISE_BAND.jpg') }}" alt="PARC MAYONAISE">
             </div>
             <div class="card-content">
-                <h3>PARC Foundation is turning a dream into a lasting legacy.</h3>
-                <p> PARC Foundation proudly introduces PARC'D, a collaboration connecting PARC Kids with some of
-          the most respected names in OPM.</p>
-                <span class="event-date">July 14, 2026</span>
+                <h3>A Dream. A Stage. A Legacy. </h3>
+                <p>  PARC Kids gets a special visit from one of the most iconic bands in OPM history, the one and only Mayonnaise. </p>
+                <span class="event-date">JULY 20, 2026</span>
             </div>
         </div>
         <div class="card" data-link="https://www.facebook.com/reel/1371132058230225">
