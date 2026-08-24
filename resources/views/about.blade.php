@@ -228,7 +228,7 @@
   <!-- ── Board of Trustees ── -->
   <section class="about-bot">
     <div class="container">
-      <h2 class="about-section-heading text-center fade-left">2021 BOARD <span>OF TRUSTEES</span></h2>
+      <h2 class="about-section-heading text-center fade-left">2026 BOARD <span>OF TRUSTEES</span></h2>
 
       <div class="row justify-content-center g-4 mt-3">
 
