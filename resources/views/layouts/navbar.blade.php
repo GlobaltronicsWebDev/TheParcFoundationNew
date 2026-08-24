@@ -28,6 +28,11 @@
           <li class="nav-item {{ request()->is('events*') ? 'active' : '' }}"><a href="{{ url('/events') }}" class="nav-link">Events</a></li>
           <li class="nav-item {{ request()->is('news*') ? 'active' : '' }}"><a href="{{ url('/news') }}" class="nav-link">News</a></li>
           <li class="nav-item {{ request()->is('contacts*') || request()->is('contact*') ? 'active' : '' }}"><a href="{{ url('/contacts') }}" class="nav-link">Contact</a></li>
+          <li class="nav-item d-lg-none text-center my-2">
+            <button id="theme-toggle-mobile" class="btn btn-outline-warning btn-sm px-3 rounded-pill" type="button">
+              <i class="bi bi-moon-stars-fill" id="theme-toggle-mobile-icon"></i> Switch Theme
+            </button>
+          </li>
         </ul>
       </div>
 
@@ -80,11 +85,14 @@
     const toggleIconHeader = document.getElementById('theme-toggle-icon');
     const toggleBtnFloat = document.getElementById('theme-toggle-floating');
     const toggleIconFloat = document.getElementById('theme-toggle-floating-icon');
+    const toggleBtnMobile = document.getElementById('theme-toggle-mobile');
+    const toggleIconMobile = document.getElementById('theme-toggle-mobile-icon');
 
     const updateIcons = (isDark) => {
       const iconClass = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
       if (toggleIconHeader) toggleIconHeader.className = iconClass;
       if (toggleIconFloat) toggleIconFloat.className = iconClass;
+      if (toggleIconMobile) toggleIconMobile.className = iconClass;
     };
 
     if (document.body.classList.contains('dark-theme')) {
@@ -100,5 +108,6 @@
 
     if (toggleBtnHeader) toggleBtnHeader.addEventListener('click', toggleTheme);
     if (toggleBtnFloat) toggleBtnFloat.addEventListener('click', toggleTheme);
+    if (toggleBtnMobile) toggleBtnMobile.addEventListener('click', toggleTheme);
   });
 </script>

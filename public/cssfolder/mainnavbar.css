@@ -442,3 +442,22 @@ body.dark-theme .sectitle p {
     width: auto;
   }
 }
+
+/* 📱 Mobile Dark Theme Overrides */
+body.dark-theme .navbar,
+body.dark-theme .navbar-collapse,
+body.dark-theme .wholenavbar {
+  background-color: #1e293b !important;
+}
+
+body.dark-theme .navbar-toggler {
+  border-color: #475569 !important;
+}
+
+body.dark-theme .navbar-toggler-icon {
+  filter: invert(1) grayscale(100%) brightness(200%) !important;
+}
+
+body.dark-theme .nav-link {
+  color: #f1f5f9 !important;
+}
