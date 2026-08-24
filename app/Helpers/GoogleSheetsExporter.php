@@ -98,4 +98,38 @@ class GoogleSheetsExporter
             ]
         );
     }
+
+    /**
+     * Read all rows from a Google Sheet tab.
+     *
+     * @param  string  $spreadsheetId
+     * @param  string  $tab
+     * @return array
+     */
+    public static function readTab(string $spreadsheetId, string $tab): array
+    {
+        $credentialsRel  = env('GOOGLE_SHEETS_CREDENTIALS') ?: 'storage/app/spheric-hawk-503003-u8-640ae5efc019.json';
+        $credentialsPath = base_path($credentialsRel);
+
+        if (!file_exists($credentialsPath)) {
+            // Ensure credentials exist via append dummy trigger or fail silently
+            return [];
+        }
+
+        $client = new Client();
+        $client->setApplicationName('PARC Foundation');
+        $client->setScopes([Sheets::SPREADSHEETS]);
+        $client->setAuthConfig($credentialsPath);
+        $client->setAccessType('offline');
+
+        $service = new Sheets($client);
+        $range = str_starts_with($tab, "'") ? "{$tab}!A1:Z5000" : "'{$tab}'!A1:Z5000";
+
+        try {
+            $response = $service->spreadsheets_values->get($spreadsheetId, $range);
+            return $response->getValues() ?: [];
+        } catch (\Throwable $e) {
+            return [];
+        }
+    }
 }

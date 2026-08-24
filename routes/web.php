@@ -2,7 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DonationController;
+use App\Http\Controllers\AdoptionController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\ContactController;
+
+// ── Admin Dashboard Routes ─────────────────────────────────────────
+Route::get('/admin', [AdminController::class, 'loginForm'])->name('admin.login');
+Route::get('/admin/login', [AdminController::class, 'loginForm']);
+Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
+Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::post('/admin/sync-sheets', [AdminController::class, 'syncSheets'])->name('admin.sync');
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,15 +31,11 @@ Route::get('/home', function () {
     return view('original');
 })->name('home');
 
-// Simple route returning a view
-Route::get('/donate', function () {
-    return view('donate'); // make sure donate.blade.php exists in resources/views
-})->name('donate');
+// Donate Page
+Route::get('/donate', [DonationController::class, 'create'])->name('donate');
 
-// Simple route returning a view
-Route::get('/adopt', function () {
-    return view('adopt'); // make sure adopt.blade.php exists in resources/views
-})->name('adopt');
+// Adopt a Scholar Page
+Route::get('/adopt', [AdoptionController::class, 'create'])->name('adopt');
 
 // Simple route returning a view
 Route::get('/news', function () {
@@ -58,25 +67,17 @@ Route::get('/adoptform', function () {
     return view('adoptform'); // make sure adoptform.blade.php exists in resources/views
 })->name('adoptform');
 
-use App\Http\Controllers\DonationController;
-
 Route::get('/donations', [DonationController::class, 'create'])->name('donations.create');
 Route::post('/donations', [DonationController::class, 'store'])->name('donations.store');
 Route::get('/donations/{id}/receipt', [DonationController::class, 'receipt'])->name('donations.receipt');
 Route::get('/donations/{id}/download-receipt', [DonationController::class, 'downloadReceipt'])->name('donations.downloadReceipt');
-
-use App\Http\Controllers\AdoptionController;
 
 Route::get('/adoptions', [AdoptionController::class, 'create'])->name('adoptions.create');
 Route::post('/adoptions', [AdoptionController::class, 'store'])->name('adoptions.store');
 Route::get('/adoptions/{id}/receipt', [AdoptionController::class, 'receipt'])->name('adoptions.receipt');
 Route::get('/adoptions/{id}/download-receipt', [AdoptionController::class, 'downloadReceipt'])->name('adoptions.downloadReceipt');
 
-use App\Http\Controllers\NewsletterController;
-
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
-
-use App\Http\Controllers\ContactController;
 
 Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
 Route::get('/contact', function () {

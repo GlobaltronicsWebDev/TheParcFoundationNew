@@ -15,7 +15,10 @@ class DonationController extends Controller
      */
     public function create()
     {
-        return view('donate');
+        $totalDonated = Donation::sum('amount');
+        $donorCount = Donation::count();
+        $recentDonors = Donation::orderBy('id', 'desc')->take(10)->get();
+        return view('donate', compact('totalDonated', 'donorCount', 'recentDonors'));
     }
 
     /**

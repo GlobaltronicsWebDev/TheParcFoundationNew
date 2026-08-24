@@ -1,0 +1,172 @@
+/* 👑 PARC Foundation Admin Dashboard CSS */
+
+:root {
+  --admin-bg: #0f172a;
+  --admin-card-bg: #1e293b;
+  --admin-accent: #f6a506;
+  --admin-accent-hover: #d88e04;
+  --admin-text-main: #f8fafc;
+  --admin-text-muted: #94a3b8;
+  --admin-border: #334155;
+  --admin-success: #10b981;
+  --admin-danger: #ef4444;
+}
+
+body.admin-body {
+  background-color: var(--admin-bg);
+  color: var(--admin-text-main);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+}
+
+/* 🔐 Admin Login */
+.admin-login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+  padding: 20px;
+}
+
+.admin-login-card {
+  background-color: rgba(30, 41, 59, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--admin-border);
+  border-radius: 16px;
+  padding: 40px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.admin-brand-logo {
+  max-width: 90px;
+  margin-bottom: 15px;
+}
+
+/* 📊 Navbar & Header */
+.admin-navbar {
+  background-color: var(--admin-card-bg);
+  border-bottom: 1px solid var(--admin-border);
+  padding: 15px 30px;
+}
+
+.admin-nav-brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--admin-text-main);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-nav-brand span {
+  color: var(--admin-accent);
+}
+
+/* 📈 Stat Cards */
+.stat-card {
+  background: var(--admin-card-bg);
+  border: 1px solid var(--admin-border);
+  border-radius: 14px;
+  padding: 24px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--admin-accent);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(246, 165, 6, 0.15);
+  color: var(--admin-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.stat-value {
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--admin-text-main);
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--admin-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* 📑 Tables & Tabs */
+.nav-tabs-custom {
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.nav-tabs-custom .nav-link {
+  color: var(--admin-text-muted);
+  border: none;
+  padding: 12px 20px;
+  font-weight: 600;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.nav-tabs-custom .nav-link.active {
+  color: var(--admin-accent);
+  background: transparent;
+  border-bottom-color: var(--admin-accent);
+}
+
+.admin-table-wrapper {
+  background: var(--admin-card-bg);
+  border: 1px solid var(--admin-border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.table-dark-custom {
+  margin-bottom: 0;
+  color: var(--admin-text-main);
+}
+
+.table-dark-custom th {
+  background-color: rgba(15, 23, 42, 0.6);
+  color: var(--admin-text-muted);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  padding: 16px;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.table-dark-custom td {
+  padding: 16px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--admin-border);
+  font-size: 0.9rem;
+}
+
+.btn-sync {
+  background-color: var(--admin-accent);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-sync:hover {
+  background-color: var(--admin-accent-hover);
+  color: #fff;
+}

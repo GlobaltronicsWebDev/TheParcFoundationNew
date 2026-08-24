@@ -10,10 +10,12 @@ use Exception;
 
 class AdoptionController extends Controller
 {
-    // Show the adoption form
     public function create()
     {
-        return view('adopt');
+        $totalAdoptions = Adoption::count();
+        $totalRaised = Adoption::sum('amount');
+        $recentAdopters = Adoption::orderBy('id', 'desc')->take(10)->get();
+        return view('adopt', compact('totalAdoptions', 'totalRaised', 'recentAdopters'));
     }
 
     // Handle form submission — save to DB then push row to Google Sheets
