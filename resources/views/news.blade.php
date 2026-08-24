@@ -38,8 +38,8 @@
       <div class="row align-items-center g-0">
 
         <div class="col-md-5 news-image">
-          <img src="{{ asset('./assets/image/NEWS/beyond_the_game.jpg') }}"
-               alt="beyond_the_game"
+          <img src="{{ asset('./assets/image/NEWS/WTG.jpg') }}"
+               alt="WTG"
                class="img-fluid rounded-start">
         </div>
 
