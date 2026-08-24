@@ -31,20 +31,23 @@
         </ul>
       </div>
 
-      <!-- Social Icons -->
-      <div class="social-icons d-none d-lg-block me-3">
-      <a href="https://www.facebook.com/parcph" class="text-decoration-none">
-        <i class="bi bi-facebook"></i>
-      </a>
-      <a href="https://www.linkedin.com/company/globaltronicsphl/" class="text-decoration-none">
-        <i class="bi bi-linkedin"></i>
-      </a>
-      <a href="https://www.youtube.com/@ThePARCFoundation" class="text-decoration-none">
-        <i class="bi bi-youtube"></i>
-      </a>
-      <a href="https://www.instagram.com/theparcfoundation.ph?igsh=N3dteGZ5c242NnEz" class="text-decoration-none">
-        <i class="bi bi-instagram"></i>
-      </a>
+      <!-- Social Icons & Theme Toggle -->
+      <div class="social-icons d-none d-lg-flex align-items-center me-3">
+        <a href="https://www.facebook.com/parcph" class="text-decoration-none">
+          <i class="bi bi-facebook"></i>
+        </a>
+        <a href="https://www.linkedin.com/company/globaltronicsphl/" class="text-decoration-none">
+          <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="https://www.youtube.com/@ThePARCFoundation" class="text-decoration-none">
+          <i class="bi bi-youtube"></i>
+        </a>
+        <a href="https://www.instagram.com/theparcfoundation.ph?igsh=N3dteGZ5c242NnEz" class="text-decoration-none">
+          <i class="bi bi-instagram"></i>
+        </a>
+        <button id="theme-toggle" class="btn btn-theme-toggle ms-2" title="Toggle Dark/Light Mode" type="button">
+          <i class="bi bi-moon-stars-fill" id="theme-toggle-icon"></i>
+        </button>
       </div>
     </div>
   </nav>
@@ -56,3 +59,38 @@
       </div>
 
 </div>
+
+<!-- Theme Toggle Script -->
+<script>
+  (function () {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark-theme');
+      document.body.classList.add('dark-theme');
+    }
+  })();
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('theme-toggle');
+    const toggleIcon = document.getElementById('theme-toggle-icon');
+
+    const updateIcon = (isDark) => {
+      if (toggleIcon) {
+        toggleIcon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
+      }
+    };
+
+    if (document.body.classList.contains('dark-theme')) {
+      updateIcon(true);
+    }
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function () {
+        const isDark = document.body.classList.toggle('dark-theme');
+        document.documentElement.classList.toggle('dark-theme', isDark);
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        updateIcon(isDark);
+      });
+    }
+  });
+</script>

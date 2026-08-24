@@ -11,7 +11,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css') }}">
+  <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css?v=1.1') }}">
   <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
   <link rel="stylesheet" href="{{ asset('cssfolder/news.css?v=1.3') }}" />
 

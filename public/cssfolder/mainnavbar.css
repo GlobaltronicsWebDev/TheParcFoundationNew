@@ -49,6 +49,62 @@
   margin-left: 10px;
   padding: 5px;
 }
+
+/* Theme Toggle Button */
+.btn-theme-toggle {
+  background: transparent;
+  border: none;
+  color: #f89b1e;
+  font-size: 1.4rem;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.btn-theme-toggle:hover {
+  transform: scale(1.2);
+  color: #f7581e;
+}
+
+/* 🌙 Global Dark Theme Styles */
+body.dark-theme,
+html.dark-theme {
+  background-color: #121212 !important;
+  color: #e0e0e0 !important;
+}
+
+body.dark-theme .navbar {
+  background-color: #1e1e1e !important;
+}
+
+body.dark-theme .nav-link {
+  color: #e0e0e0 !important;
+}
+
+body.dark-theme .latest-news-section,
+body.dark-theme .events-section,
+body.dark-theme .about-section {
+  background-color: #181818 !important;
+}
+
+body.dark-theme .card,
+body.dark-theme .news-card,
+body.dark-theme .event-card {
+  background-color: #242424 !important;
+  color: #e0e0e0 !important;
+}
+
+body.dark-theme .card-content h3,
+body.dark-theme .card-content p,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4 {
+  color: #ffffff !important;
+}
 .wholenavbar {
   position: fixed;
   top: 0;
