@@ -23,26 +23,26 @@
       <!-- Menu -->
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item {{ request()->is('welcome') || request()->is('/') ? 'active' : '' }}"><a href="{{ url('/welcome') }}" class="nav-link">Home</a></li>
-          <li class="nav-item {{ request()->is('about') ? 'active' : '' }}"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
-          <li class="nav-item {{ request()->is('events*') ? 'active' : '' }}"><a href="{{ url('/events') }}" class="nav-link">Events</a></li>
-          <li class="nav-item {{ request()->is('news*') ? 'active' : '' }}"><a href="{{ url('/news') }}" class="nav-link">News</a></li>
-          <li class="nav-item {{ request()->is('contacts*') || request()->is('contact*') ? 'active' : '' }}"><a href="{{ url('/contacts') }}" class="nav-link">Contact</a></li>
+          <li class="nav-item {{ request()->is('welcome') || request()->is('/') ? 'active' : '' }}"><a href="{{ url('/welcome') }}"  class="nav-link">Home</a></li>
+          <li class="nav-item {{ request()->is('about') ? 'active' : '' }}"><a href="{{ url('/about') }}" target="_blank" class="nav-link">About</a></li>
+          <li class="nav-item {{ request()->is('events*') ? 'active' : '' }}"><a href="{{ url('/events') }}" target="_blank" class="nav-link">Events</a></li>
+          <li class="nav-item {{ request()->is('news*') ? 'active' : '' }}"><a href="{{ url('/news') }}" target="_blank"  class="nav-link">News</a></li>
+          <li class="nav-item {{ request()->is('contacts*') || request()->is('contact*') ? 'active' : '' }}"><a href="{{ url('/contacts') }}" target="_blank" class="nav-link">Contact</a></li>
         </ul>
       </div>
 
       <!-- Social Icons -->
       <div class="social-icons d-none d-lg-block me-3">
-        <a href="https://www.facebook.com/parcph" class="text-decoration-none">
+        <a href="https://www.facebook.com/parcph" target="_blank" class="text-decoration-none">
           <i class="bi bi-facebook"></i>
         </a>
-        <a href="https://www.linkedin.com/company/globaltronicsphl/" class="text-decoration-none">
+        <a href="https://www.linkedin.com/company/globaltronicsphl/" target="_blank" class="text-decoration-none">
           <i class="bi bi-linkedin"></i>
         </a>
-        <a href="https://www.youtube.com/@ThePARCFoundation" class="text-decoration-none">
+        <a href="https://www.youtube.com/@ThePARCFoundation" target="_blank" class="text-decoration-none">  
           <i class="bi bi-youtube"></i>
         </a>
-        <a href="https://www.instagram.com/theparcfoundation.ph?igsh=N3dteGZ5c242NnEz" class="text-decoration-none">
+        <a href="https://www.instagram.com/theparcfoundation.ph?igsh=N3dteGZ5c242NnEz"  target="_blank" class="text-decoration-none">
           <i class="bi bi-instagram"></i>
         </a>
       </div>
