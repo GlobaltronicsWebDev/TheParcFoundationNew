@@ -67,11 +67,10 @@
     -->
 
     <!-- Visible cards (always shown — keep 9 max) -->
-       <div class="card" data-link="https://www.youtube.com/watch?v=NAnJbEVWnLo">
+    <div class="section-container" id="visible-cards">
+        <div class="card" data-link="https://www.youtube.com/watch?v=NAnJbEVWnLo">
             <div class="card-image">
-                   <img src="{{ asset('./assets/image/NEWS/AQ.png') }}"
-               alt="ANGELINE_QUINTO"
-               class="img-fluid rounded-start">
+                <img src="{{ asset('./assets/image/NEWS/AQ.png') }}" alt="ANGELINE_QUINTO" class="img-fluid rounded-start">
             </div>
             <div class="card-content">
                 <h3>A Gift of Voice and Vision</h3>
@@ -80,12 +79,9 @@
                 <span class="event-date">AUGUST 08, 2026</span>
             </div>
         </div>
-    <div class="section-container" id="visible-cards">
-         <div class="card" data-link="https://www.facebook.com/reel/1002511812567161">
+        <div class="card" data-link="https://www.facebook.com/reel/1002511812567161">
             <div class="card-image">
-                   <img src="{{ asset('./assets/image/NEWS/PARC_MAYONAISE.png') }}"
-               alt="PARC MAYONAISE"
-               class="img-fluid rounded-start">
+                <img src="{{ asset('./assets/image/NEWS/PARC_MAYONAISE.png') }}" alt="PARC MAYONAISE" class="img-fluid rounded-start">
             </div>
             <div class="card-content">
                 <h3>PARC Foundation is turning a dream into a lasting legacy.</h3>
@@ -93,8 +89,8 @@
           the most respected names in OPM.</p>
                 <span class="event-date">July 14, 2026</span>
             </div>
-    </div>
-         <div class="card" data-link="https://www.facebook.com/reel/1371132058230225">
+        </div>
+        <div class="card" data-link="https://www.facebook.com/reel/1371132058230225">
             <div class="card-image">
                 <img src="{{ asset('./assets/image/dartchamps.jpg') }}">
             </div>
