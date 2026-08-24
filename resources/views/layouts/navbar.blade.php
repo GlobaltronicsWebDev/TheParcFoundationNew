@@ -60,6 +60,11 @@
 
 </div>
 
+<!-- 🎈 Floating Messenger-style Theme Toggle Button (Left Side, Desktop & Mobile) -->
+<button id="theme-toggle-floating" class="floating-theme-toggle" title="Toggle Dark/Light Mode" aria-label="Toggle Theme" type="button">
+  <i class="bi bi-moon-stars-fill" id="theme-toggle-floating-icon"></i>
+</button>
+
 <!-- Theme Toggle Script -->
 <script>
   (function () {
@@ -71,26 +76,29 @@
   })();
 
   document.addEventListener('DOMContentLoaded', function () {
-    const toggleBtn = document.getElementById('theme-toggle');
-    const toggleIcon = document.getElementById('theme-toggle-icon');
+    const toggleBtnHeader = document.getElementById('theme-toggle');
+    const toggleIconHeader = document.getElementById('theme-toggle-icon');
+    const toggleBtnFloat = document.getElementById('theme-toggle-floating');
+    const toggleIconFloat = document.getElementById('theme-toggle-floating-icon');
 
-    const updateIcon = (isDark) => {
-      if (toggleIcon) {
-        toggleIcon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
-      }
+    const updateIcons = (isDark) => {
+      const iconClass = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
+      if (toggleIconHeader) toggleIconHeader.className = iconClass;
+      if (toggleIconFloat) toggleIconFloat.className = iconClass;
     };
 
     if (document.body.classList.contains('dark-theme')) {
-      updateIcon(true);
+      updateIcons(true);
     }
 
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', function () {
-        const isDark = document.body.classList.toggle('dark-theme');
-        document.documentElement.classList.toggle('dark-theme', isDark);
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        updateIcon(isDark);
-      });
-    }
+    const toggleTheme = () => {
+      const isDark = document.body.classList.toggle('dark-theme');
+      document.documentElement.classList.toggle('dark-theme', isDark);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateIcons(isDark);
+    };
+
+    if (toggleBtnHeader) toggleBtnHeader.addEventListener('click', toggleTheme);
+    if (toggleBtnFloat) toggleBtnFloat.addEventListener('click', toggleTheme);
   });
 </script>

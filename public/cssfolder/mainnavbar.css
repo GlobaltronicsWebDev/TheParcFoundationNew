@@ -70,6 +70,60 @@
   color: #f7581e;
 }
 
+/* 🎈 Floating Messenger-style Left Theme Toggle Button (Desktop & Mobile) */
+.floating-theme-toggle {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f6a506 0%, #f7581e 100%);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 8px 24px rgba(246, 165, 6, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  z-index: 999999;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease;
+  outline: none;
+}
+
+.floating-theme-toggle:hover {
+  transform: scale(1.12) translateY(-2px);
+  box-shadow: 0 12px 28px rgba(247, 88, 30, 0.5);
+  color: #ffffff;
+}
+
+.floating-theme-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Dark theme styling for floating button */
+body.dark-theme .floating-theme-toggle {
+  background: linear-gradient(135deg, #3b82f6 0%, #1e1b4b 100%);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+  color: #ffea79;
+}
+
+body.dark-theme .floating-theme-toggle:hover {
+  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.6);
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .floating-theme-toggle {
+    bottom: 20px;
+    left: 20px;
+    width: 48px;
+    height: 48px;
+    font-size: 1.25rem;
+  }
+}
+
 /* 🌙 Global Dark Theme Styles */
 body.dark-theme,
 html.dark-theme {
