@@ -38,25 +38,24 @@
       <div class="row align-items-center g-0">
 
         <div class="col-md-5 news-image">
-          <img src="{{ asset('./assets/image/NEWS/PARC_MAYONAISE.png') }}"
-               alt="PARC MAYONAISE"
+          <img src="{{ asset('./assets/image/NEWS/beyond_the_game.jpg) }}"
+               alt="beyond_the_game"
                class="img-fluid rounded-start">
         </div>
 
         <div class="col-md-7 p-4 text-start">
           <h4 class="fw-bold text-highlight mb-3">
-           PARC Foundation is turning a dream into a lasting legacy.
+          Behind every successful company is a leader who believed before everyone else did.
           </h4>
-          <p class="date mb-2">JULY 14, 2026</p>
+          <p class="date mb-2">AUGUST 23, 2026</p>
           <p class="text-dark mb-2">
-          PARC Foundation proudly introduces PARC'D, a collaboration connecting PARC Kids with some of
-          the most respected names in OPM.
+          The man behind the success of GGC — Mr. William Guido.
           </p>
           <p class="text-dark mb-4">
-           Our first collaboration features the iconic OPM band Mayonnaise, 
-           with more inspiring music icons joining soon to mentor and encourage the next generation of performers.
+           This feature is more than an achievement—it is a reminder that when you lead with vision, 
+           purpose, and determination, the hard work will eventually speak for itself.
           </p>
-          <a href="https://www.facebook.com/reel/1002511812567161" class="btn btn-learn" target="_blank">LEARN MORE</a>
+          <a href="https://www.facebook.com/reel/1758232722186837" class="btn btn-learn" target="_blank">LEARN MORE</a>
         </div>
       </div>
     </div>
