@@ -124,40 +124,112 @@ body.dark-theme .floating-theme-toggle:hover {
   }
 }
 
-/* 🌙 Global Dark Theme Styles */
+/* 🌙 Global Dark Theme Styles & Typography Contrast */
 body.dark-theme,
 html.dark-theme {
-  background-color: #121212 !important;
-  color: #e0e0e0 !important;
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
 }
 
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme h5,
+body.dark-theme h6,
+body.dark-theme p,
+body.dark-theme span:not(.btn span):not(.badge),
+body.dark-theme li,
+body.dark-theme label,
+body.dark-theme dt,
+body.dark-theme dd,
+body.dark-theme small,
+body.dark-theme div:not(.btn),
+body.dark-theme .subtitle,
+body.dark-theme .date,
+body.dark-theme .text-dark,
+body.dark-theme .text-secondary,
+body.dark-theme .text-muted,
+body.dark-theme .description,
+body.dark-theme .content {
+  color: #f1f5f9 !important;
+}
+
+body.dark-theme a:not(.btn):not(.nav-link) {
+  color: #fb923c !important;
+}
+
+/* Navbar in Dark Mode */
 body.dark-theme .navbar {
-  background-color: #1e1e1e !important;
+  background-color: #1e293b !important;
 }
 
 body.dark-theme .nav-link {
-  color: #e0e0e0 !important;
+  color: #f1f5f9 !important;
 }
 
+body.dark-theme .nav-link:hover,
+body.dark-theme .nav-item.active .nav-link {
+  color: #f97316 !important;
+}
+
+/* Sections & Backgrounds in Dark Mode */
+body.dark-theme section,
+body.dark-theme div.section-container,
 body.dark-theme .latest-news-section,
 body.dark-theme .events-section,
-body.dark-theme .about-section {
-  background-color: #181818 !important;
+body.dark-theme .about-section,
+body.dark-theme .contact-section,
+body.dark-theme .main-container,
+body.dark-theme .bg-light,
+body.dark-theme .bg-white {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
 }
 
+/* Cards & Modals in Dark Mode */
 body.dark-theme .card,
 body.dark-theme .news-card,
-body.dark-theme .event-card {
-  background-color: #242424 !important;
-  color: #e0e0e0 !important;
+body.dark-theme .event-card,
+body.dark-theme .contact-card,
+body.dark-theme .info-card,
+body.dark-theme .modal-content,
+body.dark-theme .form-container {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
 }
 
 body.dark-theme .card-content h3,
 body.dark-theme .card-content p,
-body.dark-theme h2,
-body.dark-theme h3,
-body.dark-theme h4 {
+body.dark-theme .news-card p,
+body.dark-theme .news-card h4,
+body.dark-theme .event-card h4,
+body.dark-theme .event-card p {
+  color: #f8fafc !important;
+}
+
+/* Form Controls in Dark Mode */
+body.dark-theme input:not([type="submit"]):not([type="button"]),
+body.dark-theme textarea,
+body.dark-theme select,
+body.dark-theme .form-control,
+body.dark-theme .form-select {
+  background-color: #1e293b !important;
   color: #ffffff !important;
+  border-color: #475569 !important;
+}
+
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Highlighted Text */
+body.dark-theme .highlight,
+body.dark-theme .text-highlight {
+  color: #fb923c !important;
 }
 .wholenavbar {
   position: fixed;
