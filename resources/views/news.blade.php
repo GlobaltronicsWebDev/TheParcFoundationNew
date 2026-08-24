@@ -69,7 +69,7 @@
     <!-- Visible cards (always shown — keep 9 max) -->
        <div class="card" data-link="https://www.youtube.com/watch?v=NAnJbEVWnLo">
             <div class="card-image">
-                   <img src="{{ asset('./assets/image/NEWS/ANGELINE_QUINTO.jpg') }}"
+                   <img src="{{ asset('./assets/image/NEWS/AQ.png') }}"
                alt="ANGELINE_QUINTO"
                class="img-fluid rounded-start">
             </div>
