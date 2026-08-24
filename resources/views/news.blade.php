@@ -45,7 +45,7 @@
 
         <div class="col-md-7 p-4 text-start">
           <h4 class="fw-bold text-highlight mb-3">
-          Behind every successful company is a leader who believed before everyone else did.
+          Beyond The Game: A Journey of Purpose and Unity.
           </h4>
           <p class="date mb-2">AUGUST 23, 2026</p>
           <p class="text-dark mb-2">
