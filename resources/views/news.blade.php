@@ -13,7 +13,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css') }}">
   <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
-  <link rel="stylesheet" href="{{ asset('cssfolder/news.css') }}" />
+  <link rel="stylesheet" href="{{ asset('cssfolder/news.css?v=1.2') }}" />
 
 </head>
 <body>
@@ -70,7 +70,7 @@
     <div class="section-container" id="visible-cards">
         <div class="card" data-link="https://www.youtube.com/watch?v=NAnJbEVWnLo">
             <div class="card-image">
-                <img src="{{ asset('assets/image/NEWS/AQ.png') }}" alt="ANGELINE_QUINTO" class="img-fluid rounded-start">
+                <img src="{{ asset('assets/image/NEWS/AQ.png') }}" alt="ANGELINE_QUINTO" class="fit-contain">
             </div>
             <div class="card-content">
                 <h3>A Gift of Voice and Vision</h3>

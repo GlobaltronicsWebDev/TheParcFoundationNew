@@ -127,12 +127,26 @@
 }
 
 /* Image in each card */
+.card-image {
+    width: 100%;
+    height: 220px;
+    background-color: #f7941d;
+    overflow: hidden;
+}
+
 .card-image img {
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
     object-position: top center;
     border-bottom: 2px solid #eaeaea;
+}
+
+.card-image img.fit-contain,
+.card-image img.fit-full {
+    object-fit: contain !important;
+    object-position: center !important;
+    background-color: #f7941d !important;
 }
 
 /* Card content */
