@@ -21,7 +21,7 @@
       <div class="admin-sidebar-header d-flex align-items-center justify-content-between">
         <a href="{{ route('admin.dashboard') }}" class="sidebar-nav-brand">
           <img src="{{ asset('assets/logo/parclogosquare.png') }}" width="36" height="36" alt="PARC Logo">
-          PARC <span>Admin</span>
+          PARC <span>Foundation</span>
         </a>
         <button class="btn-close d-lg-none" id="sidebarCloseBtn" aria-label="Close Sidebar"></button>
       </div>
