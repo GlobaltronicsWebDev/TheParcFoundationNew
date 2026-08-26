@@ -141,4 +141,78 @@ class AdminController extends Controller
             return redirect()->route('admin.dashboard')->with('error', 'Reset failed: ' . $e->getMessage());
         }
     }
+
+    /**
+     * Delete a single donation record.
+     */
+    public function deleteDonation($id)
+    {
+        if (!session('admin_authenticated')) {
+            return redirect()->route('admin.login');
+        }
+
+        $donation = Donation::find($id);
+        if ($donation) {
+            $donation->delete();
+            return redirect()->back()->with('success', 'Donation #' . $id . ' deleted successfully.');
+        }
+
+        return redirect()->back()->with('error', 'Donation record not found.');
+    }
+
+    /**
+     * Delete a single adoption record.
+     */
+    public function deleteAdoption($id)
+    {
+        if (!session('admin_authenticated')) {
+            return redirect()->route('admin.login');
+        }
+
+        $adoption = Adoption::find($id);
+        if ($adoption) {
+            $adoption->delete();
+            return redirect()->back()->with('success', 'Adoption #' . $id . ' deleted successfully.');
+        }
+
+        return redirect()->back()->with('error', 'Adoption record not found.');
+    }
+
+    /**
+     * Delete a single contact message record.
+     */
+    public function deleteContact($id)
+    {
+        if (!session('admin_authenticated')) {
+            return redirect()->route('admin.login');
+        }
+
+        if (Schema::hasTable('contact_messages')) {
+            $contact = ContactMessage::find($id);
+            if ($contact) {
+                $contact->delete();
+                return redirect()->back()->with('success', 'Contact message #' . $id . ' deleted successfully.');
+            }
+        }
+
+        return redirect()->back()->with('error', 'Contact message not found.');
+    }
+
+    /**
+     * Delete a single newsletter subscriber record.
+     */
+    public function deleteSubscriber($id)
+    {
+        if (!session('admin_authenticated')) {
+            return redirect()->route('admin.login');
+        }
+
+        $subscriber = NewsletterSubscriber::find($id);
+        if ($subscriber) {
+            $subscriber->delete();
+            return redirect()->back()->with('success', 'Subscriber #' . $id . ' deleted successfully.');
+        }
+
+        return redirect()->back()->with('error', 'Subscriber record not found.');
+    }
 }

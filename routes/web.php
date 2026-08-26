@@ -17,6 +17,10 @@ Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.lo
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::post('/admin/sync-sheets', [AdminController::class, 'syncSheets'])->name('admin.sync');
 Route::post('/admin/reset-data', [AdminController::class, 'resetData'])->name('admin.reset');
+Route::delete('/admin/donations/{id}', [AdminController::class, 'deleteDonation'])->name('admin.donations.delete');
+Route::delete('/admin/adoptions/{id}', [AdminController::class, 'deleteAdoption'])->name('admin.adoptions.delete');
+Route::delete('/admin/contacts/{id}', [AdminController::class, 'deleteContact'])->name('admin.contacts.delete');
+Route::delete('/admin/subscribers/{id}', [AdminController::class, 'deleteSubscriber'])->name('admin.subscribers.delete');
 
 Route::get('/', function () {
     return view('welcome');

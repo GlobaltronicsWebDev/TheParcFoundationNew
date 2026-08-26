@@ -139,6 +139,7 @@
                   <th>Payment</th>
                   <th>Date</th>
                   <th>Receipt</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -161,10 +162,19 @@
                         -
                       @endif
                     </td>
+                    <td>
+                      <form action="{{ route('admin.donations.delete', $donation->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete donation #{{ $donation->id }}?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete Donation">
+                          <i class="bi bi-trash3"></i> Delete
+                        </button>
+                      </form>
+                    </td>
                   </tr>
                 @empty
                   <tr>
-                    <td colspan="9" class="text-center text-secondary py-4">No donation records found. Click "Sync Google Sheets" to import.</td>
+                    <td colspan="10" class="text-center text-secondary py-4">No donation records found. Click "Sync Google Sheets" to import.</td>
                   </tr>
                 @endforelse
               </tbody>
@@ -186,6 +196,7 @@
                   <th>Location</th>
                   <th>Date</th>
                   <th>Receipt</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -207,10 +218,19 @@
                         -
                       @endif
                     </td>
+                    <td>
+                      <form action="{{ route('admin.adoptions.delete', $adoption->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete adoption #{{ $adoption->id }}?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete Adoption">
+                          <i class="bi bi-trash3"></i> Delete
+                        </button>
+                      </form>
+                    </td>
                   </tr>
                 @empty
                   <tr>
-                    <td colspan="8" class="text-center text-secondary py-4">No scholar adoption records found. Click "Sync Google Sheets" to import.</td>
+                    <td colspan="9" class="text-center text-secondary py-4">No scholar adoption records found. Click "Sync Google Sheets" to import.</td>
                   </tr>
                 @endforelse
               </tbody>
@@ -231,6 +251,7 @@
                   <th>Subject</th>
                   <th>Message</th>
                   <th>Date</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -243,10 +264,19 @@
                     <td><span class="badge bg-info text-dark">{{ $contact->subject ?? 'Inquiry' }}</span></td>
                     <td style="max-width: 320px; white-space: normal;">{{ $contact->message }}</td>
                     <td>{{ $contact->created_at ? $contact->created_at->format('M d, Y') : 'N/A' }}</td>
+                    <td>
+                      <form action="{{ route('admin.contacts.delete', $contact->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete contact message #{{ $contact->id }}?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete Message">
+                          <i class="bi bi-trash3"></i> Delete
+                        </button>
+                      </form>
+                    </td>
                   </tr>
                 @empty
                   <tr>
-                    <td colspan="7" class="text-center text-secondary py-4">No contact messages found. Click "Sync Google Sheets" to import.</td>
+                    <td colspan="8" class="text-center text-secondary py-4">No contact messages found. Click "Sync Google Sheets" to import.</td>
                   </tr>
                 @endforelse
               </tbody>
@@ -263,6 +293,7 @@
                   <th>ID</th>
                   <th>Email Address</th>
                   <th>Date Subscribed</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -271,10 +302,19 @@
                     <td>#{{ $sub->id }}</td>
                     <td>{{ $sub->email }}</td>
                     <td>{{ $sub->created_at ? $sub->created_at->format('M d, Y') : 'N/A' }}</td>
+                    <td>
+                      <form action="{{ route('admin.subscribers.delete', $sub->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete subscriber #{{ $sub->id }}?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete Subscriber">
+                          <i class="bi bi-trash3"></i> Delete
+                        </button>
+                      </form>
+                    </td>
                   </tr>
                 @empty
                   <tr>
-                    <td colspan="3" class="text-center text-secondary py-4">No subscribers found yet.</td>
+                    <td colspan="4" class="text-center text-secondary py-4">No subscribers found yet.</td>
                   </tr>
                 @endforelse
               </tbody>
@@ -289,5 +329,22 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const activeTab = localStorage.getItem('adminActiveTab');
+      if (activeTab) {
+        const tabBtn = document.querySelector(`button[data-bs-target="${activeTab}"]`);
+        if (tabBtn) {
+          const tab = new bootstrap.Tab(tabBtn);
+          tab.show();
+        }
+      }
+      document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(function(btn) {
+        btn.addEventListener('shown.bs.tab', function(e) {
+          localStorage.setItem('adminActiveTab', e.target.getAttribute('data-bs-target'));
+        });
+      });
+    });
+  </script>
 </body>
 </html>
