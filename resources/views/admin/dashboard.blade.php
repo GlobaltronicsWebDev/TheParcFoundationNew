@@ -58,7 +58,7 @@
         <div class="sidebar-menu-title">Quick Actions</div>
         <ul class="sidebar-menu">
           <li class="sidebar-menu-item">
-            <a href="{{ route('home') }}" target="_blank" class="sidebar-menu-link">
+            <a href="{{ route('welcome') }}" target="_blank" class="sidebar-menu-link">
               <span><i class="bi bi-globe text-secondary"></i> View Live Website</span>
               <i class="bi bi-box-arrow-up-right small text-muted"></i>
             </a>
