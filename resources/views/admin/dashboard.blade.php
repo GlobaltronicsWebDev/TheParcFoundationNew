@@ -47,12 +47,6 @@
               <span class="sidebar-menu-badge">{{ count($contacts) }}</span>
             </a>
           </li>
-          <li class="sidebar-menu-item">
-            <a href="#subscribers-pane" class="sidebar-menu-link" data-tab-target="#subscribers-tab">
-              <span><i class="bi bi-envelope text-warning"></i> Subscribers</span>
-              <span class="sidebar-menu-badge">{{ count($subscribers) }}</span>
-            </a>
-          </li>
         </ul>
 
         <div class="sidebar-menu-title">Quick Actions</div>
@@ -142,7 +136,7 @@
         <div class="admin-hero-banner">
           <div>
             <h1 class="admin-hero-title">Welcome Back, Administrator 👋</h1>
-            <p class="admin-hero-sub">Manage donations, scholar adoptions, user contact inquiries, and newsletter subscribers from your side-panel control center.</p>
+            <p class="admin-hero-sub">Manage donations, scholar adoptions, and user contact inquiries from your side-panel control center.</p>
           </div>
           <div class="d-none d-lg-block text-end">
             <div class="badge bg-light text-dark border px-3 py-2 fs-6 mb-1">
@@ -152,8 +146,8 @@
           </div>
         </div>
 
-        <!-- Wide Top KPI Cards Row -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-3 mb-4">
+        <!-- Wide Top KPI Cards Row (4 Columns) -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-4 g-3 mb-4">
           <div class="col">
             <div class="stat-card-wide">
               <div class="stat-header">
@@ -197,17 +191,6 @@
               <div class="stat-label-wide">Contact Inquiries</div>
             </div>
           </div>
-
-          <div class="col">
-            <div class="stat-card-wide">
-              <div class="stat-header">
-                <div class="stat-icon-box stat-icon-rose"><i class="bi bi-envelope-check-fill"></i></div>
-                <span class="badge font-monospace" style="background:#fff1f2; color:#e11d48; border:1px solid #fecdd3;">Active</span>
-              </div>
-              <div class="stat-value-wide">{{ $subscriberCount }}</div>
-              <div class="stat-label-wide">Subscribers</div>
-            </div>
-          </div>
         </div>
 
         <!-- Main Data Panel Container -->
@@ -229,11 +212,6 @@
               <li class="nav-item">
                 <button class="nav-link" id="contacts-tab" data-bs-toggle="tab" data-bs-target="#contacts-pane" type="button">
                   <i class="bi bi-chat-left-text me-1"></i> Contact Messages <span class="badge-count">{{ count($contacts) }}</span>
-                </button>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link" id="subscribers-tab" data-bs-toggle="tab" data-bs-target="#subscribers-pane" type="button">
-                  <i class="bi bi-envelope me-1"></i> Newsletter Subscribers <span class="badge-count">{{ count($subscribers) }}</span>
                 </button>
               </li>
             </ul>
@@ -408,47 +386,6 @@
                         <td colspan="8" class="text-center text-secondary py-5">
                           <i class="bi bi-inbox fs-2 d-block mb-2 text-muted"></i>
                           No contact messages found. Click "Sync Google Sheets" to import.
-                        </td>
-                      </tr>
-                    @endforelse
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <!-- Subscribers Pane -->
-            <div class="tab-pane fade" id="subscribers-pane">
-              <div class="table-responsive">
-                <table class="table table-dark-custom align-middle">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Email Address</th>
-                      <th>Date Subscribed</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @forelse($subscribers as $sub)
-                      <tr>
-                        <td class="fw-bold text-secondary">#{{ $sub->id }}</td>
-                        <td><a href="mailto:{{ $sub->email }}" class="text-primary fw-semibold text-decoration-none">{{ $sub->email }}</a></td>
-                        <td class="text-muted small">{{ $sub->created_at ? $sub->created_at->format('M d, Y') : 'N/A' }}</td>
-                        <td>
-                          <form action="{{ route('admin.subscribers.delete', $sub->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete subscriber #{{ $sub->id }}?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete Subscriber">
-                              <i class="bi bi-trash3"></i> Delete
-                            </button>
-                          </form>
-                        </td>
-                      </tr>
-                    @empty
-                      <tr>
-                        <td colspan="4" class="text-center text-secondary py-5">
-                          <i class="bi bi-inbox fs-2 d-block mb-2 text-muted"></i>
-                          No subscribers found yet.
                         </td>
                       </tr>
                     @endforelse

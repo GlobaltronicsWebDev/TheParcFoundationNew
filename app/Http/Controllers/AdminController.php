@@ -64,13 +64,11 @@ class AdminController extends Controller
 
         $donationCount = Donation::count();
         $adoptionCount = Adoption::count();
-        $subscriberCount = NewsletterSubscriber::count();
         $hasContactTable = Schema::hasTable('contact_messages');
         $contactCount = $hasContactTable ? ContactMessage::count() : 0;
 
         $donations = Donation::orderBy('id', 'desc')->take(200)->get();
         $adoptions = Adoption::orderBy('id', 'desc')->take(200)->get();
-        $subscribers = NewsletterSubscriber::orderBy('id', 'desc')->take(200)->get();
         $contacts = $hasContactTable ? ContactMessage::orderBy('id', 'desc')->take(200)->get() : collect();
 
         return view('admin.dashboard', compact(
@@ -79,11 +77,9 @@ class AdminController extends Controller
             'totalAdoptionAmount',
             'donationCount',
             'adoptionCount',
-            'subscriberCount',
             'contactCount',
             'donations',
             'adoptions',
-            'subscribers',
             'contacts'
         ));
     }
