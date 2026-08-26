@@ -4,9 +4,74 @@ namespace App\Helpers;
 
 use App\Models\Donation;
 use App\Models\Adoption;
+use Illuminate\Support\Facades\Schema;
 
 class GoogleSheetsImporter
 {
+    /**
+     * Build map of normalized column names to row index from header row.
+     */
+    private static function buildHeaderMap(array $header): array
+    {
+        $map = [];
+        foreach ($header as $idx => $name) {
+            $key = strtolower(trim((string) $name));
+            if ($key !== '') {
+                $map[$key] = $idx;
+            }
+        }
+        return $map;
+    }
+
+    /**
+     * Extract cell value using alias header names or fallback index.
+     */
+    private static function getCell(array $row, array $headerMap, array $aliases, int $fallbackIdx, string $default = ''): string
+    {
+        foreach ($aliases as $alias) {
+            $key = strtolower(trim($alias));
+            if (isset($headerMap[$key])) {
+                $colIdx = $headerMap[$key];
+                if (isset($row[$colIdx])) {
+                    $val = trim((string) $row[$colIdx]);
+                    if ($val !== '') {
+                        return $val;
+                    }
+                }
+            }
+        }
+
+        if (isset($row[$fallbackIdx])) {
+            $val = trim((string) $row[$fallbackIdx]);
+            if ($val !== '') {
+                return $val;
+            }
+        }
+
+        return $default;
+    }
+
+    /**
+     * Extract clean path or URL from receipt cell (handles =HYPERLINK formula or raw text).
+     */
+    private static function parseReceiptCell(string $raw): ?string
+    {
+        if (empty($raw)) {
+            return null;
+        }
+
+        // Match formula: =HYPERLINK("http...", "View Receipt")
+        if (preg_match('/=HYPERLINK\(\s*"([^"]+)"/i', $raw, $m)) {
+            return $m[1];
+        }
+
+        if (str_starts_with($raw, '=') || $raw === 'View Receipt') {
+            return null;
+        }
+
+        return $raw;
+    }
+
     /**
      * Sync Donations tab from Google Sheets into MySQL database.
      *
@@ -24,19 +89,45 @@ class GoogleSheetsImporter
 
         // Header row is index 0
         $header = array_shift($rows);
+        $headerMap = self::buildHeaderMap($header);
 
         $synced = 0;
         $skipped = 0;
+        $hasPhoneColumn = Schema::hasColumn('donations', 'phone');
 
         foreach ($rows as $row) {
             if (empty($row) || count($row) < 3) {
                 continue;
             }
 
-            $email  = trim($row[3] ?? '');
-            $amount = floatval(preg_replace('/[^0-9.]/', '', $row[10] ?? '0'));
-            $fname  = trim($row[1] ?? 'Anonymous');
-            $lname  = trim($row[2] ?? '');
+            $fname   = self::getCell($row, $headerMap, ['first name', 'fname'], 1, 'Anonymous');
+            $lname   = self::getCell($row, $headerMap, ['last name', 'lname'], 2, '');
+            $email   = self::getCell($row, $headerMap, ['email', 'email address'], 3, '');
+            $phone   = self::getCell($row, $headerMap, ['contact #', 'contact', 'phone number', 'phone'], 4, '');
+            $country = self::getCell($row, $headerMap, ['country'], 5, 'Philippines');
+            $city    = self::getCell($row, $headerMap, ['city'], 7, '');
+            $street  = self::getCell($row, $headerMap, ['street'], 9, '');
+            $postal  = self::getCell($row, $headerMap, ['postal code', 'postal'], 10, '');
+
+            $amountRaw = self::getCell($row, $headerMap, ['amount'], 11, '100');
+            $amount    = floatval(preg_replace('/[^0-9.]/', '', $amountRaw));
+            if ($amount <= 0) {
+                $amount = 100;
+            }
+
+            $giveTypeRaw = self::getCell($row, $headerMap, ['give type', 'give_type', 'type'], 12, 'once');
+            $giveType    = str_contains(strtolower($giveTypeRaw), 'month') ? 'monthly' : 'once';
+
+            $paymentMethodRaw = self::getCell($row, $headerMap, ['payment method', 'payment_method', 'payment'], 13, 'gcash');
+            $paymentMethod    = strtolower($paymentMethodRaw) ?: 'gcash';
+
+            $receiptRaw  = self::getCell($row, $headerMap, ['receipt', 'receipt uploaded'], 14, '');
+            $receiptPath = self::parseReceiptCell($receiptRaw);
+
+            // Clean leading quote if stored as '+63...'
+            if ($phone && str_starts_with($phone, "'")) {
+                $phone = ltrim($phone, "'");
+            }
 
             if (empty($email) && empty($fname)) {
                 continue;
@@ -51,19 +142,25 @@ class GoogleSheetsImporter
             if ($exists) {
                 $skipped++;
             } else {
-                Donation::create([
-                    'fname' => $fname ?: 'Anonymous',
-                    'lname' => $lname,
-                    'email' => $email ?: 'donor@theparcfoundation.ph',
-                    'country' => $row[4] ?? 'Philippines',
-                    'city' => $row[6] ?? '',
-                    'street' => $row[8] ?? '',
-                    'postal' => $row[9] ?? '',
-                    'amount' => $amount ?: 100,
-                    'give_type' => $row[11] ?? 'once',
-                    'payment_method' => strtolower($row[12] ?? 'gcash'),
-                    'receipt_path' => $row[13] ?? null,
-                ]);
+                $data = [
+                    'fname'          => $fname ?: 'Anonymous',
+                    'lname'          => $lname,
+                    'email'          => $email ?: 'donor@theparcfoundation.ph',
+                    'country'        => $country ?: 'Philippines',
+                    'city'           => $city,
+                    'street'         => $street,
+                    'postal'         => $postal,
+                    'amount'         => $amount,
+                    'give_type'      => $giveType,
+                    'payment_method' => substr($paymentMethod, 0, 20),
+                    'receipt_path'   => $receiptPath,
+                ];
+
+                if ($hasPhoneColumn) {
+                    $data['phone'] = $phone;
+                }
+
+                Donation::create($data);
                 $synced++;
             }
         }
@@ -78,7 +175,7 @@ class GoogleSheetsImporter
      */
     public static function syncAdoptions(): array
     {
-        $sheetId  = env('GOOGLE_SHEET_ADOPTIONS_ID') ?: '1INqiJMGp8JZQzRksA3WPgCPVAMPkJgKiqbzN7iGkPIk';
+        $sheetId  = env('GOOGLE_SHEET_ADOPTIONS_ID') ?: (env('GOOGLE_SHEET_DONATIONS_ID') ?: '1INqiJMGp8JZQzRksA3WPgCPVAMPkJgKiqbzN7iGkPIk');
         $sheetTab = env('GOOGLE_SHEET_ADOPTIONS_TAB') ?: 'Adoptions';
 
         $rows = GoogleSheetsExporter::readTab($sheetId, $sheetTab);
@@ -87,6 +184,7 @@ class GoogleSheetsImporter
         }
 
         $header = array_shift($rows);
+        $headerMap = self::buildHeaderMap($header);
 
         $synced = 0;
         $skipped = 0;
@@ -96,11 +194,23 @@ class GoogleSheetsImporter
                 continue;
             }
 
-            $fname   = trim($row[1] ?? 'Anonymous');
-            $lname   = trim($row[2] ?? '');
-            $email   = trim($row[3] ?? '');
-            $package = trim($row[9] ?? 'Scholar Tier');
-            $amount  = floatval(preg_replace('/[^0-9.]/', '', $row[10] ?? '0'));
+            $fname   = self::getCell($row, $headerMap, ['first name', 'fname'], 1, 'Anonymous');
+            $lname   = self::getCell($row, $headerMap, ['last name', 'lname'], 2, '');
+            $email   = self::getCell($row, $headerMap, ['email', 'email address'], 3, '');
+            $country = self::getCell($row, $headerMap, ['country'], 5, 'Philippines');
+            $city    = self::getCell($row, $headerMap, ['city'], 7, '');
+            $street  = self::getCell($row, $headerMap, ['street'], 9, '');
+            $postal  = self::getCell($row, $headerMap, ['postal code', 'postal'], 10, '');
+            $package = self::getCell($row, $headerMap, ['package', 'package / tier', 'tier'], 11, 'Individual Scholar');
+
+            $amountRaw = self::getCell($row, $headerMap, ['amount'], 12, '500');
+            $amount    = floatval(preg_replace('/[^0-9.]/', '', $amountRaw));
+            if ($amount <= 0) {
+                $amount = 500;
+            }
+
+            $receiptRaw  = self::getCell($row, $headerMap, ['receipt uploaded', 'receipt'], 14, '');
+            $receiptPath = self::parseReceiptCell($receiptRaw);
 
             if (empty($email) && empty($fname)) {
                 continue;
@@ -115,16 +225,16 @@ class GoogleSheetsImporter
                 $skipped++;
             } else {
                 Adoption::create([
-                    'fname' => $fname ?: 'Anonymous',
-                    'lname' => $lname,
-                    'email' => $email ?: 'adopter@theparcfoundation.ph',
-                    'country' => $row[4] ?? 'Philippines',
-                    'street' => $row[7] ?? '',
-                    'city' => $row[5] ?? '',
-                    'postal' => $row[8] ?? '',
-                    'package' => $package ?: 'Individual Scholar',
-                    'amount' => $amount ?: 500,
-                    'receipt_path' => $row[12] ?? null,
+                    'fname'        => $fname ?: 'Anonymous',
+                    'lname'        => $lname,
+                    'email'        => $email ?: 'adopter@theparcfoundation.ph',
+                    'country'      => $country ?: 'Philippines',
+                    'street'       => $street,
+                    'city'         => $city,
+                    'postal'       => $postal,
+                    'package'      => $package ?: 'Individual Scholar',
+                    'amount'       => $amount,
+                    'receipt_path' => $receiptPath,
                 ]);
                 $synced++;
             }
@@ -149,6 +259,7 @@ class GoogleSheetsImporter
         }
 
         $header = array_shift($rows);
+        $headerMap = self::buildHeaderMap($header);
 
         $synced = 0;
         $skipped = 0;
@@ -158,16 +269,12 @@ class GoogleSheetsImporter
                 continue;
             }
 
-            // Expected headers:
-            // 0: First Name, 1: Last Name, 2: Email Address,
-            // 3: Phone Number, 4: Subject / Inquiry Type, 5: Message, 6: Date Submitted
-
-            $fname   = trim($row[0] ?? 'Visitor');
-            $lname   = trim($row[1] ?? '');
-            $email   = trim($row[2] ?? '');
-            $phone   = trim($row[3] ?? '');
-            $subject = trim($row[4] ?? 'General Inquiry');
-            $message = trim($row[5] ?? '');
+            $fname   = self::getCell($row, $headerMap, ['first name', 'fname'], 0, 'Visitor');
+            $lname   = self::getCell($row, $headerMap, ['last name', 'lname'], 1, '');
+            $email   = self::getCell($row, $headerMap, ['email address', 'email'], 2, '');
+            $phone   = self::getCell($row, $headerMap, ['phone number', 'phone'], 3, '');
+            $subject = self::getCell($row, $headerMap, ['subject / inquiry type', 'subject'], 4, 'General Inquiry');
+            $message = self::getCell($row, $headerMap, ['message'], 5, '');
 
             if (empty($email) && empty($message)) {
                 continue;
@@ -198,3 +305,4 @@ class GoogleSheetsImporter
         return ['synced' => $synced, 'skipped' => $skipped, 'total' => count($rows)];
     }
 }
+
