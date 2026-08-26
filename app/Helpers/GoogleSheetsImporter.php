@@ -104,10 +104,12 @@ class GoogleSheetsImporter
             $lname   = self::getCell($row, $headerMap, ['last name', 'lname'], 2, '');
             $email   = self::getCell($row, $headerMap, ['email', 'email address'], 3, '');
             $phone   = self::getCell($row, $headerMap, ['contact #', 'contact', 'phone number', 'phone'], 4, '');
-            $country = self::getCell($row, $headerMap, ['country'], 5, 'Philippines');
-            $city    = self::getCell($row, $headerMap, ['city'], 7, '');
-            $street  = self::getCell($row, $headerMap, ['street'], 9, '');
-            $postal  = self::getCell($row, $headerMap, ['postal code', 'postal'], 10, '');
+            $country  = self::getCell($row, $headerMap, ['country'], 5, 'Philippines');
+            $province = self::getCell($row, $headerMap, ['province / region', 'province', 'region'], 6, '');
+            $city     = self::getCell($row, $headerMap, ['city'], 7, '');
+            $barangay = self::getCell($row, $headerMap, ['barangay'], 8, '');
+            $street   = self::getCell($row, $headerMap, ['street'], 9, '');
+            $postal   = self::getCell($row, $headerMap, ['postal code', 'postal'], 10, '');
 
             $amountRaw = self::getCell($row, $headerMap, ['amount'], 11, '100');
             $amount    = floatval(preg_replace('/[^0-9.]/', '', $amountRaw));
@@ -147,7 +149,9 @@ class GoogleSheetsImporter
                     'lname'          => $lname,
                     'email'          => $email ?: 'donor@theparcfoundation.ph',
                     'country'        => $country ?: 'Philippines',
+                    'province'       => $province,
                     'city'           => $city,
+                    'barangay'       => $barangay,
                     'street'         => $street,
                     'postal'         => $postal,
                     'amount'         => $amount,
