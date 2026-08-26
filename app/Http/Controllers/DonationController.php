@@ -50,11 +50,15 @@ class DonationController extends Controller
             'amount'                   => 'nullable|string|max:20',
             'give_type'                => 'nullable|in:once,monthly',
             'payment_method'           => 'nullable|string|max:50',
-            'paypal_email'             => 'nullable|email|max:100',
             'cover_processing_fee'     => 'nullable|boolean',
-            'receipt'                  => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5120',
+            'receipt'                  => 'required|file|mimes:jpg,jpeg,png,pdf|max:5120',
             'stripe_payment_intent_id' => 'nullable|string|max:255',
             'stripe_status'            => 'nullable|string|max:20',
+        ], [
+            'receipt.required' => 'Please upload proof of payment / receipt image before submitting.',
+            'receipt.file'     => 'The uploaded receipt must be a valid file.',
+            'receipt.mimes'    => 'The receipt must be an image (JPG, PNG) or PDF document.',
+            'receipt.max'      => 'The receipt file size must not exceed 5MB.',
         ]);
 
         // Resolve location and phone fields cleanly

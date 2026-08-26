@@ -490,13 +490,14 @@
         <!-- Receipt Upload -->
         <div style="margin-top: 15px; text-align: left;">
           <label for="receipt" style="display: block; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 8px;"> 
-            📎 Attach Receipt Screenshot <span class="req">*</span>
+            📎 Attach Receipt Screenshot <span class="req">*required</span>
           </label>
           <input
             type="file"
             id="receipt"
             name="receipt"
             accept="image/*,.pdf"
+            required
             style="display: none;"
             onchange="handleReceiptChange(this)"
           />
