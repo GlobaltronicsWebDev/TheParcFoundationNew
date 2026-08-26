@@ -325,7 +325,7 @@
           <label for="receipt" style="display: block; font-size: 0.9rem; font-weight: 700; color: #1f2937; margin-bottom: 8px;">
             📎 Attach Receipt Screenshot <span class="req">*required</span>
           </label>
-          <input type="file" id="receipt" name="receipt" accept="image/*,.pdf" style="display: none;" onchange="handleReceiptChange(this)" />
+          <input type="file" id="receipt" name="receipt" accept="image/*,.pdf" required style="display: none;" onchange="handleReceiptChange(this)" />
           <label for="receipt" id="receipt-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer; background: #fff; border: 2px dashed #f89b1e; border-radius: 10px; padding: 14px 18px; font-size: 0.9rem; color: #4b5563; transition: border-color 0.2s;">
             <span style="font-size: 22px;">🖼️</span>
             <span id="receipt-label-text">Click to upload receipt (JPG, PNG, PDF — max 5MB)</span>

@@ -413,6 +413,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (btnAdoptToStep4) {
     btnAdoptToStep4.addEventListener("click", function () {
+      const receiptInput = document.getElementById("receipt");
+      const errReceipt = document.getElementById("err-receipt");
+      const receiptLabel = document.getElementById("receipt-label");
+
+      if (!receiptInput || !receiptInput.files || !receiptInput.files.length) {
+        if (errReceipt) {
+          errReceipt.style.display = "block";
+          errReceipt.textContent = "⚠️ Proof of payment / receipt attachment is required before proceeding.";
+        }
+        if (receiptLabel) {
+          receiptLabel.style.borderColor = "#e11d48";
+          receiptLabel.style.backgroundColor = "#fff1f2";
+        }
+        receiptInput?.focus();
+        return;
+      }
+
+      if (errReceipt) errReceipt.style.display = "none";
+      if (receiptLabel) {
+        receiptLabel.style.borderColor = "#f89b1e";
+        receiptLabel.style.backgroundColor = "#ffffff";
+      }
+
       // Update Step 4 Final Summary
       document.getElementById("finalSummaryPkg").textContent = selectedPackageInput.value || "Custom Support";
       document.getElementById("finalSummaryAmount").textContent = selectedAmountInput.value ? "₱" + Number(selectedAmountInput.value).toLocaleString() : "—";

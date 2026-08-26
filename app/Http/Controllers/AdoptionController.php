@@ -38,7 +38,12 @@ class AdoptionController extends Controller
             'package'         => 'required|string|max:255',
             'amount'          => 'required|string|max:255',
             'payment_method'  => 'nullable|string|max:50',
-            'receipt'         => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5120',
+            'receipt'         => 'required|file|mimes:jpg,jpeg,png,pdf|max:5120',
+        ], [
+            'receipt.required' => 'Please upload proof of payment / receipt image before submitting.',
+            'receipt.file'     => 'The uploaded receipt must be a valid file.',
+            'receipt.mimes'    => 'The receipt must be an image (JPG, PNG) or PDF document.',
+            'receipt.max'      => 'The receipt file size must not exceed 5MB.',
         ]);
 
         // Resolve city & barangay custom inputs
