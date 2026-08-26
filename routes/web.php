@@ -88,7 +88,6 @@ Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
 Route::get('/contact', function () {
     return redirect()->route('contacts');
 });
-Route::post('/contacts/send', [ContactController::class, 'send'])->name('contacts.send');
 Route::post('/contacts/send', [ContactController::class, 'send'])->middleware('throttle:6,1')->name('contacts.send');
 
 // ── Stripe ──────────────────────────────────────────────────────────────────
