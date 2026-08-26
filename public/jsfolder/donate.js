@@ -1237,6 +1237,32 @@ document.addEventListener("DOMContentLoaded", function () {
   if (btn4) {
     btn4.onclick = function (e) {
       if (e) { e.preventDefault(); e.stopPropagation(); }
+      const receiptInput = document.getElementById("receipt");
+      const errReceipt = document.getElementById("err-receipt");
+      const receiptLabel = document.getElementById("receipt-label");
+
+      if (!receiptInput || !receiptInput.files || !receiptInput.files.length) {
+        if (errReceipt) {
+          errReceipt.style.display = "block";
+          errReceipt.textContent = "⚠️ Proof of payment / receipt attachment is required before proceeding.";
+          errReceipt.style.color = "#e11d48";
+          errReceipt.style.fontSize = "0.82rem";
+          errReceipt.style.marginTop = "6px";
+        }
+        if (receiptLabel) {
+          receiptLabel.style.borderColor = "#e11d48";
+          receiptLabel.style.backgroundColor = "#fff1f2";
+        }
+        receiptInput?.focus();
+        return false;
+      }
+
+      if (errReceipt) errReceipt.style.display = "none";
+      if (receiptLabel) {
+        receiptLabel.style.borderColor = "#f89b1e";
+        receiptLabel.style.backgroundColor = "#ffffff";
+      }
+
       goToStep(4);
       return false;
     };
