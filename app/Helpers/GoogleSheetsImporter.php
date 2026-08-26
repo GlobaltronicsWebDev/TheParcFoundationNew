@@ -82,7 +82,7 @@ class GoogleSheetsImporter
         $sheetId  = env('GOOGLE_SHEET_DONATIONS_ID') ?: '1INqiJMGp8JZQzRksA3WPgCPVAMPkJgKiqbzN7iGkPIk';
         $sheetTab = env('GOOGLE_SHEET_DONATIONS_TAB') ?: 'Donations';
 
-        $rows = GoogleSheetsExporter::readTab($sheetId, $sheetTab);
+        $rows = self::fetchRows($sheetId, $sheetTab);
         if (count($rows) <= 1) {
             return ['synced' => 0, 'skipped' => 0, 'total' => 0];
         }
@@ -178,7 +178,7 @@ class GoogleSheetsImporter
         $sheetId  = env('GOOGLE_SHEET_ADOPTIONS_ID') ?: (env('GOOGLE_SHEET_DONATIONS_ID') ?: '1INqiJMGp8JZQzRksA3WPgCPVAMPkJgKiqbzN7iGkPIk');
         $sheetTab = env('GOOGLE_SHEET_ADOPTIONS_TAB') ?: 'Adoptions';
 
-        $rows = GoogleSheetsExporter::readTab($sheetId, $sheetTab);
+        $rows = self::fetchRows($sheetId, $sheetTab);
         if (count($rows) <= 1) {
             return ['synced' => 0, 'skipped' => 0, 'total' => 0];
         }
@@ -253,7 +253,7 @@ class GoogleSheetsImporter
         $sheetId  = env('GOOGLE_SHEET_CONTACTS_ID') ?: (env('GOOGLE_SHEET_DONATIONS_ID') ?: '1INqiJMGp8JZQzRksA3WPgCPVAMPkJgKiqbzN7iGkPIk');
         $sheetTab = env('GOOGLE_SHEET_CONTACTS_TAB') ?: 'Contacts_Inquiry';
 
-        $rows = GoogleSheetsExporter::readTab($sheetId, $sheetTab);
+        $rows = self::fetchRows($sheetId, $sheetTab);
         if (count($rows) <= 1) {
             return ['synced' => 0, 'skipped' => 0, 'total' => 0];
         }
@@ -304,5 +304,44 @@ class GoogleSheetsImporter
 
         return ['synced' => $synced, 'skipped' => $skipped, 'total' => count($rows)];
     }
+
+    /**
+     * Fetch sheet rows via API with CSV fallback.
+     */
+    private static function fetchRows(string $sheetId, string $sheetTab): array
+    {
+        $rows = GoogleSheetsExporter::readTab($sheetId, $sheetTab);
+        if (!empty($rows)) {
+            return $rows;
+        }
+
+        // CSV Fallback URL
+        $csvUrl = "https://docs.google.com/spreadsheets/d/{$sheetId}/gviz/tq?tqx=out:csv&sheet=" . urlencode($sheetTab);
+        try {
+            $context = stream_context_create([
+                'http' => [
+                    'timeout' => 5,
+                    'user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
+                ]
+            ]);
+            $csvData = @file_get_contents($csvUrl, false, $context);
+            if ($csvData) {
+                $parsedRows = [];
+                $lines = explode("\n", $csvData);
+                foreach ($lines as $line) {
+                    $line = trim($line);
+                    if ($line !== '') {
+                        $parsedRows[] = str_getcsv($line);
+                    }
+                }
+                return $parsedRows;
+            }
+        } catch (\Throwable $e) {
+            // Ignore error
+        }
+
+        return [];
+    }
 }
+
 
