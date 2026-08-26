@@ -7,11 +7,11 @@
   <link rel="icon" type="image/png" href="{{ asset('assets/logo/parclogosquare.png') }}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ asset('cssfolder/admin.css?v=2.0') }}">
+  <link rel="stylesheet" href="{{ asset('cssfolder/admin.css?v=3.0') }}">
 </head>
 <body class="admin-body">
 
-  <!-- Wide Top Navigation Bar -->
+  <!-- Top Navigation Bar -->
   <nav class="admin-navbar d-flex justify-content-between align-items-center">
     <div class="d-flex align-items-center gap-3">
       <a href="{{ route('admin.dashboard') }}" class="admin-nav-brand">
@@ -38,7 +38,7 @@
       </form>
       <form action="{{ route('admin.logout') }}" method="POST" class="d-inline">
         @csrf
-        <button type="submit" class="btn btn-outline-secondary btn-sm text-light">
+        <button type="submit" class="btn btn-outline-dark btn-sm">
           <i class="bi bi-box-arrow-right me-1"></i> Logout
         </button>
       </form>
@@ -69,20 +69,20 @@
         <p class="admin-hero-sub">Manage donations, scholar adoptions, user contact inquiries, and newsletter subscribers from one wide control panel.</p>
       </div>
       <div class="d-none d-lg-block text-end">
-        <div class="badge bg-dark text-warning border border-warning px-3 py-2 fs-6 mb-1">
-          <i class="bi bi-calendar3 me-1"></i> {{ date('F d, Y') }}
+        <div class="badge bg-light text-dark border px-3 py-2 fs-6 mb-1">
+          <i class="bi bi-calendar3 me-1 text-warning"></i> {{ date('F d, Y') }}
         </div>
-        <div class="small text-muted">System Status: Optimal</div>
+        <div class="small text-muted fw-semibold">System Status: Optimal</div>
       </div>
     </div>
 
     <!-- Wide Top KPI Cards Row -->
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-3 mb-4">
       <div class="col">
-        <div class="stat-card-wide" style="--stat-glow: rgba(245, 158, 11, 0.15);">
+        <div class="stat-card-wide">
           <div class="stat-header">
             <div class="stat-icon-box stat-icon-gold"><i class="bi bi-currency-dollar"></i></div>
-            <span class="badge bg-warning text-dark font-monospace">PHP</span>
+            <span class="badge font-monospace" style="background:#fffbeb; color:#d97706; border:1px solid #fde68a;">PHP</span>
           </div>
           <div class="stat-value-wide">₱{{ number_format($totalRaised, 2) }}</div>
           <div class="stat-label-wide">Total Funds Raised</div>
@@ -90,10 +90,10 @@
       </div>
 
       <div class="col">
-        <div class="stat-card-wide" style="--stat-glow: rgba(16, 185, 129, 0.15);">
+        <div class="stat-card-wide">
           <div class="stat-header">
             <div class="stat-icon-box stat-icon-emerald"><i class="bi bi-heart-fill"></i></div>
-            <span class="badge bg-success font-monospace">{{ $donationCount }} total</span>
+            <span class="badge font-monospace" style="background:#ecfdf5; color:#059669; border:1px solid #a7f3d0;">{{ $donationCount }} total</span>
           </div>
           <div class="stat-value-wide">{{ $donationCount }}</div>
           <div class="stat-label-wide">Total Donations</div>
@@ -101,10 +101,10 @@
       </div>
 
       <div class="col">
-        <div class="stat-card-wide" style="--stat-glow: rgba(59, 130, 246, 0.15);">
+        <div class="stat-card-wide">
           <div class="stat-header">
             <div class="stat-icon-box stat-icon-blue"><i class="bi bi-mortarboard-fill"></i></div>
-            <span class="badge bg-primary font-monospace">{{ $adoptionCount }} scholars</span>
+            <span class="badge font-monospace" style="background:#eff6ff; color:#2563eb; border:1px solid #bfdbfe;">{{ $adoptionCount }} scholars</span>
           </div>
           <div class="stat-value-wide">{{ $adoptionCount }}</div>
           <div class="stat-label-wide">Adopted Scholars</div>
@@ -112,10 +112,10 @@
       </div>
 
       <div class="col">
-        <div class="stat-card-wide" style="--stat-glow: rgba(168, 85, 247, 0.15);">
+        <div class="stat-card-wide">
           <div class="stat-header">
             <div class="stat-icon-box stat-icon-purple"><i class="bi bi-chat-left-text-fill"></i></div>
-            <span class="badge bg-info text-dark font-monospace">{{ $contactCount }} msgs</span>
+            <span class="badge font-monospace" style="background:#faf5ff; color:#9333ea; border:1px solid #e9d5ff;">{{ $contactCount }} msgs</span>
           </div>
           <div class="stat-value-wide">{{ $contactCount }}</div>
           <div class="stat-label-wide">Contact Inquiries</div>
@@ -123,10 +123,10 @@
       </div>
 
       <div class="col">
-        <div class="stat-card-wide" style="--stat-glow: rgba(244, 63, 94, 0.15);">
+        <div class="stat-card-wide">
           <div class="stat-header">
             <div class="stat-icon-box stat-icon-rose"><i class="bi bi-envelope-check-fill"></i></div>
-            <span class="badge bg-danger font-monospace">Active</span>
+            <span class="badge font-monospace" style="background:#fff1f2; color:#e11d48; border:1px solid #fecdd3;">Active</span>
           </div>
           <div class="stat-value-wide">{{ $subscriberCount }}</div>
           <div class="stat-label-wide">Subscribers</div>
@@ -193,12 +193,12 @@
                 @forelse($donations as $donation)
                   <tr>
                     <td class="fw-bold text-secondary">#{{ $donation->id }}</td>
-                    <td class="fw-bold text-light">{{ $donation->fname }} {{ $donation->lname }}</td>
-                    <td><a href="mailto:{{ $donation->email }}" class="text-info text-decoration-none">{{ $donation->email }}</a></td>
+                    <td class="fw-bold text-dark">{{ $donation->fname }} {{ $donation->lname }}</td>
+                    <td><a href="mailto:{{ $donation->email }}" class="text-primary fw-semibold text-decoration-none">{{ $donation->email }}</a></td>
                     <td>{{ $donation->city ? $donation->city . ', ' . $donation->country : $donation->country }}</td>
-                    <td class="fw-bold text-warning fs-6">₱{{ number_format($donation->amount, 2) }}</td>
-                    <td><span class="badge bg-secondary px-2 py-1">{{ ucfirst($donation->give_type ?? 'once') }}</span></td>
-                    <td><span class="badge bg-dark border border-secondary px-2 py-1">{{ strtoupper($donation->payment_method ?? 'GCASH') }}</span></td>
+                    <td class="fw-bold fs-6" style="color:#d97706;">₱{{ number_format($donation->amount, 2) }}</td>
+                    <td><span class="badge bg-light text-dark border px-2 py-1">{{ ucfirst($donation->give_type ?? 'once') }}</span></td>
+                    <td><span class="badge bg-light text-dark border px-2 py-1">{{ strtoupper($donation->payment_method ?? 'GCASH') }}</span></td>
                     <td class="text-muted small">{{ $donation->created_at ? $donation->created_at->format('M d, Y') : 'N/A' }}</td>
                     <td>
                       @if($donation->id)
@@ -253,9 +253,9 @@
                 @forelse($adoptions as $adoption)
                   <tr>
                     <td class="fw-bold text-secondary">#{{ $adoption->id }}</td>
-                    <td class="fw-bold text-light">{{ $adoption->fname }} {{ $adoption->lname }}</td>
-                    <td><a href="mailto:{{ $adoption->email }}" class="text-info text-decoration-none">{{ $adoption->email }}</a></td>
-                    <td><span class="badge bg-warning text-dark fw-bold px-2 py-1">{{ $adoption->package ?? 'Scholar Tier' }}</span></td>
+                    <td class="fw-bold text-dark">{{ $adoption->fname }} {{ $adoption->lname }}</td>
+                    <td><a href="mailto:{{ $adoption->email }}" class="text-primary fw-semibold text-decoration-none">{{ $adoption->email }}</a></td>
+                    <td><span class="badge" style="background:#fffbeb; color:#b45309; border:1px solid #fde68a;">{{ $adoption->package ?? 'Scholar Tier' }}</span></td>
                     <td class="fw-bold text-success fs-6">₱{{ number_format($adoption->amount, 2) }}</td>
                     <td>{{ $adoption->city ? $adoption->city . ', ' . $adoption->country : $adoption->country }}</td>
                     <td class="text-muted small">{{ $adoption->created_at ? $adoption->created_at->format('M d, Y') : 'N/A' }}</td>
@@ -311,11 +311,11 @@
                 @forelse($contacts as $contact)
                   <tr>
                     <td class="fw-bold text-secondary">#{{ $contact->id }}</td>
-                    <td class="fw-bold text-light">{{ $contact->first_name }} {{ $contact->last_name }}</td>
-                    <td><a href="mailto:{{ $contact->email }}" class="text-info text-decoration-none">{{ $contact->email }}</a></td>
+                    <td class="fw-bold text-dark">{{ $contact->first_name }} {{ $contact->last_name }}</td>
+                    <td><a href="mailto:{{ $contact->email }}" class="text-primary fw-semibold text-decoration-none">{{ $contact->email }}</a></td>
                     <td class="small">{{ $contact->phone ?? 'N/A' }}</td>
-                    <td><span class="badge bg-info text-dark px-2 py-1">{{ $contact->subject ?? 'Inquiry' }}</span></td>
-                    <td style="max-width: 340px; white-space: normal;" class="small text-light">{{ $contact->message }}</td>
+                    <td><span class="badge" style="background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe;">{{ $contact->subject ?? 'Inquiry' }}</span></td>
+                    <td style="max-width: 340px; white-space: normal;" class="small text-dark">{{ $contact->message }}</td>
                     <td class="text-muted small">{{ $contact->created_at ? $contact->created_at->format('M d, Y') : 'N/A' }}</td>
                     <td>
                       <form action="{{ route('admin.contacts.delete', $contact->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete contact message #{{ $contact->id }}?');">
@@ -356,7 +356,7 @@
                 @forelse($subscribers as $sub)
                   <tr>
                     <td class="fw-bold text-secondary">#{{ $sub->id }}</td>
-                    <td><a href="mailto:{{ $sub->email }}" class="text-info text-decoration-none">{{ $sub->email }}</a></td>
+                    <td><a href="mailto:{{ $sub->email }}" class="text-primary fw-semibold text-decoration-none">{{ $sub->email }}</a></td>
                     <td class="text-muted small">{{ $sub->created_at ? $sub->created_at->format('M d, Y') : 'N/A' }}</td>
                     <td>
                       <form action="{{ route('admin.subscribers.delete', $sub->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete subscriber #{{ $sub->id }}?');">
@@ -433,4 +433,5 @@
   </script>
 </body>
 </html>
+
 
