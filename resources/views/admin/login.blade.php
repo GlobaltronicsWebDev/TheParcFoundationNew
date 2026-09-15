@@ -43,7 +43,7 @@
     </form>
 
     <div class="mt-4 pt-3 border-top border-secondary">
-      <a href="{{ route('home') }}" class="text-secondary text-decoration-none small">
+      <a href="{{ route('welcome ') }}" class="text-secondary text-decoration-none small">
         <i class="bi bi-arrow-left"></i> Return to Main Website
       </a>
     </div>
