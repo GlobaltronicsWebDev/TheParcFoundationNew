@@ -113,6 +113,12 @@
             <form id="contactForm" action="{{ route('contacts.send') }}" method="POST">
               @csrf
 
+              {{-- Anti-Spam Honeypot & Timestamp (Hidden from real users) --}}
+              <div style="display:none !important; visibility:hidden !important; position:absolute; left:-9999px;" aria-hidden="true">
+                <input type="text" name="b_website" tabindex="-1" autocomplete="off" value="">
+                <input type="hidden" name="form_loaded_at" value="{{ time() }}">
+              </div>
+
               <div class="row g-3">
                 <div class="col-md-6">
                   <div class="contact-form-group">
@@ -283,6 +289,14 @@
       if (contactForm) {
         contactForm.addEventListener("submit", async function (e) {
           e.preventDefault();
+
+          // Client-side link check
+          const msgVal = contactForm.querySelector("#message")?.value || "";
+          if (/https?:\/\/|www\./i.test(msgVal)) {
+            alert("To protect against automated spam, external links and web addresses are not permitted in contact messages. Please remove any URLs and try again.");
+            return;
+          }
+
           setLoading(true);
 
           const formData = new FormData(contactForm);

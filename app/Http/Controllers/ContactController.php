@@ -20,10 +20,67 @@ class ContactController extends Controller
     }
 
     /**
-     * Handle the contact form submission.
+     * Handle the contact form submission with multi-layer anti-spam protection.
      */
     public function send(Request $request)
     {
+        // ── 1. Anti-Spam: Honeypot Check ────────────────────────────────
+        // Invisible to humans. Bots automatically fill this input.
+        if (!empty($request->input('b_website'))) {
+            Log::warning('Spam inquiry blocked [Honeypot filled] from IP: ' . $request->ip());
+            return $this->fakeSuccessResponse($request);
+        }
+
+        // ── 2. Anti-Spam: Fast Submission Check ────────────────────────
+        // Bots submit forms instantaneously (< 3 seconds).
+        $formLoadedAt = (int) $request->input('form_loaded_at', 0);
+        if ($formLoadedAt > 0 && (time() - $formLoadedAt) < 3) {
+            Log::warning('Spam inquiry blocked [Submitted too fast: ' . (time() - $formLoadedAt) . 's] from IP: ' . $request->ip());
+            return $this->fakeSuccessResponse($request);
+        }
+
+        // ── 3. Anti-Spam: Identical First & Last Name Check ─────────────
+        // Bots often duplicate the name field (e.g., LarryBlonoPA LarryBlonoPA).
+        $firstName = trim((string) $request->input('first_name', ''));
+        $lastName  = trim((string) $request->input('last_name', ''));
+        if (strlen($firstName) > 3 && strcasecmp($firstName, $lastName) === 0) {
+            Log::warning('Spam inquiry blocked [Identical First/Last Name: ' . $firstName . '] from IP: ' . $request->ip());
+            return $this->fakeSuccessResponse($request);
+        }
+
+        // ── 4. Anti-Spam: Known Spam Keywords & Promo Domains ──────────
+        $messageContent = (string) $request->input('message', '');
+        $combinedText   = strtolower($firstName . ' ' . $lastName . ' ' . $messageContent . ' ' . $request->input('subject', ''));
+
+        $spamKeywords = [
+            'telegra.ph', 'freeb2b', 'b2bdata', 'promo code', 'jackpot',
+            'playstation 5', 'ps5 pro', 'casino', 'slots', 'crypto',
+            'whatsapp business', 'seo ranking', 'backlinks', 'forex',
+            'adult dating', 'escort', 'viagra', 'cialis', 'telegram'
+        ];
+
+        foreach ($spamKeywords as $keyword) {
+            if (str_contains($combinedText, $keyword)) {
+                Log::warning("Spam inquiry blocked [Keyword match: '{$keyword}'] from IP: " . $request->ip());
+                return $this->fakeSuccessResponse($request);
+            }
+        }
+
+        // ── 5. Anti-Spam: Block External URLs / Links in Message ────────
+        // Real inquiries rarely require links, while 100% of spam submissions blast links.
+        if (preg_match('/https?:\/\/|www\.|[a-zA-Z0-9-]+\.(?:org|com|net|ph|ru|xyz|top|site|club|biz|online|info|link|io)\b/i', $messageContent)) {
+            Log::warning('Inquiry rejected [Contains external link in message] from IP: ' . $request->ip());
+
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'To protect against automated spam, external links and web addresses are not permitted in contact messages. Please remove any URLs and try again.',
+                ], 422);
+            }
+
+            return back()->withInput()->with('contact_error', 'To protect against automated spam, external links and web addresses are not permitted in contact messages. Please remove any URLs and try again.');
+        }
+
         $validated = $request->validate([
             'first_name'    => 'required|string|max:100',
             'last_name'     => 'required|string|max:100',
@@ -126,6 +183,21 @@ class ContactController extends Controller
             Log::error('Contact email dispatch failed: ' . $e->getMessage());
         }
 
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Thank you for reaching out to The PARC Foundation. We have received your inquiry and our team will get back to you soon!',
+            ]);
+        }
+
+        return back()->with('contact_success', 'Thank you! Your message has been sent successfully. We will get back to you soon.');
+    }
+
+    /**
+     * Return a fake successful response to fool automated spambots so they do not retry or adapt.
+     */
+    private function fakeSuccessResponse(Request $request)
+    {
         if ($request->expectsJson()) {
             return response()->json([
                 'success' => true,

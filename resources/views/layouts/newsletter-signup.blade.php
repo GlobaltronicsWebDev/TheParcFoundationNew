@@ -22,6 +22,12 @@
         <form id="contactForm" action="{{ route('contacts.send') }}" method="POST">
           @csrf
 
+          {{-- Anti-Spam Honeypot & Timestamp (Hidden from real users) --}}
+          <div style="display:none !important; visibility:hidden !important; position:absolute; left:-9999px;" aria-hidden="true">
+            <input type="text" name="b_website" tabindex="-1" autocomplete="off" value="">
+            <input type="hidden" name="form_loaded_at" value="{{ time() }}">
+          </div>
+
           <div class="mb-3">
             <label class="form-label">First Name <span class="text-danger">*required</span></label>
             <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" required placeholder="First Name">

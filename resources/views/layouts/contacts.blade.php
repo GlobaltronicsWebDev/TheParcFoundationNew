@@ -49,6 +49,12 @@
 
         <form id="footerContactForm" action="{{ route('contacts.send') }}" method="POST">
           @csrf
+
+          {{-- Anti-Spam Honeypot & Timestamp (Hidden from real users) --}}
+          <div style="display:none !important; visibility:hidden !important; position:absolute; left:-9999px;" aria-hidden="true">
+            <input type="text" name="b_website" tabindex="-1" autocomplete="off" value="">
+            <input type="hidden" name="form_loaded_at" value="{{ time() }}">
+          </div>
           <label for="footer_first_name">First Name <span class="required">*required</span></label>
           <input type="text" id="footer_first_name" name="first_name" value="{{ old('first_name') }}" required placeholder="First Name" style="width:100% !important;max-width:100% !important;display:block !important;padding:10px 12px !important;margin-top:5px !important;border:1px solid #ccc !important;border-radius:4px !important;background-color:#ffffff !important;color:#222222 !important;font-size:13px !important;box-sizing:border-box !important;">
           @error('first_name')<p style="color:#f7af1e;font-size:0.8rem;margin:2px 0 6px;">{{ $message }}</p>@enderror
@@ -219,6 +225,14 @@
       if (footerContactForm) {
         footerContactForm.addEventListener("submit", async function (e) {
           e.preventDefault();
+
+          // Client-side link check
+          const msgVal = footerContactForm.querySelector("#footer_message")?.value || "";
+          if (/https?:\/\/|www\./i.test(msgVal)) {
+            alert("To protect against automated spam, external links and web addresses are not permitted in contact messages. Please remove any URLs and try again.");
+            return;
+          }
+
           setFooterLoading(true);
 
           const formData = new FormData(footerContactForm);
