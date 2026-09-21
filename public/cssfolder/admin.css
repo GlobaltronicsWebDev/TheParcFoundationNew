@@ -337,9 +337,9 @@ body.admin-body {
 .admin-hero-banner {
   background: var(--admin-surface);
   border: 1px solid var(--admin-border);
-  border-radius: var(--radius-lg);
-  padding: 24px 28px;
-  margin-bottom: 24px;
+  border-radius: var(--radius-md);
+  padding: 16px 22px;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -353,53 +353,53 @@ body.admin-body {
   position: absolute;
   top: 0;
   right: 0;
-  width: 260px;
+  width: 220px;
   height: 100%;
   background: radial-gradient(circle at 100% 0%, rgba(217, 119, 6, 0.05) 0%, transparent 70%);
   pointer-events: none;
 }
 
 .admin-hero-title {
-  font-size: 1.35rem;
+  font-size: 1.18rem;
   font-weight: 800;
   color: var(--text-primary);
-  margin: 0 0 4px 0;
+  margin: 0 0 2px 0;
   letter-spacing: -0.02em;
 }
 
 .admin-hero-sub {
   color: var(--text-muted);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   margin: 0;
 }
 
 .admin-date-chip {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: var(--admin-surface-subtle);
   border: 1px solid var(--admin-border);
   border-radius: var(--radius-sm);
-  padding: 6px 14px;
-  font-size: 0.82rem;
+  padding: 5px 12px;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--text-secondary);
 }
 
 .admin-date-chip [data-lucide] {
   color: var(--brand-primary);
-  width: 1rem;
-  height: 1rem;
+  width: 0.9rem;
+  height: 0.9rem;
 }
 
 /* --------------------------------------------------------------------------
-   KPI Metric Cards
+   KPI Metric Cards (Compact & Modern)
    -------------------------------------------------------------------------- */
 .stat-card-wide {
   background: var(--admin-surface);
   border: 1px solid var(--admin-border);
   border-radius: var(--radius-md);
-  padding: 20px;
+  padding: 12px 16px;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   height: 100%;
   box-shadow: var(--shadow-xs);
@@ -417,14 +417,14 @@ body.admin-body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 
 /* Minimalist Frosted Icon Box */
 .stat-icon-box {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-sm);
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -432,8 +432,8 @@ body.admin-body {
 }
 
 .stat-icon-box [data-lucide] {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 .stat-icon-gold {
@@ -461,33 +461,34 @@ body.admin-body {
 }
 
 .stat-pill-badge {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
   font-family: 'Inter', sans-serif;
-  padding: 3px 8px;
+  padding: 2px 7px;
   border-radius: var(--radius-pill);
   background: var(--admin-surface-subtle);
   color: var(--text-secondary);
   border: 1px solid var(--admin-border);
+  line-height: 1.2;
 }
 
 .stat-value-wide {
-  font-size: 1.75rem;
-  font-weight: 800;
+  font-size: 1.28rem;
+  font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: -0.03em;
-  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+  margin-bottom: 2px;
   line-height: 1.2;
   font-feature-settings: "tnum";
   font-variant-numeric: tabular-nums;
 }
 
 .stat-label-wide {
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
 }
 
 /* --------------------------------------------------------------------------

@@ -8,7 +8,7 @@
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Modern Admin Stylesheet -->
-  <link rel="stylesheet" href="{{ asset('cssfolder/admin.css?v=5.0') }}">
+  <link rel="stylesheet" href="{{ asset('cssfolder/admin.css?v=6.0') }}">
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -176,8 +176,8 @@
           </div>
         </div>
 
-        <!-- Metric KPI Cards Row (4 Columns) -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-4 g-3 mb-4">
+        <!-- Metric KPI Cards Row (4 Columns Compact) -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-4 g-2 g-xl-3 mb-3">
           
           <!-- KPI 1: Funds Raised -->
           <div class="col">
