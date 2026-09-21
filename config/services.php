@@ -42,4 +42,9 @@ return [
         'currency'        => env('STRIPE_CURRENCY', 'PHP'),
     ],
 
+    'turnstile' => [
+        'site_key'   => env('TURNSTILE_SITE_KEY', '0x4AAAAAAE1DxCz6bbSBI4Li'),
+        'secret_key' => env('TURNSTILE_SECRET_KEY', '0x4AAAAAAE1DxMN1Y2J4xAUviXJycLMFDg0'),
+    ],
+
 ];

@@ -14,6 +14,9 @@
   <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css') }}">
   <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css?v=2') }}" />
   <link rel="stylesheet" href="{{ asset('cssfolder/contactspage.css?v=5') }}" />
+
+  <!-- Cloudflare Turnstile -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
   @include('layouts.preloader')
@@ -176,7 +179,12 @@
                 @error('message')<div class="text-danger small mt-1">{{ $message }}</div>@enderror
               </div>
 
-              <button type="submit" id="contactSubmitBtn" class="btn-send-message mt-3">
+              <!-- Cloudflare Turnstile CAPTCHA Widget -->
+              <div class="my-3">
+                <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile.site_key', env('TURNSTILE_SITE_KEY', '0x4AAAAAAE1DxCz6bbSBI4Li')) }}" data-theme="light"></div>
+              </div>
+
+              <button type="submit" id="contactSubmitBtn" class="btn-send-message mt-2">
                 <span class="btn-text"><i class="bi bi-send-fill me-2"></i> Send Message</span>
                 <span class="btn-spinner" id="contactBtnSpinner" style="display:none;"><i class="bi bi-arrow-repeat spin me-2"></i> Sending...</span>
               </button>

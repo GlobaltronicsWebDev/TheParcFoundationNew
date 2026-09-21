@@ -91,6 +91,11 @@
             We will keep your information safe and secure. Please see our Privacy Policy for details of how we use your information.
           </p>
 
+          <!-- Cloudflare Turnstile CAPTCHA Widget -->
+          <div style="margin: 14px 0 10px 0;">
+            <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile.site_key', env('TURNSTILE_SITE_KEY', '0x4AAAAAAE1DxCz6bbSBI4Li')) }}" data-theme="light"></div>
+          </div>
+
           <button type="submit" id="footerContactSubmitBtn" class="btncontact">
             <span class="footer-btn-text">Send Message</span>
             <span class="footer-btn-spinner" id="footerBtnSpinner" style="display:none;">Sending...</span>
@@ -99,6 +104,9 @@
       </div>
     </div>
   </footer>
+
+  <!-- Cloudflare Turnstile Script -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
   <!-- ── Footer Contact Success Popup Modal ── -->
   <div class="contact-modal-overlay" id="footerContactSuccessModal" style="display: {{ session('contact_success') ? 'flex' : 'none' }};">

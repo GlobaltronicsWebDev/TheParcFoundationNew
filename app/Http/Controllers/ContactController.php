@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
 use Exception;
 
 class ContactController extends Controller
@@ -24,6 +25,47 @@ class ContactController extends Controller
      */
     public function send(Request $request)
     {
+        // ── 0. Cloudflare Turnstile Verification ────────────────────────
+        $turnstileSecret = config('services.turnstile.secret_key') ?: env('TURNSTILE_SECRET_KEY');
+        if (!empty($turnstileSecret)) {
+            $turnstileToken = $request->input('cf-turnstile-response');
+
+            if (empty($turnstileToken)) {
+                Log::warning('Turnstile verification failed [Missing token] from IP: ' . $request->ip());
+                if ($request->expectsJson()) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Please complete the Cloudflare security verification before submitting.',
+                    ], 422);
+                }
+                return back()->withInput()->with('contact_error', 'Please complete the Cloudflare security verification before submitting.');
+            }
+
+            try {
+                $verifyRes = Http::asForm()->timeout(5)->post('https://challenges.cloudflare.com/turnstile/v0/siteverify', [
+                    'secret'   => $turnstileSecret,
+                    'response' => $turnstileToken,
+                    'remoteip' => $request->ip(),
+                ]);
+
+                if (!$verifyRes->successful() || !$verifyRes->json('success')) {
+                    Log::warning('Turnstile verification rejected from IP: ' . $request->ip(), [
+                        'errors' => $verifyRes->json('error-codes', []),
+                    ]);
+
+                    if ($request->expectsJson()) {
+                        return response()->json([
+                            'success' => false,
+                            'message' => 'Security check failed. Please refresh the page and try again.',
+                        ], 422);
+                    }
+                    return back()->withInput()->with('contact_error', 'Security check failed. Please refresh the page and try again.');
+                }
+            } catch (\Throwable $e) {
+                Log::error('Turnstile verification API exception: ' . $e->getMessage());
+            }
+        }
+
         // ── 1. Anti-Spam: Honeypot Check ────────────────────────────────
         // Invisible to humans. Bots automatically fill this input.
         if (!empty($request->input('b_website'))) {

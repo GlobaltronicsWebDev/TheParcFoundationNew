@@ -42,7 +42,7 @@
         <a href="https://www.youtube.com/@ThePARCFoundation" target="_blank" class="text-decoration-none">  
           <i class="bi bi-youtube"></i>
         </a>
-        <a href="https://www.instagram.com/theparcfoundation.ph?igsh=N3dteGZ5c242NnEz"  target="_blank" class="text-decoration-none">
+        <a href="#"  target="_blank" class="text-decoration-none">
           <i class="bi bi-instagram"></i>
         </a>
       </div>
