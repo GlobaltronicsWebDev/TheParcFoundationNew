@@ -36,7 +36,7 @@
         <a href="https://www.facebook.com/parcph" target="_blank" class="text-decoration-none">
           <i class="bi bi-facebook"></i>
         </a>
-        <a href="https://www.linkedin.com/company/globaltronicsphl/" target="_blank" class="text-decoration-none">
+        <a href="#" target="_blank" class="text-decoration-none">
           <i class="bi bi-linkedin"></i>
         </a>
         <a href="https://www.youtube.com/@ThePARCFoundation" target="_blank" class="text-decoration-none">  
