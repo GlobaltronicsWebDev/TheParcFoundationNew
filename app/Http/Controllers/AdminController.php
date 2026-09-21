@@ -58,18 +58,31 @@ class AdminController extends Controller
             return redirect()->route('admin.login');
         }
 
-        $totalDonationAmount = Donation::sum('amount');
-        $totalAdoptionAmount = Adoption::sum('amount');
-        $totalRaised = $totalDonationAmount + $totalAdoptionAmount;
+        try {
+            $totalDonationAmount = Donation::sum('amount');
+            $totalAdoptionAmount = Adoption::sum('amount');
+            $totalRaised = $totalDonationAmount + $totalAdoptionAmount;
 
-        $donationCount = Donation::count();
-        $adoptionCount = Adoption::count();
-        $hasContactTable = Schema::hasTable('contact_messages');
-        $contactCount = $hasContactTable ? ContactMessage::count() : 0;
+            $donationCount = Donation::count();
+            $adoptionCount = Adoption::count();
+            $hasContactTable = Schema::hasTable('contact_messages');
+            $contactCount = $hasContactTable ? ContactMessage::count() : 0;
 
-        $donations = Donation::orderBy('id', 'desc')->take(200)->get();
-        $adoptions = Adoption::orderBy('id', 'desc')->take(200)->get();
-        $contacts = $hasContactTable ? ContactMessage::orderBy('id', 'desc')->take(200)->get() : collect();
+            $donations = Donation::orderBy('id', 'desc')->take(200)->get();
+            $adoptions = Adoption::orderBy('id', 'desc')->take(200)->get();
+            $contacts = $hasContactTable ? ContactMessage::orderBy('id', 'desc')->take(200)->get() : collect();
+        } catch (\Throwable $e) {
+            $totalRaised = 0;
+            $totalDonationAmount = 0;
+            $totalAdoptionAmount = 0;
+            $donationCount = 0;
+            $adoptionCount = 0;
+            $contactCount = 0;
+            $donations = collect();
+            $adoptions = collect();
+            $contacts = collect();
+            session()->flash('error', 'Database notice: Unable to reach database server. If running locally, please ensure MySQL is started.');
+        }
 
         return view('admin.dashboard', compact(
             'totalRaised',
