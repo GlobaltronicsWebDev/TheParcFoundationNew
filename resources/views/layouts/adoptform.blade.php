@@ -312,7 +312,7 @@
         
         <div id="adoptQrBox" style="display: block;">
           <div style="display: flex; justify-content: center; align-items: center;">
-            <img src="{{ asset('assets/image/qr_code.png') }}" alt="PARC Foundation QR Code"
+            <img src="{{ asset('assets/image/qr_code.png') }}?v={{ filemtime(public_path('assets/image/qr_code.png')) }}" alt="PARC Foundation QR Code"
                  style="width: 240px; height: auto; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff; padding: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);" />
           </div>
           <p style="margin-top: 14px; font-size: 0.88rem; color: #4b5563; line-height: 1.4;">

@@ -480,7 +480,7 @@
         
         <div id="donateQrBox" style="display: block;">
           <div style="display: flex; justify-content: center; align-items: center;">
-            <img src="{{ asset('assets/image/qr_code.png') }}" alt="PARC Foundation QR Code" style="width: 240px; height: auto; border: 1px solid #ccc; border-radius: 8px; background: #fff; padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+            <img src="{{ asset('assets/image/qr_code.png') }}?v={{ filemtime(public_path('assets/image/qr_code.png')) }}" alt="PARC Foundation QR Code" style="width: 240px; height: auto; border: 1px solid #ccc; border-radius: 8px; background: #fff; padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
           </div>
           <p style="margin-top: 15px; font-size: 14px; color: #4b5563; font-weight: 700;">1. OPEN THE SELECTED APP FIRST, BEFORE SCANNING.</p>
 
