@@ -135,19 +135,33 @@ class GoogleSheetsImporter
                 continue;
             }
 
+            $rawId = self::getCell($row, $headerMap, ['donation id', 'id'], 0, '');
+            $cleanEmail = $email ?: 'donor@theparcfoundation.ph';
+            $cleanFname = $fname ?: 'Anonymous';
+
+            $numericId = 0;
+            if (preg_match('/(\d+)/', $rawId, $m)) {
+                $numericId = (int) $m[1];
+            }
+
+            if ($numericId > 0 && Donation::where('id', $numericId)->exists()) {
+                $skipped++;
+                continue;
+            }
+
             // Check if record exists in database
-            $exists = Donation::where('email', $email)
+            $exists = Donation::where('email', $cleanEmail)
                 ->where('amount', $amount)
-                ->where('fname', $fname)
+                ->where('fname', $cleanFname)
                 ->exists();
 
             if ($exists) {
                 $skipped++;
             } else {
                 $data = [
-                    'fname'          => $fname ?: 'Anonymous',
+                    'fname'          => $cleanFname,
                     'lname'          => $lname,
-                    'email'          => $email ?: 'donor@theparcfoundation.ph',
+                    'email'          => $cleanEmail,
                     'country'        => $country ?: 'Philippines',
                     'province'       => $province,
                     'city'           => $city,
@@ -164,8 +178,13 @@ class GoogleSheetsImporter
                     $data['phone'] = $phone;
                 }
 
-                Donation::create($data);
-                $synced++;
+                try {
+                    Donation::create($data);
+                    $synced++;
+                } catch (\Throwable $ex) {
+                    \Illuminate\Support\Facades\Log::warning('GoogleSheetsImporter syncDonations skipped: ' . $ex->getMessage());
+                    $skipped++;
+                }
             }
         }
 
@@ -220,27 +239,46 @@ class GoogleSheetsImporter
                 continue;
             }
 
-            $exists = Adoption::where('email', $email)
-                ->where('fname', $fname)
+            $rawId = self::getCell($row, $headerMap, ['adoption id', 'id'], 0, '');
+            $cleanEmail = $email ?: 'adopter@theparcfoundation.ph';
+            $cleanFname = $fname ?: 'Anonymous';
+
+            $numericId = 0;
+            if (preg_match('/(\d+)/', $rawId, $m)) {
+                $numericId = (int) $m[1];
+            }
+
+            if ($numericId > 0 && Adoption::where('id', $numericId)->exists()) {
+                $skipped++;
+                continue;
+            }
+
+            $exists = Adoption::where('email', $cleanEmail)
+                ->where('fname', $cleanFname)
                 ->where('amount', $amount)
                 ->exists();
 
             if ($exists) {
                 $skipped++;
             } else {
-                Adoption::create([
-                    'fname'        => $fname ?: 'Anonymous',
-                    'lname'        => $lname,
-                    'email'        => $email ?: 'adopter@theparcfoundation.ph',
-                    'country'      => $country ?: 'Philippines',
-                    'street'       => $street,
-                    'city'         => $city,
-                    'postal'       => $postal,
-                    'package'      => $package ?: 'Individual Scholar',
-                    'amount'       => $amount,
-                    'receipt_path' => $receiptPath,
-                ]);
-                $synced++;
+                try {
+                    Adoption::create([
+                        'fname'        => $cleanFname,
+                        'lname'        => $lname,
+                        'email'        => $cleanEmail,
+                        'country'      => $country ?: 'Philippines',
+                        'street'       => $street,
+                        'city'         => $city,
+                        'postal'       => $postal,
+                        'package'      => $package ?: 'Individual Scholar',
+                        'amount'       => $amount,
+                        'receipt_path' => $receiptPath,
+                    ]);
+                    $synced++;
+                } catch (\Throwable $ex) {
+                    \Illuminate\Support\Facades\Log::warning('GoogleSheetsImporter syncAdoptions skipped: ' . $ex->getMessage());
+                    $skipped++;
+                }
             }
         }
 
