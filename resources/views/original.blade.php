@@ -18,7 +18,7 @@
     </header>
 
     <nav class="main-nav">
-            <img class="logo" src="./assets/logo/logo2.png" alt="" />
+            <img class="logo" src="{{ asset('assets/logo/logo2.png') }}" alt="The PARC Foundation Logo" />
         <ul class="nav-menu">
             <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
             <li class="nav-item"><a href="#" class="nav-link">About</a></li>
