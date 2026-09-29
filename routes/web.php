@@ -8,6 +8,7 @@ use App\Http\Controllers\AdoptionController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\NewsController;
 
 // ── Admin Dashboard Routes ─────────────────────────────────────────
 Route::get('/admin', [AdminController::class, 'loginForm'])->name('admin.login');
@@ -21,6 +22,11 @@ Route::delete('/admin/donations/{id}', [AdminController::class, 'deleteDonation'
 Route::delete('/admin/adoptions/{id}', [AdminController::class, 'deleteAdoption'])->name('admin.adoptions.delete');
 Route::delete('/admin/contacts/{id}', [AdminController::class, 'deleteContact'])->name('admin.contacts.delete');
 Route::delete('/admin/subscribers/{id}', [AdminController::class, 'deleteSubscriber'])->name('admin.subscribers.delete');
+
+// News CMS routes
+Route::post('/admin/news', [AdminController::class, 'storeNews'])->name('admin.news.store');
+Route::put('/admin/news/{id}', [AdminController::class, 'updateNews'])->name('admin.news.update');
+Route::delete('/admin/news/{id}', [AdminController::class, 'deleteNews'])->name('admin.news.delete');
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,10 +48,9 @@ Route::get('/donate', [DonationController::class, 'create'])->name('donate');
 // Adopt a Scholar Page
 Route::get('/adopt', [AdoptionController::class, 'create'])->name('adopt');
 
-// Simple route returning a view
-Route::get('/news', function () {
-    return view('news'); // make sure news.blade.php exists in resources/views
-})->name('news');
+// News Pages (List & Detail)
+Route::get('/news', [NewsController::class, 'index'])->name('news');
+Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
 
 // Simple route returning a view
 Route::get('/events', function () {

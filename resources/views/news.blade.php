@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>PARC Foundation</title>
+  <title>News & Stories | The PARC Foundation</title>
   <link rel="icon" type="image/png" href="{{ asset('assets/logo/parclogosquare.png') }}">
 
   <!-- Bootstrap CSS -->
@@ -15,11 +15,129 @@
   <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
   <link rel="stylesheet" href="{{ asset('cssfolder/news.css?v=1.3') }}" />
 
+  <style>
+    /* Play badge on cards with YouTube videos */
+    .yt-play-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      width: 54px;
+      height: 54px;
+      background: rgba(255, 0, 0, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .card:hover .yt-play-badge {
+      transform: translate(-50%, -50%) scale(1.15);
+      background: #ff0000;
+      box-shadow: 0 6px 22px rgba(255, 0, 0, 0.5);
+    }
+    .yt-play-badge i {
+      font-size: 1.8rem;
+      margin-left: 4px;
+    }
+    .yt-corner-pill {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      backdrop-filter: blur(4px);
+      z-index: 2;
+    }
+    .yt-corner-pill i {
+      color: #ff0000;
+    }
+
+    /* Video Modal Styles */
+    .video-modal .modal-content {
+      background: #111827;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    }
+    .video-modal .modal-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 16px 24px;
+    }
+    .video-modal .modal-header .btn-close {
+      filter: invert(1) grayscale(100%) brightness(200%);
+    }
+    .video-modal .video-responsive-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    .video-modal .video-responsive-wrap iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .video-modal .modal-body-content {
+      padding: 24px;
+    }
+    .video-modal-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #f9fafb;
+      margin-bottom: 8px;
+    }
+    .video-modal-date {
+      font-size: 0.82rem;
+      color: #9ca3af;
+      margin-bottom: 14px;
+    }
+    .video-modal-excerpt {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #d1d5db;
+      margin-bottom: 20px;
+    }
+    .btn-modal-story {
+      background: #f7581e;
+      color: #fff;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-modal-story:hover {
+      background: #e04b16;
+      color: #fff;
+    }
+  </style>
+
 </head>
 <body>
   <!-- Include Navbar -->
   @include('layouts.navbar')
-    @include('layouts.preloader')
+  @include('layouts.preloader')
 
 <!-- Latest News Section -->
 <section class="latest-news-section">
@@ -30,341 +148,251 @@
       <h2 class="fw-bold">
         <span class="anim-left">Latest</span> <span class="highlight anim-right">News</span>
       </h2>
-      <p class="subtitle">latest posts</p>
+      <p class="subtitle">latest posts & stories</p>
     </div>
 
     <!-- Featured News Card -->
-    <div class="news-card shadow-sm">
-      <div class="row align-items-center g-0">
+    @if($featuredArticle)
+      <div class="news-card shadow-sm">
+        <div class="row align-items-center g-0">
 
-        <div class="col-md-5 news-image">
-          <img src="{{ asset('assets/image/NEWS/WTG.jpg') }}"
-               alt="WTG"
-               class="img-fluid rounded-start">
-        </div>
+          <div class="col-md-5 news-image position-relative" style="min-height: 280px; overflow: hidden; background: #000;">
+            <img src="{{ $featuredArticle->display_image }}"
+                 alt="{{ $featuredArticle->title }}"
+                 class="img-fluid rounded-start w-100 h-100"
+                 style="object-fit: cover;">
 
-        <div class="col-md-7 p-4 text-start">
-          <h4 class="fw-bold text-highlight mb-3">
-          Beyond The Game: A Journey of Purpose and Unity.
-          </h4>
-          <p class="date mb-2">AUGUST 23, 2026</p>
-          <p class="text-dark mb-2">
-          The man behind the success of GGC — Mr. William Guido.
-          </p>
-          <p class="text-dark mb-4">
-           This feature is more than an achievement—it is a reminder that when you lead with vision, 
-           purpose, and determination, the hard work will eventually speak for itself.
-          </p>
-          <a href="https://www.facebook.com/reel/1758232722186837" class="btn btn-learn" target="_blank">LEARN MORE</a>
+            @if(!empty($featuredArticle->youtube_url))
+              <div class="yt-play-badge" style="cursor: pointer;" onclick="openVideoModal('{{ $featuredArticle->youtube_embed_url }}', '{{ addslashes($featuredArticle->title) }}', '{{ $featuredArticle->formatted_date }}', '{{ addslashes(Str::limit($featuredArticle->excerpt ?? $featuredArticle->content, 200)) }}', '{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}')">
+                <i class="bi bi-play-fill"></i>
+              </div>
+              <div class="yt-corner-pill"><i class="bi bi-youtube"></i> Watch Video</div>
+            @endif
+          </div>
+
+          <div class="col-md-7 p-4 text-start">
+            <span class="badge bg-warning text-dark mb-2" style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700;">
+              {{ $featuredArticle->category ?? 'Featured Story' }}
+            </span>
+            <h4 class="fw-bold text-highlight mb-3">
+              {{ $featuredArticle->title }}
+            </h4>
+            <p class="date mb-2 text-uppercase font-monospace" style="color: #6c757d; font-size: 0.88rem;">
+              {{ $featuredArticle->formatted_date }}
+            </p>
+            <p class="text-dark mb-4">
+              {{ $featuredArticle->excerpt ?? Str::limit(strip_tags($featuredArticle->content), 240) }}
+            </p>
+
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+              @if(!empty($featuredArticle->youtube_url))
+                <button type="button" class="btn btn-danger fw-bold d-inline-flex align-items-center gap-2"
+                        onclick="openVideoModal('{{ $featuredArticle->youtube_embed_url }}', '{{ addslashes($featuredArticle->title) }}', '{{ $featuredArticle->formatted_date }}', '{{ addslashes(Str::limit($featuredArticle->excerpt ?? $featuredArticle->content, 200)) }}', '{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}')">
+                  <i class="bi bi-play-circle-fill"></i> PLAY VIDEO
+                </button>
+              @endif
+
+              <a href="{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}" class="btn btn-learn">
+                READ ARTICLE
+              </a>
+
+              @if(!empty($featuredArticle->external_link))
+                <a href="{{ $featuredArticle->external_link }}" class="btn btn-outline-secondary" target="_blank" rel="noopener">
+                  EXTERNAL LINK <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </a>
+              @endif
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    @endif
 
-    <!--
-      INSTRUCTIONS FOR FUTURE UPDATES:
-      - Add new cards at the TOP of the "visible-cards" section below.
-      - Move the LAST card from "visible-cards" to the TOP of "extra-cards" to keep only 9 visible.
-    -->
-
-    <!-- Visible cards (always shown — keep 9 max) -->
+    <!-- Visible cards (Always shown initial grid) -->
     <div class="section-container" id="visible-cards">
-        <div class="card" data-link="https://www.youtube.com/watch?v=NAnJbEVWnLo">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/NEWS/AQ.png') }}" alt="ANGELINE_QUINTO" class="fit-contain">
-            </div>
-            <div class="card-content">
-                <h3>A Gift of Voice and Vision</h3>
-                <p> For their 2nd collaboration episode with an artist, PARC Kids gets to share a beautiful performance with the one and only Angeline Quinto
-                    featuring her trending song Patuloy ang Pangarap.</p>
-                <span class="event-date">AUGUST 08, 2026</span>
-            </div>
-        </div>
-        <div class="card" data-link="https://www.youtube.com/watch?v=iuxoo8Jxi2Q">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/NEWS/MAYONAISE_BAND.jpg') }}" alt="PARC MAYONAISE" class="fit-center">
-            </div>
-            <div class="card-content">
-                <h3>A Dream. A Stage. A Legacy. </h3>
-                <p>  PARC Kids gets a special visit from one of the most iconic bands in OPM history, the one and only Mayonnaise. </p>
-                <span class="event-date">JULY 20, 2026</span>
-            </div>
-        </div>
-        <div class="card" data-link="https://www.facebook.com/reel/1371132058230225">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/dartchamps.jpg') }}">
-            </div>
-            <div class="card-content">
-                <h3>Exciting & Competitive
-                Ready, Aim, Win! </h3>
-                <p>Another successful Soft Tip Dart Tournament has come to an end, creating new champions and unforgettable memories. Congratulations to all participants, and see you at the Battle of the Champions! </p>
-                <span class="event-date">June 22, 2026</span>
-            </div>
-        </div>
+      @foreach($articles as $card)
+        <div class="card position-relative"
+             data-has-video="{{ !empty($card->youtube_url) ? '1' : '0' }}"
+             data-embed-url="{{ $card->youtube_embed_url ?? '' }}"
+             data-title="{{ $card->title }}"
+             data-date="{{ $card->formatted_date }}"
+             data-excerpt="{{ Str::limit($card->excerpt ?? strip_tags($card->content), 180) }}"
+             data-detail-url="{{ route('news.show', $card->slug ?: $card->id) }}"
+             data-external-link="{{ $card->external_link ?? '' }}">
+          
+          <div class="card-image position-relative">
+            <img src="{{ $card->display_image }}" alt="{{ $card->title }}" class="fit-cover">
 
-        <div class="card" data-link="https://www.facebook.com/photo/?fbid=1414804034010364&set=a.549799583844151">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/NEWS/CALLING.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>Calling All Aspiring Musicians</h3>
-                <p>The PARC Foundation is now welcoming aspiring scholars for Violin, Cello, and Contrabass classes.</p>
-                <span class="event-date">June 10, 2026</span>
-            </div>
+            @if(!empty($card->youtube_url))
+              <div class="yt-play-badge">
+                <i class="bi bi-play-fill"></i>
+              </div>
+              <div class="yt-corner-pill"><i class="bi bi-youtube"></i> Video</div>
+            @endif
+          </div>
+
+          <div class="card-content text-start">
+            <h3>{{ Str::limit($card->title, 65) }}</h3>
+            <p>{{ Str::limit($card->excerpt ?? strip_tags($card->content), 140) }}</p>
+            <span class="event-date">{{ $card->formatted_date }}</span>
+          </div>
         </div>
-        <div class="card" data-link="https://www.facebook.com/photo/?fbid=122123669025211806&set=pcb.122123669247211806">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/NEWS/HIYAS.png') }}">
-            </div>
-            <div class="card-content">
-                <h3>HIYAS Fashion Charity Gala</h3>
-                <p>The PARC Foundation joins LYOPERA in celebrating our Asian heritage in HIYAS Charity Fundraising Gala. A20 Productions' Sherwin Sozon met with The PARC Foundation Chairman, William Guido, to deliver the funds raised for the Parcaralan Scholars program.</p>
-                <span class="event-date">April 30, 2026</span>
-            </div>
-        </div>
-        <div class="card" data-link="https://www.facebook.com/photo/?fbid=1309606077863665&set=a.566548612169419">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/NEWS/KRYSTEL GO.png') }}">
-            </div>
-            <div class="card-content">
-                <h3>A TRIUMPH FOR INCLUSION!</h3>
-                <p>From her training grounds at Kidz Groove TV in partnership with The PARC Foundation Krystel has risen as a powerful neurodivergent star.</p>
-                <span class="event-date">December 29, 2025</span>
-            </div>
-        </div>
-        <div class="card" data-link="https://www.facebook.com/parcph">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/card1.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>Corey Koh - A Night of Melodies</h3>
-                <p>Get ready for an enchanting evening as Corey Koh brings his incredible voice to the stage at the upcoming "A Night of Melodies" concert on 15th February 2025.</p>
-                <span class="event-date">February 15, 2025</span>
-            </div>
-        </div>
-        <div class="card" data-link="https://www.facebook.com/parcph">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/card2.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>Corey Koh's Latest Release - "Heartstrings"</h3>
-                <p>Corey Koh has just released his newest single, "Heartstrings". Available for streaming on all platforms. Don't miss out on this soulful track!</p>
-                <span class="release-date">January 30, 2025</span>
-            </div>
-        </div>
-        <div class="card" data-link="https://www.facebook.com/parcph">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/WTG2.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>The PARC Foundation kicked off the year in style as Wish 107.5</h3>
-                <p>Chairman and CEO of Globaltronics was awarded the KDR Icon of Music and Philanthropy during the 9th WISH Music Awards. The 9th Wish Music Awards happened on January 14, 2024 at the Araneta Coliseum.</p>
-                <span class="event-date">January 14, 2024</span>
-            </div>
-        </div>
-        <div class="card" data-link="https://www.facebook.com/parcph">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/spiritgiving.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>What do Love, Hope, and Music have in common</h3>
-                <p>Last December 3, 2022, our very own PARCaralan Scholars and "Singaporean Tenor" Corey Koh, along with some of the most amazing talents from Lyric Opera of the Philippines.</p>
-                <span class="event-date">December 15, 2022</span>
-            </div>
-        </div>
-        <div class="card" data-link="https://www.facebook.com/parcph">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/SOGPOSTER2022.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>Spirit of Giving 2022: A Celebration of Love, Hope, and Music</h3>
-                <p>More than just a concert, an opportunity to transform lives through performing arts is close to reaching. Show your support!</p>
-                <span class="event-date">December 8, 2022</span>
-            </div>
-        </div>
-        <div class="card" data-link="https://www.facebook.com/parcph">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/card3.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>The young and talented Mr. Corey Kho, a "Singaporean Tenor"</h3>
-                <p>The young and talented Mr. Corey Kho, a "Singaporean Tenor", brought the holiday cheer early this year, much to the delight of our Scholars.</p>
-                <span class="event-date">December 20, 2024</span>
-            </div>
-        </div>
-         <div class="card">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/sog2021part1.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>Spirit of Giving 2021: Smile behind the Mask | 1 Day to Go</h3>
-                <p>1 DAY TO GO… and we will soon celebrate love and generosity with Spirit of Giving 2021: Smile Behind The Mask, a charity online concert for the benefit of Philippine General Hospital ...</p>
-                <span class="event-date">December 3, 2021</span>
-            </div>
-        </div>
-          <div class="card">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/sog2021_DRMS.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>Spirit of Giving 2021: Smile Behind The Mask | Dr. Raul M. Sunico</h3>
-                <p>Dr. Raul M. Sunico, multi-awarded international concert pianist and music author, former president of the Cultural Center of the Philippines, dean of the College of Music and the Performing Arts of ...</p>
-                <span class="event-date">November 26, 2021</span>
-            </div>
-        </div>
+      @endforeach
     </div>
 
-    <!-- Extra cards — hidden by default, revealed by More button -->
-    <!-- When adding new cards above, move the last visible card to the TOP of this section -->
-    <div class="section-container" id="extra-cards" style="display: none;">
-      
-        <div class="card">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/Slider_MG.webp') }}">
+    <!-- Extra cards (Revealed upon clicking "MORE") -->
+    @if($extraArticles->count() > 0)
+      <div class="section-container" id="extra-cards" style="display: none;">
+        @foreach($extraArticles as $card)
+          <div class="card position-relative"
+               data-has-video="{{ !empty($card->youtube_url) ? '1' : '0' }}"
+               data-embed-url="{{ $card->youtube_embed_url ?? '' }}"
+               data-title="{{ $card->title }}"
+               data-date="{{ $card->formatted_date }}"
+               data-excerpt="{{ Str::limit($card->excerpt ?? strip_tags($card->content), 180) }}"
+               data-detail-url="{{ route('news.show', $card->slug ?: $card->id) }}"
+               data-external-link="{{ $card->external_link ?? '' }}">
+            
+            <div class="card-image position-relative">
+              <img src="{{ $card->display_image }}" alt="{{ $card->title }}" class="fit-cover">
+
+              @if(!empty($card->youtube_url))
+                <div class="yt-play-badge">
+                  <i class="bi bi-play-fill"></i>
+                </div>
+                <div class="yt-corner-pill"><i class="bi bi-youtube"></i> Video</div>
+              @endif
             </div>
-            <div class="card-content">
-                <h3>Spirit of Giving 2021: Smile behind the Mask | Mary Grace Khu</h3>
-                <p>Mary Grace Khu will be joining as our main host in Spirit of Giving 2021: Smile Behind The Mask, a charity online concert for the benefit of Philippine General Hospital (PGH)</p>
-                <span class="event-date">November 26, 2021</span>
+
+            <div class="card-content text-start">
+              <h3>{{ Str::limit($card->title, 65) }}</h3>
+              <p>{{ Str::limit($card->excerpt ?? strip_tags($card->content), 140) }}</p>
+              <span class="event-date">{{ $card->formatted_date }}</span>
             </div>
-        </div>
-          <div class="card">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/sog2021_NLA.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>Spirit of Giving 2021: Smile behind the Mask | Nicole Asensio</h3>
-                <p>Award-winning singer-songwriter Nicole Laurel Asensio is pleased to invite everyone to watch Spirit of Giving 2021: Smile Behind The Mask, a charity online concert for the benefit of Philippine General Hospital (PGH) Medical Frontliners and PARCaralan Scholars, on December 4, 2021, Saturday, 7:30 PM (GMT +8).</p>
-                 <p>It will be streamed live via Globaltronics’ YouTube account and Facebook page from DigiPARC, the first “Truly Digital Events Place” in the country..</p>
-                <span class="event-date">November 12, 2021</span>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/sog2021_CK.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>Spirit of Giving 2021: Smile behind the Mask | Corey Koh</h3>
-                <p>Singaporean classical tenor Corey Koh cordially invites everyone to watch Spirit of Giving 2021: Smile Behind The Mask, a charity online concert for the benefit of Philippine General Hospital (PGH) Medical Frontliners and PARCaralan Scholars, on December 4, 2021, Saturday, 7:30 PM (GMT +8).</p>
-                 <p>It will be streamed live via Globaltronics’ YouTube account and Facebook page from DigiPARC, the first “Truly Digital Events Place” in the country.</p>
-                <span class="event-date">November 10, 2021</span>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/sog2021_kids_invite.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>Spirit of Giving 2021: Smile Behind The Mask | PARCaralan Scholars</h3>
-                <p>When COVID-19 hit, the PARCaralan Scholars had to rely on meager resources raised through previous fundraising activities of The PARC Foundation to be able to continue getting free educational assistance and life skills training programs in music, arts, and theatre.
-                <br> 
-               </p>
-                <span class="event-date">August 3, 2024</span>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/sog2021_gigi.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>Spirit of Giving 2021: Smile Behind The Mask | Gigi De Lana and The Gigi Vibes</h3>
-                <p>Some of the finest talents here in the Philippines like “Asia’s Phoenix” Morisette Amon and “The Country’s Premier Wedding Band” 3rd Avenue, impressed us with their musical talents in Spirit of Giving 2019 at Conrad Hotel and Spirit of Giving 202o at DigiPARC, respectively.</p>
-                                <p>This December, get ready for Gigi De Lana and The Gigi Vibes in Spirit of Giving 2021: Smile Behind The Mask, a charity online concert for the benefit of Philippine General Hospital (PGH) Medical Frontliners and PARCaralan Scholars.</p>
-                <span class="event-date">November 26, 2021</span>
-            </div>
-        </div>
-         <div class="card">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/Capture.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>Project Tempo</h3>
-                <p>UPDATE! Here's a #ProjectTEMPO Fundraiser Update! Over the past month, we have now raised Php 45,015! It's slow and steady progress and we would like to thank all our generous donors for helping our #PARCaralan scholars!..</p>
-                <span class="event-date">July 15, 2020</span>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/Capture1.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>The 4th Foundation Day</h3>
-                <p>🙌 THANK YOU 👏 for joining us in The 4th PARC Foundation Day: Relive the Passion! 🎶💃</p>
-                <span class="event-date">July 15, 2020</span>
-            </div>
-        </div>
-         <div class="card">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/Capture3.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>Projectt Tempo</h3>
-                <p>🙌 Catch the Prince of Broadway Jon Joven Uy LIVE on Zoom and Facebook Live TONIGHT at 6:30 pm! 🤩🎤</p>
-                <span class="event-date">July 15, 2020</span>
-            </div>
-        </div>
-           <div class="card">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/wtg1.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>Carrying the Torch</h3>
-                <p>In the natural order of things, we’ll often read about how a foundation or a notable endeavor is dedicated to the memory of a father or mother, how the children are carrying on a tradition set by their parents.🎤</p>
-</p>In the case of PARC, the Performing Arts and Recreation Center Foundation, found on Lt. Artiaga St. in San Juan City, there’s a unique reversal of order an exemplary vision started by a son, and now carried on by his father, due to the son’s untimely demise..</p>
-                <span class="event-date">May 31, 2019</span>
-            </div>
-        </div>
-           <div class="card">
-            <div class="card-image">
-                <img src="{{ asset('assets/image/Capture4.webp') }}">
-            </div>
-            <div class="card-content">
-                <h3>REISE: Mixed Voices in Manila</h3>
-                <p>Here's a wunderbar picture of Mixed Voices with our #PARCaralan Music Scholars after their choral workshop last Sunday! Listen to this wonderful collaboration TONIGHT!....</p>
-                <span class="event-date">Febraury 27, 2020, 2020</span>
-            </div>
-        </div>
+          </div>
+        @endforeach
       </div>
 
-    <!-- More / Back Button -->
-    <div class="more-btn-container d-flex justify-content-center align-items-center w-100 mt-4 mb-2">
-      <button id="more-btn" class="btn btn-more">MORE</button>
-    </div>
+      <!-- More / Back Button -->
+      <div class="more-btn-container d-flex justify-content-center align-items-center w-100 mt-4 mb-2">
+        <button id="more-btn" class="btn btn-more">MORE</button>
+      </div>
+    @endif
 
   </div>
 </section>
 
-<script>
-  document.getElementById('more-btn').addEventListener('click', function () {
-    var extraCards = document.getElementById('extra-cards');
-    if (extraCards.style.display === 'none' || extraCards.style.display === '') {
-      extraCards.style.display = 'flex';
-      this.textContent = 'BACK';
-    } else {
-      extraCards.style.display = 'none';
-      this.textContent = 'MORE';
-    }
-  });
+<!-- In-Page YouTube Video Modal -->
+<div class="modal fade video-modal" id="youtubeVideoModal" tabindex="-1" aria-labelledby="youtubeVideoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fs-6 fw-bold text-white d-flex align-items-center gap-2" id="youtubeVideoModalLabel">
+          <i class="bi bi-youtube text-danger fs-5"></i> Video Player
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="stopVideoModal()"></button>
+      </div>
+      
+      <!-- 16:9 Video Frame -->
+      <div class="video-responsive-wrap">
+        <iframe id="modalVideoIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
 
-  /* ── Make every news card click open its custom link in a new tab ── */
-  document.querySelectorAll('.card').forEach(function (card) {
-    card.style.cursor = 'pointer';
-    card.addEventListener('click', function () {
-      var link = this.getAttribute('data-link') || 'https://www.facebook.com/parcph';
-      window.open(link, '_blank', 'noopener,noreferrer');
-    });
-  });
-</script>
+      <div class="modal-body-content text-start">
+        <h4 id="modalVideoTitle" class="video-modal-title"></h4>
+        <div id="modalVideoDate" class="video-modal-date"></div>
+        <p id="modalVideoExcerpt" class="video-modal-excerpt"></p>
 
+        <div class="d-flex align-items-center justify-content-between pt-2 border-top border-secondary">
+          <a id="modalDetailLink" href="#" class="btn-modal-story">
+            Read Full Story <i class="bi bi-arrow-right"></i>
+          </a>
+          <button type="button" class="btn btn-sm btn-outline-light" data-bs-dismiss="modal" onclick="stopVideoModal()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Contacts & Footer -->
   @include('layouts.contacts')
-
-  <!-- Include Footer -->
   @include('layouts.footer')
 
   <!-- JS -->
   <script src="{{ asset('jsfolder/packages.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Scroll animation observer -->
+
   <script>
+    /* ── MORE / BACK Toggle ── */
+    var moreBtn = document.getElementById('more-btn');
+    if (moreBtn) {
+      moreBtn.addEventListener('click', function () {
+        var extraCards = document.getElementById('extra-cards');
+        if (extraCards.style.display === 'none' || extraCards.style.display === '') {
+          extraCards.style.display = 'flex';
+          this.textContent = 'BACK';
+        } else {
+          extraCards.style.display = 'none';
+          this.textContent = 'MORE';
+        }
+      });
+    }
+
+    /* ── Video Modal Handler ── */
+    var videoModalEl = document.getElementById('youtubeVideoModal');
+    var videoModal = new bootstrap.Modal(videoModalEl);
+    var videoIframe = document.getElementById('modalVideoIframe');
+
+    function openVideoModal(embedUrl, title, date, excerpt, detailUrl) {
+      if (!embedUrl) return;
+      // Auto-play video on modal open
+      var playUrl = embedUrl + (embedUrl.includes('?') ? '&' : '?') + 'autoplay=1';
+      videoIframe.src = playUrl;
+      document.getElementById('modalVideoTitle').textContent = title || '';
+      document.getElementById('modalVideoDate').textContent = date || '';
+      document.getElementById('modalVideoExcerpt').textContent = excerpt || '';
+      document.getElementById('modalDetailLink').href = detailUrl || '#';
+      videoModal.show();
+    }
+
+    function stopVideoModal() {
+      videoIframe.src = '';
+    }
+
+    // Stop playback if modal is closed via ESC or backdrop click
+    videoModalEl.addEventListener('hidden.bs.modal', function () {
+      stopVideoModal();
+    });
+
+    /* ── Card Click Behavior: Open Video Modal if YouTube exists, else go to detail page ── */
+    document.querySelectorAll('.card').forEach(function (card) {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', function (e) {
+        // Prevent click if clicking a direct link inside
+        if (e.target.tagName === 'A' || e.target.closest('a')) {
+          return;
+        }
+
+        var hasVideo = this.getAttribute('data-has-video') === '1';
+        var embedUrl = this.getAttribute('data-embed-url');
+        var title = this.getAttribute('data-title');
+        var date = this.getAttribute('data-date');
+        var excerpt = this.getAttribute('data-excerpt');
+        var detailUrl = this.getAttribute('data-detail-url');
+        var externalLink = this.getAttribute('data-external-link');
+
+        if (hasVideo && embedUrl) {
+          openVideoModal(embedUrl, title, date, excerpt, detailUrl);
+        } else if (detailUrl) {
+          window.location.href = detailUrl;
+        } else if (externalLink) {
+          window.location.href = externalLink;
+        }
+      });
+    });
+
+    /* ── Scroll animation observer ── */
     const animEls = document.querySelectorAll('.anim-left, .anim-right');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {

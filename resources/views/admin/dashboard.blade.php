@@ -63,6 +63,15 @@
               <span class="sidebar-menu-badge">{{ count($contacts) }}</span>
             </a>
           </li>
+          <li class="sidebar-menu-item">
+            <a href="#news-pane" class="sidebar-menu-link" data-tab-target="#news-tab">
+              <span class="link-label-group">
+                <i data-lucide="newspaper"></i>
+                <span>News & YouTube CMS</span>
+              </span>
+              <span class="sidebar-menu-badge">{{ count($newsArticles) }}</span>
+            </a>
+          </li>
         </ul>
 
         <div class="sidebar-menu-title">Quick Actions</div>
@@ -261,6 +270,13 @@
                   <i data-lucide="message-square"></i>
                   <span>Contact Inquiries</span>
                   <span class="badge-count">{{ count($contacts) }}</span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" id="news-tab" data-bs-toggle="tab" data-bs-target="#news-pane" type="button">
+                  <i data-lucide="newspaper"></i>
+                  <span>News & CMS</span>
+                  <span class="badge-count">{{ count($newsArticles) }}</span>
                 </button>
               </li>
             </ul>
@@ -552,6 +568,115 @@
               </div>
             </div>
 
+            <!-- 4. News & YouTube CMS Pane -->
+            <div class="tab-pane fade" id="news-pane">
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 p-3 border-bottom bg-light">
+                <div>
+                  <h6 class="fw-bold mb-0 text-dark d-flex align-items-center gap-2">
+                    <i data-lucide="newspaper" class="text-warning"></i> News & Video Stories Management
+                  </h6>
+                  <small class="text-muted">Publish articles, embed YouTube videos, and manage stories shown on the website.</small>
+                </div>
+                <button type="button" class="btn btn-primary d-inline-flex align-items-center gap-2" style="background: #f7581e; border-color: #f7581e; font-weight: 700; border-radius: 8px;" data-bs-toggle="modal" data-bs-target="#createNewsModal">
+                  <i data-lucide="plus-circle"></i> Create New Article
+                </button>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table-modern">
+                  <thead>
+                    <tr>
+                      <th style="width: 60px;">ID</th>
+                      <th style="width: 80px;">Cover</th>
+                      <th>Title & Details</th>
+                      <th>YouTube Video</th>
+                      <th>Category</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th class="text-end" style="width: 140px;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @forelse($newsArticles as $article)
+                      <tr>
+                        <td class="fw-semibold text-muted font-monospace">#{{ $article->id }}</td>
+                        <td>
+                          <div style="width: 65px; height: 46px; border-radius: 6px; overflow: hidden; background: #e2e8f0; position: relative;">
+                            <img src="{{ $article->display_image }}" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+                            @if(!empty($article->youtube_url))
+                              <span style="position: absolute; top: 2px; right: 2px; background: rgba(255,0,0,0.85); color: #fff; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8px;">
+                                <i class="bi bi-play-fill"></i>
+                              </span>
+                            @endif
+                          </div>
+                        </td>
+                        <td>
+                          <div class="fw-bold text-dark text-truncate" style="max-width: 280px;" title="{{ $article->title }}">
+                            {{ $article->title }}
+                          </div>
+                          <div class="small text-muted text-truncate" style="max-width: 280px;">
+                            {{ $article->excerpt ?? Str::limit($article->content, 60) }}
+                          </div>
+                        </td>
+                        <td>
+                          @if(!empty($article->youtube_url))
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge bg-danger d-inline-flex align-items-center gap-1" style="font-size: 0.75rem;">
+                                <i class="bi bi-youtube"></i> Video
+                              </span>
+                              <button type="button" class="btn btn-xs btn-outline-danger py-0 px-2 rounded" style="font-size: 0.72rem;" onclick="adminPreviewVideo('{{ $article->youtube_embed_url }}', '{{ addslashes($article->title) }}')">
+                                Preview
+                              </button>
+                            </div>
+                          @else
+                            <span class="text-muted small">None</span>
+                          @endif
+                        </td>
+                        <td>
+                          <span class="badge-soft badge-soft-blue">{{ $article->category ?? 'News' }}</span>
+                        </td>
+                        <td class="text-muted small">{{ $article->formatted_date }}</td>
+                        <td>
+                          @if($article->is_featured)
+                            <span class="badge bg-warning text-dark fw-bold" style="font-size: 0.72rem;"><i class="bi bi-star-fill me-1"></i> Featured</span>
+                          @else
+                            <span class="badge bg-light text-secondary border" style="font-size: 0.72rem;">Standard</span>
+                          @endif
+                        </td>
+                        <td class="text-end">
+                          <a href="{{ route('news.show', $article->slug ?: $article->id) }}" target="_blank" class="btn-action-ghost" title="View Public Page">
+                            <i data-lucide="external-link"></i>
+                          </a>
+                          <button type="button" class="btn-action-ghost text-primary" title="Edit Article" onclick="openEditNewsModal({{ json_encode($article) }})">
+                            <i data-lucide="edit-3"></i>
+                          </button>
+                          <form action="{{ route('admin.news.delete', $article->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete article &quot;{{ addslashes($article->title) }}&quot;?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-action-delete" title="Delete article">
+                              <i data-lucide="trash-2"></i>
+                            </button>
+                          </form>
+                        </td>
+                      </tr>
+                    @empty
+                      <tr class="empty-state-row">
+                        <td colspan="8">
+                          <div class="admin-empty-state">
+                            <div class="empty-state-icon">
+                              <i data-lucide="newspaper"></i>
+                            </div>
+                            <div class="empty-state-title">No news articles published yet</div>
+                            <p class="empty-state-desc">Click "+ Create New Article" to publish your first story with an optional YouTube video link.</p>
+                          </div>
+                        </td>
+                      </tr>
+                    @endforelse
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
           </div>
 
         </div>
@@ -559,6 +684,188 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- Create News Article Modal -->
+  <div class="modal fade" id="createNewsModal" tabindex="-1" aria-labelledby="createNewsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content shadow-lg border-0" style="border-radius: 16px;">
+        <form action="{{ route('admin.news.store') }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          <div class="modal-header border-bottom px-4 py-3" style="background: #f8fafc;">
+            <h5 class="modal-title fw-bold text-dark d-flex align-items-center gap-2" id="createNewsModalLabel">
+              <i data-lucide="newspaper" class="text-warning"></i> Add New Story / Article
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <div class="row g-3">
+              <div class="col-12">
+                <label class="form-label fw-bold small text-secondary">Article Title <span class="text-danger">*</span></label>
+                <input type="text" name="title" class="form-control form-control-lg" placeholder="e.g. Beyond The Game: A Journey of Purpose..." required>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label fw-bold small text-secondary">Category</label>
+                <input type="text" name="category" class="form-control" placeholder="e.g. Featured Story, Collaboration, Gala" value="News & Updates">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label fw-bold small text-secondary">Published Date</label>
+                <input type="date" name="published_date" class="form-control" value="{{ date('Y-m-d') }}">
+              </div>
+
+              <div class="col-12">
+                <div class="p-3 rounded-3" style="background: #fef2f2; border: 1px solid #fee2e2;">
+                  <label class="form-label fw-bold small text-danger d-flex align-items-center gap-2">
+                    <i class="bi bi-youtube fs-5"></i> YouTube Video Link (Watch/Embed in Article)
+                  </label>
+                  <input type="url" name="youtube_url" class="form-control" placeholder="https://www.youtube.com/watch?v=... or https://youtu.be/...">
+                  <small class="text-muted mt-1 d-block">
+                    Paste any YouTube URL. The video will be playable right inside the News modal & article detail page! If no cover photo is uploaded, we'll auto-use YouTube's thumbnail.
+                  </small>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label fw-bold small text-secondary">Custom Cover Image (Optional)</label>
+                <input type="file" name="image" class="form-control" accept="image/*">
+                <small class="text-muted">JPG, PNG, WebP up to 5MB.</small>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label fw-bold small text-secondary">External Link (Optional)</label>
+                <input type="url" name="external_link" class="form-control" placeholder="https://facebook.com/reel/...">
+                <small class="text-muted">Optional Facebook Reel, Instagram, or news source link.</small>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label fw-bold small text-secondary">Short Excerpt / Summary</label>
+                <textarea name="excerpt" class="form-control" rows="2" placeholder="Brief 1-2 sentence teaser shown on the news cards..."></textarea>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label fw-bold small text-secondary">Full Article Content</label>
+                <textarea name="content" class="form-control" rows="5" placeholder="Full story text displayed on the dedicated article page..."></textarea>
+              </div>
+
+              <div class="col-12">
+                <div class="form-check form-switch mt-2">
+                  <input class="form-check-input" type="checkbox" name="is_featured" id="createIsFeatured" value="1">
+                  <label class="form-check-label fw-bold text-dark" for="createIsFeatured">
+                    🌟 Set as Featured Top Story (prominently displayed at top of News page)
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-top px-4 py-3 bg-light">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary px-4 fw-bold" style="background: #f7581e; border-color: #f7581e; border-radius: 8px;">
+              Publish Article
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit News Article Modal -->
+  <div class="modal fade" id="editNewsModal" tabindex="-1" aria-labelledby="editNewsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content shadow-lg border-0" style="border-radius: 16px;">
+        <form id="editNewsForm" action="" method="POST" enctype="multipart/form-data">
+          @csrf
+          @method('PUT')
+          <div class="modal-header border-bottom px-4 py-3" style="background: #f8fafc;">
+            <h5 class="modal-title fw-bold text-dark d-flex align-items-center gap-2" id="editNewsModalLabel">
+              <i data-lucide="edit-3" class="text-primary"></i> Edit News Story
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <div class="row g-3">
+              <div class="col-12">
+                <label class="form-label fw-bold small text-secondary">Article Title <span class="text-danger">*</span></label>
+                <input type="text" name="title" id="editNewsTitle" class="form-control form-control-lg" required>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label fw-bold small text-secondary">Category</label>
+                <input type="text" name="category" id="editNewsCategory" class="form-control">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label fw-bold small text-secondary">Published Date</label>
+                <input type="date" name="published_date" id="editNewsDate" class="form-control">
+              </div>
+
+              <div class="col-12">
+                <div class="p-3 rounded-3" style="background: #fef2f2; border: 1px solid #fee2e2;">
+                  <label class="form-label fw-bold small text-danger d-flex align-items-center gap-2">
+                    <i class="bi bi-youtube fs-5"></i> YouTube Video Link
+                  </label>
+                  <input type="url" name="youtube_url" id="editNewsYoutube" class="form-control" placeholder="https://www.youtube.com/watch?v=...">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label fw-bold small text-secondary">Replace Cover Image</label>
+                <input type="file" name="image" class="form-control" accept="image/*">
+                <small class="text-muted">Leave empty to keep current image.</small>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label fw-bold small text-secondary">External Link</label>
+                <input type="url" name="external_link" id="editNewsExternal" class="form-control">
+              </div>
+
+              <div class="col-12">
+                <label class="form-label fw-bold small text-secondary">Short Excerpt / Summary</label>
+                <textarea name="excerpt" id="editNewsExcerpt" class="form-control" rows="2"></textarea>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label fw-bold small text-secondary">Full Article Content</label>
+                <textarea name="content" id="editNewsContent" class="form-control" rows="5"></textarea>
+              </div>
+
+              <div class="col-12">
+                <div class="form-check form-switch mt-2">
+                  <input class="form-check-input" type="checkbox" name="is_featured" id="editIsFeatured" value="1">
+                  <label class="form-check-label fw-bold text-dark" for="editIsFeatured">
+                    🌟 Featured Top Story
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-top px-4 py-3 bg-light">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary px-4 fw-bold" style="border-radius: 8px;">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Video Preview Modal -->
+  <div class="modal fade" id="adminVideoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-dark border-0 rounded-4 overflow-hidden">
+        <div class="modal-header border-0 pb-0">
+          <h6 class="modal-title text-white fw-bold" id="adminVideoModalTitle">YouTube Video Preview</h6>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" onclick="stopAdminVideo()"></button>
+        </div>
+        <div class="modal-body p-3">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; background: #000; border-radius: 8px; overflow: hidden;">
+            <iframe id="adminVideoIframe" src="" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Bootstrap 5 JS Bundle -->
@@ -695,6 +1002,44 @@
           }
         });
       });
+
+      // 6. News CMS Helper Functions
+      window.openEditNewsModal = function(article) {
+        const form = document.getElementById('editNewsForm');
+        form.action = '/admin/news/' + article.id;
+        document.getElementById('editNewsTitle').value = article.title || '';
+        document.getElementById('editNewsCategory').value = article.category || '';
+        document.getElementById('editNewsDate').value = article.published_date ? article.published_date.substring(0, 10) : '';
+        document.getElementById('editNewsYoutube').value = article.youtube_url || '';
+        document.getElementById('editNewsExternal').value = article.external_link || '';
+        document.getElementById('editNewsExcerpt').value = article.excerpt || '';
+        document.getElementById('editNewsContent').value = article.content || '';
+        document.getElementById('editIsFeatured').checked = !!article.is_featured;
+
+        const editModal = new bootstrap.Modal(document.getElementById('editNewsModal'));
+        editModal.show();
+      };
+
+      const adminVideoModalEl = document.getElementById('adminVideoModal');
+      const adminVideoModal = adminVideoModalEl ? new bootstrap.Modal(adminVideoModalEl) : null;
+      const adminVideoIframe = document.getElementById('adminVideoIframe');
+
+      window.adminPreviewVideo = function(embedUrl, title) {
+        if (!embedUrl) return;
+        adminVideoIframe.src = embedUrl + (embedUrl.includes('?') ? '&' : '?') + 'autoplay=1';
+        document.getElementById('adminVideoModalTitle').textContent = 'Preview: ' + (title || 'YouTube Video');
+        if (adminVideoModal) adminVideoModal.show();
+      };
+
+      window.stopAdminVideo = function() {
+        if (adminVideoIframe) adminVideoIframe.src = '';
+      };
+
+      if (adminVideoModalEl) {
+        adminVideoModalEl.addEventListener('hidden.bs.modal', function() {
+          stopAdminVideo();
+        });
+      }
     });
   </script>
 </body>
