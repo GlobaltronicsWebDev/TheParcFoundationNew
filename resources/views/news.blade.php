@@ -156,14 +156,17 @@
       <div class="news-card shadow-sm">
         <div class="row align-items-center g-0">
 
-          <div class="col-md-5 news-image position-relative" style="min-height: 280px; overflow: hidden; background: #000;">
+          <div class="col-md-5 news-image position-relative" style="min-height: 280px; overflow: hidden; background: #000; cursor: {{ !empty($featuredArticle->youtube_url) ? 'pointer' : 'default' }};"
+               @if(!empty($featuredArticle->youtube_url))
+                 onclick="openVideoModal('{{ $featuredArticle->youtube_embed_url }}', '{{ addslashes($featuredArticle->title) }}', '{{ $featuredArticle->formatted_date }}', '{{ addslashes(Str::limit($featuredArticle->excerpt ?? $featuredArticle->content, 200)) }}', '{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}')"
+               @endif>
             <img src="{{ $featuredArticle->display_image }}"
                  alt="{{ $featuredArticle->title }}"
                  class="img-fluid rounded-start w-100 h-100"
                  style="object-fit: cover;">
 
             @if(!empty($featuredArticle->youtube_url))
-              <div class="yt-play-badge" style="cursor: pointer;" onclick="openVideoModal('{{ $featuredArticle->youtube_embed_url }}', '{{ addslashes($featuredArticle->title) }}', '{{ $featuredArticle->formatted_date }}', '{{ addslashes(Str::limit($featuredArticle->excerpt ?? $featuredArticle->content, 200)) }}', '{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}')">
+              <div class="yt-play-badge">
                 <i class="bi bi-play-fill"></i>
               </div>
               <div class="yt-corner-pill"><i class="bi bi-youtube"></i> Watch Video</div>

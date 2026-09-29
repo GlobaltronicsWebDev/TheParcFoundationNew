@@ -322,12 +322,6 @@
             </div>
 
             <div class="d-flex align-items-center gap-2">
-              @if(!empty($article->youtube_url))
-                <a href="{{ $article->youtube_url }}" target="_blank" rel="noopener" class="btn btn-outline-danger d-inline-flex align-items-center gap-2" style="border-radius: 8px; font-weight: 600;">
-                  <i class="bi bi-youtube"></i> Watch on YouTube
-                </a>
-              @endif
-
               @if(!empty($article->external_link))
                 <a href="{{ $article->external_link }}" target="_blank" rel="noopener" class="btn-parc-orange">
                   Learn More <i class="bi bi-box-arrow-up-right"></i>

@@ -104,7 +104,7 @@ class NewsController extends Controller
                 'excerpt'        => 'The man behind the success of GGC — Mr. William Guido. This feature is more than an achievement—it is a reminder that when you lead with vision, purpose, and determination, the hard work will eventually speak for itself.',
                 'content'        => "The man behind the success of GGC — Mr. William Guido.\n\nThis feature is more than an achievement—it is a reminder that when you lead with vision, purpose, and determination, the hard work will eventually speak for itself. In a world full of noise, those who stay grounded and committed to their mission are the ones who truly make an impact.\n\nThrough initiatives that empower our youth, The PARC Foundation continues to carry this legacy forward, giving wings to talented dreamers and building an inclusive stage for all.",
                 'image_path'     => 'assets/image/NEWS/WTG.jpg',
-                'youtube_url'    => 'https://www.youtube.com/watch?v=NAnJbEVWnLo',
+                'youtube_url'    => 'https://www.youtube.com/live/1sqDa6Uyvug',
                 'external_link'  => 'https://www.facebook.com/reel/1758232722186837',
                 'published_date' => \Carbon\Carbon::parse('2026-08-23'),
                 'is_featured'    => true,
