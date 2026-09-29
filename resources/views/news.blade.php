@@ -236,10 +236,7 @@
       <div class="news-card shadow-sm">
         <div class="row align-items-center g-0">
 
-          <div class="col-md-5 news-image position-relative" style="min-height: 280px; overflow: hidden; background: #000; cursor: {{ !empty($featuredArticle->youtube_url) ? 'pointer' : 'default' }};"
-               @if(!empty($featuredArticle->youtube_url))
-                 onclick="openVideoModal('{{ $featuredArticle->youtube_embed_url }}', '{{ addslashes($featuredArticle->title) }}', '{{ $featuredArticle->formatted_date }}', '{{ addslashes(Str::limit($featuredArticle->excerpt ?? $featuredArticle->content, 200)) }}', '{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}')"
-               @endif>
+          <a href="{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}" class="col-md-5 news-image position-relative d-block" style="min-height: 280px; overflow: hidden; background: #000; cursor: pointer;">
             <img src="{{ $featuredArticle->display_image }}"
                  alt="{{ $featuredArticle->title }}"
                  class="img-fluid rounded-start w-100 h-100"
@@ -249,16 +246,18 @@
               <div class="yt-play-badge">
                 <i class="bi bi-play-fill"></i>
               </div>
-              <div class="yt-corner-pill"><i class="bi bi-youtube"></i> Watch Video</div>
+              <div class="yt-corner-pill"><i class="bi bi-youtube"></i> Video Story</div>
             @endif
-          </div>
+          </a>
 
           <div class="col-md-7 p-4 text-start">
             <span class="badge bg-warning text-dark mb-2" style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700;">
               {{ $featuredArticle->category ?? 'Featured Story' }}
             </span>
-            <h4 class="fw-bold text-highlight mb-3">
-              {{ $featuredArticle->title }}
+            <h4 class="fw-bold mb-3">
+              <a href="{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}" class="text-highlight text-decoration-none">
+                {{ $featuredArticle->title }}
+              </a>
             </h4>
             <p class="date mb-2 text-uppercase font-monospace" style="color: #6c757d; font-size: 0.88rem;">
               {{ $featuredArticle->formatted_date }}
@@ -293,30 +292,51 @@
     <!-- Visible cards (Always shown initial grid) -->
     <div class="section-container" id="visible-cards">
       @foreach($articles as $card)
-        <div class="card position-relative"
-             data-has-video="{{ !empty($card->youtube_url) ? '1' : '0' }}"
-             data-embed-url="{{ $card->youtube_embed_url ?? '' }}"
-             data-title="{{ $card->title }}"
-             data-date="{{ $card->formatted_date }}"
-             data-excerpt="{{ Str::limit($card->excerpt ?? strip_tags($card->content), 180) }}"
+        <div class="news-reference-card card position-relative"
              data-detail-url="{{ route('news.show', $card->slug ?: $card->id) }}"
-             data-external-link="{{ $card->external_link ?? '' }}">
+             onclick="window.location.href='{{ route('news.show', $card->slug ?: $card->id) }}'">
           
-          <div class="card-image position-relative">
-            <img src="{{ $card->display_image }}" alt="{{ $card->title }}" class="fit-cover">
+          <div class="news-card-img-wrap position-relative">
+            <img src="{{ $card->display_image }}" alt="{{ $card->title }}">
+
+            <!-- Top-Left Pill Badge like reference -->
+            <div class="news-card-top-badge">
+              <img src="{{ asset('assets/logo/parclogosquare.png') }}" alt="PARC" class="badge-logo">
+              <span>THE PARC FOUNDATION</span>
+            </div>
 
             @if(!empty($card->youtube_url))
-              <div class="yt-play-badge">
-                <i class="bi bi-play-fill"></i>
+              <div class="news-card-video-pill">
+                <i class="bi bi-play-circle-fill"></i> Video Story
               </div>
-              <div class="yt-corner-pill"><i class="bi bi-youtube"></i> Video</div>
             @endif
           </div>
 
-          <div class="card-content text-start">
-            <h3>{{ Str::limit($card->title, 65) }}</h3>
-            <p>{{ Str::limit($card->excerpt ?? strip_tags($card->content), 140) }}</p>
-            <span class="event-date">{{ $card->formatted_date }}</span>
+          <div class="news-card-body text-start">
+            <div class="news-card-meta">
+              <span class="news-meta-date">
+                <i class="bi bi-calendar-event me-1"></i> {{ strtoupper($card->formatted_date) }}
+              </span>
+              <span class="news-meta-category">
+                {{ strtoupper($card->category ?? 'THE PARC FOUNDATION') }}
+              </span>
+            </div>
+
+            <h3 class="news-card-title">
+              <a href="{{ route('news.show', $card->slug ?: $card->id) }}">
+                {{ $card->title }}
+              </a>
+            </h3>
+
+            <p class="news-card-excerpt">
+              {{ Str::limit($card->excerpt ?? strip_tags($card->content), 135) }}
+            </p>
+
+            <div class="news-card-footer">
+              <a href="{{ route('news.show', $card->slug ?: $card->id) }}" class="news-read-more-btn">
+                Read Full Story <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
           </div>
         </div>
       @endforeach
@@ -326,30 +346,51 @@
     @if($extraArticles->count() > 0)
       <div class="section-container" id="extra-cards" style="display: none;">
         @foreach($extraArticles as $card)
-          <div class="card position-relative"
-               data-has-video="{{ !empty($card->youtube_url) ? '1' : '0' }}"
-               data-embed-url="{{ $card->youtube_embed_url ?? '' }}"
-               data-title="{{ $card->title }}"
-               data-date="{{ $card->formatted_date }}"
-               data-excerpt="{{ Str::limit($card->excerpt ?? strip_tags($card->content), 180) }}"
+          <div class="news-reference-card card position-relative"
                data-detail-url="{{ route('news.show', $card->slug ?: $card->id) }}"
-               data-external-link="{{ $card->external_link ?? '' }}">
+               onclick="window.location.href='{{ route('news.show', $card->slug ?: $card->id) }}'">
             
-            <div class="card-image position-relative">
-              <img src="{{ $card->display_image }}" alt="{{ $card->title }}" class="fit-cover">
+            <div class="news-card-img-wrap position-relative">
+              <img src="{{ $card->display_image }}" alt="{{ $card->title }}">
+
+              <!-- Top-Left Pill Badge like reference -->
+              <div class="news-card-top-badge">
+                <img src="{{ asset('assets/logo/parclogosquare.png') }}" alt="PARC" class="badge-logo">
+                <span>THE PARC FOUNDATION</span>
+              </div>
 
               @if(!empty($card->youtube_url))
-                <div class="yt-play-badge">
-                  <i class="bi bi-play-fill"></i>
+                <div class="news-card-video-pill">
+                  <i class="bi bi-play-circle-fill"></i> Video Story
                 </div>
-                <div class="yt-corner-pill"><i class="bi bi-youtube"></i> Video</div>
               @endif
             </div>
 
-            <div class="card-content text-start">
-              <h3>{{ Str::limit($card->title, 65) }}</h3>
-              <p>{{ Str::limit($card->excerpt ?? strip_tags($card->content), 140) }}</p>
-              <span class="event-date">{{ $card->formatted_date }}</span>
+            <div class="news-card-body text-start">
+              <div class="news-card-meta">
+                <span class="news-meta-date">
+                  <i class="bi bi-calendar-event me-1"></i> {{ strtoupper($card->formatted_date) }}
+                </span>
+                <span class="news-meta-category">
+                  {{ strtoupper($card->category ?? 'THE PARC FOUNDATION') }}
+                </span>
+              </div>
+
+              <h3 class="news-card-title">
+                <a href="{{ route('news.show', $card->slug ?: $card->id) }}">
+                  {{ $card->title }}
+                </a>
+              </h3>
+
+              <p class="news-card-excerpt">
+                {{ Str::limit($card->excerpt ?? strip_tags($card->content), 135) }}
+              </p>
+
+              <div class="news-card-footer">
+                <a href="{{ route('news.show', $card->slug ?: $card->id) }}" class="news-read-more-btn">
+                  Read Full Story <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
             </div>
           </div>
         @endforeach
@@ -413,7 +454,7 @@
       moreBtn.addEventListener('click', function () {
         var extraCards = document.getElementById('extra-cards');
         if (extraCards.style.display === 'none' || extraCards.style.display === '') {
-          extraCards.style.display = 'flex';
+          extraCards.style.display = 'grid';
           this.textContent = 'BACK';
         } else {
           extraCards.style.display = 'none';
@@ -448,29 +489,18 @@
       stopVideoModal();
     });
 
-    /* ── Card Click Behavior: Open Video Modal if YouTube exists, else go to detail page ── */
-    document.querySelectorAll('.card').forEach(function (card) {
+    /* ── Card Click Behavior: Direct to news page content ── */
+    document.querySelectorAll('.news-reference-card').forEach(function (card) {
       card.style.cursor = 'pointer';
       card.addEventListener('click', function (e) {
-        // Prevent click if clicking a direct link inside
+        // Prevent duplicate trigger if clicking a direct link inside
         if (e.target.tagName === 'A' || e.target.closest('a')) {
           return;
         }
 
-        var hasVideo = this.getAttribute('data-has-video') === '1';
-        var embedUrl = this.getAttribute('data-embed-url');
-        var title = this.getAttribute('data-title');
-        var date = this.getAttribute('data-date');
-        var excerpt = this.getAttribute('data-excerpt');
         var detailUrl = this.getAttribute('data-detail-url');
-        var externalLink = this.getAttribute('data-external-link');
-
-        if (hasVideo && embedUrl) {
-          openVideoModal(embedUrl, title, date, excerpt, detailUrl);
-        } else if (detailUrl) {
+        if (detailUrl) {
           window.location.href = detailUrl;
-        } else if (externalLink) {
-          window.location.href = externalLink;
         }
       });
     });

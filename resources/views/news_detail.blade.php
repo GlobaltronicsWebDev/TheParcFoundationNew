@@ -394,21 +394,52 @@
         <div class="row g-4 justify-content-center">
           @foreach($relatedArticles as $rel)
             <div class="col-md-4">
-              <a href="{{ route('news.show', $rel->slug ?: $rel->id) }}" class="related-card">
-                <div class="related-card-img-wrap">
-                  <img src="{{ $rel->display_image }}" alt="{{ $rel->title }}" class="related-card-img">
-                  <span class="related-card-badge">{{ $rel->category ?? 'News' }}</span>
+              <div class="news-reference-card card position-relative h-100"
+                   data-detail-url="{{ route('news.show', $rel->slug ?: $rel->id) }}"
+                   onclick="window.location.href='{{ route('news.show', $rel->slug ?: $rel->id) }}'">
+                
+                <div class="news-card-img-wrap position-relative">
+                  <img src="{{ $rel->display_image }}" alt="{{ $rel->title }}">
+
+                  <div class="news-card-top-badge">
+                    <img src="{{ asset('assets/logo/parclogosquare.png') }}" alt="PARC" class="badge-logo">
+                    <span>THE PARC FOUNDATION</span>
+                  </div>
+
                   @if(!empty($rel->youtube_url))
-                    <span class="related-card-yt" title="Includes YouTube Video"><i class="bi bi-play-fill" style="font-size: 1.1rem; margin-left: 2px;"></i></span>
+                    <div class="news-card-video-pill">
+                      <i class="bi bi-play-circle-fill"></i> Video Story
+                    </div>
                   @endif
                 </div>
-                <div class="related-card-body">
-                  <h4 class="related-card-title">{{ Str::limit($rel->title, 65) }}</h4>
-                  <div class="related-card-date">
-                    <i class="bi bi-calendar3 me-1"></i> {{ $rel->formatted_date }}
+
+                <div class="news-card-body text-start">
+                  <div class="news-card-meta">
+                    <span class="news-meta-date">
+                      <i class="bi bi-calendar-event me-1"></i> {{ strtoupper($rel->formatted_date) }}
+                    </span>
+                    <span class="news-meta-category">
+                      {{ strtoupper($rel->category ?? 'THE PARC FOUNDATION') }}
+                    </span>
+                  </div>
+
+                  <h3 class="news-card-title">
+                    <a href="{{ route('news.show', $rel->slug ?: $rel->id) }}">
+                      {{ $rel->title }}
+                    </a>
+                  </h3>
+
+                  <p class="news-card-excerpt">
+                    {{ Str::limit($rel->excerpt ?? strip_tags($rel->content), 120) }}
+                  </p>
+
+                  <div class="news-card-footer">
+                    <a href="{{ route('news.show', $rel->slug ?: $rel->id) }}" class="news-read-more-btn">
+                      Read Full Story <i class="bi bi-arrow-right"></i>
+                    </a>
                   </div>
                 </div>
-              </a>
+              </div>
             </div>
           @endforeach
         </div>

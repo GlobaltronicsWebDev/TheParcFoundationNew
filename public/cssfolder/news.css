@@ -107,88 +107,252 @@
 
 
 
-/*9 cards*/
-/* Container for the section */
+/* Container for the news cards grid */
 .section-container {
-    display: flex;
-    justify-content: flex-start;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
     margin-top: 40px;
-    flex-wrap: wrap;
+    width: 100%;
 }
 
-/* Style for each card */
+/* Reference-style News Card */
+.news-reference-card,
 .card {
     font-family: 'Poppins', sans-serif;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: calc(33.333% - 14px);
+    background-color: #ffffff;
+    border: 1px solid #eef2f6;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    margin-bottom: 20px;
-    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-bottom: 0;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    cursor: pointer;
+    text-align: left;
 }
 
+.news-reference-card:hover,
 .card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e1;
 }
 
-/* Image in each card */
+/* Card Image Wrap */
+.news-card-img-wrap,
 .card-image {
+    position: relative;
     width: 100%;
     height: 220px;
-    background-color: #f7941d;
+    background-color: #0f172a;
     overflow: hidden;
 }
 
+.news-card-img-wrap img,
 .card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top center;
-    border-bottom: 2px solid #eaeaea;
+    object-position: center;
+    border-bottom: none;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.card-image img.fit-contain,
-.card-image img.fit-full {
-    object-fit: contain !important;
-    object-position: center !important;
-    background-color: #1a1a1a !important;
+.news-reference-card:hover .news-card-img-wrap img,
+.news-reference-card:hover .card-image img,
+.card:hover .card-image img {
+    transform: scale(1.05);
 }
 
-.card-image img.fit-center {
-    object-fit: cover !important;
-    object-position: center !important;
-}
-
-/* Card content */
-.card-content {
-    font-family: 'Poppins', sans-serif;
-    padding: 20px;
-}
-
-.card-content h3 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.2rem;
+/* Top-Left Pill Badge like in reference */
+.news-card-top-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(15, 23, 42, 0.78);
+    backdrop-filter: blur(6px);
+    padding: 4px 12px 4px 8px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffffff;
+    font-size: 0.72rem;
     font-weight: 700;
-    color: #333;
-    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+    pointer-events: none;
 }
 
-.card-content p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.5;
-    margin-bottom: 10px;
+.news-card-top-badge .badge-logo {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    object-fit: contain;
 }
 
-.card-content .event-date, .card-content .release-date {
-    font-family: 'Poppins', sans-serif;
-    display: block;
-    font-size: 0.85rem;
-    color: #d46a6a;
-    margin-top: 10px;
+/* Video badge overlay */
+.news-card-video-pill {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(220, 38, 38, 0.92);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Card Body Content */
+.news-card-body,
+.card-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background: #ffffff;
+    text-align: left;
+}
+
+/* Meta line: Date on left, Category on right */
+.news-card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.news-meta-date {
+    color: #0b57d0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.news-meta-category {
+    color: #8da4be;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 50%;
+}
+
+/* Title */
+.news-card-title {
+    font-size: 1.22rem;
+    font-weight: 800;
+    line-height: 1.35;
+    margin: 0 0 12px 0;
+    color: #0b57d0;
+}
+
+.news-card-title a {
+    color: #0b57d0;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.news-reference-card:hover .news-card-title a,
+.news-card-title a:hover {
+    color: #f7581e;
+}
+
+/* Excerpt */
+.news-card-excerpt {
+    color: #475569;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-weight: 400;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Card Footer with Read Full Story link */
+.news-card-footer {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 16px;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+}
+
+.news-read-more-btn {
+    color: #0b57d0;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.news-read-more-btn i {
+    transition: transform 0.2s ease;
+}
+
+.news-reference-card:hover .news-read-more-btn,
+.news-read-more-btn:hover {
+    color: #f7581e;
+}
+
+.news-reference-card:hover .news-read-more-btn i,
+.news-read-more-btn:hover i {
+    transform: translateX(5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .section-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+    }
+}
+
+@media (max-width: 640px) {
+    .section-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .news-card-img-wrap,
+    .card-image {
+        height: 200px;
+    }
+    .news-card-body,
+    .card-content {
+        padding: 20px;
+    }
+    .news-card-title {
+        font-size: 1.15rem;
+    }
 }
 
 /* Specific Font Override: All News Content Cards & Elements to Poppins */
