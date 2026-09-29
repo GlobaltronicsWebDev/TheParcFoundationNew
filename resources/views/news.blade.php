@@ -149,6 +149,68 @@
       background: #e04b16;
       color: #fff;
     }
+
+    /* Featured Article Action Buttons */
+    .featured-btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .featured-btn-group .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 22px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      border-radius: 8px;
+      line-height: 1.2;
+      text-decoration: none;
+      margin: 0 !important;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      white-space: nowrap;
+    }
+    .featured-btn-group .btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .btn-action-video {
+      background-color: #dc2626;
+      color: #ffffff !important;
+      border: 1.5px solid #dc2626;
+    }
+    .btn-action-video:hover {
+      background-color: #b91c1c;
+      border-color: #b91c1c;
+      color: #ffffff !important;
+    }
+    .btn-action-read {
+      background-color: #f6a506;
+      color: #ffffff !important;
+      border: 1.5px solid #f6a506;
+    }
+    .btn-action-read:hover {
+      background-color: #e09405;
+      border-color: #e09405;
+      color: #ffffff !important;
+    }
+    .btn-action-external {
+      background-color: #ffffff;
+      color: #475569 !important;
+      border: 1.5px solid #cbd5e1;
+    }
+    .btn-action-external:hover {
+      background-color: #f8fafc;
+      color: #0f172a !important;
+      border-color: #94a3b8;
+    }
   </style>
 
 </head>
@@ -205,21 +267,21 @@
               {{ $featuredArticle->excerpt ?? Str::limit(strip_tags($featuredArticle->content), 240) }}
             </p>
 
-            <div class="d-flex flex-wrap gap-2 align-items-center">
+            <div class="featured-btn-group">
               @if(!empty($featuredArticle->youtube_url))
-                <button type="button" class="btn btn-danger fw-bold d-inline-flex align-items-center gap-2"
+                <button type="button" class="btn-action btn-action-video"
                         onclick="openVideoModal('{{ $featuredArticle->youtube_embed_url }}', '{{ addslashes($featuredArticle->title) }}', '{{ $featuredArticle->formatted_date }}', '{{ addslashes(Str::limit($featuredArticle->excerpt ?? $featuredArticle->content, 200)) }}', '{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}')">
-                  <i class="bi bi-play-circle-fill"></i> PLAY VIDEO
+                  <i class="bi bi-play-circle-fill fs-6"></i> PLAY VIDEO
                 </button>
               @endif
 
-              <a href="{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}" class="btn btn-learn">
+              <a href="{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}" class="btn-action btn-action-read">
                 READ ARTICLE
               </a>
 
               @if(!empty($featuredArticle->external_link))
-                <a href="{{ $featuredArticle->external_link }}" class="btn btn-outline-secondary" target="_blank" rel="noopener">
-                  EXTERNAL LINK <i class="bi bi-box-arrow-up-right ms-1"></i>
+                <a href="{{ $featuredArticle->external_link }}" class="btn-action btn-action-external" target="_blank" rel="noopener">
+                  EXTERNAL LINK <i class="bi bi-box-arrow-up-right"></i>
                 </a>
               @endif
             </div>

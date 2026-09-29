@@ -31,23 +31,49 @@
       font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     }
     .news-detail-wrapper {
-      padding-top: 140px;
+      padding-top: 185px;
       padding-bottom: 80px;
       background: #fdfdfd;
       min-height: 80vh;
     }
     .news-breadcrumb {
-      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.92rem;
       margin-bottom: 24px;
-      color: #6c757d;
+      color: #64748b;
     }
     .news-breadcrumb a {
       color: #f7581e;
       text-decoration: none;
       font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.2s ease;
     }
     .news-breadcrumb a:hover {
+      color: #e04b16;
       text-decoration: underline;
+    }
+    .news-breadcrumb .breadcrumb-separator {
+      color: #94a3b8;
+      font-weight: 400;
+      user-select: none;
+    }
+    .news-breadcrumb .breadcrumb-current {
+      color: #475569;
+      font-weight: 500;
+      max-width: 450px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @media (max-width: 576px) {
+      .news-breadcrumb .breadcrumb-current {
+        max-width: 200px;
+      }
     }
     .article-header {
       margin-bottom: 30px;
@@ -254,12 +280,19 @@
       color: #94a3b8;
       margin-top: auto;
     }
+    @media (max-width: 991px) {
+      .news-detail-wrapper {
+        padding-top: 175px;
+      }
+    }
     @media (max-width: 768px) {
       .article-title {
         font-size: 1.75rem;
       }
+    }
+    @media (max-width: 576px) {
       .news-detail-wrapper {
-        padding-top: 120px;
+        padding-top: 160px;
       }
     }
   </style>
@@ -277,10 +310,10 @@
           <!-- Breadcrumb -->
           <div class="news-breadcrumb">
             <a href="{{ url('/') }}"><i class="bi bi-house-door-fill me-1"></i> Home</a>
-            <span class="mx-2">/</span>
+            <span class="breadcrumb-separator">/</span>
             <a href="{{ route('news') }}">News</a>
-            <span class="mx-2">/</span>
-            <span class="text-truncate d-inline-block align-bottom" style="max-width: 250px;">{{ $article->title }}</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">{{ $article->title }}</span>
           </div>
 
           <!-- Header -->
