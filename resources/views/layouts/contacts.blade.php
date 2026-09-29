@@ -5,8 +5,8 @@
         <div class="footer-column">
           <h4>SUPPORT</h4>
           <ul>
-            <li><a href="{{ url('/donate') }}" target="_blank">Donate now</a></li>
-            <li><a href="{{ url('/adopt') }}" target="_blank">Adopt a Scholar</a></li>
+            <li><a href="{{ url('/donate') }}">Donate now</a></li>
+            <li><a href="{{ url('/adopt') }}">Adopt a Scholar</a></li>
             <li><a href="#">Volunteer</a></li>
             <li><a href="#">Be a PARCner</a></li>
           </ul>

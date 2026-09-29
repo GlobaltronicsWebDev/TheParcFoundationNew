@@ -8,12 +8,12 @@
 
   <!-- Logo  -->
    <a href="{{ url('/welcome') }}">
-            <img class="logo" src="{{ asset('assets/logo/logo2.png') }}" alt="The PARC Foundation Logo" />
+            <img class="logo" src="{{ asset('assets/logo/logo2.png') }}?v={{ file_exists(public_path('assets/logo/logo2.png')) ? filemtime(public_path('assets/logo/logo2.png')) : time() }}" alt="The PARC Foundation Logo" />
    </a>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg shadow-sm">
     <div class="container-fluid">
-    <img class="logo1" src="{{ asset('assets/logo/logo2.png') }}" alt="The PARC Foundation Logo">
+    <img class="logo1" src="{{ asset('assets/logo/logo2.png') }}?v={{ file_exists(public_path('assets/logo/logo2.png')) ? filemtime(public_path('assets/logo/logo2.png')) : time() }}" alt="The PARC Foundation Logo">
 
       <!-- Toggler -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -24,10 +24,10 @@
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item {{ request()->is('welcome') || request()->is('/') ? 'active' : '' }}"><a href="{{ url('/welcome') }}"  class="nav-link">Home</a></li>
-          <li class="nav-item {{ request()->is('about') ? 'active' : '' }}"><a href="{{ url('/about') }}" target="_blank" class="nav-link">About</a></li>
-          <li class="nav-item {{ request()->is('events*') ? 'active' : '' }}"><a href="{{ url('/events') }}" target="_blank" class="nav-link">Events</a></li>
-          <li class="nav-item {{ request()->is('news*') ? 'active' : '' }}"><a href="{{ url('/news') }}" target="_blank"  class="nav-link">News</a></li>
-          <li class="nav-item {{ request()->is('contacts*') || request()->is('contact*') ? 'active' : '' }}"><a href="{{ url('/contacts') }}" target="_blank" class="nav-link">Contact</a></li>
+          <li class="nav-item {{ request()->is('about') ? 'active' : '' }}"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
+          <li class="nav-item {{ request()->is('events*') ? 'active' : '' }}"><a href="{{ url('/events') }}" class="nav-link">Events</a></li>
+          <li class="nav-item {{ request()->is('news*') ? 'active' : '' }}"><a href="{{ url('/news') }}" class="nav-link">News</a></li>
+          <li class="nav-item {{ request()->is('contacts*') || request()->is('contact*') ? 'active' : '' }}"><a href="{{ url('/contacts') }}" class="nav-link">Contact</a></li>
         </ul>
       </div>
 
@@ -51,8 +51,8 @@
 
   
       <div class="mainbuttons">
-        <a href="{{ url('/donate') }}" class="btn btn-donate px-3" target="_blank">DONATE</a>
-        <a href="{{ url('/adopt') }}" class="btn btn-adopt px-3" target="_blank">ADOPT A SCHOLAR</a>
+        <a href="{{ url('/donate') }}" class="btn btn-donate px-3">DONATE</a>
+        <a href="{{ url('/adopt') }}" class="btn btn-adopt px-3">ADOPT A SCHOLAR</a>
       </div>
 
 </div>
