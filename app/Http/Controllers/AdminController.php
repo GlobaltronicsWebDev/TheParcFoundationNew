@@ -71,6 +71,7 @@ class AdminController extends Controller
 
             $donations = Donation::orderBy('id', 'desc')->take(200)->get();
             $adoptions = Adoption::orderBy('id', 'desc')->take(200)->get();
+            $contacts = $hasContactTable ? ContactMessage::orderBy('id', 'desc')->take(200)->get() : collect();
             $hasNewsTable = Schema::hasTable('news_articles');
             $newsArticles = $hasNewsTable ? NewsArticle::orderBy('is_featured', 'desc')->orderBy('published_date', 'desc')->orderBy('id', 'desc')->get() : collect();
             $newsCount = count($newsArticles);
