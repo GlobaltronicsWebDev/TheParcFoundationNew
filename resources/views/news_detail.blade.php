@@ -6,6 +6,11 @@
   <title>{{ $article->title }} | The PARC Foundation News</title>
   <link rel="icon" type="image/png" href="{{ asset('assets/logo/parclogosquare.png') }}">
 
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
@@ -13,9 +18,18 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css?v=4.0') }}">
   <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
-  <link rel="stylesheet" href="{{ asset('cssfolder/news.css?v=1.3') }}" />
+  <link rel="stylesheet" href="{{ asset('cssfolder/news.css?v=2.0') }}" />
 
   <style>
+    body,
+    .news-detail-wrapper,
+    .article-header,
+    .article-title,
+    .article-content,
+    .related-section,
+    .related-card {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    }
     .news-detail-wrapper {
       padding-top: 140px;
       padding-bottom: 80px;
