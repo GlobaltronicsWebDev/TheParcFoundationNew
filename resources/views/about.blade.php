@@ -310,71 +310,7 @@
     </div>
   </section>
 
-  <!-- ── Advisors ── -->
-  <section class="about-advisors">
-    <div class="container">
-      <h2 class="about-section-heading text-center fade-right">ADV<span>ISORS</span></h2>
 
-      <div class="row justify-content-center g-4 mt-3">
-
-        <div class="col-6 col-md-3 text-center">
-          <div class="bot-member">
-            <img src="{{ asset('assets/image/bot/CG.png') }}" alt="Colin Goh" class="bot-photo">
-            <p class="bot-name">Colin Goh</p>
-          </div>
-        </div>
-
-        <div class="col-6 col-md-3 text-center">
-          <div class="bot-member">
-            <img src="{{ asset('assets/image/bot/ATL.png') }}" alt="Antonio (Tony) Lopez" class="bot-photo">
-            <p class="bot-name">Antonio (Tony) Lopez</p>
-          </div>
-        </div>
-
-        <div class="col-6 col-md-3 text-center">
-          <div class="bot-member">
-            <img src="{{ asset('assets/image/bot/JG.png') }}" alt="John Gan" class="bot-photo">
-            <p class="bot-name">John Gan</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Executive Management Team ── -->
-  <section class="about-emt">
-    <div class="container">
-      <h2 class="emt-heading fade-left">EXECUTIVE <span>MANAGEMENT TEAM</span></h2>
-
-      <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-7">
-          <ul class="emt-list">
-            <li>
-              <span class="emt-role">Chairman</span>
-              <span class="emt-name">William T. Guido</span>
-            </li>
-            <li>
-              <span class="emt-role">Vice Chairman</span>
-              <span class="emt-name">Dr. Raul M. Sunico</span>
-            </li>
-            <li>
-              <span class="emt-role">Corporate Sec</span>
-              <span class="emt-name">Luzviminda Gatmaitan</span>
-            </li>
-            <li>
-              <span class="emt-role">Treasurer</span>
-              <span class="emt-name">Nekka Verches</span>
-            </li>
-            <li>
-              <span class="emt-role">Auditor</span>
-              <span class="emt-name">Virginia Besa (CPA)</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
 
   @include('layouts.contacts')
   @include('layouts.footer')
