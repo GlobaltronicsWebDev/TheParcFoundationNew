@@ -18,6 +18,7 @@ class NewsArticle extends Model
         'content',
         'image_path',
         'youtube_url',
+        'facebook_url',
         'external_link',
         'published_date',
         'is_featured',
@@ -85,6 +86,17 @@ class NewsArticle extends Model
             return null;
         }
         return "https://www.youtube-nocookie.com/embed/{$id}?rel=0&enablejsapi=1";
+    }
+
+    /**
+     * Get responsive Facebook Reel / Video embed URL for iframes.
+     */
+    public function getFacebookEmbedUrlAttribute(): ?string
+    {
+        if (empty($this->facebook_url)) {
+            return null;
+        }
+        return "https://www.facebook.com/plugins/video.php?href=" . urlencode($this->facebook_url) . "&show_text=false&t=0";
     }
 
     /**

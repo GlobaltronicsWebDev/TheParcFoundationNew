@@ -247,6 +247,7 @@ class AdminController extends Controller
             'category'       => 'nullable|string|max:100',
             'published_date' => 'nullable|date',
             'youtube_url'    => 'nullable|url|max:500',
+            'facebook_url'   => 'nullable|url|max:500',
             'external_link'  => 'nullable|url|max:500',
             'excerpt'        => 'nullable|string|max:1000',
             'content'        => 'nullable|string',
@@ -260,6 +261,7 @@ class AdminController extends Controller
             'category'       => $validated['category'] ?: 'News & Updates',
             'published_date' => $validated['published_date'] ?: now()->toDateString(),
             'youtube_url'    => $validated['youtube_url'] ?? null,
+            'facebook_url'   => $validated['facebook_url'] ?? null,
             'external_link'  => $validated['external_link'] ?? null,
             'excerpt'        => $validated['excerpt'] ?? null,
             'content'        => $validated['content'] ?? null,
@@ -310,6 +312,7 @@ class AdminController extends Controller
             'category'       => 'nullable|string|max:100',
             'published_date' => 'nullable|date',
             'youtube_url'    => 'nullable|url|max:500',
+            'facebook_url'   => 'nullable|url|max:500',
             'external_link'  => 'nullable|url|max:500',
             'excerpt'        => 'nullable|string|max:1000',
             'content'        => 'nullable|string',
@@ -322,6 +325,7 @@ class AdminController extends Controller
         $article->category       = $validated['category'] ?: 'News & Updates';
         $article->published_date = $validated['published_date'] ?: $article->published_date;
         $article->youtube_url    = $validated['youtube_url'] ?? null;
+        $article->facebook_url   = $validated['facebook_url'] ?? null;
         $article->external_link  = $validated['external_link'] ?? null;
         $article->excerpt        = $validated['excerpt'] ?? null;
         $article->content        = $validated['content'] ?? null;
