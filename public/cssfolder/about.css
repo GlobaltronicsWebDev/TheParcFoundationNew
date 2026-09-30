@@ -345,7 +345,7 @@
 
 /* ── Board of Trustees Cards ── */
 .about-bot {
-  padding: 70px 20px;
+  padding: 60px 20px;
   background: #f8fafc;
 }
 
@@ -353,29 +353,37 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 100%;
 }
 
 .about-bot .bot-photo {
   width: 100%;
-  max-width: 250px;
+  max-width: 175px;
   height: auto;
   aspect-ratio: 2 / 3;
-  border-radius: 18px;
+  border-radius: 14px;
   object-fit: contain;
   border: none;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
   background: transparent;
 }
 
 .about-bot .bot-photo:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 16px 36px rgba(247, 88, 30, 0.25);
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(247, 88, 30, 0.25);
 }
 
 .about-bot .bot-name {
   display: none;
+}
+
+@media (max-width: 576px) {
+  .about-bot .bot-photo {
+    max-width: 145px;
+    border-radius: 12px;
+  }
 }
 
 /* ── Advisors (Circular Avatars) ── */

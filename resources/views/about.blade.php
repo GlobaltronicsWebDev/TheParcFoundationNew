@@ -11,6 +11,17 @@
   <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css?v=3.0') }}">
   <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
   <link rel="stylesheet" href="{{ asset('cssfolder/about.css') }}?v={{ file_exists(public_path('cssfolder/about.css')) ? filemtime(public_path('cssfolder/about.css')) : time() }}" />
+  <style>
+    .about-bot .bot-photo {
+      max-width: 175px !important;
+      border-radius: 14px !important;
+    }
+    @media (max-width: 576px) {
+      .about-bot .bot-photo {
+        max-width: 140px !important;
+      }
+    }
+  </style>
 </head>
 <body>
   @include('layouts.preloader')
@@ -233,7 +244,7 @@
       <div class="row justify-content-center g-4 mt-3">
 
         <!-- 1. William T. Guido (Chairman) -->
-        <div class="col-6 col-md-4 col-lg-3 text-center">
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 text-center">
           <div class="bot-member">
             <img src="{{ asset('assets/image/bot/William T. Guido.png') }}" alt="William T. Guido - Chairman" class="bot-photo" loading="lazy" decoding="async">
             <p class="bot-name">William T. Guido</p>
@@ -241,7 +252,7 @@
         </div>
 
         <!-- 2. Raul M. Sunico (Vice Chairman) -->
-        <div class="col-6 col-md-4 col-lg-3 text-center">
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 text-center">
           <div class="bot-member">
             <img src="{{ asset('assets/image/bot/Raul M. Sunico.png') }}" alt="Raul M. Sunico - Vice Chairman" class="bot-photo" loading="lazy" decoding="async">
             <p class="bot-name">Raul M. Sunico</p>
@@ -249,7 +260,7 @@
         </div>
 
         <!-- 3. Rodel F. Colmenar (Executive Director) -->
-        <div class="col-6 col-md-4 col-lg-3 text-center">
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 text-center">
           <div class="bot-member">
             <img src="{{ asset('assets/image/bot/Rodel Colmenar.png') }}" alt="Rodel F. Colmenar - Executive Director" class="bot-photo" loading="lazy" decoding="async">
             <p class="bot-name">Rodel F. Colmenar</p>
@@ -257,7 +268,7 @@
         </div>
 
         <!-- 4. Imelda O. Guido (Corporate Secretary) -->
-        <div class="col-6 col-md-4 col-lg-3 text-center">
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 text-center">
           <div class="bot-member">
             <img src="{{ asset('assets/image/bot/Imelda O. Guido.png') }}" alt="Imelda O. Guido - Corporate Secretary" class="bot-photo" loading="lazy" decoding="async">
             <p class="bot-name">Imelda O. Guido</p>
@@ -265,7 +276,7 @@
         </div>
 
         <!-- 5. Luzviminda D. Gatmaitan (Treasurer) -->
-        <div class="col-6 col-md-4 col-lg-4 text-center">
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 text-center">
           <div class="bot-member">
             <img src="{{ asset('assets/image/bot/Luzviminda Gatmaitan.png') }}" alt="Luzviminda D. Gatmaitan - Treasurer" class="bot-photo" loading="lazy" decoding="async">
             <p class="bot-name">Luzviminda D. Gatmaitan</p>
@@ -273,7 +284,7 @@
         </div>
 
         <!-- 6. Alvin Kingson Y. Tan (Board Member) -->
-        <div class="col-6 col-md-4 col-lg-4 text-center">
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 text-center">
           <div class="bot-member">
             <img src="{{ asset('assets/image/bot/Alvin Kingson Tan.png') }}" alt="Alvin Kingson Y. Tan - Board Member" class="bot-photo" loading="lazy" decoding="async">
             <p class="bot-name">Alvin Kingson Y. Tan</p>
@@ -281,7 +292,7 @@
         </div>
 
         <!-- 7. Macy G. Lee (Board Member) -->
-        <div class="col-6 col-md-4 col-lg-4 text-center">
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 text-center">
           <div class="bot-member">
             <img src="{{ asset('assets/image/bot/Macy G Lee.png') }}" alt="Macy G. Lee - Board Member" class="bot-photo" loading="lazy" decoding="async">
             <p class="bot-name">Macy G. Lee</p>
