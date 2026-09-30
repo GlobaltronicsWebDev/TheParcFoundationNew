@@ -142,18 +142,17 @@
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       transform: translateZ(0);
-      will-change: transform, opacity, filter;
-      animation: smoothImageReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      will-change: transform, opacity;
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease-out;
+      animation: smoothImageReveal 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     @keyframes smoothImageReveal {
       0% {
         opacity: 0;
-        filter: blur(8px);
-        transform: scale(1.03) translateZ(0);
+        transform: scale(1.02) translateZ(0);
       }
       100% {
         opacity: 1;
-        filter: blur(0);
         transform: scale(1) translateZ(0);
       }
     }

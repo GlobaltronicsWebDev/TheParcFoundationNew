@@ -72,24 +72,26 @@
     /* Card Image Wrap with shimmer skeleton while loading */
     .news-card-img-wrap,
     .card-image,
+    .news-card {
+      max-width: 980px !important;
+      margin: 0 auto 50px auto !important;
+      border-radius: 18px !important;
+      overflow: hidden !important;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08) !important;
+    }
+
     .news-image {
       position: relative !important;
       width: 100% !important;
+      height: 270px !important;
+      max-height: 270px !important;
       background: #0f172a !important;
-      background: linear-gradient(110deg, #0f172a 8%, #1e293b 18%, #0f172a 33%) !important;
-      background-size: 200% 100% !important;
-      animation: imageShimmer 2s infinite linear !important;
       overflow: hidden !important;
     }
 
     .news-card-img-wrap,
     .card-image {
       height: 220px !important;
-    }
-
-    @keyframes imageShimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
     }
 
     .news-card-img-wrap img,
@@ -100,25 +102,22 @@
       object-fit: cover !important;
       object-position: center !important;
       border-bottom: none !important;
-      image-rendering: -webkit-optimize-contrast;
       image-rendering: auto;
       -webkit-backface-visibility: hidden !important;
       backface-visibility: hidden !important;
       transform: translateZ(0) !important;
-      will-change: transform, opacity, filter;
-      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease-out, filter 0.5s ease-out !important;
-      animation: smoothImageReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+      will-change: transform, opacity;
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease-out !important;
+      animation: smoothImageReveal 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
     }
 
     @keyframes smoothImageReveal {
       0% {
         opacity: 0;
-        filter: blur(8px);
-        transform: scale(1.04) translateZ(0);
+        transform: scale(1.02) translateZ(0);
       }
       100% {
         opacity: 1;
-        filter: blur(0);
         transform: scale(1) translateZ(0);
       }
     }
@@ -544,16 +543,17 @@
 
     <!-- Featured News Card -->
     @if($featuredArticle)
-      <div class="news-card shadow-sm">
+      <div class="news-card shadow-sm" style="max-width: 980px; margin: 0 auto 50px;">
         <div class="row align-items-center g-0">
 
-          <a href="{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}" class="col-md-5 news-image position-relative d-block" style="min-height: 280px; overflow: hidden; background: #000; cursor: pointer;">
+          <a href="{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}" class="col-md-4 news-image position-relative d-block" style="height: 270px; max-height: 270px; overflow: hidden; background: #0f172a; cursor: pointer;">
             <img src="{{ $featuredArticle->display_image }}"
                  alt="{{ $featuredArticle->title }}"
-                 class="img-fluid rounded-start w-100 h-100"
-                 style="object-fit: cover;"
+                 class="w-100 h-100"
+                 style="object-fit: cover; object-position: center;"
                  loading="eager"
-                 decoding="async">
+                 decoding="async"
+                 onerror="if (this.src.includes('maxresdefault')) this.src = this.src.replace('maxresdefault', 'hqdefault');">
 
             @if(!empty($featuredArticle->youtube_url))
               <div class="yt-play-badge">
@@ -563,7 +563,7 @@
             @endif
           </a>
 
-          <div class="col-md-7 p-4 text-start">
+          <div class="col-md-8 p-4 text-start">
             <span class="badge bg-warning text-dark mb-2" style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700;">
               {{ $featuredArticle->category ?? 'Featured Story' }}
             </span>

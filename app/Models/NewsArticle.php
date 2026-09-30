@@ -100,7 +100,7 @@ class NewsArticle extends Model
     }
 
     /**
-     * Get high-quality YouTube thumbnail fallback.
+     * Get maximum high-definition YouTube thumbnail (1280x720 HD).
      */
     public function getYoutubeThumbnailUrlAttribute(): ?string
     {
@@ -108,7 +108,7 @@ class NewsArticle extends Model
         if (!$id) {
             return null;
         }
-        return "https://img.youtube.com/vi/{$id}/hqdefault.jpg";
+        return "https://img.youtube.com/vi/{$id}/maxresdefault.jpg";
     }
 
     /**
