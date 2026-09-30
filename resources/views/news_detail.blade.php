@@ -18,7 +18,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css?v=4.0') }}">
   <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
-  <link rel="stylesheet" href="{{ asset('cssfolder/news.css?v=2.0') }}" />
+  <link rel="stylesheet" href="{{ asset('cssfolder/news.css') }}?v={{ file_exists(public_path('cssfolder/news.css')) ? filemtime(public_path('cssfolder/news.css')) : time() }}" />
 
   <style>
     body,
