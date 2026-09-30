@@ -541,73 +541,7 @@
       <p class="subtitle">latest posts & stories</p>
     </div>
 
-    <!-- Featured News Card -->
-    @if($featuredArticle)
-      <div class="news-card shadow-sm" style="max-width: 980px; margin: 0 auto 50px;">
-        <div class="row align-items-center g-0">
 
-          <a href="{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}" class="col-md-4 news-image position-relative d-block" style="height: 270px; max-height: 270px; overflow: hidden; background: #0f172a; cursor: pointer;">
-            <img src="{{ $featuredArticle->display_image }}"
-                 alt="{{ $featuredArticle->title }}"
-                 class="w-100 h-100"
-                 style="object-fit: cover; object-position: center;"
-                 loading="eager"
-                 decoding="async"
-                 onerror="if (this.src.includes('maxresdefault')) this.src = this.src.replace('maxresdefault', 'hqdefault');">
-
-            @if(!empty($featuredArticle->youtube_url))
-              <div class="yt-play-badge">
-                <i class="bi bi-play-fill"></i>
-              </div>
-              <div class="yt-corner-pill"><i class="bi bi-youtube"></i> Video Story</div>
-            @endif
-          </a>
-
-          <div class="col-md-8 p-4 text-start">
-            <span class="badge bg-warning text-dark mb-2" style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700;">
-              {{ $featuredArticle->category ?? 'Featured Story' }}
-            </span>
-            <h4 class="fw-bold mb-3">
-              <a href="{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}" class="text-highlight text-decoration-none">
-                {{ $featuredArticle->title }}
-              </a>
-            </h4>
-            <p class="date mb-2 text-uppercase font-monospace" style="color: #6c757d; font-size: 0.88rem;">
-              {{ $featuredArticle->formatted_date }}
-            </p>
-            <p class="text-dark mb-4">
-              {{ $featuredArticle->excerpt ?? Str::limit(strip_tags($featuredArticle->content), 240) }}
-            </p>
-
-            <div class="featured-btn-group">
-              @if(!empty($featuredArticle->youtube_url))
-                <button type="button" class="btn-action btn-action-video"
-                        onclick="openVideoModal('{{ $featuredArticle->youtube_embed_url }}', '{{ addslashes($featuredArticle->title) }}', '{{ $featuredArticle->formatted_date }}', '{{ addslashes(Str::limit($featuredArticle->excerpt ?? $featuredArticle->content, 200)) }}', '{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}', 'youtube')">
-                  <i class="bi bi-play-circle-fill fs-6"></i> PLAY VIDEO
-                </button>
-              @endif
-
-              @if(!empty($featuredArticle->facebook_url) && !empty($featuredArticle->facebook_embed_url))
-                <button type="button" class="btn-action" style="background: #1877f2; color: #fff; border: 1.5px solid #1877f2;"
-                        onclick="openVideoModal('{{ $featuredArticle->facebook_embed_url }}', '{{ addslashes($featuredArticle->title) }}', '{{ $featuredArticle->formatted_date }}', '{{ addslashes(Str::limit($featuredArticle->excerpt ?? $featuredArticle->content, 200)) }}', '{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}', 'facebook')">
-                  <i class="bi bi-facebook fs-6"></i> WATCH REEL
-                </button>
-              @endif
-
-              <a href="{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}" class="btn-action btn-action-read">
-                READ ARTICLE
-              </a>
-
-              @if(!empty($featuredArticle->external_link))
-                <a href="{{ $featuredArticle->external_link }}" class="btn-action btn-action-external" target="_blank" rel="noopener">
-                  EXTERNAL LINK <i class="bi bi-box-arrow-up-right"></i>
-                </a>
-              @endif
-            </div>
-          </div>
-        </div>
-      </div>
-    @endif
 
     <!-- Visible cards (Always shown initial grid) -->
     <div class="section-container" id="visible-cards">

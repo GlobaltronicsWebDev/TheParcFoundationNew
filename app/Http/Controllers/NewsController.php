@@ -39,20 +39,13 @@ class NewsController extends Controller
             $allArticles = $this->getDefaultArticles();
         }
 
-        // Featured article is either the one marked is_featured, or the first article
-        $featuredArticle = $allArticles->firstWhere('is_featured', true) ?: $allArticles->first();
-        
-        // Remaining articles excluding the featured one
-        $remaining = $allArticles->reject(function ($item) use ($featuredArticle) {
-            return ($item->id ?? null) === ($featuredArticle->id ?? null) && ($item->title ?? '') === ($featuredArticle->title ?? '');
-        });
-
+        // All articles are displayed as normal news cards in the grid
         // Visible initial grid (up to 9 items)
-        $articles = $remaining->take(9);
+        $articles = $allArticles->take(9);
         // Extra articles revealed by "MORE" button
-        $extraArticles = $remaining->slice(9);
+        $extraArticles = $allArticles->slice(9);
 
-        return view('news', compact('featuredArticle', 'articles', 'extraArticles'));
+        return view('news', compact('articles', 'extraArticles'));
     }
 
     /**
