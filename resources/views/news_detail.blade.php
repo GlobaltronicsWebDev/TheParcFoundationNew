@@ -392,6 +392,34 @@
             </div>
           @endif
 
+          <!-- Embedded Facebook Reel Player (Watch directly in article) -->
+          @if(!empty($article->facebook_embed_url))
+            <div class="fb-reel-card my-4 p-4 rounded-4" style="background: #ffffff; border: 1.5px solid #e2e8f0; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);">
+              <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 pb-2 border-bottom">
+                <span class="fw-bold d-flex align-items-center gap-2" style="color: #1877f2; font-size: 1.1rem;">
+                  <i class="bi bi-facebook fs-4"></i> Watch Facebook Reel
+                </span>
+                <a href="{{ $article->facebook_url }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary fw-bold d-inline-flex align-items-center gap-1" style="border-radius: 6px; font-size: 0.82rem;">
+                  Open on Facebook <i class="bi bi-box-arrow-up-right"></i>
+                </a>
+              </div>
+              <div class="d-flex justify-content-center">
+                <div class="fb-reel-embed-frame" style="width: 100%; max-width: 500px; height: 580px; border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                  <iframe 
+                    src="{{ $article->facebook_embed_url }}" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:none;overflow:hidden;width:100%;height:100%;" 
+                    scrolling="no" 
+                    frameborder="0" 
+                    allowfullscreen="true" 
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                  </iframe>
+                </div>
+              </div>
+            </div>
+          @endif
+
           <!-- Bottom Actions & External Links -->
           <div class="article-actions">
             <div>
@@ -446,6 +474,10 @@
                   @if(!empty($rel->youtube_url))
                     <div class="news-card-video-pill">
                       <i class="bi bi-play-circle-fill"></i> Video Story
+                    </div>
+                  @elseif(!empty($rel->facebook_url))
+                    <div class="news-card-video-pill" style="background: rgba(24, 119, 242, 0.92); box-shadow: 0 2px 8px rgba(24, 119, 242, 0.4);">
+                      <i class="bi bi-facebook"></i> Facebook Reel
                     </div>
                   @endif
                 </div>

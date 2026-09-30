@@ -632,10 +632,15 @@
                             @endif
 
                             @if(!empty($article->facebook_url))
-                              <div>
+                              <div class="d-flex align-items-center gap-1">
                                 <a href="{{ $article->facebook_url }}" target="_blank" rel="noopener" class="badge bg-primary text-decoration-none d-inline-flex align-items-center gap-1" style="font-size: 0.72rem;">
                                   <i class="bi bi-facebook"></i> FB Reel
                                 </a>
+                                @if(!empty($article->facebook_embed_url))
+                                  <button type="button" class="btn btn-xs btn-outline-primary py-0 px-1 rounded" style="font-size: 0.7rem;" onclick="adminPreviewVideo('{{ $article->facebook_embed_url }}', '{{ addslashes($article->title) }}', 'facebook')">
+                                    Preview
+                                  </button>
+                                @endif
                               </div>
                             @endif
 
@@ -1058,10 +1063,11 @@
       const adminVideoModal = adminVideoModalEl ? new bootstrap.Modal(adminVideoModalEl) : null;
       const adminVideoIframe = document.getElementById('adminVideoIframe');
 
-      window.adminPreviewVideo = function(embedUrl, title) {
+      window.adminPreviewVideo = function(embedUrl, title, type) {
         if (!embedUrl) return;
-        adminVideoIframe.src = embedUrl + (embedUrl.includes('?') ? '&' : '?') + 'autoplay=1';
-        document.getElementById('adminVideoModalTitle').textContent = 'Preview: ' + (title || 'YouTube Video');
+        var isFb = (type === 'facebook') || embedUrl.includes('facebook.com');
+        adminVideoIframe.src = isFb ? embedUrl : (embedUrl + (embedUrl.includes('?') ? '&' : '?') + 'autoplay=1');
+        document.getElementById('adminVideoModalTitle').textContent = (isFb ? 'Preview FB Reel: ' : 'Preview: ') + (title || 'Video');
         if (adminVideoModal) adminVideoModal.show();
       };
 

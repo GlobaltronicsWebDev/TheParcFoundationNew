@@ -362,6 +362,25 @@
       overflow: hidden;
       background: #000;
     }
+    .video-modal .video-responsive-wrap.is-facebook {
+      padding-bottom: 0 !important;
+      height: 560px !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      background: #000 !important;
+    }
+    .video-modal .video-responsive-wrap.is-facebook iframe {
+      position: relative !important;
+      width: 100% !important;
+      max-width: 450px !important;
+      height: 100% !important;
+    }
+    @media (max-width: 576px) {
+      .video-modal .video-responsive-wrap.is-facebook {
+        height: 480px !important;
+      }
+    }
     .video-modal .video-responsive-wrap iframe {
       position: absolute;
       top: 0;
@@ -526,8 +545,15 @@
             <div class="featured-btn-group">
               @if(!empty($featuredArticle->youtube_url))
                 <button type="button" class="btn-action btn-action-video"
-                        onclick="openVideoModal('{{ $featuredArticle->youtube_embed_url }}', '{{ addslashes($featuredArticle->title) }}', '{{ $featuredArticle->formatted_date }}', '{{ addslashes(Str::limit($featuredArticle->excerpt ?? $featuredArticle->content, 200)) }}', '{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}')">
+                        onclick="openVideoModal('{{ $featuredArticle->youtube_embed_url }}', '{{ addslashes($featuredArticle->title) }}', '{{ $featuredArticle->formatted_date }}', '{{ addslashes(Str::limit($featuredArticle->excerpt ?? $featuredArticle->content, 200)) }}', '{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}', 'youtube')">
                   <i class="bi bi-play-circle-fill fs-6"></i> PLAY VIDEO
+                </button>
+              @endif
+
+              @if(!empty($featuredArticle->facebook_url) && !empty($featuredArticle->facebook_embed_url))
+                <button type="button" class="btn-action" style="background: #1877f2; color: #fff; border: 1.5px solid #1877f2;"
+                        onclick="openVideoModal('{{ $featuredArticle->facebook_embed_url }}', '{{ addslashes($featuredArticle->title) }}', '{{ $featuredArticle->formatted_date }}', '{{ addslashes(Str::limit($featuredArticle->excerpt ?? $featuredArticle->content, 200)) }}', '{{ route('news.show', $featuredArticle->slug ?: $featuredArticle->id) }}', 'facebook')">
+                  <i class="bi bi-facebook fs-6"></i> WATCH REEL
                 </button>
               @endif
 
@@ -563,8 +589,16 @@
             </div>
 
             @if(!empty($card->youtube_url))
-              <div class="news-card-video-pill">
+              <div class="news-card-video-pill"
+                   onclick="event.stopPropagation(); openVideoModal('{{ $card->youtube_embed_url }}', '{{ addslashes($card->title) }}', '{{ $card->formatted_date }}', '{{ addslashes(Str::limit($card->excerpt ?? $card->content, 180)) }}', '{{ route('news.show', $card->slug ?: $card->id) }}', 'youtube')"
+                   style="cursor: pointer;" title="Play Video">
                 <i class="bi bi-play-circle-fill"></i> Video Story
+              </div>
+            @elseif(!empty($card->facebook_url) && !empty($card->facebook_embed_url))
+              <div class="news-card-video-pill"
+                   onclick="event.stopPropagation(); openVideoModal('{{ $card->facebook_embed_url }}', '{{ addslashes($card->title) }}', '{{ $card->formatted_date }}', '{{ addslashes(Str::limit($card->excerpt ?? $card->content, 180)) }}', '{{ route('news.show', $card->slug ?: $card->id) }}', 'facebook')"
+                   style="background: rgba(24, 119, 242, 0.92); box-shadow: 0 2px 8px rgba(24, 119, 242, 0.4); cursor: pointer;" title="Watch Facebook Reel">
+                <i class="bi bi-facebook"></i> Facebook Reel
               </div>
             @endif
           </div>
@@ -617,8 +651,16 @@
               </div>
 
               @if(!empty($card->youtube_url))
-                <div class="news-card-video-pill">
+                <div class="news-card-video-pill"
+                     onclick="event.stopPropagation(); openVideoModal('{{ $card->youtube_embed_url }}', '{{ addslashes($card->title) }}', '{{ $card->formatted_date }}', '{{ addslashes(Str::limit($card->excerpt ?? $card->content, 180)) }}', '{{ route('news.show', $card->slug ?: $card->id) }}', 'youtube')"
+                     style="cursor: pointer;" title="Play Video">
                   <i class="bi bi-play-circle-fill"></i> Video Story
+                </div>
+              @elseif(!empty($card->facebook_url) && !empty($card->facebook_embed_url))
+                <div class="news-card-video-pill"
+                     onclick="event.stopPropagation(); openVideoModal('{{ $card->facebook_embed_url }}', '{{ addslashes($card->title) }}', '{{ $card->formatted_date }}', '{{ addslashes(Str::limit($card->excerpt ?? $card->content, 180)) }}', '{{ route('news.show', $card->slug ?: $card->id) }}', 'facebook')"
+                     style="background: rgba(24, 119, 242, 0.92); box-shadow: 0 2px 8px rgba(24, 119, 242, 0.4); cursor: pointer;" title="Watch Facebook Reel">
+                  <i class="bi bi-facebook"></i> Facebook Reel
                 </div>
               @endif
             </div>
@@ -725,11 +767,27 @@
     var videoModal = new bootstrap.Modal(videoModalEl);
     var videoIframe = document.getElementById('modalVideoIframe');
 
-    function openVideoModal(embedUrl, title, date, excerpt, detailUrl) {
+    function openVideoModal(embedUrl, title, date, excerpt, detailUrl, type) {
       if (!embedUrl) return;
-      // Auto-play video on modal open
-      var playUrl = embedUrl + (embedUrl.includes('?') ? '&' : '?') + 'autoplay=1';
-      videoIframe.src = playUrl;
+      var isFacebook = (type === 'facebook') || embedUrl.includes('facebook.com');
+      var wrap = document.querySelector('.video-modal .video-responsive-wrap');
+      var headerEl = document.getElementById('youtubeVideoModalLabel');
+
+      if (isFacebook) {
+        if (wrap) wrap.classList.add('is-facebook');
+        if (headerEl) {
+          headerEl.innerHTML = '<i class="bi bi-facebook text-primary fs-5"></i> Facebook Reel Player';
+        }
+        videoIframe.src = embedUrl;
+      } else {
+        if (wrap) wrap.classList.remove('is-facebook');
+        if (headerEl) {
+          headerEl.innerHTML = '<i class="bi bi-youtube text-danger fs-5"></i> YouTube Video Player';
+        }
+        var playUrl = embedUrl + (embedUrl.includes('?') ? '&' : '?') + 'autoplay=1';
+        videoIframe.src = playUrl;
+      }
+
       document.getElementById('modalVideoTitle').textContent = title || '';
       document.getElementById('modalVideoDate').textContent = date || '';
       document.getElementById('modalVideoExcerpt').textContent = excerpt || '';
@@ -739,6 +797,8 @@
 
     function stopVideoModal() {
       videoIframe.src = '';
+      var wrap = document.querySelector('.video-modal .video-responsive-wrap');
+      if (wrap) wrap.classList.remove('is-facebook');
     }
 
     // Stop playback if modal is closed via ESC or backdrop click
