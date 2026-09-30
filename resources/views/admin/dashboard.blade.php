@@ -589,7 +589,7 @@
                       <th style="width: 60px;">ID</th>
                       <th style="width: 80px;">Cover</th>
                       <th>Title & Details</th>
-                      <th>YouTube Video</th>
+                      <th>Media / Videos</th>
                       <th>Category</th>
                       <th>Date</th>
                       <th>Status</th>
@@ -619,18 +619,30 @@
                           </div>
                         </td>
                         <td>
-                          @if(!empty($article->youtube_url))
-                            <div class="d-flex align-items-center gap-2">
-                              <span class="badge bg-danger d-inline-flex align-items-center gap-1" style="font-size: 0.75rem;">
-                                <i class="bi bi-youtube"></i> Video
-                              </span>
-                              <button type="button" class="btn btn-xs btn-outline-danger py-0 px-2 rounded" style="font-size: 0.72rem;" onclick="adminPreviewVideo('{{ $article->youtube_embed_url }}', '{{ addslashes($article->title) }}')">
-                                Preview
-                              </button>
-                            </div>
-                          @else
-                            <span class="text-muted small">None</span>
-                          @endif
+                          <div class="d-flex flex-column gap-1">
+                            @if(!empty($article->youtube_url))
+                              <div class="d-flex align-items-center gap-1">
+                                <span class="badge bg-danger d-inline-flex align-items-center gap-1" style="font-size: 0.72rem;">
+                                  <i class="bi bi-youtube"></i> YouTube
+                                </span>
+                                <button type="button" class="btn btn-xs btn-outline-danger py-0 px-1 rounded" style="font-size: 0.7rem;" onclick="adminPreviewVideo('{{ $article->youtube_embed_url }}', '{{ addslashes($article->title) }}')">
+                                  Preview
+                                </button>
+                              </div>
+                            @endif
+
+                            @if(!empty($article->facebook_url))
+                              <div>
+                                <a href="{{ $article->facebook_url }}" target="_blank" rel="noopener" class="badge bg-primary text-decoration-none d-inline-flex align-items-center gap-1" style="font-size: 0.72rem;">
+                                  <i class="bi bi-facebook"></i> FB Reel
+                                </a>
+                              </div>
+                            @endif
+
+                            @if(empty($article->youtube_url) && empty($article->facebook_url))
+                              <span class="text-muted small">None</span>
+                            @endif
+                          </div>
                         </td>
                         <td>
                           <span class="badge-soft badge-soft-blue">{{ $article->category ?? 'News' }}</span>
