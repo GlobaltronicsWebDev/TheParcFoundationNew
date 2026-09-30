@@ -285,7 +285,7 @@
         <!-- 5. Luzviminda D. Gatmaitan (Treasurer) -->
         <div class="col-6 col-sm-6 col-md-4 col-lg-3 text-center">
           <div class="bot-member">
-            <img src="{{ asset('assets/image/bot/boardoftrustees_Luzviminda.png') }}?v=20260930_white" alt="Luzviminda D. Gatmaitan - Treasurer" class="bot-photo" loading="lazy" decoding="async">
+            <img src="{{ asset('assets/image/bot/boardoftrustees_luzviminda.png') }}?v=20260930_white" alt="Luzviminda D. Gatmaitan - Treasurer" class="bot-photo" loading="lazy" decoding="async">
             <p class="bot-name">Luzviminda D. Gatmaitan</p>
           </div>
         </div>
