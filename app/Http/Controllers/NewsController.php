@@ -13,15 +13,25 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $hasTable = Schema::hasTable('news_articles');
+        $hasTable = false;
+        try {
+            $hasTable = Schema::hasTable('news_articles');
+        } catch (\Throwable $e) {
+            $hasTable = false;
+        }
+
         $allArticles = collect();
 
         if ($hasTable) {
-            $allArticles = NewsArticle::where('status', 'published')
-                ->orderBy('is_featured', 'desc')
-                ->orderBy('published_date', 'desc')
-                ->orderBy('id', 'desc')
-                ->get();
+            try {
+                $allArticles = NewsArticle::where('status', 'published')
+                    ->orderBy('is_featured', 'desc')
+                    ->orderBy('published_date', 'desc')
+                    ->orderBy('id', 'desc')
+                    ->get();
+            } catch (\Throwable $e) {
+                $allArticles = collect();
+            }
         }
 
         // If no articles exist in DB yet, use default fallback articles
@@ -50,11 +60,21 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $hasTable = Schema::hasTable('news_articles');
+        $hasTable = false;
+        try {
+            $hasTable = Schema::hasTable('news_articles');
+        } catch (\Throwable $e) {
+            $hasTable = false;
+        }
+
         $article = null;
 
         if ($hasTable) {
-            $article = NewsArticle::where('slug', $id)->orWhere('id', $id)->first();
+            try {
+                $article = NewsArticle::where('slug', $id)->orWhere('id', $id)->first();
+            } catch (\Throwable $e) {
+                $article = null;
+            }
         }
 
         if (!$article) {
@@ -77,11 +97,15 @@ class NewsController extends Controller
         // Related articles
         $relatedArticles = collect();
         if ($hasTable) {
-            $relatedArticles = NewsArticle::where('status', 'published')
-                ->where('id', '!=', $article->id ?? 0)
-                ->orderBy('published_date', 'desc')
-                ->take(3)
-                ->get();
+            try {
+                $relatedArticles = NewsArticle::where('status', 'published')
+                    ->where('id', '!=', $article->id ?? 0)
+                    ->orderBy('published_date', 'desc')
+                    ->take(3)
+                    ->get();
+            } catch (\Throwable $e) {
+                $relatedArticles = collect();
+            }
         }
         if ($relatedArticles->isEmpty()) {
             $relatedArticles = $this->getDefaultArticles()->reject(fn($a) => ($a->title ?? '') === ($article->title ?? ''))->take(3);
