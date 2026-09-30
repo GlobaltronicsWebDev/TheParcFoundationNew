@@ -243,6 +243,11 @@
     letter-spacing: 0.4px;
     display: inline-flex;
     align-items: center;
+    transition: color 0.2s ease;
+}
+
+.news-reference-card:hover .news-meta-date {
+    color: #d94814;
 }
 
 .news-meta-category {
@@ -265,6 +270,7 @@
     line-height: 1.35;
     margin: 0 0 12px 0;
     color: #f7581e;
+    transition: color 0.2s ease;
 }
 
 .news-card-title a {
@@ -277,7 +283,9 @@
     overflow: hidden;
 }
 
+.news-reference-card:hover .news-card-title,
 .news-reference-card:hover .news-card-title a,
+.news-card-title:hover,
 .news-card-title a:hover {
     color: #d94814;
 }
