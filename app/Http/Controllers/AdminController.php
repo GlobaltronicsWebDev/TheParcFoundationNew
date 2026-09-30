@@ -234,6 +234,22 @@ class AdminController extends Controller
     }
 
     /**
+     * Ensure the facebook_url column exists in news_articles table.
+     */
+    protected function ensureFacebookColumnExists()
+    {
+        try {
+            if (Schema::hasTable('news_articles') && !Schema::hasColumn('news_articles', 'facebook_url')) {
+                Schema::table('news_articles', function (\Illuminate\Database\Schema\Blueprint $table) {
+                    $table->string('facebook_url', 500)->nullable()->after('youtube_url');
+                });
+            }
+        } catch (\Throwable $e) {
+            // Silently catch in case DB user lacks ALTER TABLE privileges
+        }
+    }
+
+    /**
      * Store a newly created News Article via CMS.
      */
     public function storeNews(Request $request)
@@ -241,6 +257,8 @@ class AdminController extends Controller
         if (!session('admin_authenticated')) {
             return redirect()->route('admin.login');
         }
+
+        $this->ensureFacebookColumnExists();
 
         $validated = $request->validate([
             'title'          => 'required|string|max:255',
@@ -261,13 +279,16 @@ class AdminController extends Controller
             'category'       => $validated['category'] ?: 'News & Updates',
             'published_date' => $validated['published_date'] ?: now()->toDateString(),
             'youtube_url'    => $validated['youtube_url'] ?? null,
-            'facebook_url'   => $validated['facebook_url'] ?? null,
             'external_link'  => $validated['external_link'] ?? null,
             'excerpt'        => $validated['excerpt'] ?? null,
             'content'        => $validated['content'] ?? null,
             'is_featured'    => $request->boolean('is_featured'),
             'status'         => $validated['status'] ?? 'published',
         ];
+
+        if (Schema::hasColumn('news_articles', 'facebook_url')) {
+            $data['facebook_url'] = $validated['facebook_url'] ?? null;
+        }
 
         // Handle Image Upload
         if ($request->hasFile('image')) {
@@ -305,6 +326,8 @@ class AdminController extends Controller
             return redirect()->route('admin.login');
         }
 
+        $this->ensureFacebookColumnExists();
+
         $article = NewsArticle::findOrFail($id);
 
         $validated = $request->validate([
@@ -325,7 +348,9 @@ class AdminController extends Controller
         $article->category       = $validated['category'] ?: 'News & Updates';
         $article->published_date = $validated['published_date'] ?: $article->published_date;
         $article->youtube_url    = $validated['youtube_url'] ?? null;
-        $article->facebook_url   = $validated['facebook_url'] ?? null;
+        if (Schema::hasColumn('news_articles', 'facebook_url')) {
+            $article->facebook_url = $validated['facebook_url'] ?? null;
+        }
         $article->external_link  = $validated['external_link'] ?? null;
         $article->excerpt        = $validated['excerpt'] ?? null;
         $article->content        = $validated['content'] ?? null;

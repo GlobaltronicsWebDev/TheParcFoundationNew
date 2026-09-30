@@ -171,6 +171,11 @@
       letter-spacing: 0.4px !important;
       display: inline-flex !important;
       align-items: center !important;
+      transition: color 0.2s ease !important;
+    }
+
+    .news-reference-card:hover .news-meta-date {
+      color: #d94814 !important;
     }
 
     .news-meta-category {
@@ -193,6 +198,7 @@
       line-height: 1.35 !important;
       margin: 0 0 12px 0 !important;
       color: #f7581e !important;
+      transition: color 0.2s ease !important;
     }
 
     .news-card-title a {
@@ -205,7 +211,9 @@
       overflow: hidden !important;
     }
 
+    .news-reference-card:hover .news-card-title,
     .news-reference-card:hover .news-card-title a,
+    .news-card-title:hover,
     .news-card-title a:hover {
       color: #d94814 !important;
     }

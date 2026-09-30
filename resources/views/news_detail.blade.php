@@ -271,9 +271,38 @@
     .related-card-title {
       font-size: 1.1rem;
       font-weight: 700;
-      color: #1e293b;
+      color: #f7581e;
       margin-bottom: 10px;
       line-height: 1.4;
+      transition: color 0.2s ease;
+    }
+    .related-card:hover .related-card-title {
+      color: #d94814;
+    }
+    .news-reference-card .news-meta-date {
+      color: #f7581e !important;
+      transition: color 0.2s ease !important;
+    }
+    .news-reference-card:hover .news-meta-date {
+      color: #d94814 !important;
+    }
+    .news-reference-card .news-card-title,
+    .news-reference-card .news-card-title a {
+      color: #f7581e !important;
+      transition: color 0.2s ease !important;
+    }
+    .news-reference-card:hover .news-card-title,
+    .news-reference-card:hover .news-card-title a,
+    .news-card-title a:hover {
+      color: #d94814 !important;
+    }
+    .news-reference-card .news-read-more-btn {
+      color: #f7581e !important;
+      transition: all 0.2s ease !important;
+    }
+    .news-reference-card:hover .news-read-more-btn,
+    .news-read-more-btn:hover {
+      color: #d94814 !important;
     }
     .related-card-date {
       font-size: 0.8rem;
@@ -326,6 +355,9 @@
               @if(!empty($article->youtube_url))
                 <span class="text-danger fw-bold"><i class="bi bi-youtube"></i> Video Story</span>
               @endif
+              @if(!empty($article->facebook_url))
+                <span class="text-primary fw-bold"><i class="bi bi-facebook"></i> Facebook Reel</span>
+              @endif
               @if($article->views_count > 0)
                 <span><i class="bi bi-eye"></i> {{ number_format($article->views_count) }} views</span>
               @endif
@@ -369,6 +401,11 @@
             </div>
 
             <div class="d-flex align-items-center gap-2">
+              @if(!empty($article->facebook_url))
+                <a href="{{ $article->facebook_url }}" target="_blank" rel="noopener" class="btn btn-outline-primary fw-bold d-inline-flex align-items-center gap-2" style="padding: 9px 18px; border-radius: 8px;">
+                  <i class="bi bi-facebook fs-6"></i> Watch Reel
+                </a>
+              @endif
               @if(!empty($article->external_link))
                 <a href="{{ $article->external_link }}" target="_blank" rel="noopener" class="btn-parc-orange">
                   Learn More <i class="bi bi-box-arrow-up-right"></i>

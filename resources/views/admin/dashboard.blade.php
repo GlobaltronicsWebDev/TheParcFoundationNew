@@ -739,6 +739,18 @@
                 </div>
               </div>
 
+              <div class="col-12">
+                <div class="p-3 rounded-3" style="background: #eff6ff; border: 1px solid #dbeafe;">
+                  <label class="form-label fw-bold small text-primary d-flex align-items-center gap-2">
+                    <i class="bi bi-facebook fs-5 text-primary"></i> Facebook Reel / Video Link
+                  </label>
+                  <input type="url" name="facebook_url" class="form-control" placeholder="https://www.facebook.com/reel/... or https://www.facebook.com/watch/?v=...">
+                  <small class="text-muted mt-1 d-block">
+                    Paste any Facebook Reel or Video link. A direct Facebook Reel badge and link will be highlighted on the article.
+                  </small>
+                </div>
+              </div>
+
               <div class="col-md-6">
                 <label class="form-label fw-bold small text-secondary">Custom Cover Image (Optional)</label>
                 <input type="file" name="image" class="form-control" accept="image/*">
@@ -818,6 +830,15 @@
                     <i class="bi bi-youtube fs-5"></i> YouTube Video Link
                   </label>
                   <input type="url" name="youtube_url" id="editNewsYoutube" class="form-control" placeholder="https://www.youtube.com/watch?v=...">
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="p-3 rounded-3" style="background: #eff6ff; border: 1px solid #dbeafe;">
+                  <label class="form-label fw-bold small text-primary d-flex align-items-center gap-2">
+                    <i class="bi bi-facebook fs-5 text-primary"></i> Facebook Reel / Video Link
+                  </label>
+                  <input type="url" name="facebook_url" id="editNewsFacebook" class="form-control" placeholder="https://www.facebook.com/reel/...">
                 </div>
               </div>
 
@@ -1023,6 +1044,7 @@
         document.getElementById('editNewsCategory').value = article.category || '';
         document.getElementById('editNewsDate').value = article.published_date ? article.published_date.substring(0, 10) : '';
         document.getElementById('editNewsYoutube').value = article.youtube_url || '';
+        document.getElementById('editNewsFacebook').value = article.facebook_url || '';
         document.getElementById('editNewsExternal').value = article.external_link || '';
         document.getElementById('editNewsExcerpt').value = article.excerpt || '';
         document.getElementById('editNewsContent').value = article.content || '';
