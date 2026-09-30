@@ -4,6 +4,14 @@
   font-family: 'Raleway', sans-serif;
 }
 
+/* Global Image Smoothness & Anti-Aliasing */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 /* ✅ Parcaralan */
 .parcaralan {
   position: relative;

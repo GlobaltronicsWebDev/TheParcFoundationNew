@@ -137,6 +137,29 @@
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       margin-bottom: 36px;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: auto;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+      will-change: transform, opacity, filter;
+      animation: smoothImageReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes smoothImageReveal {
+      0% {
+        opacity: 0;
+        filter: blur(8px);
+        transform: scale(1.03) translateZ(0);
+      }
+      100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1) translateZ(0);
+      }
+    }
+    @keyframes imageShimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
     }
     .article-lead {
       font-size: 1.22rem;
@@ -375,7 +398,7 @@
               </iframe>
             </div>
           @elseif(!empty($article->display_image))
-            <img src="{{ $article->display_image }}" alt="{{ $article->title }}" class="article-hero-image">
+            <img src="{{ $article->display_image }}" alt="{{ $article->title }}" class="article-hero-image" loading="eager" decoding="async">
           @endif
 
           <!-- Lead Paragraph / Excerpt -->
@@ -464,7 +487,7 @@
                    onclick="window.location.href='{{ route('news.show', $rel->slug ?: $rel->id) }}'">
                 
                 <div class="news-card-img-wrap position-relative">
-                  <img src="{{ $rel->display_image }}" alt="{{ $rel->title }}">
+                  <img src="{{ $rel->display_image }}" alt="{{ $rel->title }}" loading="lazy" decoding="async">
 
                   <div class="news-card-top-badge">
                     <img src="{{ asset('assets/logo/parclogosquare.png') }}" alt="PARC" class="badge-logo">

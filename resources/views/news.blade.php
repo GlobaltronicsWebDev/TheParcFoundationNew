@@ -69,30 +69,65 @@
       border-color: #cbd5e1 !important;
     }
 
-    /* Card Image Wrap */
+    /* Card Image Wrap with shimmer skeleton while loading */
     .news-card-img-wrap,
-    .card-image {
+    .card-image,
+    .news-image {
       position: relative !important;
       width: 100% !important;
-      height: 220px !important;
-      background-color: #0f172a !important;
+      background: #0f172a !important;
+      background: linear-gradient(110deg, #0f172a 8%, #1e293b 18%, #0f172a 33%) !important;
+      background-size: 200% 100% !important;
+      animation: imageShimmer 2s infinite linear !important;
       overflow: hidden !important;
     }
 
+    .news-card-img-wrap,
+    .card-image {
+      height: 220px !important;
+    }
+
+    @keyframes imageShimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
     .news-card-img-wrap img,
-    .card-image img {
+    .card-image img,
+    .news-image img {
       width: 100% !important;
       height: 100% !important;
       object-fit: cover !important;
       object-position: center !important;
       border-bottom: none !important;
-      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: auto;
+      -webkit-backface-visibility: hidden !important;
+      backface-visibility: hidden !important;
+      transform: translateZ(0) !important;
+      will-change: transform, opacity, filter;
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease-out, filter 0.5s ease-out !important;
+      animation: smoothImageReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+    }
+
+    @keyframes smoothImageReveal {
+      0% {
+        opacity: 0;
+        filter: blur(8px);
+        transform: scale(1.04) translateZ(0);
+      }
+      100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1) translateZ(0);
+      }
     }
 
     .news-reference-card:hover .news-card-img-wrap img,
     .news-reference-card:hover .card-image img,
-    .card:hover .card-image img {
-      transform: scale(1.05) !important;
+    .card:hover .card-image img,
+    .news-image:hover img {
+      transform: scale(1.06) translateZ(0) !important;
     }
 
     /* Top-Left Pill Badge like reference */
@@ -516,7 +551,9 @@
             <img src="{{ $featuredArticle->display_image }}"
                  alt="{{ $featuredArticle->title }}"
                  class="img-fluid rounded-start w-100 h-100"
-                 style="object-fit: cover;">
+                 style="object-fit: cover;"
+                 loading="eager"
+                 decoding="async">
 
             @if(!empty($featuredArticle->youtube_url))
               <div class="yt-play-badge">
@@ -580,7 +617,7 @@
              onclick="window.location.href='{{ route('news.show', $card->slug ?: $card->id) }}'">
           
           <div class="news-card-img-wrap position-relative">
-            <img src="{{ $card->display_image }}" alt="{{ $card->title }}">
+            <img src="{{ $card->display_image }}" alt="{{ $card->title }}" loading="lazy" decoding="async">
 
             <!-- Top-Left Pill Badge like reference -->
             <div class="news-card-top-badge">
@@ -642,7 +679,7 @@
                onclick="window.location.href='{{ route('news.show', $card->slug ?: $card->id) }}'">
             
             <div class="news-card-img-wrap position-relative">
-              <img src="{{ $card->display_image }}" alt="{{ $card->title }}">
+              <img src="{{ $card->display_image }}" alt="{{ $card->title }}" loading="lazy" decoding="async">
 
               <!-- Top-Left Pill Badge like reference -->
               <div class="news-card-top-badge">
