@@ -18,7 +18,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ asset('cssfolder/mainnavbar.css?v=4.0') }}">
   <link rel="stylesheet" href="{{ asset('cssfolder/contacts.css') }}" />
-  <link rel="stylesheet" href="{{ asset('cssfolder/news.css?v=2.0') }}" />
+  <link rel="stylesheet" href="{{ asset('cssfolder/news.css') }}?v={{ file_exists(public_path('cssfolder/news.css')) ? filemtime(public_path('cssfolder/news.css')) : time() }}" />
 
   <style>
     /* Card & Content Font Family */
@@ -32,6 +32,255 @@
     .video-modal,
     .video-modal * {
       font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    }
+
+    /* Container for the news cards grid */
+    .section-container {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 30px !important;
+      margin-top: 40px !important;
+      width: 100% !important;
+    }
+
+    /* Reference-style News Card */
+    .news-reference-card,
+    .card {
+      font-family: 'Poppins', sans-serif !important;
+      background-color: #ffffff !important;
+      border: 1px solid #eef2f6 !important;
+      border-radius: 16px !important;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05) !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      height: 100% !important;
+      margin-bottom: 0 !important;
+      width: 100% !important;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease !important;
+      cursor: pointer !important;
+      text-align: left !important;
+    }
+
+    .news-reference-card:hover,
+    .card:hover {
+      transform: translateY(-8px) !important;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1) !important;
+      border-color: #cbd5e1 !important;
+    }
+
+    /* Card Image Wrap */
+    .news-card-img-wrap,
+    .card-image {
+      position: relative !important;
+      width: 100% !important;
+      height: 220px !important;
+      background-color: #0f172a !important;
+      overflow: hidden !important;
+    }
+
+    .news-card-img-wrap img,
+    .card-image img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      border-bottom: none !important;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .news-reference-card:hover .news-card-img-wrap img,
+    .news-reference-card:hover .card-image img,
+    .card:hover .card-image img {
+      transform: scale(1.05) !important;
+    }
+
+    /* Top-Left Pill Badge like reference */
+    .news-card-top-badge {
+      position: absolute !important;
+      top: 14px !important;
+      left: 14px !important;
+      background: rgba(15, 23, 42, 0.78) !important;
+      backdrop-filter: blur(6px) !important;
+      padding: 4px 12px 4px 8px !important;
+      border-radius: 50px !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      color: #ffffff !important;
+      font-size: 0.72rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.5px !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+      z-index: 2 !important;
+      pointer-events: none !important;
+    }
+
+    .news-card-top-badge .badge-logo {
+      width: 18px !important;
+      height: 18px !important;
+      border-radius: 50% !important;
+      object-fit: contain !important;
+    }
+
+    /* Video badge overlay */
+    .news-card-video-pill {
+      position: absolute !important;
+      bottom: 12px !important;
+      right: 12px !important;
+      background: rgba(220, 38, 38, 0.92) !important;
+      color: #ffffff !important;
+      font-size: 0.72rem !important;
+      font-weight: 700 !important;
+      padding: 4px 10px !important;
+      border-radius: 50px !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+      backdrop-filter: blur(4px) !important;
+      box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4) !important;
+      z-index: 2 !important;
+      pointer-events: none !important;
+    }
+
+    /* Card Body Content */
+    .news-card-body,
+    .card-content {
+      padding: 24px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      flex: 1 !important;
+      background: #ffffff !important;
+      text-align: left !important;
+    }
+
+    /* Meta line: Date on left, Category on right */
+    .news-card-meta {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 8px !important;
+      margin-bottom: 12px !important;
+    }
+
+    .news-meta-date {
+      color: #0b57d0 !important;
+      font-size: 0.8rem !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.4px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+    }
+
+    .news-meta-category {
+      color: #8da4be !important;
+      font-size: 0.78rem !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.5px !important;
+      text-align: right !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-width: 50% !important;
+    }
+
+    /* Title */
+    .news-card-title {
+      font-size: 1.22rem !important;
+      font-weight: 800 !important;
+      line-height: 1.35 !important;
+      margin: 0 0 12px 0 !important;
+      color: #0b57d0 !important;
+    }
+
+    .news-card-title a {
+      color: #0b57d0 !important;
+      text-decoration: none !important;
+      transition: color 0.2s ease !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+    }
+
+    .news-reference-card:hover .news-card-title a,
+    .news-card-title a:hover {
+      color: #f7581e !important;
+    }
+
+    /* Excerpt */
+    .news-card-excerpt {
+      color: #475569 !important;
+      font-size: 0.92rem !important;
+      line-height: 1.6 !important;
+      margin-bottom: 20px !important;
+      font-weight: 400 !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 3 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+    }
+
+    /* Card Footer with Read Full Story link */
+    .news-card-footer {
+      border-top: 1px solid #f1f5f9 !important;
+      padding-top: 16px !important;
+      margin-top: auto !important;
+      display: flex !important;
+      align-items: center !important;
+    }
+
+    .news-read-more-btn {
+      color: #0b57d0 !important;
+      font-weight: 700 !important;
+      font-size: 0.95rem !important;
+      text-decoration: none !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .news-read-more-btn i {
+      transition: transform 0.2s ease !important;
+    }
+
+    .news-reference-card:hover .news-read-more-btn,
+    .news-read-more-btn:hover {
+      color: #f7581e !important;
+    }
+
+    .news-reference-card:hover .news-read-more-btn i,
+    .news-read-more-btn:hover i {
+      transform: translateX(5px) !important;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 991px) {
+      .section-container {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 22px !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section-container {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+      .news-card-img-wrap,
+      .card-image {
+        height: 200px !important;
+      }
+      .news-card-body,
+      .card-content {
+        padding: 20px !important;
+      }
+      .news-card-title {
+        font-size: 1.15rem !important;
+      }
     }
 
     /* Play badge on cards with YouTube videos */
