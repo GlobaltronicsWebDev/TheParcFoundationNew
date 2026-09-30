@@ -264,7 +264,7 @@
         <!-- 3. Rodel F. Colmenar (Executive Director) -->
         <div class="col-6 col-sm-6 col-md-4 col-lg-3 text-center">
           <div class="bot-member">
-            <img src="{{ asset('assets/image/bot/Rodel Colmenar.png') }}?v=20260930_white" alt="Rodel F. Colmenar - Executive Director" class="bot-photo" loading="lazy" decoding="async">
+            <img src="{{ asset('assets/image/bot/boardoftrustees_colmenar.png') }}?v=20260930_white" alt="Rodel F. Colmenar - Executive Director" class="bot-photo" loading="lazy" decoding="async">
             <p class="bot-name">Rodel F. Colmenar</p>
           </div>
         </div>
@@ -285,7 +285,7 @@
         <!-- 5. Luzviminda D. Gatmaitan (Treasurer) -->
         <div class="col-6 col-sm-6 col-md-4 col-lg-3 text-center">
           <div class="bot-member">
-            <img src="{{ asset('assets/image/bot/Luzviminda Gatmaitan.png') }}?v=20260930_white" alt="Luzviminda D. Gatmaitan - Treasurer" class="bot-photo" loading="lazy" decoding="async">
+            <img src="{{ asset('assets/image/bot/boardoftrustees_Luzviminda.png') }}?v=20260930_white" alt="Luzviminda D. Gatmaitan - Treasurer" class="bot-photo" loading="lazy" decoding="async">
             <p class="bot-name">Luzviminda D. Gatmaitan</p>
           </div>
         </div>
@@ -293,7 +293,7 @@
         <!-- 6. Macy G. Lee (Board Member) -->
         <div class="col-6 col-sm-6 col-md-4 col-lg-3 text-center">
           <div class="bot-member">
-            <img src="{{ asset('assets/image/bot/Macy G Lee.png') }}?v=20260930_white" alt="Macy G. Lee - Board Member" class="bot-photo" loading="lazy" decoding="async">
+            <img src="{{ asset('assets/image/bot/boardoftrustees_macyguido.png') }}?v=20260930_white" alt="Macy G. Lee - Board Member" class="bot-photo" loading="lazy" decoding="async">
             <p class="bot-name">Macy G. Lee</p>
           </div>
         </div>
